@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
-import { HomePageMainBannerComponent } from './home-page/home-page-main-banner/home-page-main-banner.component';
-import { HomeCoursesComponent } from './home-page/home-page-courses/home-page-courses.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 
@@ -22,12 +20,10 @@ import { FormsModule } from '@angular/forms';
     HomePageComponent,
     CoursesDetailsPageComponent,
     ProgramDetailsPageComponent,
-    ProgramsComponent, ContactUsComponent
+    ProgramsComponent,
+    ContactUsComponent,
   ],
-  imports: [CommonModule, PagesRoutingModule, SharedModule, FormsModule], exports: [HomePageComponent],
+  imports: [CommonModule, PagesRoutingModule, SharedModule, FormsModule],
+  exports: [HomePageComponent],
 })
 export class PagesModule {}
-
-
-
-
