@@ -12,18 +12,22 @@ import { CoursesDetailsPageComponent } from './courses-details-page/courses-deta
 import { ProgramDetailsPageComponent } from './program-details-page/program-details-page.component';
 import { ProgramsComponent } from './programs/programs.component';
 import { SharedModule } from '../shared/shared.module';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     RegisterPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
     HomePageComponent,
     CoursesDetailsPageComponent,
     ProgramDetailsPageComponent,
+    ProgramsComponent, ContactUsComponent
   ],
-  imports: [CommonModule, PagesRoutingModule],
-  exports: [HomePageComponent],
-  declarations: [ProgramsComponent],
-  imports: [CommonModule, PagesRoutingModule, SharedModule],
+  imports: [CommonModule, PagesRoutingModule, SharedModule, FormsModule], exports: [HomePageComponent],
 })
 export class PagesModule {}
+
+
+
+
