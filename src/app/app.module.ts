@@ -9,8 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 
 @NgModule({
-  declarations: [AppComponent,  RegisterPageComponent,
-    LoginPageComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, SharedModule, PagesModule],
   providers: [],
   bootstrap: [AppComponent],
