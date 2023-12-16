@@ -10,7 +10,12 @@ import { CoursesDetailsPageComponent } from './courses-details-page/courses-deta
 import { ProgramDetailsPageComponent } from './program-details-page/program-details-page.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HomePageComponent,
+    CoursesDetailsPageComponent,
+    ProgramDetailsPageComponent,
+  ],
   imports: [CommonModule, PagesRoutingModule],
+  exports: [HomePageComponent],
 })
 export class PagesModule {}
