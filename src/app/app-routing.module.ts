@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-
+import { CoursesDetailsPageComponent } from './pages/courses-details-page/courses-details-page.component';
+import { ProgramDetailsPageComponent } from './pages/program-details-page/program-details-page.component';
 const routes: Routes = [{
   path: 'contact-page', component: ContactUsComponent
 }
@@ -17,12 +18,16 @@ const routes: Routes = [{
   },
   {
     path:"Login",component: LoginPageComponent
-  }
+  }, {path: 'CourseDetails', component: CoursesDetailsPageComponent},
+  {path: 'ProgramDetails', component: ProgramDetailsPageComponent}
 >>>>>>> origin/MohammedWork
 ];
 
+
+
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

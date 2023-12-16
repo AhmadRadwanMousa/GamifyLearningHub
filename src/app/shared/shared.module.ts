@@ -1,7 +1,7 @@
+import { SharedRoutingModule } from './shared-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
-import { SharedRoutingModule } from './shared-routing.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { FunfactsComponent } from './funfacts/funfacts.component';
@@ -15,9 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { BlogsComponent } from './blogs/blogs.component';
-import {HttpClientModule} from '@angular/common/http';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +29,8 @@ import {HttpClientModule} from '@angular/common/http';
     BlogsComponent,
   ],
   imports: [
-    CommonModule,  HttpClientModule
+    CommonModule,
+    HttpClientModule,
     SharedRoutingModule,
     NgxScrollTopModule,
     CountUpModule,

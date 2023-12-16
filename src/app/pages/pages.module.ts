@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { ProgramsComponent } from './programs/programs.component';
 import { FormsModule } from '@angular/forms';
 
@@ -43,3 +44,22 @@ import { FormsModule } from '@angular/forms';
 })
 export class PagesModule { }
 >>>>>>> origin/Shurman(contact-page)
+=======
+
+import { PagesRoutingModule } from './pages-routing.module';
+import { CoursesDetailsPageComponent } from './courses-details-page/courses-details-page.component';
+import { ProgramDetailsPageComponent } from './program-details-page/program-details-page.component';
+
+
+@NgModule({
+  declarations: [
+    CoursesDetailsPageComponent,
+    ProgramDetailsPageComponent
+  ],
+  imports: [
+    CommonModule,
+    PagesRoutingModule
+  ]
+})
+export class PagesModule { }
+>>>>>>> origin/MonesTask
