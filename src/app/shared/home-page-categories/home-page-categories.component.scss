@@ -1,0 +1,195 @@
+.single-categories-courses-item {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 40px 20px;
+  transition: var(--transition);
+  background: {
+    color: var(--mainColor);
+    position: center center;
+    size: cover;
+    repeat: no-repeat;
+  }
+  .icon {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.2);
+    margin-bottom: 30px;
+    font-size: 65px;
+    color: var(--whiteColor);
+    transition: all 0.2s ease-in-out 0s;
+    animation: border-transform 10s linear infinite alternate forwards;
+    border: {
+      width: 2px;
+      style: dashed;
+      color: rgba(255, 255, 255, 0.3);
+      radius: 50%;
+    }
+    margin: {
+      left: auto;
+      right: auto;
+    }
+    i {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      right: 0;
+    }
+  }
+  h3 {
+    color: var(--whiteColor);
+    margin-bottom: 10px;
+    transition: all 0.3s ease-in-out 0s;
+    font: {
+      size: 20px;
+      weight: 700;
+    }
+  }
+  span {
+    transition: all 0.4s ease-in-out 0s;
+    text-transform: uppercase;
+    display: block;
+    color: var(--whiteColor);
+    font: {
+      weight: 500;
+      size: 14px;
+    }
+  }
+  .link-btn {
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .learn-more-btn {
+    display: inline-block;
+    position: absolute;
+    color: var(--whiteColor);
+    z-index: 1;
+    padding-right: 22px;
+    transition: all 0.5s ease-in-out 0s;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    font: {
+      size: var(--fontSize);
+      weight: 500;
+    }
+    i {
+      font-size: 20px;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: var(--whiteColor);
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      width: 100%;
+      z-index: -1;
+      transition: var(--transition);
+    }
+  }
+  &.bg1 {
+    background-image: url(../../../assets/img/categories/categories1.jpg);
+  }
+  &.bg2 {
+    background-image: url(../../../assets/img/categories/categories2.jpg);
+  }
+  &.bg3 {
+    background-image: url(../../../assets/img/categories/categories3.jpg);
+  }
+  &.bg4 {
+    background-image: url(../../../assets/img/categories/categories4.jpg);
+  }
+  &.bg5 {
+    background-image: url(../../../assets/img/categories/categories5.jpg);
+  }
+  &.bg6 {
+    background-image: url(../../../assets/img/categories/categories6.jpg);
+  }
+  &.bg7 {
+    background-image: url(../../../assets/img/categories/categories7.jpg);
+  }
+  &.bg8 {
+    background-image: url(../../../assets/img/categories/categories8.jpg);
+  }
+  &:hover,
+  &:focus {
+    transform: translateY(-10px);
+
+    .icon {
+      border-color: var(--whiteColor);
+      transform: translateY(-18px);
+    }
+    h3 {
+      transform: translateY(-18px);
+    }
+    span {
+      transform: translateY(-18px);
+    }
+    .learn-more-btn {
+      opacity: 1;
+      visibility: visible;
+      bottom: 18px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .single-categories-courses-item {
+    padding: 25px 20px;
+
+    h3 {
+      font-size: 18px;
+    }
+    span {
+      font-size: 13px;
+    }
+    .icon {
+      width: 80px;
+      height: 80px;
+      font-size: 50px;
+    }
+    &:hover,
+    &:focus {
+      .icon {
+        transform: translateY(-15px);
+      }
+      h3 {
+        transform: translateY(-25px);
+      }
+      span {
+        transform: translateY(-21px);
+      }
+      .learn-more-btn {
+        bottom: 15px;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .single-categories-courses-item {
+    padding: 40px 15px;
+
+    h3 {
+      font-size: 18px;
+    }
+    .learn-more-btn {
+      font-size: 14px;
+    }
+  }
+}

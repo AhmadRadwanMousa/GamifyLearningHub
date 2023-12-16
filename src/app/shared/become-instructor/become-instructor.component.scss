@@ -1,0 +1,163 @@
+.become-instructor-partner-area {
+  .container-fluid {
+    padding: {
+      left: 0;
+      right: 0;
+    }
+    .row {
+      margin: {
+        left: 0;
+        right: 0;
+      }
+      .col-lg-6 {
+        padding: {
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+}
+.become-instructor-partner-content {
+  position: relative;
+  z-index: 1;
+  padding: 100px;
+  background: {
+    image: url(../../../assets/img/pattern.png);
+    position: center center;
+    size: contain;
+    repeat: repeat;
+  }
+  h2 {
+    margin-bottom: 14px;
+    font: {
+      size: 37px;
+      weight: 700;
+    }
+  }
+  p {
+    margin-bottom: 25px;
+    max-width: 540px;
+  }
+  .default-btn {
+    border-radius: 30px;
+  }
+  &.bg-color {
+    background-color: var(--mainColor);
+    background-image: unset !important;
+
+    h2 {
+      color: var(--whiteColor);
+    }
+    p {
+      color: var(--whiteColor);
+      opacity: 0.97;
+    }
+    .default-btn {
+      background-color: var(--whiteColor);
+      color: var(--blackColor);
+
+      .icon-arrow {
+        color: var(--blackColor);
+        transition: var(--transition);
+      }
+      &:focus,
+      &:hover {
+        color: var(--whiteColor);
+        background-color: var(--blackColor);
+        border-color: var(--blackColor);
+
+        .icon-arrow {
+          color: var(--whiteColor);
+        }
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: {
+        image: url(../../../assets/img/bg-lines.svg);
+        position: center center;
+        size: cover;
+        repeat: no-repeat;
+      }
+    }
+  }
+}
+.become-instructor-partner-image {
+  width: 100%;
+  height: 100%;
+  background: {
+    position: center center;
+    size: cover;
+    repeat: no-repeat;
+  }
+  &.bg-image1 {
+    background-image: url(../../../assets/img/become-instructor.jpg);
+  }
+  &.bg-image2 {
+    background-image: url(../../../assets/img/become-partner.jpg);
+  }
+  img {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .become-instructor-partner-area {
+    .col-lg-6 {
+      &:nth-child(1) {
+        order: 2;
+      }
+      &:nth-child(2) {
+        order: 1;
+      }
+      &:nth-child(3) {
+        order: 3;
+      }
+      &:nth-child(4) {
+        order: 4;
+      }
+    }
+  }
+  .become-instructor-partner-content {
+    padding: 30px;
+    text-align: center;
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 27px;
+    }
+    p {
+      margin-bottom: 20px;
+      max-width: 100%;
+    }
+  }
+  .become-instructor-partner-image {
+    background-image: unset !important;
+
+    img {
+      display: inline-block;
+    }
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .become-instructor-partner-content {
+    padding: 25px;
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 30px;
+    }
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .become-instructor-partner-content {
+    padding: 50px;
+  }
+}
