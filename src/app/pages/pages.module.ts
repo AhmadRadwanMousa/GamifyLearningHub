@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProgramsComponent } from './programs/programs.component';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -12,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
     HomePageComponent,
     HomePageMainBannerComponent,
     HomeCoursesComponent,
+    ProgramsComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, SharedModule],
   exports: [HomePageComponent],
