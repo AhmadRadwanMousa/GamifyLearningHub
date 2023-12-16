@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-<<<<<<< HEAD
+import { CoursesDetailsPageComponent } from './courses-details-page/courses-details-page.component';
+import { ProgramDetailsPageComponent } from './program-details-page/program-details-page.component';
 import { ProgramsComponent } from './programs/programs.component';
 import { FormsModule } from '@angular/forms';
 
@@ -24,42 +24,10 @@ import { SharedModule } from '../shared/shared.module';
     HomePageMainBannerComponent,
     HomeCoursesComponent,
     ProgramsComponent,
+    CoursesDetailsPageComponent,
+    ProgramDetailsPageComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, SharedModule, FormsModule],
   exports: [HomePageComponent],
 })
 export class PagesModule {}
-=======
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { FormsModule } from '@angular/forms';
-
-@NgModule({
-  declarations: [
-    ContactUsComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule
-  ]
-})
-export class PagesModule { }
->>>>>>> origin/Shurman(contact-page)
-=======
-
-import { PagesRoutingModule } from './pages-routing.module';
-import { CoursesDetailsPageComponent } from './courses-details-page/courses-details-page.component';
-import { ProgramDetailsPageComponent } from './program-details-page/program-details-page.component';
-
-
-@NgModule({
-  declarations: [
-    CoursesDetailsPageComponent,
-    ProgramDetailsPageComponent
-  ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule
-  ]
-})
-export class PagesModule { }
->>>>>>> origin/MonesTask
