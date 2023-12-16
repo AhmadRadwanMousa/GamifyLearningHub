@@ -30,7 +30,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/assets/css/animate.min.css",
+              "src/assets/css/flaticon.css",
+              "src/assets/css/boxicons.min.css"
             ],
             "scripts": []
           },
@@ -100,5 +104,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "3347fe83-a41c-49da-960e-0698707c2889"
   }
 }
