@@ -1,0 +1,20 @@
+.single-partner-item {
+  text-align: center;
+
+  a {
+    img {
+      width: auto !important;
+      display: inline-block !important;
+      transition: var(--transition);
+      opacity: 0.9;
+    }
+  }
+  &:hover,
+  &:focus {
+    a {
+      img {
+        opacity: 1;
+      }
+    }
+  }
+}
