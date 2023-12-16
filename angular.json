@@ -30,6 +30,10 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/assets/css/animate.min.css",
+              "src/assets/css/flaticon.css",
+              "src/assets/css/boxicons.min.css",
               "src/styles.scss"
             ],
             "scripts": []
