@@ -11,7 +11,17 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/pages.module').then((x) => x.PagesModule),
   },
+  {
+    path: 'Register',
+    component: RegisterPageComponent,
+  },
+  {
+    path: 'Login',
+    component: LoginPageComponent,
+  },
 ];
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
