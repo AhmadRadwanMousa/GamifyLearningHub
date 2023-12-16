@@ -30,6 +30,13 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "node_modules/ngx-lightbox/lightbox.css",
+              "src/assets/css/animate.min.css",
+              "src/assets/css/flaticon.css",
+              "src/assets/css/boxicons.min.css",
               "src/styles.scss"
             ],
             "scripts": []

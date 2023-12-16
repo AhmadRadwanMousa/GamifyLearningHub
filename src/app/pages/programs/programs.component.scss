@@ -1,0 +1,197 @@
+.single-courses-item {
+    background-color: var(--whiteColor);
+    box-shadow: 0px 8px 16px 0px rgba(146, 184, 255, 0.2);
+    transition: var(--transition);
+
+    .courses-image {
+        position: relative;
+        overflow: hidden;
+
+        a {
+            img {
+                transition: var(--transition);
+            }
+        }
+    }
+    .courses-content {
+        padding: 0 20px 20px;
+        position: relative;
+        z-index: 1;
+
+        .course-author {
+            margin-top: -15px;
+
+            img {
+                width: 50px;
+                border: 3px solid var(--whiteColor);
+                height: 50px;
+                border-radius: 3px;
+            }
+            span {
+                color: var(--blackColor);
+                position: relative;
+                top: 10px;
+                margin-left: 10px;
+                font: {
+                    size: var(--fontSize);
+                    weight: 500;
+                };
+            }
+        }
+        .courses-rating {
+            position: relative;
+            top: 4px;
+
+            .review-stars-rated {
+                color: #f2b827;
+                display: inline-block;
+
+                i {
+                    color: #f2b827;
+                    font-size: 16px;
+                    margin-right: 2px;
+                }
+            }
+            .rating-total {
+                display: inline-block;
+                position: relative;
+                top: -2px;
+                font-size: 13px;
+            }
+        }
+        h3 {
+            line-height: 1.5;
+            margin: {
+                bottom: 10px;
+                top: 20px;
+            };
+            font: {
+                size: 19px;
+                weight: 600;
+            };
+        }
+        p {
+            line-height: 1.8;
+        }
+    }
+    .courses-box-footer {
+        border-top: 1px solid #e2f4ff;
+        padding: 20px;
+
+        ul {
+            list-style-type: none;
+            display: flex;
+            padding-left: 0;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: {
+                bottom: 0;
+                left: -7px;
+                right: -7px;
+            };
+            li {
+                color: #727695;
+                font-size: 15px;
+                padding: {
+                    left: 7px;
+                    right: 7px;
+                };
+                i {
+                    color: var(--blackColor);
+                    position: relative;
+                    top: 1px;
+
+                    &.bx-book-open {
+                        top: 1.3px;
+                    }
+                }
+            }
+            .students-number {
+                flex: 0 0 37%;
+                max-width: 37%;
+            }
+            .courses-lesson {
+                flex: 0 0 34%;
+                max-width: 34%;
+            }
+            .courses-price {
+                flex: 0 0 29%;
+                max-width: 29%;
+                text-align: end;
+                color: var(--mainColor);
+                font: {
+                    size: 18px;
+                    weight: 500;
+                };
+                span {
+                    color: #81868a;
+                    text-decoration: line-through;
+                    font: {
+                        size: 14px;
+                        weight: normal;
+                    };
+                }
+            }
+        }
+    }
+    &:hover, &:focus {
+        .courses-image {
+            img {
+                transform: scale(1.3) rotate(5deg);
+            }
+            .courses-tag {
+                background-color: var(--optionalColor);
+
+                a {
+                    color: var(--whiteColor);
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    .single-courses-item {
+        .courses-content {
+            h3 {
+                font-size: 18px;
+            }
+            .courses-rating {
+                .rating-total {
+                    display: none;
+                }
+            }
+        }
+        .courses-box-footer {
+            text-align: center;
+
+            ul {
+                li {
+                    i {
+                        top: 0;
+                        display: block;
+                        margin-bottom: 5px;
+                        font-size: 16px;
+                    }
+                }
+                .courses-price {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media only screen and (min-width: 1200px) and (max-width: 1275px) {
+
+}

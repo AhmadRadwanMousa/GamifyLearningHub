@@ -1,0 +1,112 @@
+
+
+
+<div class="page-title-area page-title-style-three item-bg1">
+    <div class="container">
+        <div class="page-title-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Courses</li>
+            </ul>
+            <h2>Courses 4 Columns</h2>
+        </div>
+    </div>
+</div>
+
+<div class="courses-area ptb-100">
+    <div class="container">
+        <div class="courses-topbar">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-4">
+                    <div class="topbar-result-count">
+                        <p>Showing 1 – 6 of 54</p>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="topbar-ordering-and-search">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 col-md-5 offset-lg-4 offset-md-1 col-sm-6">
+                                <div class="topbar-ordering">
+                                    <select class="form-select">
+                                        <option>Sort by popularity</option>
+                                        <option>Sort by latest</option>
+                                        <option>Default sorting</option>
+                                        <option>Sort by rating</option>
+                                        <option>Sort by new</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6 col-sm-6">
+                                <div class="topbar-search">
+                                    <form>
+                                        <label><i class="bx bx-search"></i></label>
+                                        <input type="text" class="input-search" placeholder="Search here...">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-3 col-md-6" *ngFor="let program of programs">
+                <div class="single-courses-item mb-30">
+                    <div class="courses-image">
+                        <a routerLink="/single-courses" class="d-block"><img src="../../../assets/img/courses/courses1.jpg" alt="image"></a>
+                    </div>
+                    <div class="courses-content">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="course-author d-flex align-items-center">
+                                <img src="assets/img/user1.jpg" class="shadow" alt="image">
+                                <span>Steven Smith</span>
+                            </div>
+                            <div class="courses-rating">
+                                <div class="review-stars-rated">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star-half'></i>
+                                </div>
+                                <div class="rating-total">
+                                    4.5 (2)
+                                </div>
+                            </div>
+                        </div>
+                        <h3><a routerLink="/single-courses" class="d-inline-block">{{program.programname}}</a></h3>
+                        <p>{{program.programdescription}}</p>
+                    </div>
+                    <div class="courses-box-footer">
+                        <ul>
+                            <li class="students-number">
+                                <i class='bx bx-user'></i> 10 students
+                            </li>
+                            <li class="courses-lesson">
+                                <i class='bx bx-book-open'></i> 6 lessons
+                            </li>
+                            <li class="courses-price">
+                                {{program.programprice}}$
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+   
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="pagination-area text-center">
+                    <span class="page-numbers current" aria-current="page">1</span>
+                    <a routerLink="courses-4-columns-style-2" class="page-numbers">2</a>
+                    <a routerLink="courses-4-columns-style-2" class="page-numbers">3</a>
+                    <a routerLink="courses-4-columns-style-2" class="page-numbers">4</a>
+                    <a routerLink="courses-4-columns-style-2" class="page-numbers">5</a>
+                    <a routerLink="courses-4-columns-style-2" class="next page-numbers"><i class='bx bx-chevron-right'></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
