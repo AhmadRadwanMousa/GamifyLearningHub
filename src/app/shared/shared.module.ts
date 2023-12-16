@@ -15,7 +15,6 @@ import { FormsModule } from '@angular/forms';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { BlogsComponent } from './blogs/blogs.component';
-import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 
