@@ -11,14 +11,12 @@ import { HomeCategoriesComponent } from './home-page-categories/home-page-catego
 import { PartnerComponent } from './partner/partner.component';
 import { BecomeInstructorComponent } from './become-instructor/become-instructor.component';
 import { LightboxModule } from 'ngx-lightbox';
-import { FormsModule } from '@angular/forms';
+
 import { LightgalleryModule } from 'lightgallery/angular';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +32,8 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     CommonModule,
     SharedRoutingModule,
-    NgxScrollTopModule,  HttpClientModule
+    NgxScrollTopModule,
+    HttpClientModule,
     CountUpModule,
     CarouselModule,
     NgxScrollTopModule,
@@ -50,7 +49,9 @@ import {HttpClientModule} from '@angular/common/http';
     PartnerComponent,
     BecomeInstructorComponent,
     FeedbackComponent,
-    BlogsComponent, HttpClientModule ,FormsModule,
+    BlogsComponent,
+    HttpClientModule,
+    FormsModule,
   ],
 })
 export class SharedModule {}
