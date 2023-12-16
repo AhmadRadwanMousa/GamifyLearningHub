@@ -1,218 +1,211 @@
 .register-image {
-    height: 100%;
-    width: 100%;
-    background: {
-        //  image: url(../../../../assets/img/register-bg.jpg);
-        position: center center;
-        size: cover;
-        repeat: no-repeat;
-    };
-    img {
-        display: none;
-    }
+  height: 100%;
+  width: 100%;
+  background: {
+    //  image: url(../../../../assets/img/register-bg.jpg);
+    position: center center;
+    size: cover;
+    repeat: no-repeat;
+  }
+  img {
+    display: none;
+  }
 }
 .register-content {
-    height: 100vh;
-    
-    .register-form {
-        text-align: center;
-        max-width: 500px;
-        margin: {
-            left: auto;
-            right: auto;
-        };
-        .logo {
-            margin-bottom: 30px;
-            
-            a {
-                display: inline-block;
-            }
-        }
-        h3 {
-            margin-bottom: 0;
-            font: {
-                size: 35px;
-                weight: 700;
-            };
-        }
-        p {
-            margin: {
-                top: 8px;
-                bottom: 0;
-            };
-            a {
-                display: inline-block;
-            }
-        }
-        form {
-            margin-top: 35px;
+  height: 100vh;
 
-            .form-group {
-                margin-bottom: 1rem;
-            }
-            .form-control {
-                background-color: var(--whiteColor);
-                color: var(--blackColor);
-                border: none;
-                transition: var(--transition);
-                box-shadow: 0px 5px 28.5px 1.5px rgba(149, 152, 200, .2) !important;
-                height: 55px;
-                font: {
-                    size: var(--fontSize);
-                };
-                &::placeholder {
-                    transition: var(--transition);
-                }
-                &:focus {
-                    &::placeholder {
-                        color: transparent;
-                    }
-                }
-            }
-            button {
-                transition: var(--transition);
-                display: block;
-                width: 100%;
-                padding: 13px 25px 12px 25px;
-                position: relative;
-                background-color: var(--mainColor);
-                color: var(--whiteColor);
-                box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.2);
-                border: {
-                    width: 2px;
-                    style: solid;
-                    color: var(--mainColor);
-                    radius: 5px;
-                };
-                font: {
-                    size: 14.5px;
-                    weight: 700;
-                };
-                &:hover, &:focus {
-                    background-color: var(--optionalColor);
-                    color: var(--whiteColor);
-                    border-color: var(--optionalColor);
-                }
-            }
-            .connect-with-social {
-                margin-top: 20px;
-
-                span {
-                    display: block;
-                    text-transform: uppercase;
-                    color: var(--paragraphColor);
-                    margin-bottom: 20px;
-                }
-                button {
-                    display: block;
-                    width: 100%;
-                    position: relative;
-                    border: 1px solid var(--mainColor);
-                    background-color: transparent;
-                    transition: var(--transition);
-                    padding: 12px 30px;
-                    border-radius: 2px;
-                    color: var(--mainColor);
-                    font: {
-                        weight: 500;
-                    }
-                    i {
-                        position: absolute;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        right: 15px;
-                        font-size: 20px;
-                    }
-                    &.facebook {
-                        border-color: #3b5998;
-                        color: #3b5998;
-                        box-shadow: 0px 5px 28.5px 1.5px rgba(59, 89, 152, 0.2);
-                        
-                        &:hover {
-                            background-color: #3b5998;
-                            color: var(--whiteColor);
-                            border-color: #3b5998;
-                        }
-                    }
-                    &.twitter {
-                        margin-top: 10px;
-                        border-color: #1da1f2;
-                        color: #1da1f2;
-                        box-shadow: 0px 5px 28.5px 1.5px rgba(29, 161, 242, 0.2);
-                        
-                        &:hover {
-                            background-color: #1da1f2;
-                            color: var(--whiteColor);
-                            border-color: #1da1f2;
-                        }
-                    }
-                    &:hover {
-                        background-color: var(--mainColor);
-                        color: var(--whiteColor);
-                        border-color: var(--mainColor);
-                    }
-                }
-            }
-        }
+  .register-form {
+    text-align: center;
+    max-width: 500px;
+    margin: {
+      left: auto;
+      right: auto;
     }
+    .logo {
+      margin-bottom: 30px;
+
+      a {
+        display: inline-block;
+      }
+    }
+    h3 {
+      margin-bottom: 0;
+      font: {
+        size: 35px;
+        weight: 700;
+      }
+    }
+    p {
+      margin: {
+        top: 8px;
+        bottom: 0;
+      }
+      a {
+        display: inline-block;
+      }
+    }
+    form {
+      margin-top: 35px;
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      .form-control {
+        background-color: var(--whiteColor);
+        color: var(--blackColor);
+        border: none;
+        transition: var(--transition);
+        box-shadow: 0px 5px 28.5px 1.5px rgba(149, 152, 200, 0.2) !important;
+        height: 55px;
+        font: {
+          size: var(--fontSize);
+        }
+        &::placeholder {
+          transition: var(--transition);
+        }
+        &:focus {
+          &::placeholder {
+            color: transparent;
+          }
+        }
+      }
+      button {
+        transition: var(--transition);
+        display: block;
+        width: 100%;
+        padding: 13px 25px 12px 25px;
+        position: relative;
+        background-color: var(--mainColor);
+        color: var(--whiteColor);
+        box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.2);
+        border: {
+          width: 2px;
+          style: solid;
+          color: var(--mainColor);
+          radius: 5px;
+        }
+        font: {
+          size: 14.5px;
+          weight: 700;
+        }
+        &:hover,
+        &:focus {
+          background-color: var(--optionalColor);
+          color: var(--whiteColor);
+          border-color: var(--optionalColor);
+        }
+      }
+      .connect-with-social {
+        margin-top: 20px;
+
+        span {
+          display: block;
+          text-transform: uppercase;
+          color: var(--paragraphColor);
+          margin-bottom: 20px;
+        }
+        button {
+          display: block;
+          width: 100%;
+          position: relative;
+          border: 1px solid var(--mainColor);
+          background-color: transparent;
+          transition: var(--transition);
+          padding: 12px 30px;
+          border-radius: 2px;
+          color: var(--mainColor);
+          font: {
+            weight: 500;
+          }
+          i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 15px;
+            font-size: 20px;
+          }
+          &.facebook {
+            border-color: #3b5998;
+            color: #3b5998;
+            box-shadow: 0px 5px 28.5px 1.5px rgba(59, 89, 152, 0.2);
+
+            &:hover {
+              background-color: #3b5998;
+              color: var(--whiteColor);
+              border-color: #3b5998;
+            }
+          }
+          &.twitter {
+            margin-top: 10px;
+            border-color: #1da1f2;
+            color: #1da1f2;
+            box-shadow: 0px 5px 28.5px 1.5px rgba(29, 161, 242, 0.2);
+
+            &:hover {
+              background-color: #1da1f2;
+              color: var(--whiteColor);
+              border-color: #1da1f2;
+            }
+          }
+          &:hover {
+            background-color: var(--mainColor);
+            color: var(--whiteColor);
+            border-color: var(--mainColor);
+          }
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 767px) {
-    
-    .register-image {
-        background-image: unset !important;
+  .register-image {
+    background-image: unset !important;
 
-        img {
-            display: inline-block;
-        }
+    img {
+      display: inline-block;
     }
-    .register-content {
-        height: 100%;
-        padding: 60px 15px;
+  }
+  .register-content {
+    height: 100%;
+    padding: 60px 15px;
 
-        .register-form {
-            .logo {
-                margin-bottom: 25px;
-            }
-            h3 {
-                font-size: 26px;
-            }
-        }
+    .register-form {
+      .logo {
+        margin-bottom: 25px;
+      }
+      h3 {
+        font-size: 26px;
+      }
     }
-
+  }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-    
-    .register-content {
-        max-width: 548px;
-        margin: {
-            left: auto;
-            right: auto;
-        };
+  .register-content {
+    max-width: 548px;
+    margin: {
+      left: auto;
+      right: auto;
     }
-
+  }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+  .register-image {
+    background-image: none !important;
 
-    .register-image {
-        background-image: none !important;
-
-        img {
-            display: inline-block;
-        }
+    img {
+      display: inline-block;
     }
-    .register-content {
-        height: 100%;
-        padding: {
-            top: 80px;
-            bottom: 80px;
-        };
+  }
+  .register-content {
+    height: 100%;
+    padding: {
+      top: 80px;
+      bottom: 80px;
     }
-
+  }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-
 }
 @media only screen and (min-width: 1200px) and (max-width: 1275px) {
-
 }

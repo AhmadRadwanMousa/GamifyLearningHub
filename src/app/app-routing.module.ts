@@ -5,20 +5,26 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CoursesDetailsPageComponent } from './pages/courses-details-page/courses-details-page.component';
 import { ProgramDetailsPageComponent } from './pages/program-details-page/program-details-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 const routes: Routes = [
   {
     path: 'contact-page',
     component: ContactUsComponent,
   },
+  { path: 'Register', component: RegisterPageComponent },
   {
     path: 'pages',
     loadChildren: () =>
       import('./pages/pages.module').then((x) => x.PagesModule),
   },
-  { path: 'Register', component: RegisterPageComponent },
+
   {
     path: 'Login',
     component: LoginPageComponent,
+  },
+  {
+    path: '',
+    component: HomePageComponent,
   },
   { path: 'CourseDetails', component: CoursesDetailsPageComponent },
   { path: 'ProgramDetails', component: ProgramDetailsPageComponent },

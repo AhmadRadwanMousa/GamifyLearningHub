@@ -8,7 +8,6 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, SharedModule, PagesModule],
