@@ -15,6 +15,10 @@ import { FormsModule } from '@angular/forms';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { BlogsComponent } from './blogs/blogs.component';
+import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -30,7 +34,7 @@ import { BlogsComponent } from './blogs/blogs.component';
   imports: [
     CommonModule,
     SharedRoutingModule,
-    NgxScrollTopModule,
+    NgxScrollTopModule,  HttpClientModule
     CountUpModule,
     CarouselModule,
     NgxScrollTopModule,
@@ -46,7 +50,7 @@ import { BlogsComponent } from './blogs/blogs.component';
     PartnerComponent,
     BecomeInstructorComponent,
     FeedbackComponent,
-    BlogsComponent,
+    BlogsComponent, HttpClientModule ,FormsModule,
   ],
 })
 export class SharedModule {}

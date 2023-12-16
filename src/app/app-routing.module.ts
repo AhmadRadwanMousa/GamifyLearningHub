@@ -4,12 +4,17 @@ import { CoursesDetailsPageComponent } from './pages/courses-details-page/course
 import { ProgramDetailsPageComponent } from './pages/program-details-page/program-details-page.component';
 
 const routes: Routes = [
-  {path: 'CourseDetails', component: CoursesDetailsPageComponent},
-  {path: 'ProgramDetails', component: ProgramDetailsPageComponent}
+  { path: 'CourseDetails', component: CoursesDetailsPageComponent },
+  { path: 'ProgramDetails', component: ProgramDetailsPageComponent },
+  {
+    path: 'pages',
+    loadChildren: () =>
+      import('./pages/pages.module').then((x) => x.PagesModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
