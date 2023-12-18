@@ -14,6 +14,9 @@ import {
   ToastNoAnimation,
   ToastNoAnimationModule,
 } from 'ngx-toastr';
+import { AdminService } from './Services/admin.service';
+import { LearnerService } from './Services/learner.service';
+import { InstructorService } from './Services/instructor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +30,7 @@ import {
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
   ],
-  providers: [],
+  providers: [AdminService, LearnerService, InstructorService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
