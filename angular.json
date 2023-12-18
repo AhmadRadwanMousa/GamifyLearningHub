@@ -25,6 +25,7 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-clip-rotate-pulse.css",
               "src/styles.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
@@ -33,9 +34,24 @@
               "src/assets/css/animate.min.css",
               "src/assets/css/flaticon.css",
               "src/assets/css/boxicons.min.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css" ,
+
+              "src/assets/assets/css/styles.min.css"
+
             ],
-            "scripts": []
+            "scripts": [
+           
+
+             "src/assets/assets/libs/jquery/dist/jquery.min.js",
+             "src/assets/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js",
+             "src/assets/assets/js/sidebarmenu.js",
+             "src/assets/assets/js/app.min.js",
+             "src/assets/assets/libs/apexcharts/dist/apexcharts.min.js",
+             "src/assets/assets/libs/simplebar/dist/simplebar.js",
+             "src/assets/assets/js/dashboard.js"
+
+            ]
           },
           "configurations": {
             "production": {
