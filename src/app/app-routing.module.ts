@@ -6,6 +6,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CoursesDetailsPageComponent } from './pages/courses-details-page/courses-details-page.component';
 import { ProgramDetailsPageComponent } from './pages/program-details-page/program-details-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 const routes: Routes = [
   {
     path: 'contact-page',
@@ -28,6 +29,7 @@ const routes: Routes = [
   },
   { path: 'CourseDetails', component: CoursesDetailsPageComponent },
   { path: 'ProgramDetails', component: ProgramDetailsPageComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
