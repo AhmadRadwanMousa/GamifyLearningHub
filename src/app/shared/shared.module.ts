@@ -16,6 +16,9 @@ import { LightgalleryModule } from 'lightgallery/angular';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderAdminComponent } from './header-admin/header-admin.component';
+import { FooterAdminComponent } from './footer-admin/footer-admin.component';
+import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
     BecomeInstructorComponent,
     FeedbackComponent,
     BlogsComponent,
+    HeaderAdminComponent,
+    FooterAdminComponent,
+    SidebarAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +56,9 @@ import { HttpClientModule } from '@angular/common/http';
     FeedbackComponent,
     BlogsComponent,
     FormsModule,
+    HeaderAdminComponent,
+    FooterAdminComponent,
+    SidebarAdminComponent,
   ],
 })
 export class SharedModule {}

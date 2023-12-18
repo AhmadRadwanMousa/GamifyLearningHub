@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
+import { NgxSpinnerService } from "ngx-spinner";
+import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-programs',
   templateUrl: './programs.component.html',
@@ -11,11 +12,12 @@ export class ProgramsComponent implements OnInit {
   programs : any =[
 
   ]
-  constructor(private http: HttpClient ){
+  constructor(private http: HttpClient ,private spinner: NgxSpinnerService , private toastr : ToastrService){
   
   }
   
   ngOnInit() {
+  this.toastr.success('welcome');
     this.GetAllCategories();
   }
   
