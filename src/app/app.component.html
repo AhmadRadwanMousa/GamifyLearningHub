@@ -1,5 +1,11 @@
 <app-header
-  *ngIf="!(location == '/Login' || location == '/Register')"
+  *ngIf="
+    !(
+      location == '/Login' ||
+      location == '/Register' ||
+      location == '/admin/index'
+    )
+  "
 ></app-header>
 
 <router-outlet></router-outlet>
@@ -13,5 +19,11 @@
 >
 
 <app-footer
-  *ngIf="!(location == '/Login' || location == '/Register')"
+  *ngIf="
+    !(
+      location == '/Login' ||
+      location == '/Register' ||
+      location == '/admin/index'
+    )
+  "
 ></app-footer>
