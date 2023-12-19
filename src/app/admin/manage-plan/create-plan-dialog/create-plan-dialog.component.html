@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Enter Plan Details</h2>
+
+<mat-dialog-content>
+  <form
+    [formGroup]="planDetails"
+    class="d-flex justify-content-center align-items-center flex-column"
+  >
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Plan Name</mat-label>
+      <input type="text" matInput formControlName="planname" />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
+      <mat-error *ngIf="planDetails.get('planname')?.hasError('required')">
+        Plan name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <input
+      type="file"
+      class="file-input"
+      (change)="uploadeFile($event)"
+      #fileUpload
+    />
+
+    <div class="file-upload border border-2 rounded-2">
+      {{ fileName || "No file uploaded yet." }}
+
+      <button
+        mat-mini-fab
+        color="primary"
+        class="upload-btn btn btn-outline-primary"
+        (click)="fileUpload.click()"
+      >
+        <mat-icon>upload-btn</mat-icon>
+      </button>
+    </div>
+    <mat-dialog-actions align="center">
+      <button
+        class="btn btn-primary"
+        (click)="SaveCourse()"
+        [mat-dialog-close]="true"
+      >
+        Create Plan
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

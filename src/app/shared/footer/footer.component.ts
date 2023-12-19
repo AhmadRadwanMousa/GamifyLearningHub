@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouteService } from 'src/app/Services/route-service.service';
 
 @Component({
   selector: 'app-footer',
@@ -6,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  constructor() {}
+  constructor(private routeService: RouteService) {}
 
   ngOnInit(): void {}
+  get shouldHide(): boolean {
+    return this.routeService.currentRoute.startsWith('/admin');
+  }
 }

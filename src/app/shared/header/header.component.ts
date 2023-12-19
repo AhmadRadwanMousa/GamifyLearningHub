@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { RouteService } from 'src/app/Services/route-service.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  constructor() {}
+  constructor(private routeService: RouteService) {}
 
   ngOnInit(): void {}
 
@@ -38,5 +39,8 @@ export class HeaderComponent implements OnInit {
   classApplied3 = false;
   toggleClass3() {
     this.classApplied3 = !this.classApplied3;
+  }
+  get shouldHide(): boolean {
+    return this.routeService.currentRoute.startsWith('/admin');
   }
 }

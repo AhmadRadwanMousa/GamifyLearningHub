@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { FooterAdminComponent } from './footer-admin/footer-admin.component';
 import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
+import { AdminContainerComponent } from './admin-container/admin-container.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
     HeaderAdminComponent,
     FooterAdminComponent,
     SidebarAdminComponent,
+    AdminContainerComponent,
   ],
   imports: [
     CommonModule,
@@ -59,6 +61,7 @@ import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
     HeaderAdminComponent,
     FooterAdminComponent,
     SidebarAdminComponent,
+    AdminContainerComponent,
   ],
 })
 export class SharedModule {}
