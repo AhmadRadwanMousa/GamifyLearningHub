@@ -11,7 +11,7 @@ import { HomeCategoriesComponent } from './home-page-categories/home-page-catego
 import { PartnerComponent } from './partner/partner.component';
 import { BecomeInstructorComponent } from './become-instructor/become-instructor.component';
 import { LightboxModule } from 'ngx-lightbox';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { BlogsComponent } from './blogs/blogs.component';
@@ -19,7 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { FooterAdminComponent } from './footer-admin/footer-admin.component';
 import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -59,6 +62,11 @@ import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
     HeaderAdminComponent,
     FooterAdminComponent,
     SidebarAdminComponent,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule
   ],
 })
 export class SharedModule {}
