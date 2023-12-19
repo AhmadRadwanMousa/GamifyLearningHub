@@ -28,8 +28,7 @@ import { InstructorService } from './Services/instructor.service';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),
-    ToastNoAnimationModule.forRoot(),
-  ],
+    ToastNoAnimationModule.forRoot()  ],
   providers: [AdminService, LearnerService, InstructorService],
   bootstrap: [AppComponent],
 })
