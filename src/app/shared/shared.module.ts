@@ -86,6 +86,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatSelectModule,
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,

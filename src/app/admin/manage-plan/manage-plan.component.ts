@@ -108,17 +108,8 @@ export class ManagePlanComponent implements OnInit {
     this.fileName = fileToUpload.name;
     const formData = new FormData();
     formData.append('file', fileToUpload);
-    this.adminService.UploadImage(formData).subscribe(
-      (res: any) => {
-        this.filePath = res.path;
-        if (res) {
-          this.toastr.info('Image has been created!', '', {
-            easeTime: 300,
-            easing: 'ease-in-out',
-          });
-        }
-      },
-      (error) => console.log(error)
-    );
+    this.adminService.UploadFile(formData).subscribe((path: string) => {
+      this.filePath = path;
+    });
   }
 }

@@ -87,21 +87,23 @@ export class ManageEducationPeriodComponent implements OnInit {
     });
     let updateDialog = this.dialog.open(this.UpdateDialog);
     updateDialog.afterClosed().subscribe((result) => {
-      let updatedPeriod = {
-        Educationalperiodid: educationPeriod.educationalperiodid,
-        Startdate: this.eduDetails.get('startDate')?.value,
-        Enddate: this.eduDetails.get('endDate')?.value,
-      };
-      this.adminService
-        .UpdateEducationalPeriod(updatedPeriod)
-        .subscribe((res) => {
-          if (res === 1) {
-            this.toastr.info('Period has been updated');
-            this.refreshEducationalPeriods();
-          } else {
-            this.toastr.error('Period has been updated');
-          }
-        });
+      if (result) {
+        let updatedPeriod = {
+          Educationalperiodid: educationPeriod.educationalperiodid,
+          Startdate: this.eduDetails.get('startDate')?.value,
+          Enddate: this.eduDetails.get('endDate')?.value,
+        };
+        this.adminService
+          .UpdateEducationalPeriod(updatedPeriod)
+          .subscribe((res) => {
+            if (res === 1) {
+              this.toastr.info('Period has been updated');
+              this.refreshEducationalPeriods();
+            } else {
+              this.toastr.error('Period has been updated');
+            }
+          });
+      }
     });
   }
 }

@@ -2,8 +2,14 @@
   <div class="col-md-12">
     <div class="card w-100">
       <div class="card-body p-4">
-        <h5 class="card-title fw-semibold mb-4">All Plans</h5>
+        <h5 class="card-title fw-semibold mb-4">All Educational Period</h5>
         <hr />
+        <button
+          class="btn btn-primary mb-4"
+          (click)="CreateEducationalPeriod()"
+        >
+          Create New Period
+        </button>
         <div class="table-responsive text-center">
           <table class="table text-nowrap mb-0 align-middle">
             <thead class="text-dark fs-4">
@@ -102,9 +108,6 @@
               </tr>
             </tbody>
           </table>
-          <button class="btn btn-primary" (click)="CreateEducationalPeriod()">
-            Create New Period
-          </button>
         </div>
       </div>
     </div>
@@ -217,11 +220,7 @@
         </mat-form-field>
 
         <mat-dialog-actions align="center">
-          <button
-            class="btn btn-primary"
-            (click)="(CreateEducationalPeriod)"
-            [mat-dialog-close]="true"
-          >
+          <button class="btn btn-primary" [mat-dialog-close]="true">
             Update Period
           </button>
         </mat-dialog-actions>

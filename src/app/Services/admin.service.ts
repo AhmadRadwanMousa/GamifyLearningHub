@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { URL } from '../constants/url';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class AdminService {
     private toastr: ToastrService
   ) {}
   programs: any = [];
+  filePath: string = '';
   GetAllPrograms() {
     this.spinner.show();
     this.http
@@ -129,9 +131,21 @@ export class AdminService {
   DeletePlan(id: number) {
     return this.http.delete(`${URL}/plan/` + id);
   }
-  UploadImage(file: FormData) {
-    return this.http.post(`${URL}/plan/UploadFile`, file);
+  UploadFile(file: FormData) {
+    return this.http.post(`${URL}/Upload/UploadImage`, file).pipe(
+      map((res: any) => {
+        if (res) {
+          this.toastr.info('Image has been created!', '', {
+            easeTime: 300,
+            easing: 'ease-in-out',
+          });
+          return res.path;
+        }
+        return '';
+      })
+    );
   }
+
   CreatePlan(newPlan: any) {
     return this.http.post(`${URL}/plan/CreatePlan`, newPlan);
   }
@@ -169,6 +183,7 @@ export class AdminService {
       },
       error: (err) => {
         this.toastr.error(err.message);
+        this.spinner.hide();
       },
     });
   }
