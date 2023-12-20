@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CreatePlanDialogComponent } from './create-plan-dialog/create-plan-dialog.component';
 import { AdminService } from 'src/app/Services/admin.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -26,7 +25,6 @@ export class ManagePlanComponent implements OnInit {
   @ViewChild('DeletePlanDialog') deleteDialog: any;
   @ViewChild('UpdatePlanDialog') updateDialog: any;
   @ViewChild('CreatePlanDialog') createDialog: any;
-
   ngOnInit(): void {
     this.refreshPlans();
   }

@@ -11,7 +11,7 @@ import { HomeCategoriesComponent } from './home-page-categories/home-page-catego
 import { PartnerComponent } from './partner/partner.component';
 import { BecomeInstructorComponent } from './become-instructor/become-instructor.component';
 import { LightboxModule } from 'ngx-lightbox';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { BlogsComponent } from './blogs/blogs.component';
@@ -20,6 +20,12 @@ import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { FooterAdminComponent } from './footer-admin/footer-admin.component';
 import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
 import { AdminContainerComponent } from './admin-container/admin-container.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -47,6 +53,13 @@ import { AdminContainerComponent } from './admin-container/admin-container.compo
     LightboxModule,
     FormsModule,
     LightgalleryModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     FooterComponent,
@@ -62,6 +75,13 @@ import { AdminContainerComponent } from './admin-container/admin-container.compo
     FooterAdminComponent,
     SidebarAdminComponent,
     AdminContainerComponent,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class SharedModule {}
