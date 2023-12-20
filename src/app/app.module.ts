@@ -30,7 +30,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     NgxSpinnerModule,
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
-    MatDialogModule,
   ],
   providers: [AdminService, LearnerService, InstructorService],
   bootstrap: [AppComponent],
