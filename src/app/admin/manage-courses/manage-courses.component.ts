@@ -1,7 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-manage-courses',
@@ -14,7 +14,8 @@ export class ManageCoursesComponent {
   @ViewChild('UpdateDialog') UpdateDialog: any;
   constructor(public admin: AdminService, public dialog: MatDialog) {}
   previus_data: any;
-
+  fileName: any;
+  filePath: any;
   ngOnInit() {
     this.admin.getAllCourses();
   }
@@ -39,7 +40,10 @@ export class ManageCoursesComponent {
   });
 
   CreateCourse() {
-    //console.log(this.CreateCourseForm.value);
+    console.log(this.CreateCourseForm.value);
+    this.CreateCourseForm.controls['courseimage'].setValue(
+      this.filePath
+    );
     this.admin.postCourse(this.CreateCourseForm.value);
   }
   OpenCreateDialog() {
@@ -70,8 +74,9 @@ export class ManageCoursesComponent {
   }
 
   UpdateCourse() {
-    console.log(this.UpdateCourseForm.value);
-
+    this.UpdateCourseForm.controls['courseimage'].setValue(
+      this.filePath
+    );
     this.admin.updateCourse(this.UpdateCourseForm.value);
   }
 
@@ -86,5 +91,19 @@ export class ManageCoursesComponent {
         }
       }
     });
+  }
+
+  UploadFile(event: any) {
+    let fileToUpload = event.target.files[0] as File;
+    if (!fileToUpload) {
+      return;
+    }
+    this.fileName = fileToUpload.name;
+    const formData = new FormData();
+    formData.append('file', fileToUpload);
+    this.admin.UploadFile(formData).subscribe((path: string) => {
+      this.filePath = path;
+    });
+    
   }
 }

@@ -189,6 +189,7 @@ export class AdminService {
   }
 
   postCourse(data: any) {
+    debugger
     this.http.post('https://localhost:7036/api/Course/', data).subscribe({
       next: () => {
         console.log('Created');
