@@ -7,16 +7,33 @@ import { ManageProgramsComponent } from './manage-programs/manage-programs.compo
 import { ManagePlanComponent } from './manage-plan/manage-plan.component';
 import { ManageEducationPeriodComponent } from './manage-education-period/manage-education-period.component';
 import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
+import { ManageRoleComponent } from './manage-role/manage-role.component';
+
+
+
+
+
+
 
 @NgModule({
   declarations: [
     IndexComponent,
+
     ManageProgramsComponent,
     ManagePlanComponent,
     ManageEducationPeriodComponent,
     ManageCoursesComponent,
+    ManageRoleComponent
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
   exports: [],
+=======
+    
+ 
+  
+
+
+  
+
 })
 export class AdminModule {}
