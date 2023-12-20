@@ -1,317 +1,136 @@
-<div
-  class="page-wrapper"
-  id="main-wrapper"
-  data-layout="vertical"
-  data-navbarbg="skin6"
-  data-sidebartype="full"
-  data-sidebar-position="fixed"
-  data-header-position="fixed"
->
-  <!-- Sidebar Start -->
-  <aside class="left-sidebar">
-    <!-- Sidebar scroll-->
-    <app-sidebar-admin></app-sidebar-admin>
-    <!-- End Sidebar scroll-->
-  </aside>
-  <!--  Sidebar End -->
-  <!--  Main wrapper -->
-  <div class="body-wrapper">
-    <!--  Header Start -->
-    <app-header-admin></app-header-admin>
-    <!--  Header End -->
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12 d-flex align-items-stretch">
-          <div class="card w-100">
-            <div class="card-body p-4">
-              <h5 class="card-title fw-semibold mb-4">All Courses</h5>
-              <hr />
-              <div class="table-responsive">
-                <button
-                  class="btn btn-primary mb-4"
-                  (click)="OpenCreateDialog()"
-                >
-                  Add Course
-                </button>
-                <table class="table text-nowrap mb-0 align-middle text-center">
-                  <thead class="text-dark fs-4">
-                    <tr>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Course name</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Image</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Level</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Exam Weight</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Assignment Weight</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Quizzes Weight</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Actions</h6>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let c of admin.courses">
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">{{ c.coursename }}</h6>
-                      </td>
-                      <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">{{ c.courseimage }}</p>
-                      </td>
-                      <td class="border-bottom-0">
-                        <div class="d-flex align-items-center gap-2">
-                          <span
-                            class="badge bg-primary rounded-3 fw-semibold"
-                            >{{ c.courselevel }}</span
-                          >
-                        </div>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0 fs-4">
-                          {{ c.examweight }}%
-                        </h6>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0 fs-4">
-                          {{ c.assignmentweight }}%
-                        </h6>
-                      </td>
+<app-admin-container>
+<div class="col-lg-12 d-flex align-items-stretch">
+  <div class="card w-100">
+    <div class="card-body p-4">
+      <h5 class="card-title fw-semibold mb-4">All Courses</h5>
+      <hr />
+      <div class="table-responsive">
+        <button
+          class="btn btn-primary mb-4"
+          (click)="OpenCreateDialog()"
+        >
+          Add Course
+        </button>
+        <table class="table text-nowrap mb-0 align-middle text-center">
+          <thead class="text-dark fs-4">
+            <tr>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Course name</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Image</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Level</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Exam Weight</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Assignment Weight</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Quizzes Weight</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Actions</h6>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of admin.courses">
+              <td class="border-bottom-0">
+                <h6 class="fw-semibold mb-1">{{ c.coursename }}</h6>
+              </td>
+              <td class="border-bottom-0">
+                <p class="mb-0 fw-normal">{{ c.courseimage }}</p>
+              </td>
+              <td class="border-bottom-0">
+                <div class="d-flex align-items-center gap-2">
+                  <span
+                    class="badge bg-primary rounded-3 fw-semibold"
+                    >{{ c.courselevel }}</span
+                  >
+                </div>
+              </td>
+              <td class="border-bottom-0">
+                <h6 class="fw-semibold mb-0 fs-4">
+                  {{ c.examweight }}%
+                </h6>
+              </td>
+              <td class="border-bottom-0">
+                <h6 class="fw-semibold mb-0 fs-4">
+                  {{ c.assignmentweight }}%
+                </h6>
+              </td>
 
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0 fs-4">
-                          {{ c.quizzezweight }}%
-                        </h6>
-                      </td>
-                      <td class="border-bottom-0">
-                        <button
-                          class="btn btn-primary m-2"
-                          (click)="openUpdateDialog(c)"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="icon icon-tabler icon-tabler-edit"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            stroke-width="2"
-                            stroke="currentColor"
-                            fill="none"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          >
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path
-                              d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
-                            />
-                            <path
-                              d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
-                            />
-                            <path d="M16 5l3 3" />
-                          </svg>
-                        </button>
-                        <button
-                          class="btn btn-danger"
-                          (click)="OpenDeleteDialog(c.courseid)"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="icon icon-tabler icon-tabler-trash-filled"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            stroke-width="2"
-                            stroke="currentColor"
-                            fill="none"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          >
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path
-                              d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
-                              stroke-width="0"
-                              fill="currentColor"
-                            />
-                            <path
-                              d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
-                              stroke-width="0"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+              <td class="border-bottom-0">
+                <h6 class="fw-semibold mb-0 fs-4">
+                  {{ c.quizzezweight }}%
+                </h6>
+              </td>
+              <td class="border-bottom-0">
+                <button
+                  class="btn btn-primary m-2"
+                  (click)="openUpdateDialog(c)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-edit"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                    />
+                    <path
+                      d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                    />
+                    <path d="M16 5l3 3" />
+                  </svg>
+                </button>
+                <button
+                  class="btn btn-danger"
+                  (click)="OpenDeleteDialog(c.courseid)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-trash-filled"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                      stroke-width="0"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                      stroke-width="0"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <app-footer-admin></app-footer-admin>
     </div>
   </div>
 </div>
-
-<ng-template #DeleteConfirmDialog>
-  <h1 mat-dialog-title>Delete Course</h1>
-  <div mat-dialog-content>Would you like to delete course?</div>
-  <div mat-dialog-actions>
-    <input
-      class="btn btn-primary"
-      mat-button
-      mat-dialog-close="no"
-      value="No"
-    />
-    <input
-      class="btn btn-danger m-2"
-      mat-button
-      mat-dialog-close="yes"
-      cdkFocusInitial
-      value="Delete"
-    />
-  </div>
-</ng-template>
-
-<ng-template #CreateCourseDialog>
-  <form class="My-form" [formGroup]="CreateCourseForm">
-    <div class="row">
-      <mat-form-field class="col-lg-12">
-        <mat-label>Enter Course Name</mat-label>
-        <input matInput type="text" formControlName="coursename" required />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field class="col-lg-5">
-        <mat-label>Enter Course Image</mat-label>
-        <input matInput type="text" formControlName="courseimage" required />
-      </mat-form-field>
-
-      <mat-form-field class="col-lg-7">
-        <mat-label>Enter Course Level</mat-label>
-        <input matInput type="text" formControlName="courselevel" required />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field class="col-lg-4">
-        <mat-label>Exam Weight</mat-label>
-        <input matInput type="text" formControlName="examweight" required />
-      </mat-form-field>
-      <mat-form-field class="col-lg-4">
-        <mat-label>Assignment Weight</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="assignmentweight"
-          required
-        />
-      </mat-form-field>
-      <mat-form-field class="col-lg-4">
-        <mat-label>Quizzes Weight</mat-label>
-        <input matInput type="text" formControlName="quizzezweight" required />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <div class="col-lg-4">
-        <input
-          mat-dialog-close
-          (click)="CreateCourse()"
-          mat-raised-button
-          class="btn btn-primary"
-          value="Create"
-        />
-      </div>
-    </div>
-  </form>
-</ng-template>
-
-<ng-template #UpdateDialog>
-  <form class="My-form" [formGroup]="UpdateCourseForm">
-    <div class="row">
-      <mat-form-field class="col-lg-12">
-        <mat-label>Enter Course Name</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="previus_data.coursename"
-          formControlName="coursename"
-          required
-        />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field class="col-lg-5">
-        <mat-label>Enter Course Image</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="previus_data.courseimage"
-          formControlName="courseimage"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field class="col-lg-7">
-        <mat-label>Enter Course Level</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="previus_data.courselevel"
-          formControlName="courselevel"
-          required
-        />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field class="col-lg-4">
-        <mat-label>Exam Weight</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="previus_data.examweight"
-          formControlName="examweight"
-          required
-        />
-      </mat-form-field>
-      <mat-form-field class="col-lg-4">
-        <mat-label>Assignment Weight</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="previus_data.assignmentweight"
-          formControlName="assignmentweight"
-          required
-        />
-      </mat-form-field>
-      <mat-form-field class="col-lg-4">
-        <mat-label>Quizzes Weight</mat-label>
-        <input
-          matInput
-          [(ngModel)]="previus_data.quizzezweight"
-          type="text"
-          formControlName="quizzezweight"
-          required
-        />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <div class="col-lg-4">
-        <input
-          mat-dialog-close
-          (click)="UpdateCourse()"
-          mat-raised-button
-          class="btn btn-primary"
-          value="Update"
-        />
-      </div>
-    </div>
-  </form>
-</ng-template>
+</app-admin-container>
