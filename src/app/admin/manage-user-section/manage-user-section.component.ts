@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AdminService } from 'src/app/Services/admin.service';
 
 @Component({
   selector: 'app-manage-user-section',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./manage-user-section.component.scss']
 })
 export class ManageUserSectionComponent {
-
+  constructor(public admin: AdminService) {}
+  
 }

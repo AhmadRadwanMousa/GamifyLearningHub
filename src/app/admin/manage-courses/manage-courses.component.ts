@@ -20,7 +20,7 @@ export class ManageCoursesComponent {
   }
 
   CreateCourseForm: FormGroup = new FormGroup({
-    coursename: new FormControl(),
+    coursename: new FormControl('', [Validators.minLength(2)]),
     courselevel: new FormControl(),
     courseimage: new FormControl(),
     examweight: new FormControl(),
