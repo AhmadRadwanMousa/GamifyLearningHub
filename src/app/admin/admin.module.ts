@@ -9,31 +9,16 @@ import { ManageEducationPeriodComponent } from './manage-education-period/manage
 import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
 import { ManageRoleComponent } from './manage-role/manage-role.component';
 
-
-
-
-
-
-
 @NgModule({
   declarations: [
     IndexComponent,
-
     ManageProgramsComponent,
     ManagePlanComponent,
     ManageEducationPeriodComponent,
     ManageCoursesComponent,
-    ManageRoleComponent
+    ManageRoleComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
   exports: [],
-=======
-    
- 
-  
-
-
-  
-
 })
 export class AdminModule {}

@@ -12,7 +12,7 @@ const routes: Routes = [
     path: 'index',
     component: IndexComponent,
   },
-  { path: 'Role', component: ManageRoleComponent },
+  { path: 'role', component: ManageRoleComponent },
   {
     path: 'plan',
     component: ManagePlanComponent,
