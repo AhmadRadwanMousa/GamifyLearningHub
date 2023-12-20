@@ -4,16 +4,27 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { IndexComponent } from './index/index.component';
 import { SharedModule } from '../shared/shared.module';
+import { ManageRoleComponent } from './manage-role/manage-role.component';
+
+
+
+
+
 
 
 @NgModule({
   declarations: [
-    IndexComponent
+    IndexComponent,
+    ManageRoleComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
+
+
+   
+    
   ]
 })
 export class AdminModule { }
