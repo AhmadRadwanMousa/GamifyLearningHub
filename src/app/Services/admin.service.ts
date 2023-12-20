@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { URL } from '../constants/url';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -89,31 +91,39 @@ export class AdminService {
     });
   }
 
-  // plans:any = []
-  // GetAllPlans(){
-  //     this.spinner.show();
-  //   this.http.get("https://localhost:7036/api/Plan/GetAllPlans").subscribe(
-  //     {
-  //     next : (x)=>{this.plans =x;
-  //     this.spinner.hide()},
-  //     error : (err)=>{console.log(err);
-  //       this.spinner.hide();},
-  //   })
+  plans: any = [];
+  GetAllPlans_duplicate() {
+    this.spinner.show();
+    this.http.get('https://localhost:7036/api/Plan/GetAllPlans').subscribe({
+      next: (x) => {
+        this.plans = x;
+        this.spinner.hide();
+      },
+      error: (err) => {
+        console.log(err);
+        this.spinner.hide();
+      },
+    });
+  }
 
-  // }
-
-  // educationalPeriods:any = []
-  // GetAllEducationalPeriods(){
-  //     this.spinner.show();
-  //   this.http.get("https://localhost:7036/api/EducationalPeriod/GetAllEducationalPeriod").subscribe(
-  //     {
-  //     next : (x)=>{this.educationalPeriods =x;
-  //     this.spinner.hide()},
-  //     error : (err)=>{console.log(err);
-  //       this.spinner.hide();},
-  //   })
-
-  // }
+  educationalPeriods: any = [];
+  GetAllEducationalPeriods() {
+    this.spinner.show();
+    this.http
+      .get(
+        'https://localhost:7036/api/EducationalPeriod/GetAllEducationalPeriod'
+      )
+      .subscribe({
+        next: (x) => {
+          this.educationalPeriods = x;
+          this.spinner.hide();
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
   GetAllPlans() {
     return this.http.get(`${URL}/plan/GetAllplans`);
   }

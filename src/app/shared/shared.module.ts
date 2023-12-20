@@ -28,6 +28,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatNativeDateModule,
     MatSelectModule,
     MatButtonModule,
+    MatOptionModule,
   ],
   exports: [
     FooterComponent,
@@ -87,6 +89,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    MatOptionModule,
   ],
 })
 export class SharedModule {}
