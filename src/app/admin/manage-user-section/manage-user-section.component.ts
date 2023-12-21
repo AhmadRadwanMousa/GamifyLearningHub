@@ -29,7 +29,7 @@ export class ManageUserSectionComponent {
 
   initForm(){
     this.formGroup = this.fb.group({
-      'userid' : ['', Validators.required],
+      'userid' : ['', [Validators.required, Validators.pattern('^[1-9]$')]],
       'sectionid' : ['', Validators.required]
     });
     this.formGroup.get('userid')?.valueChanges.subscribe(
