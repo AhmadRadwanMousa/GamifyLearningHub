@@ -34,9 +34,7 @@ export class ManageUserSectionComponent {
     });
     this.formGroup.get('userid')?.valueChanges.subscribe(
       res => {
-        console.log(res);
         this.filterData(res);
-        
       }
     );
   }
