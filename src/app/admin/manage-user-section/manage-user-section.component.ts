@@ -1,47 +1,71 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/Services/admin.service';
+import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-manage-user-section',
   templateUrl: './manage-user-section.component.html',
   styleUrls: ['./manage-user-section.component.scss']
 })
+
 export class ManageUserSectionComponent {
   @ViewChild('OpenAddDialog') OpenAddDialog: any;
-  constructor(public admin: AdminService, public dialog: MatDialog) {}
+
+  formGroup: FormGroup = new FormGroup({});
+  constructor(public admin: AdminService, public dialog: MatDialog, public fb: FormBuilder) {
+    
+  }
   selectedCourse: any;
   selectedUser: any;
-  ngOnInit(){
+
+  ngOnInit() {
     this.admin.getAllCourses();
-  }
-  AddUserSectionForm : FormGroup = new FormGroup({
-    userid: new FormControl('', Validators.required),
-    sectionid: new FormControl('', Validators.required),
-  }
-  );
-  loadSection(id: number){
-    this.admin.getSectionByCourseId(id);
-    console.log(this.admin.sections);
-    
+    this.initForm();
   }
 
-  AddDialog(id: number){
-    this.admin.getAllStudents();
-    this.AddUserSectionForm.controls['sectionid'].setValue(id);
-    console.log(this.admin.students);
-    
-    this.dialog.open(this.OpenAddDialog, {
-      width: '600px',
-      height: '350px',
+  initForm(){
+    this.formGroup = this.fb.group({
+      'userid' : ['', Validators.required],
+      'sectionid' : ['', Validators.required]
+    });
+    this.formGroup.get('userid')?.valueChanges.subscribe(
+      res => {
+        console.log(res);
+        this.filterData(res);
+        
+      }
+    );
+  }
+
+  filterData(data: any) {
+    this.admin.filterdStudents = this.admin.students.filter((item: any) => {
+      const itemName = item.firsname || '';
+      return itemName.toLowerCase().includes(data.toLowerCase());
     });
   }
   
 
-  CreateUserSection(){
-    console.log(this.AddUserSectionForm.value);
-    
-    this.admin.createUserSection(this.AddUserSectionForm.value);
+  
+  loadSection(id: number) {
+    this.admin.getSectionByCourseId(id);
   }
+
+  AddDialog(id: number) {
+    this.admin.getAllStudents();
+    this.formGroup.controls['sectionid'].setValue(id);
+    this.dialog.open(this.OpenAddDialog, {
+      width: '500px',
+      height: '300px',
+    });
+  }
+
+
+  CreateUserSection() {
+    this.admin.createUserSection(this.formGroup.value);
+  }
+  
 }

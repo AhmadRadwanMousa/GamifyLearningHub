@@ -54,19 +54,29 @@
 </app-admin-container>
 
 <ng-template #OpenAddDialog>
-<form [formGroup]="AddUserSectionForm">
-   
-        <mat-form-field class="col-lg-12">
-            <mat-label>Select Student</mat-label>
-            <mat-select [(ngModel)]="selectedUser" formControlName="userid">
-                <mat-option *ngFor="let student of admin.students" [value]="student.userid">
-                    {{student.firsname}}
-                </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <br>
-          
-          
-    <button mat-dialog-close class="btn btn-primary" (click)="CreateUserSection()">Add student</button>
+<div class="container">
+  <form [formGroup]="formGroup">
+    <div class="row">
+      <mat-form-field class="col-lg-12 mt-4">
+        <mat-label>Select Student</mat-label>
+        <input matInput [matAutocomplete]="auto" formControlName="userid">
+        <mat-error *ngIf="formGroup.controls['userid'].hasError('required')">Student is required</mat-error>
+        <mat-autocomplete  #auto>
+            <mat-option *ngFor="let student of admin.filterdStudents" [value]="student.userid">
+                {{student.firsname}} {{student.lastname}}
+            </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div class="col-lg-12 center mt-3 d-flex justify-content-center">
+        <button mat-dialog-close class="btn btn-primary" [disabled]="formGroup.invalid" (click)="CreateUserSection()">Add student</button>
+
+      </div>
+    </div>
+      <br>
+      
+      
+
+      
 </form>
+</div>
 </ng-template>

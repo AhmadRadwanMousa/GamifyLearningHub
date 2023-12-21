@@ -236,6 +236,7 @@ export class AdminService {
   // UserSection functionality => 
   sections: any = [];
   students: any = [];
+  filterdStudents: any = [];
   getSectionByCourseId(id: number){
     this.http.get(`${URL}/Section/GetSectionByCourseId/` + id).subscribe(
       {
@@ -247,17 +248,22 @@ export class AdminService {
 
 
   getAllStudents(){
-    
+   
     this.http.get(`${URL}/UserSection/GetAllStudentsUsers`).subscribe(
       {
-        next:(res)=>{this.spinner.show(); this.students = res; this.spinner.hide()},
+        next:(res)=>{
+          this.spinner.show(); 
+          this.students = res; 
+          this.filterdStudents = res; 
+          this.spinner.hide()
+        },
         error:(err)=>{this.toastr.error(err.message)}
       }
     );
   }
-
+  
   createUserSection(data: any){
-    
+    debugger
     this.http.post(`${URL}/UserSection`, data).subscribe({
       next:()=>{this.toastr.success('Student Added to section')},
       error:(err)=>{this.toastr.error(err.message)}
