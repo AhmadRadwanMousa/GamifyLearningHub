@@ -263,7 +263,7 @@ export class AdminService {
   }
   
   createUserSection(data: any){
-    debugger
+    
     this.http.post(`${URL}/UserSection`, data).subscribe({
       next:()=>{this.toastr.success('Student Added to section')},
       error:(err)=>{this.toastr.error(err.message)}
