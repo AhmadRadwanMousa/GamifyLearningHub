@@ -31,8 +31,8 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent,
   },
-  { path: 'CourseDetails', component: CoursesDetailsPageComponent },
-  { path: 'ProgramDetails', component: ProgramDetailsPageComponent },
+  { path: 'CourseDetails/:id', component: CoursesDetailsPageComponent },
+  { path: 'ProgramDetails/:id', component: ProgramDetailsPageComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

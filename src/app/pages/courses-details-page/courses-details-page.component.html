@@ -1,10 +1,10 @@
-<div class="page-title-area item-bg1">
+<div class="page-title-area">
     <div class="container">
         <div class="page-title-content">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="courses-2-columns-style-1.html">Courses</a></li>
-                <li>Certified Graphic Design with Free Project Course</li>
+                <li>{{this.shard.course.coursename}}</li>
             </ul>
             <h2>Courses</h2>
         </div>
@@ -17,27 +17,9 @@
             <div class="row align-items-center">
                 <div class="col-lg-8">
                     <div class="courses-title">
-                        <h2>Certified Graphic Design with Free Project Course</h2>
+                        <h2>{{this.shard.course.coursename}}</h2>
                     </div>
-                    <div class="courses-meta">
-                        <ul>
-                            <li>
-                                <i class='bx bx-folder-open'></i>
-                                <span>Program</span>
-                                <a routerLink="/single-courses">Design</a>
-                            </li>
-                            <li>
-                                <i class='bx bx-calendar'></i>
-                                <span>Start date</span>
-                                <a routerLink="/single-courses">01/14/2019</a>
-                            </li>
-                            <li>
-                                <i class='bx bx-calendar'></i>
-                                <span>End date</span>
-                                <a routerLink="/single-courses">01/14/2019</a>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
                 <div class="col-lg-4">
                    
@@ -45,72 +27,31 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="courses-details-image text-center">
-                    <img src="assets/img/courses/courses2.jpg" alt="image">
-                </div>
-                <div class="courses-details-desc">
-                    
-                    
-                    
-                    <h3>Description</h3>
-                    <p><strong>Hi! Welcome to Certified Graphic Design with Free Project Course, the only course you need to become a BI Analyst.</strong></p>
-                    <p>We are proud to present you this one-of-a-kind opportunity. There are several online courses teaching some of the skills related to the BI Analyst profession. The truth of the matter is that none of them completely prepare you.</p>
-                    <p><strong>Our program is different than the rest of the materials available online.</strong></p>
-                    <p>It is truly comprehensive. The Business Intelligence Analyst Course comprises of several modules:</p>
-                    
-                    <p>These are the precise technical skills recruiters are looking for when hiring BI Analysts. And today, you have the chance of acquiring an invaluable advantage to get ahead of other candidates. This course will be the secret to your success. And your success is our success, so let’s make it happen!</p>
-                    <p>Here are some more details of what you get with The Business Intelligence Analyst Course:</p>
-                    
-                    <p><strong>Sounds amazing, right?</strong></p>
-                    
-                    <p>We love teaching and we are really excited about this journey. It will get your foot in the door of an exciting and rising profession. Don’t hesitate and subscribe today. The only regret you will have is that you didn’t find this course sooner!</p>
-                    <h3>Who this course is for:</h3>
-                    
-                    
-                    
+                    <img [src]="this.shard.course.courseimage" alt="image">
                 </div>
                 
             </div>
-            <div class="col-lg-4">
+            
+        </div>
+        <div class="row">
+            <div class="col-lg-12 mt-3">
                 <div class="courses-sidebar-information">
                     <ul>
-                        <li>
-                            <span><i class='bx bx-group'></i> Students:</span>
-                            10
-                        </li>
-                        <li>
-                            <span><i class='bx bx-time'></i> Length:</span>
-                            1 Weeks
-                        </li>
-                        <li>
-                            <span><i class='bx bx-tachometer'></i> Effort:</span>
-                            2–5 hours per week
-                        </li>
-                        <li>
-                            <span><i class='bx bxs-institution'></i> Institution:</span>
-                            <a href="#" target="_blank" class="d-inline-block">ABC</a>
-                        </li>
-                        <li>
-                            <span><i class='bx bxs-graduation'></i> Subject:</span>
-                            Design
-                        </li>
                         <li>
                             <span><i class='bx bx-atom'></i> Quizzes:</span>
                             Yes
                         </li>
                         <li>
                             <span><i class='bx bxs-badge-check'></i> Level:</span>
-                            Introductory
+                            {{this.shard.course.courselevel}}
                         </li>
                         <li>
                             <span><i class='bx bx-support'></i> Language:</span>
-                            English
+                            Arabic
                         </li>
-                        <li>
-                            <span><i class='bx bx-text'></i> Video Subtitle:</span>
-                            English
-                        </li>
+                        
                         <li>
                             <span><i class='bx bx-certification'></i> Certificate:</span>
                             Yes

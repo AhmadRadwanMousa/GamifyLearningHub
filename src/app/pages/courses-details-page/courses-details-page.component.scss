@@ -462,6 +462,8 @@
   img {
     width: 100%;
     border-radius: 5px;
+    max-height: 350px;
+    object-fit: cover;
   }
 }
 .courses-details-desc {
@@ -978,7 +980,7 @@
   }
 }
 .courses-purchase-info {
-  padding: 20px;
+  padding: 35px;
   position: relative;
   border-radius: 5px;
   z-index: 1;

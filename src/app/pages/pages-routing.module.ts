@@ -4,12 +4,14 @@ import { CoursesDetailsPageComponent } from './courses-details-page/courses-deta
 
 import { ProgramsComponent } from './programs/programs.component';
 
+
 const routes: Routes = [
   {
     path: 'programs',
     component: ProgramsComponent,
   },
-  { path: 'courseDetails', component: CoursesDetailsPageComponent },
+  
+  
 ];
 
 @NgModule({
