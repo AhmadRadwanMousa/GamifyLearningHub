@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { SharedService } from 'src/app/Services/shared.service';
 
 @Component({
   selector: 'app-home-categories',
@@ -7,10 +9,15 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./home-page-categories.component.scss'],
 })
 export class HomeCategoriesComponent implements OnInit {
-  constructor() {}
+  constructor(public _sharedService: SharedService) {}
 
-  ngOnInit(): void {}
 
+  ngOnInit() {
+    this._sharedService.GetAllPlansWithPrograms();
+  }
+
+
+ 
   categoriesSlides: OwlOptions = {
     loop: true,
     nav: true,
@@ -37,4 +44,7 @@ export class HomeCategoriesComponent implements OnInit {
       },
     },
   };
+
+
+ 
 }

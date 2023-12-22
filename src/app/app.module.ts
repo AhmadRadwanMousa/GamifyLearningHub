@@ -18,6 +18,7 @@ import { AdminService } from './Services/admin.service';
 import { LearnerService } from './Services/learner.service';
 import { InstructorService } from './Services/instructor.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SharedService } from './Services/shared.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
   ],
-  providers: [AdminService, LearnerService, InstructorService],
+  providers: [AdminService, LearnerService, InstructorService ,SharedService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

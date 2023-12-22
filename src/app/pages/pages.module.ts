@@ -15,6 +15,7 @@ import { HomePageMainBannerComponent } from './home-page/home-page-main-banner/h
 import { HomeCoursesComponent } from './home-page/home-page-courses/home-page-courses.component';
 import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ProgramsPlanComponent } from './programs-plan/programs-plan.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CoursesDetailsPageComponent,
     ProgramDetailsPageComponent,
     NotFoundComponent,
+    ProgramsPlanComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, SharedModule, FormsModule],
   exports: [HomePageComponent],

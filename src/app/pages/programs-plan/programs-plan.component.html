@@ -1,0 +1,130 @@
+<div class="page-title-area page-title-style-three" style="background: url('../../../assets/Images/NewNew.JPG')  ; width: 100% ; height: 200px; background-size: cover; ">
+    <div class="container">
+        <div class="page-title-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Programs</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="courses-area ptb-100">
+    <div class="container">
+        <div class="courses-topbar">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-4">
+                    <!-- <div class="topbar-result-count">
+                        <p>Showing 1 – 6 of 54</p>
+                    </div> -->
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="topbar-ordering-and-search">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 col-md-5 offset-lg-4 offset-md-1 col-sm-6">
+                                <div class="topbar-ordering">
+                                    <select class="form-select" [(ngModel)]="selectedSortOption" (ngModelChange)="onSortOptionChange()">
+                                        <option value="default">Sort by Default</option>
+                                        <option value="popularity">Sort by popularity</option>
+                                        <option value="latest">Sort by latest</option>
+                                        <option value="cheapest">Sort by cheapest</option>
+                                        <option value="expensive">Sort by expensive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6 col-sm-6">
+                                <div class="topbar-search" style="position: relative;display: inline-block;">
+                                    <form (ngSubmit)="Search()">
+                                        <label><i class="bx bx-search"></i></label>
+                                        <input type="text" class="input-search" style="padding-right: 170px;" name="searchText" [(ngModel)]="searchText" placeholder="Search here...">
+                                        <button type="submit" style="  position: absolute;
+                                        top: 0;
+                                        right: 0;background: #ff1949;border: none;border-radius: 20px;
+                                        height: 100%;" class="btn btn-primary">Search</button>
+                                    </form>
+                                </div>
+                                
+                             
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-3 col-md-6" *ngFor="let program of _sharedService.searchprograms" >
+                <div class="single-courses-item mb-30" style="box-shadow: 0px 2px 5px black; display: flex; flex-direction: column; height: 490px;border-radius: 35px; overflow: auto;">
+                    
+
+                    <div class="courses-image">
+                        <a [routerLink]="['/ProgramDetails/' , program.programId]"class="d-block"><img [src]="program.programImage" style="width: 100%; height: 180px;"  alt="image"></a>
+                    </div>
+              
+                    <div class="courses-meta" style="text-align: center;">
+                        <ul>
+                       
+                            <li>
+                                <i class='bx bx-calendar'></i>
+                                <span>Start date</span>
+                                <p style="color: black;">{{program.educationalPeriodStartDate | date:'mediumDate'}}</p>
+                            </li>
+                            <li>
+                                <i class='bx bx-calendar'></i>
+                                <span>End date</span>
+                                <p style="color: black;">{{program.educationalPeriodEndDate | date:'mediumDate'}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="courses-content">
+                  
+                        <p style="font-weight: bold;font-size: 15px;"><a [routerLink]="['/ProgramDetails/' , program.programId]" class="d-inline-block">{{program.programName}}</a></p>
+                        <p>{{ program.programDescription | slice:0:100 }}{{ program.programDescription.length > 100 ? '...' : '' }}</p>
+
+                    </div>
+                   
+                   
+                    <div class="courses-box-footer" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+                      <hr style="margin-top:0px;">
+                        <ul>
+                            <li class="students-number">
+                                <i class='bx bx-user'></i> {{program.numberOfUsers}} students
+                            </li>
+                            <li class="courses-lesson"> 
+                                <i class='bx bx-book-open'></i> {{program.numberOfCourses}}  courses
+                            </li>
+                            <li class="courses-price" *ngIf="program.programPrice != 0 && program.programSale == 0">
+                                {{program.programPrice}}$    
+                            </li>
+
+                            <li class="courses-price text-success" *ngIf="program.programPrice == 0">
+                               Free    
+                            </li>
+
+                            <li class="courses-price" *ngIf="program.programPrice != 0 && program.programSale !=0">
+                              <span style="text-decoration: line-through;font-size: 17px; font-weight: 500;" class="text-danger" > {{program.programPrice}}$ </span> &nbsp;&nbsp;  <span class="text-success" style="text-decoration: none;font-size: 18px; font-weight: 500;"> {{program.programPrice - (program.programPrice *program.programSale/100 )}}$ </span> 
+                             </li>
+                        </ul>
+                   
+                </div>
+                </div>
+            </div>
+      
+   
+            <!-- <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="pagination-area text-center">
+                    <span class="page-numbers current" aria-current="page">1</span>
+                    <a routerLink="courses-4-columns-style-2" class="page-numbers">2</a>
+                    <a routerLink="courses-4-columns-style-2" class="page-numbers">3</a>
+                    <a routerLink="courses-4-columns-style-2" class="page-numbers">4</a>
+                    <a routerLink="courses-4-columns-style-2" class="page-numbers">5</a>
+                    <a routerLink="courses-4-columns-style-2" class="next page-numbers"><i class='bx bx-chevron-right'></i></a>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
