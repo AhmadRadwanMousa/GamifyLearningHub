@@ -6,7 +6,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   templateUrl: './home-page-categories.component.html',
   styleUrls: ['./home-page-categories.component.scss'],
 })
-export class HomeCategoriesComponent implements OnInit {
+export class HomePagePrograms implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,0 +1,100 @@
+<div class="courses-area pt-100 pb-70">
+  <div class="container">
+    <div class="section-title text-start">
+      <span class="sub-title">Discover Programs</span>
+      <h2>Our Popular Online Programs</h2>
+      <a routerLink="/courses-2-columns-style-1" class="default-btn"
+        ><i class="bx bx-show-alt icon-arrow before"></i
+        ><span class="label">All Programs</span
+        ><i class="bx bx-show-alt icon-arrow after"></i
+      ></a>
+    </div>
+    <ul class="nav-tabset">
+      <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab1' }">
+        <span class="active" (click)="switchTab($event, 'tab1')">All (06)</span>
+      </li>
+      <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab2' }">
+        <span (click)="switchTab($event, 'tab2')">Business (02)</span>
+      </li>
+      <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab3' }">
+        <span (click)="switchTab($event, 'tab3')">Design (05)</span>
+      </li>
+      <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab4' }">
+        <span (click)="switchTab($event, 'tab4')">Development (04)</span>
+      </li>
+      <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab5' }">
+        <span (click)="switchTab($event, 'tab5')">Language (02)</span>
+      </li>
+      <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab6' }">
+        <span (click)="switchTab($event, 'tab6')">Management (03)</span>
+      </li>
+      <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab7' }">
+        <span (click)="switchTab($event, 'tab7')">Photography (04)</span>
+      </li>
+    </ul>
+    <div class="tabs-container">
+      <div class="pane" id="tab1" *ngIf="currentTab === 'tab1'">
+        <div class="row">
+          <div
+            class="col-lg-4 col-md-6"
+            *ngFor="let program of this.adminService.programs"
+          >
+            <div class="single-courses-box mb-30">
+              <div class="courses-image">
+                <a routerLink="/single-courses" class="d-block"
+                  ><img [src]="program.programimage" alt="image"
+                /></a>
+                <div class="courses-tag">
+                  <a
+                    [routerLink]="['/ProgramDetails', program.programid]"
+                    class="d-block"
+                    >{{ program.plan.planname }}</a
+                  >
+                </div>
+              </div>
+              <div class="courses-content">
+                <div class="course-author d-flex align-items-center">
+                  <img
+                    src="assets/img/user1.jpg"
+                    class="rounded-circle mr-2"
+                    alt="image"
+                  />
+                  <!-- <span>{Steven Smith}</span> -->
+                  <span>Instructor name</span>
+                </div>
+                <h3>
+                  <a
+                    [routerLink]="['/ProgramDetails', program.programid]"
+                    class="d-inline-block"
+                    >{{ program.programname }}</a
+                  >
+                </h3>
+                <div class="courses-rating">
+                  <div class="review-stars-rated">
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                  </div>
+                  <div class="rating-total">5.0 (1 rating)</div>
+                </div>
+              </div>
+              <div class="courses-box-footer">
+                <ul>
+                  <li class="students-number">
+                    <i class="bx bx-user"></i> 10 students
+                  </li>
+                  <li class="courses-lesson">
+                    <i class="bx bx-book-open"></i> 6 lessons
+                  </li>
+                  <li class="courses-price">${{ program.programprice }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

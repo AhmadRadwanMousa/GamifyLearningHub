@@ -8,6 +8,7 @@ import { ManagePlanComponent } from './manage-plan/manage-plan.component';
 import { ManageEducationPeriodComponent } from './manage-education-period/manage-education-period.component';
 import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
 import { ManageRoleComponent } from './manage-role/manage-role.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ManageRoleComponent } from './manage-role/manage-role.component';
     ManageEducationPeriodComponent,
     ManageCoursesComponent,
     ManageRoleComponent,
+    ManageUsersComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
   exports: [],

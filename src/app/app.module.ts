@@ -17,6 +17,7 @@ import { AdminService } from './Services/admin.service';
 import { LearnerService } from './Services/learner.service';
 import { InstructorService } from './Services/instructor.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AuthGuard } from './RouteGuard/auth-guard.guard';
 
 @NgModule({
   declarations: [AppComponent],

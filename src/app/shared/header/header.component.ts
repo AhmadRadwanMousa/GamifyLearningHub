@@ -41,6 +41,10 @@ export class HeaderComponent implements OnInit {
     this.classApplied3 = !this.classApplied3;
   }
   get shouldHide(): boolean {
-    return this.routeService.currentRoute.startsWith('/admin');
+    return (
+      this.routeService.currentRoute.startsWith('/admin') ||
+      this.routeService.currentRoute.startsWith('/Login') ||
+      this.routeService.currentRoute.startsWith('/Register')
+    );
   }
 }

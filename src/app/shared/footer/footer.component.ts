@@ -11,6 +11,10 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {}
   get shouldHide(): boolean {
-    return this.routeService.currentRoute.startsWith('/admin');
+    return (
+      this.routeService.currentRoute.startsWith('/admin') ||
+      this.routeService.currentRoute.startsWith('/Login') ||
+      this.routeService.currentRoute.startsWith('/Register')
+    );
   }
 }

@@ -7,7 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { FunfactsComponent } from './funfacts/funfacts.component';
 import { CountUpModule } from 'ngx-countup';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { HomeCategoriesComponent } from './home-page-categories/home-page-categories.component';
+import { HomePagePrograms } from './home-page-categories/home-page-programs.component';
 import { PartnerComponent } from './partner/partner.component';
 import { BecomeInstructorComponent } from './become-instructor/become-instructor.component';
 import { LightboxModule } from 'ngx-lightbox';
@@ -36,7 +36,7 @@ import { MatOptionModule } from '@angular/material/core';
     FooterComponent,
     HeaderComponent,
     FunfactsComponent,
-    HomeCategoriesComponent,
+    HomePagePrograms,
     PartnerComponent,
     BecomeInstructorComponent,
     FeedbackComponent,
@@ -71,7 +71,7 @@ import { MatOptionModule } from '@angular/material/core';
     FooterComponent,
     HeaderComponent,
     FunfactsComponent,
-    HomeCategoriesComponent,
+    HomePagePrograms,
     PartnerComponent,
     BecomeInstructorComponent,
     FeedbackComponent,

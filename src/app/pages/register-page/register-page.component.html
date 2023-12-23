@@ -2,7 +2,10 @@
   <div class="row m-0">
     <div class="col-lg-6 col-md-12 p-0">
       <div class="register-image">
-        <img src="assets/img/register-bg.jpg" alt="image" />
+        <img
+          src="../../../assets/img/motivation-course/become-2.png"
+          alt="image"
+        />
       </div>
     </div>
     <div class="col-lg-6 col-md-12 p-0">
@@ -16,28 +19,152 @@
                 /></a>
               </div>
               <h3>Open up your Ednuv Account now</h3>
-              <p>Already signed up? <a routerLink="/login">Log in</a></p>
-              <form>
-                <div class="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Your email address"
-                    class="form-control"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Create a password"
-                    class="form-control"
-                  />
-                </div>
-                <button type="submit">Sign Up</button>
-                <div class="connect-with-social">
+              <p>Already signed up? <a routerLink="/Login">Log in</a></p>
+              <form (ngSubmit)="OnSubmit()" [formGroup]="registerDetails">
+                <div class="container">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <input
+                        type="text"
+                        placeholder="Your first name"
+                        class="form-control"
+                        formControlName="firsname"
+                      />
+                      <div
+                        *ngIf="
+                          registerDetails.get('firsname')?.hasError('required')
+                        "
+                        class="text-danger"
+                      >
+                        first name cannot be empty!
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input
+                        type="text"
+                        placeholder="Your last name"
+                        class="form-control"
+                        formControlName="lastname"
+                      />
+                      <div
+                        *ngIf="
+                          registerDetails.get('lastname')?.hasError('required')
+                        "
+                        class="text-danger"
+                      >
+                        first name cannot be empty!
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <mat-form-field color="accent">
+                        <input
+                          matInput
+                          [matDatepicker]="picker1"
+                          placeholder="DateOfBirth"
+                          formControlName="dateofbirth"
+                        />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="picker1"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error
+                          *ngIf="
+                            registerDetails
+                              .get('dateofbirth')
+                              ?.hasError('required')
+                          "
+                        >
+                          date of birth is required
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                      <mat-form-field color="accent">
+                        <mat-label>Register as </mat-label>
+                        <mat-select formControlName="roleid">
+                          <mat-option [value]="2"
+                            >Instructor
+                            <mat-icon color="accent">person</mat-icon>
+                          </mat-option>
+                          <mat-option [value]="3"
+                            >Learner
+                            <mat-icon color="accent"
+                              >school</mat-icon
+                            ></mat-option
+                          >
+                        </mat-select>
+                        <mat-error
+                          *ngIf="
+                            registerDetails.get('roleid')?.hasError('required')
+                          "
+                        >
+                          Role is required
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        placeholder="Your email address"
+                        class="form-control"
+                        formControlName="username"
+                      />
+                      <div
+                        *ngIf="
+                          username?.invalid &&
+                          (username?.dirty || username?.touched)
+                        "
+                      >
+                        <div
+                          *ngIf="username?.hasError('required')"
+                          class="text-danger"
+                        >
+                          Username is required.
+                        </div>
+                        <div
+                          *ngIf="username?.hasError('email')"
+                          class="text-danger"
+                        >
+                          Invalid email format.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="password"
+                        placeholder="Create a password"
+                        class="form-control"
+                        formControlName="password"
+                      />
+                      <div
+                        *ngIf="
+                          password?.invalid &&
+                          (password?.dirty || password?.touched)
+                        "
+                      >
+                        <div
+                          *ngIf="password?.hasError('required')"
+                          class="text-danger"
+                        >
+                          Password is required.
+                        </div>
+                        <div
+                          *ngIf="
+                            registerDetails.get('password')?.hasError('pattern')
+                          "
+                          class="text-danger"
+                        >
+                          Password should contain at least one uppercase letter,
+                          one number!
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" [disabled]="registerDetails.invalid">
+                      Sign Up
+                    </button>
+                    <!-- <div class="connect-with-social">
                   <span>Or</span>
                   <button type="submit" class="facebook">
                     <i class="bx bxl-facebook"></i> Connect with Facebook
@@ -45,6 +172,8 @@
                   <button type="submit" class="twitter">
                     <i class="bx bxl-twitter"></i> Connect with Twitter
                   </button>
+                </div> -->
+                  </div>
                 </div>
               </form>
             </div>

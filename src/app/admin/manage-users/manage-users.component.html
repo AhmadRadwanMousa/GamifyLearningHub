@@ -1,0 +1,484 @@
+<app-admin-container>
+  <div class="col-md-12">
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">All Users</h5>
+        <hr />
+        <button class="btn btn-primary mb-4" (click)="OpenCreateUserDialog()">
+          Create New User
+        </button>
+        <div class="table-responsive text-center">
+          <table class="table text-nowrap mb-0 align-middle">
+            <thead class="text-dark fs-4">
+              <tr>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">First Name</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Last Name</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Email</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Date Of Birth</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Role Name</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Total Points</h6>
+                </th>
+
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Edit/Delete</h6>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of adminService.Users">
+                <td class="border-bottom-0">
+                  <h6 class="fw-semibold mb-1">{{ user.firsname }}</h6>
+                </td>
+                <td class="border-bottom-0">
+                  <p class="mb-0 fw-normal">{{ user.lastname }}</p>
+                </td>
+                <td class="border-bottom-0">
+                  <p class="mb-0 fw-normal">
+                    {{ user.userlogins[0].username }}
+                  </p>
+                </td>
+                <td class="border-bottom-0">
+                  <p class="mb-0 fw-normal">{{ user.dateofbirth | date }}</p>
+                </td>
+                <td
+                  [ngSwitch]="user.userlogins[0].roleid"
+                  class="border-bottom-0"
+                >
+                  <p class="mb-0 fw-normal" *ngSwitchCase="1">Admin</p>
+                  <p class="mb-0 fw-normal" *ngSwitchCase="2">Instructor</p>
+                  <p class="mb-0 fw-normal" *ngSwitchCase="3">Learner</p>
+                </td>
+                <td class="border-bottom-0">
+                  <p class="mb-0 fw-normal">{{ user.totalpoints || 0 }}</p>
+                </td>
+                <!-- <td class="border-bottom-0">
+                  <img [src]="plan.planimage" width="100" height="100" />
+                </td> -->
+                <td class="border-bottom-0">
+                  <button
+                    class="btn btn-success m-2"
+                    (click)="OpenUpdateDialog(user)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-edit"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                      />
+                      <path
+                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                      />
+                      <path d="M16 5l3 3" />
+                    </svg>
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    (click)="OpenDeleteDialog(user.userid)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-trash-filled"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                        stroke-width="0"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                        stroke-width="0"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </button>
+
+                  <button
+                    class="btn btn-warning ms-2"
+                    (click)="OpenDetailsDialog(user)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-info-circle-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"
+                      />
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #CreateDialog>
+    <h2 mat-dialog-title>Create User</h2>
+    <mat-dialog-content>
+      <form [formGroup]="userDetails" class="pt-4">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="example-container col-6">
+              <mat-form-field class="widthInput w-100">
+                <mat-label> First Name</mat-label>
+                <input
+                  matInput
+                  placeholder="ex:Ahmad"
+                  formControlName="firsname"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="example-container col-6">
+              <mat-form-field class="widthInput w-100">
+                <mat-label> Last Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Last Name"
+                  formControlName="lastname"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="example-container col-6">
+              <mat-form-field class="widthInput w-100">
+                <mat-label> Username </mat-label>
+                <input
+                  matInput
+                  placeholder=" UserName"
+                  formControlName="username"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="example-container col-6">
+              <mat-form-field class="w-100">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  formControlName="password"
+                  [type]="hide ? 'password' : 'text'"
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <div class="example-container col-6 w-90">
+              <mat-form-field>
+                <mat-label>Date Of Birth</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="dateofbirth"
+                  formControlName="dateofbirth"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="dateofbirth"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #dateofbirth></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="example-container col-6">
+              <mat-form-field class="widthInput w-100">
+                <mat-label>Role </mat-label>
+                <mat-select formControlName="roleid">
+                  <mat-option
+                    *ngFor="let role of adminService.Role"
+                    [value]="role.roleid"
+                    >{{ role.rolename }}
+                    <mat-icon>{{
+                      role.roleid === 1
+                        ? "admin_panel_settings"
+                        : role.roleid === 2
+                        ? "person"
+                        : "school"
+                    }}</mat-icon></mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="example-container text-center w-50">
+                <input
+                  type="file"
+                  class="file-input"
+                  (change)="UploadFile($event)"
+                  #fileUpload
+                />
+
+                <div class="file-upload border border-2 rounded-2">
+                  {{ fileName || "No file uploaded yet." }}
+                  <button
+                    mat-mini-fab
+                    color="primary"
+                    class="upload-btn btn btn-outline-primary"
+                    (click)="fileUpload.click()"
+                  >
+                    <mat-icon>upload-btn</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <mat-dialog-actions align="center">
+            <button
+              class="btn btn-primary mt-2"
+              [mat-dialog-close]="true"
+              [disabled]="!userDetails.valid"
+            >
+              Create User
+            </button>
+          </mat-dialog-actions>
+        </div>
+      </form>
+    </mat-dialog-content>
+  </ng-template>
+  <ng-template #DeleteDialog>
+    <h1 mat-dialog-title>Delete file</h1>
+    <div mat-dialog-content>Would you like to delete this user ?</div>
+    <div mat-dialog-actions align="center">
+      <button
+        mat-button
+        [mat-dialog-close]="false"
+        class="btn btn-dark m-3"
+        cdkFocusInitial
+      >
+        Cancel
+      </button>
+      <button [mat-dialog-close]="true" class="btn btn-danger">Delete</button>
+    </div>
+  </ng-template>
+  <ng-template #UpdateDialog>
+    <h2 mat-dialog-title>Update User</h2>
+    <mat-dialog-content>
+      <form [formGroup]="userDetails" class="pt-4">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="example-container col-6">
+              <mat-form-field class="widthInput w-100">
+                <mat-label> First Name</mat-label>
+                <input
+                  matInput
+                  placeholder="ex:Ahmad"
+                  formControlName="firsname"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="example-container col-6">
+              <mat-form-field class="widthInput w-100">
+                <mat-label> Last Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Last Name"
+                  formControlName="lastname"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="example-container col-6">
+              <mat-form-field class="widthInput w-100">
+                <mat-label> Username </mat-label>
+                <input
+                  matInput
+                  placeholder=" UserName"
+                  formControlName="username"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="example-container col-6">
+              <mat-form-field class="w-100">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  formControlName="password"
+                  [type]="hide ? 'password' : 'text'"
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <div class="example-container col-6 w-90">
+              <mat-form-field>
+                <mat-label>Date Of Birth</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="dateofbirth"
+                  formControlName="dateofbirth"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="dateofbirth"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #dateofbirth></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="example-container col-6">
+              <mat-form-field class="widthInput w-100">
+                <mat-label>Role </mat-label>
+                <mat-select formControlName="roleid">
+                  <mat-option
+                    *ngFor="let role of adminService.Role"
+                    [value]="role.roleid"
+                    >{{ role.rolename }}
+                    <mat-icon>{{
+                      role.roleid === 1
+                        ? "admin_panel_settings"
+                        : role.roleid === 2
+                        ? "person"
+                        : "school"
+                    }}</mat-icon>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="example-container text-center w-50">
+                <input
+                  type="file"
+                  class="file-input"
+                  (change)="UploadFile($event)"
+                  #fileUpload
+                />
+
+                <div class="file-upload border border-2 rounded-2">
+                  {{ fileName || "No file uploaded yet." }}
+                  <button
+                    mat-mini-fab
+                    color="primary"
+                    class="upload-btn btn btn-outline-primary"
+                    (click)="fileUpload.click()"
+                  >
+                    <mat-icon>upload-btn</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <mat-dialog-actions align="center">
+            <button
+              class="btn btn-primary mt-2"
+              [mat-dialog-close]="true"
+              [disabled]="!userDetails.valid"
+            >
+              Update User
+            </button>
+          </mat-dialog-actions>
+        </div>
+      </form>
+    </mat-dialog-content>
+  </ng-template>
+
+  <ng-template #DetailsDialog>
+    <h2 mat-dialog-title>User Details</h2>
+    <mat-dialog-content class="mat-typography">
+      <h1>Full Name</h1>
+      <p>{{ userInformation.firsname }} {{ userInformation.lastname }}</p>
+
+      <h2>Email</h2>
+      <p>
+        {{ userInformation.userlogins[0].username }}
+      </p>
+
+      <h2>DateOfBirth</h2>
+      <p>
+        {{ userInformation.dateofbirth | date }}
+      </p>
+
+      <h2>Role</h2>
+
+      <p
+        class="mb-0 fw-normal"
+        *ngIf="userInformation.userlogins[0].roleid === 1"
+      >
+        Admin
+      </p>
+      <p
+        class="mb-0 fw-normal"
+        *ngIf="userInformation.userlogins[0].roleid === 2"
+      >
+        Instructor
+      </p>
+      <p
+        class="mb-0 fw-normal"
+        *ngIf="userInformation.userlogins[0].roleid === 3"
+      >
+        Learner
+      </p>
+      <!-- <p class="mb-0 fw-normal" >Other Role</p> -->
+
+      <h2>Last Login</h2>
+
+      <p>
+        {{ userInformation.userlogins[0].lastlogin | date }}
+      </p>
+
+      <!-- <h1>Approved</h1>
+      <p>
+        {{ userInformation.userlogins[0].isaccepted }}
+      </p>
+      <h1>Status</h1>
+      <p>
+        {{ userInformation.userlogins[0].isonline }}
+      </p> -->
+      <h2>Image</h2>
+      <img [src]="userInformation.userimage" width="200" height="200" />
+    </mat-dialog-content>
+  </ng-template>
+</app-admin-container>

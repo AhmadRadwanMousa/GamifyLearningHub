@@ -7,12 +7,8 @@ import { CoursesDetailsPageComponent } from './pages/courses-details-page/course
 import { ProgramDetailsPageComponent } from './pages/program-details-page/program-details-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AuthGuard } from './RouteGuard/auth-guard.guard';
 const routes: Routes = [
-  {
-    path: 'contact-page',
-    component: ContactUsComponent,
-  },
-  { path: 'Register', component: RegisterPageComponent },
   {
     path: 'pages',
     loadChildren: () =>
@@ -27,12 +23,18 @@ const routes: Routes = [
     path: 'Login',
     component: LoginPageComponent,
   },
+  { path: 'Register', component: RegisterPageComponent },
+  {
+    path: 'contact-page',
+    component: ContactUsComponent,
+  },
+
   {
     path: '',
     component: HomePageComponent,
   },
   { path: 'CourseDetails', component: CoursesDetailsPageComponent },
-  { path: 'ProgramDetails', component: ProgramDetailsPageComponent },
+  { path: 'ProgramDetails/:id', component: ProgramDetailsPageComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

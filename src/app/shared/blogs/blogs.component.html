@@ -1,13 +1,13 @@
 <div class="blog-slides">
   <owl-carousel-o [options]="blogSlides">
-    <ng-template carouselSlide>
+    <ng-template carouselSlide *ngFor="let course of this.adminService.courses">
       <div class="single-blog-post mb-30">
         <div class="post-image">
           <a routerLink="/single-blog" class="d-block">
-            <img src="assets/img/blog/blog1.jpg" alt="image" />
+            <img [src]="course.courseimage" alt="image" />
           </a>
           <div class="tag">
-            <a routerLink="/">Learning</a>
+            <a routerLink="/">{{ course.courselevel }}</a>
           </div>
         </div>
         <div class="post-content">
@@ -23,141 +23,9 @@
             <li><a routerLink="/">August 30, 2019</a></li>
           </ul>
           <h3>
-            <a routerLink="/single-blog" class="d-inline-block"
-              >World largest elephant toothpaste experiment in 2019</a
-            >
-          </h3>
-          <a routerLink="/single-blog" class="read-more-btn"
-            >Read More <i class="bx bx-right-arrow-alt"></i
-          ></a>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="single-blog-post mb-30">
-        <div class="post-image">
-          <a routerLink="/single-blog" class="d-block">
-            <img src="assets/img/blog/blog2.jpg" alt="image" />
-          </a>
-          <div class="tag">
-            <a routerLink="/">Education</a>
-          </div>
-        </div>
-        <div class="post-content">
-          <ul class="post-meta">
-            <li class="post-author">
-              <img
-                src="assets/img/user2.jpg"
-                class="d-inline-block rounded-circle mr-2"
-                alt="image"
-              />
-              By: <a routerLink="/" class="d-inline-block">Lina D'Souja</a>
-            </li>
-            <li><a routerLink="/">August 29, 2019</a></li>
-          </ul>
-          <h3>
-            <a routerLink="/single-blog" class="d-inline-block"
-              >Most Popular Education Posts Of The Week 20-26 Aug</a
-            >
-          </h3>
-          <a routerLink="/single-blog" class="read-more-btn"
-            >Read More <i class="bx bx-right-arrow-alt"></i
-          ></a>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="single-blog-post mb-30">
-        <div class="post-image">
-          <a routerLink="/single-blog" class="d-block">
-            <img src="assets/img/blog/blog3.jpg" alt="image" />
-          </a>
-          <div class="tag">
-            <a routerLink="/">Management</a>
-          </div>
-        </div>
-        <div class="post-content">
-          <ul class="post-meta">
-            <li class="post-author">
-              <img
-                src="assets/img/user3.jpg"
-                class="d-inline-block rounded-circle mr-2"
-                alt="image"
-              />
-              By: <a routerLink="/" class="d-inline-block">David Malan</a>
-            </li>
-            <li><a routerLink="/">August 28, 2019</a></li>
-          </ul>
-          <h3>
-            <a routerLink="/single-blog" class="d-inline-block"
-              >How to enhance education quality management system</a
-            >
-          </h3>
-          <a routerLink="/single-blog" class="read-more-btn"
-            >Read More <i class="bx bx-right-arrow-alt"></i
-          ></a>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="single-blog-post mb-30">
-        <div class="post-image">
-          <a routerLink="/single-blog" class="d-block">
-            <img src="assets/img/blog/blog4.jpg" alt="image" />
-          </a>
-          <div class="tag">
-            <a routerLink="/">Ideas</a>
-          </div>
-        </div>
-        <div class="post-content">
-          <ul class="post-meta">
-            <li class="post-author">
-              <img
-                src="assets/img/user5.jpg"
-                class="d-inline-block rounded-circle mr-2"
-                alt="image"
-              />
-              By: <a routerLink="/" class="d-inline-block">David Warner</a>
-            </li>
-            <li><a routerLink="/">August 27, 2019</a></li>
-          </ul>
-          <h3>
-            <a routerLink="/single-blog" class="d-inline-block"
-              >Global education: Ideas for the way move forward</a
-            >
-          </h3>
-          <a routerLink="/single-blog" class="read-more-btn"
-            >Read More <i class="bx bx-right-arrow-alt"></i
-          ></a>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="single-blog-post mb-30">
-        <div class="post-image">
-          <a routerLink="/single-blog" class="d-block">
-            <img src="assets/img/blog/blog5.jpg" alt="image" />
-          </a>
-          <div class="tag">
-            <a routerLink="/">Workforce</a>
-          </div>
-        </div>
-        <div class="post-content">
-          <ul class="post-meta">
-            <li class="post-author">
-              <img
-                src="assets/img/user6.jpg"
-                class="d-inline-block rounded-circle mr-2"
-                alt="image"
-              />
-              By: <a routerLink="/" class="d-inline-block">Olivar Waise</a>
-            </li>
-            <li><a routerLink="/">August 26, 2019</a></li>
-          </ul>
-          <h3>
-            <a routerLink="/single-blog" class="d-inline-block"
-              >New report reimagines the broader education workforce</a
-            >
+            <a routerLink="/single-blog" class="d-inline-block">{{
+              course.coursename
+            }}</a>
           </h3>
           <a routerLink="/single-blog" class="read-more-btn"
             >Read More <i class="bx bx-right-arrow-alt"></i

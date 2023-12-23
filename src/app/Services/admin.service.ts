@@ -4,6 +4,7 @@ import { URL } from '../constants/url';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
+import { UrlHandlingStrategy } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -75,8 +76,9 @@ export class AdminService {
       .get('https://localhost:7036/api/Program/GetAllPrograms')
       .subscribe({
         next: (x) => {
-          this.programs = x;
           this.spinner.hide();
+          this.programs = x;
+          console.log(x);
         },
         error: (err) => {
           console.log(err);
@@ -282,5 +284,67 @@ export class AdminService {
         this.toastr.error('Course Update Faild');
       },
     });
+  }
+
+  //User
+  Users: any;
+  GetAllUsers() {
+    this.spinner.show();
+    this.http.get(`${URL}/User`).subscribe(
+      (res) => {
+        this.Users = res;
+        this.spinner.hide();
+      },
+      (error) => {
+        this.toastr.error('Something went wrong!', error.message);
+        this.spinner.hide();
+      }
+    );
+  }
+  CreateUser(newUser: any) {
+    this.spinner.show();
+    this.http.post(`${URL}/User`, newUser).subscribe(
+      (res: any) => {
+        if (!isNaN(res)) {
+          this.toastr.success('User has been created', 'Success Notification');
+          this.GetAllUsers();
+        }
+      },
+      (e) => {
+        this.toastr.error(e.message, 'Something Went Wrong');
+      }
+    );
+    this.spinner.hide();
+  }
+  DeleteUser(id: number) {
+    this.spinner.show();
+    this.http.delete(`${URL}/User/` + id).subscribe(
+      (res: any) => {
+        if (!isNaN(res)) {
+          this.toastr.success('User has been Deleted', 'Success Notification');
+          this.GetAllUsers();
+          this.spinner.hide();
+        }
+      },
+      (error) => {
+        this.toastr.error(error.message);
+        this.spinner.hide();
+      }
+    );
+  }
+  UpdateUser(user: any) {
+    this.spinner.show();
+    this.http.put(`${URL}/User`, user).subscribe(
+      (res: any) => {
+        if (!isNaN(res)) {
+          this.toastr.success('User has been updated', 'Success Notification');
+          this.GetAllUsers();
+        }
+      },
+      (e) => {
+        this.toastr.error(e.message, 'Something Went Wrong');
+      }
+    );
+    this.spinner.hide();
   }
 }

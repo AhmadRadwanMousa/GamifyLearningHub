@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { AdminService } from 'src/app/Services/admin.service';
 
 @Component({
   selector: 'app-blog',
@@ -7,9 +8,11 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./blogs.component.scss'],
 })
 export class BlogsComponent implements OnInit {
-  constructor() {}
+  constructor(public adminService: AdminService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.adminService.getAllCourses();
+  }
 
   blogSlides: OwlOptions = {
     loop: true,

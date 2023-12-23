@@ -1,10 +1,10 @@
 .register-image {
-  height: 100%;
-  width: 100%;
+  height: 90%;
+
   background: {
-      image: url(../../../assets/img/register-bg.jpg);
+    image: url(../../../assets/img/motivation-course/training-course-banner.png);
     position: center center;
-    size: cover;
+    size: contain;
     repeat: no-repeat;
   }
   img {
@@ -16,7 +16,8 @@
 
   .register-form {
     text-align: center;
-    max-width: 500px;
+    width: 80%;
+
     margin: {
       left: auto;
       right: auto;
@@ -157,7 +158,39 @@
     }
   }
 }
-
+:host
+  ::ng-deep
+  .mat-mdc-form-field-has-icon-suffix
+  .mat-mdc-text-field-wrapper {
+  background-color: var(--whiteColor);
+  color: var(--blackColor);
+  border: none;
+  transition: var(--transition);
+  box-shadow: 0px 5px 28.5px 1.5px rgba(149, 152, 200, 0.2) !important;
+  height: 55px;
+  font-size: var(--fontSize);
+}
+:host ::ng-deep .mat-mdc-form-field.mat-accent {
+  width: 100%;
+}
+:host::ng-deep
+  .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled)
+  .mat-mdc-text-field-wrapper {
+  background-color: var(--whiteColor);
+  color: var(--blackColor);
+  border: none;
+  transition: var(--transition);
+  box-shadow: 0px 5px 28.5px 1.5px rgba(149, 152, 200, 0.2) !important;
+  height: 55px;
+  font-size: var(--fontSize);
+}
+:host ::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 @media only screen and (max-width: 767px) {
   .register-image {
     background-image: unset !important;
