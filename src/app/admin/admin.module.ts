@@ -7,6 +7,7 @@ import { ManageProgramsComponent } from './manage-programs/manage-programs.compo
 import { ManagePlanComponent } from './manage-plan/manage-plan.component';
 import { ManageEducationPeriodComponent } from './manage-education-period/manage-education-period.component';
 import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
+import { ManageCourseSequenceComponent } from './manage-course-sequence/manage-course-sequence.component';
 import { ManageRoleComponent } from './manage-role/manage-role.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 
@@ -17,6 +18,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     ManagePlanComponent,
     ManageEducationPeriodComponent,
     ManageCoursesComponent,
+    ManageCourseSequenceComponent,
     ManageRoleComponent,
     ManageUsersComponent,
   ],

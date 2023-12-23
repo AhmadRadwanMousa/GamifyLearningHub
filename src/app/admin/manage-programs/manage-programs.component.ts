@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-programs',
@@ -10,7 +11,12 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrls: ['./manage-programs.component.scss'],
 })
 export class ManageProgramsComponent {
-  constructor(public _adminService: AdminService, public dialog: MatDialog) {}
+  constructor(public _adminService: AdminService, public dialog: MatDialog,private router: Router) {}
+
+  
+  OpenCourseSequence(id: number) {
+    this.router.navigate(['/admin/course-sequence', id]);
+}
 
   ngOnInit() {
     this._adminService.GetAllPrograms();
@@ -20,6 +26,11 @@ export class ManageProgramsComponent {
   @ViewChild('CreateDialog') CreateProgramDialog: any;
   @ViewChild('ConfirmationDialog') ConfirmationDeleteDialog: any;
   @ViewChild('UpdateDialog') UpdateProgramDialog: any;
+  fileName: any;
+  filePath: any;
+
+  filesName: any;
+  filesPath: any;
 
   CreateProgramForm: FormGroup = new FormGroup({
     programname: new FormControl('', [
@@ -28,24 +39,29 @@ export class ManageProgramsComponent {
     ]),
     programdescription: new FormControl('', Validators.required),
     planid: new FormControl('', [Validators.required]),
-    programsyllabus: new FormControl('', [Validators.required]),
+    programsyllabus: new FormControl(),
     educationalperiodid: new FormControl('', [Validators.required]),
+    programimage:new FormControl(),
     programprice: new FormControl('', [Validators.required]),
     programsale: new FormControl('0', [Validators.required]),
   });
 
   UpdateprogramForm: FormGroup = new FormGroup({
     programid: new FormControl(),
-    programname: new FormControl(),
-    programdescription: new FormControl(),
-    planid: new FormControl(),
+    programname: new FormControl('', [Validators.required]),
+    programdescription: new FormControl('', [Validators.required]),
+    planid: new FormControl('', [Validators.required]),
+    programimage:new FormControl(),
     programsyllabus: new FormControl(),
-    educationalperiodid: new FormControl(),
-    programprice: new FormControl(),
-    programsale: new FormControl(),
+    educationalperiodid: new FormControl('', [Validators.required]),
+    programprice: new FormControl('', [Validators.required]),
+    programsale: new FormControl('0', [Validators.required]),
   });
 
   CreateProgram() {
+    this.CreateProgramForm.controls['programimage'].setValue(this.filePath);
+    this.CreateProgramForm.controls['programsyllabus'].setValue(this.filesPath);
+
     this._adminService.CreateProgram(this.CreateProgramForm.value);
   }
 
@@ -62,8 +78,6 @@ export class ManageProgramsComponent {
 
   OpenCreateDialog() {
     this.dialog.open(this.CreateProgramDialog, {
-      width: '600px',
-      height: '500px',
       enterAnimationDuration: 1000,
       exitAnimationDuration: 1000,
     });
@@ -71,12 +85,7 @@ export class ManageProgramsComponent {
 
   p_data: any = {};
   OpenUpdateDialog(data: any) {
-    this.dialog.open(this.UpdateProgramDialog, {
-      width: '600px',
-      height: '500px',
-      enterAnimationDuration: 1000,
-      exitAnimationDuration: 1000,
-    });
+    this.dialog.open(this.UpdateProgramDialog);
     this.p_data = data;
     this.UpdateprogramForm.controls['programid'].setValue(
       this.p_data.programid
@@ -84,6 +93,36 @@ export class ManageProgramsComponent {
   }
 
   UpdateProgram() {
+    this.UpdateprogramForm.controls['programimage'].setValue(this.filePath);
+    this.UpdateprogramForm.controls['programsyllabus'].setValue(this.filesPath);
+
     this._adminService.UpdateProgram(this.UpdateprogramForm.value);
+  }
+
+  UploadFile(event: any) {
+    let fileToUpload = event.target.files[0] as File;
+    if (!fileToUpload) {
+      return;
+    }
+    this.fileName = fileToUpload.name;
+    const formData = new FormData();
+    formData.append('file', fileToUpload);
+    this._adminService.UploadFile(formData).subscribe((path: string) => {
+      this.filePath = path;
+    });
+  }
+
+
+  UploadFiles(event: any) {
+    let fileToUpload = event.target.files[0] as File;
+    if (!fileToUpload) {
+      return;
+    }
+    this.filesName = fileToUpload.name;
+    const formData = new FormData();
+    formData.append('file', fileToUpload);
+    this._adminService.UploadFiles(formData).subscribe((path: string) => {
+      this.filesPath = path;
+    });
   }
 }

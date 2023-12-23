@@ -17,6 +17,7 @@ import { AdminService } from './Services/admin.service';
 import { LearnerService } from './Services/learner.service';
 import { InstructorService } from './Services/instructor.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SharedService } from './Services/shared.service';
 import { AuthGuard } from './RouteGuard/auth-guard.guard';
 
 @NgModule({
@@ -31,7 +32,7 @@ import { AuthGuard } from './RouteGuard/auth-guard.guard';
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
   ],
-  providers: [AdminService, LearnerService, InstructorService],
+  providers: [AdminService, LearnerService, InstructorService, SharedService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

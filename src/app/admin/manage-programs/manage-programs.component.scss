@@ -1,29 +1,8 @@
-/* Add this style to your existing stylesheet or in a style tag within your HTML */
-.table-shadow {
-    box-shadow:0 4px 8px black; /* Adjust the values as needed */
-  }
-  
-  /* Apply the 'table-shadow' class to your table */
-  .table-responsive table {
-    /* Add this class to the table element or adjust selectors based on your needs */
-    width: 100%; /* Ensure the table takes 100% width within its container */
-    border-collapse: collapse; /* Optional: Remove border-spacing between table cells */
-  }
-  
-  /* Optional: Style for the card to add padding and margin */
-  .card {
-    margin: 15px 0;
-    padding: 15px;
-  }
-  
-
-form {
-margin-top: 40px;
-margin-bottom: 40px;
-text-align: center;
-
+form{
+    width: 580px;
 }
 
-.widthInput {
-    width: 260px;
-}
+.file-input {
+    display: none;
+  }
+  

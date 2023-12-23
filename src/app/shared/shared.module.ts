@@ -7,7 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { FunfactsComponent } from './funfacts/funfacts.component';
 import { CountUpModule } from 'ngx-countup';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { HomePagePrograms } from './home-page-categories/home-page-programs.component';
+// import { HomePagePrograms } from './home-page-categories/home-page-programs.component';
 import { PartnerComponent } from './partner/partner.component';
 import { BecomeInstructorComponent } from './become-instructor/become-instructor.component';
 import { LightboxModule } from 'ngx-lightbox';
@@ -31,12 +31,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
     FunfactsComponent,
-    HomePagePrograms,
+    // HomePagePrograms,
     PartnerComponent,
     BecomeInstructorComponent,
     FeedbackComponent,
@@ -66,12 +68,16 @@ import { MatOptionModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatOptionModule,
+    MatCheckboxModule,
   ],
   exports: [
     FooterComponent,
     HeaderComponent,
     FunfactsComponent,
-    HomePagePrograms,
+    // HomePagePrograms,
     PartnerComponent,
     BecomeInstructorComponent,
     FeedbackComponent,
@@ -91,6 +97,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatNativeDateModule,
     MatButtonModule,
     MatOptionModule,
+    MatCheckboxModule,
   ],
 })
 export class SharedModule {}
