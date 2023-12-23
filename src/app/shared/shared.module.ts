@@ -33,14 +33,16 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { HomeCategoriesComponent } from './home-page-categories/home-page-categories.component';
+import { HomePagePrograms } from '../pages/home-page/home-page-programs/home-page-programs.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
     FunfactsComponent,
-    // HomePagePrograms,
     PartnerComponent,
+    HomeCategoriesComponent,
     BecomeInstructorComponent,
     FeedbackComponent,
     BlogsComponent,
@@ -78,8 +80,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     FooterComponent,
     HeaderComponent,
     FunfactsComponent,
-    // HomePagePrograms,
     PartnerComponent,
+    HomeCategoriesComponent,
     BecomeInstructorComponent,
     FeedbackComponent,
     BlogsComponent,

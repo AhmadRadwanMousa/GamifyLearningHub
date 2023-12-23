@@ -6,7 +6,7 @@ import { AdminService } from 'src/app/Services/admin.service';
   templateUrl: './home-page-programs.component.html',
   styleUrls: ['./home-page-programs.component.scss'],
 })
-export class HomeCoursesComponent implements OnInit {
+export class HomePagePrograms implements OnInit {
   constructor(public adminService: AdminService) {}
   programs: any;
   ngOnInit(): void {

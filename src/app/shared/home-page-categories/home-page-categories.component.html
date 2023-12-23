@@ -1,23 +1,34 @@
-
 <div class="courses-categories-slides">
-  <owl-carousel-o [options]="categoriesSlides">  
-    <ng-template carouselSlide *ngFor="let plan of _sharedService.planswithprograms">
+  <owl-carousel-o [options]="categoriesSlides">
+    <ng-template
+      carouselSlide
+      *ngFor="let plan of _sharedService.planswithprograms"
+    >
+      <div
+        class="single-categories-courses-item mb-30"
+        [style.backgroundImage]="'url(' + plan.planimage + ')'"
+        style="height: 250px"
+      >
+        <div class="dark-overlay"></div>
 
-      <div class="single-categories-courses-item mb-30" [style.backgroundImage]="'url(' + plan.planimage + ')'" style="height: 250px; ">
-        <div class="dark-overlay">  </div>
-
-         <div class="icon">
+        <div class="icon">
           <i class="bx bx-layer"></i>
         </div>
-        
-        <h3 class="clear">{{plan.planname}}</h3>
-          <span class="clear">{{plan.programs.length}} Programs</span>
-        <a  [routerLink]="['/pages/programsplan/' , plan.planid]" style="cursor: pointer;"  class="learn-more-btn clear"
+
+        <h3 class="clear">{{ plan.planname }}</h3>
+        <span class="clear">{{ plan.programs.length }} Programs</span>
+        <a
+          [routerLink]="['/pages/programsplan/', plan.planid]"
+          style="cursor: pointer"
+          class="learn-more-btn clear"
           >All Programs<i class="bx bx-book-reader"></i
         ></a>
-        <a [routerLink]="['/pages/programsplan/' , plan.planid]" style="cursor: pointer;" class="link-btn clear"></a>
+        <a
+          [routerLink]="['/pages/programsplan/', plan.planid]"
+          style="cursor: pointer"
+          class="link-btn clear"
+        ></a>
       </div>
     </ng-template>
- 
   </owl-carousel-o>
 </div>

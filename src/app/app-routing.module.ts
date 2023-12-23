@@ -20,6 +20,11 @@ const routes: Routes = [
       import('./admin/admin.module').then((x) => x.AdminModule),
   },
   {
+    path: 'instructor',
+    loadChildren: () =>
+      import('./instructor/instructor.module').then((x) => x.InstructorModule),
+  },
+  {
     path: 'Login',
     component: LoginPageComponent,
   },

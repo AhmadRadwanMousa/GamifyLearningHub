@@ -12,7 +12,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 
 import { HomePageComponent } from './home-page/home-page.component';
 import { HomePageMainBannerComponent } from './home-page/home-page-main-banner/home-page-main-banner.component';
-import { HomeCoursesComponent } from './home-page/home-page-programs/home-page-programs.component';
+import { HomePagePrograms } from './home-page/home-page-programs/home-page-programs.component';
 import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProgramsPlanComponent } from './programs-plan/programs-plan.component';
@@ -25,7 +25,7 @@ import { BrowserModule } from '@angular/platform-browser';
     ContactUsComponent,
     HomePageComponent,
     HomePageMainBannerComponent,
-    HomeCoursesComponent,
+    HomePagePrograms,
     ProgramsComponent,
     CoursesDetailsPageComponent,
     ProgramDetailsPageComponent,
