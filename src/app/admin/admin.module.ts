@@ -9,6 +9,8 @@ import { ManageEducationPeriodComponent } from './manage-education-period/manage
 import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
 import { ManageCourseSequenceComponent } from './manage-course-sequence/manage-course-sequence.component';
 import { ManageRoleComponent } from './manage-role/manage-role.component';
+import { ManageSectionComponent } from './manage-section/manage-section.component';
+
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageUserSectionComponent } from './manage-user-section/manage-user-section.component';
 
@@ -21,6 +23,8 @@ import { ManageUserSectionComponent } from './manage-user-section/manage-user-se
     ManageCoursesComponent,
     ManageCourseSequenceComponent,
     ManageRoleComponent,
+    ManageSectionComponent,
+
     ManageUsersComponent,
     ManageUserSectionComponent,
   ],
