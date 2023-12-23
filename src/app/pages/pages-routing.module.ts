@@ -14,9 +14,8 @@ const routes: Routes = [
 
   {
     path: 'programsplan/:id',
-    component: ProgramsPlanComponent
-  }
-
+    component: ProgramsPlanComponent,
+  },
 ];
 
 @NgModule({

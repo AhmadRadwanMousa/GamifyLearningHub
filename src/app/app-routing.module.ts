@@ -33,6 +33,8 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent,
   },
+  { path: 'CourseDetails/:id', component: CoursesDetailsPageComponent },
+  { path: 'ProgramDetails/:id', component: ProgramDetailsPageComponent },
   { path: 'CourseDetails', component: CoursesDetailsPageComponent },
   { path: 'ProgramDetails/:id', component: ProgramDetailsPageComponent },
   { path: '**', component: NotFoundComponent },

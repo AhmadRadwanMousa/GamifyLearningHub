@@ -10,6 +10,7 @@ import { ManageCoursesComponent } from './manage-courses/manage-courses.componen
 import { ManageCourseSequenceComponent } from './manage-course-sequence/manage-course-sequence.component';
 import { ManageRoleComponent } from './manage-role/manage-role.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageUserSectionComponent } from './manage-user-section/manage-user-section.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     ManageCourseSequenceComponent,
     ManageRoleComponent,
     ManageUsersComponent,
+    ManageUserSectionComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
   exports: [],

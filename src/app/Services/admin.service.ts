@@ -87,9 +87,6 @@ export class AdminService {
       });
   }
 
-
-
-
   DeleteProgram(id: number) {
     this.spinner.show();
     this.http
@@ -150,17 +147,18 @@ export class AdminService {
     });
   }
 
-
-
   courseSequence: any = [];
 
-  GetCoursesSequenceByProgramId(id : number) {
+  GetCoursesSequenceByProgramId(id: number) {
     this.spinner.show();
     this.http
-      .get('https://localhost:7036/api/CourseSequence/GetByProgramId/'+ id)
+      .get('https://localhost:7036/api/CourseSequence/GetByProgramId/' + id)
       .subscribe({
-        next: (x :any) => {
-          this.courseSequence = x.sort((a: any, b: any) => (new Date(a.startdate) as any) - (new Date(b.startdate) as any));
+        next: (x: any) => {
+          this.courseSequence = x.sort(
+            (a: any, b: any) =>
+              (new Date(a.startdate) as any) - (new Date(b.startdate) as any)
+          );
           this.spinner.hide();
         },
         error: (err) => {
@@ -170,42 +168,39 @@ export class AdminService {
       });
   }
 
-
-
   CreateCoursesSequence(data: any) {
     this.spinner.show();
-    this.http.post('https://localhost:7036/api/CourseSequence', data).subscribe({
-      next: (x) => {
-        console.log('Created');
-        this.GetCoursesSequenceByProgramId(data.programid);
-        this.spinner.hide();
-        if (x != null) {
-          this.toastr.success('Create Courses Sequence success');
-        }
-      },
-      error: (err) => {
-        console.log(err);
-        this.toastr.error('Create Courses Sequence error');
-        this.spinner.hide();
-      },
-    });
+    this.http
+      .post('https://localhost:7036/api/CourseSequence', data)
+      .subscribe({
+        next: (x) => {
+          console.log('Created');
+          this.GetCoursesSequenceByProgramId(data.programid);
+          this.spinner.hide();
+          if (x != null) {
+            this.toastr.success('Create Courses Sequence success');
+          }
+        },
+        error: (err) => {
+          console.log(err);
+          this.toastr.error('Create Courses Sequence error');
+          this.spinner.hide();
+        },
+      });
   }
 
-
-
-  DeleteCoursesSequence(id: number , programid :number) {
+  DeleteCoursesSequence(id: number, programid: number) {
     this.spinner.show();
     this.http
       .delete('https://localhost:7036/api/CourseSequence/' + id)
       .subscribe({
-        next: (x : any) => {
+        next: (x: any) => {
           console.log('Deleted');
           this.GetCoursesSequenceByProgramId(programid);
           this.spinner.hide();
-            if (x.rowsAffected == 1) {
-            this.toastr.success('Delete Courses Sequence success');        
-          }
-          else {
+          if (x.rowsAffected == 1) {
+            this.toastr.success('Delete Courses Sequence success');
+          } else {
             this.toastr.error('Delete Courses Sequence error');
           }
         },
@@ -218,20 +213,18 @@ export class AdminService {
       });
   }
 
-  UpdateCourseSequence(data: any , programid : number) {
+  UpdateCourseSequence(data: any, programid: number) {
     this.spinner.show();
     this.http.put('https://localhost:7036/api/CourseSequence', data).subscribe({
-      next: (x :any) => {
+      next: (x: any) => {
         console.log('Updated');
         this.GetCoursesSequenceByProgramId(programid);
         this.spinner.hide();
         if (x.rowsAffected == 1) {
-          this.toastr.success('Update Course Sequence');   
-        }
-        else {
+          this.toastr.success('Update Course Sequence');
+        } else {
           this.toastr.error('Update Course Sequence error');
         }
-       
       },
       error: (err) => {
         console.log(err);
@@ -240,8 +233,6 @@ export class AdminService {
       },
     });
   }
-
-
 
   plans: any = [];
   GetAllPlans_duplicate() {
@@ -297,9 +288,6 @@ export class AdminService {
     );
   }
 
-
-
-
   UploadFiles(file: FormData) {
     return this.http.post(`${URL}/Upload/UploadFile`, file).pipe(
       map((res: any) => {
@@ -314,7 +302,6 @@ export class AdminService {
       })
     );
   }
-
 
   CreatePlan(newPlan: any) {
     return this.http.post(`${URL}/plan/CreatePlan`, newPlan);
@@ -359,6 +346,7 @@ export class AdminService {
   }
 
   postCourse(data: any) {
+    debugger;
     this.http.post('https://localhost:7036/api/Course/', data).subscribe({
       next: () => {
         console.log('Created');
@@ -401,7 +389,48 @@ export class AdminService {
     });
   }
 
-  //User
+  // UserSection functionality =>
+  sections: any = [];
+  students: any = [];
+  filterdStudents: any = [];
+  getSectionByCourseId(id: number) {
+    this.http.get(`${URL}/Section/GetSectionByCourseId/` + id).subscribe({
+      next: (res) => {
+        this.spinner.show();
+        this.sections = res;
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+        this.spinner.hide();
+      },
+    });
+  }
+
+  getAllStudents() {
+    this.http.get(`${URL}/UserSection/GetAllStudentsUsers`).subscribe({
+      next: (res) => {
+        this.spinner.show();
+        this.students = res;
+        this.filterdStudents = res;
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+      },
+    });
+  }
+
+  createUserSection(data: any) {
+    this.http.post(`${URL}/UserSection`, data).subscribe({
+      next: () => {
+        this.toastr.success('Student Added to section');
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+      },
+    });
+  }
   Users: any;
   GetAllUsers() {
     this.spinner.show();
