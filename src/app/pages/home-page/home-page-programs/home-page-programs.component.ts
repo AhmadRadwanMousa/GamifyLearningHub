@@ -11,7 +11,6 @@ export class HomeCoursesComponent implements OnInit {
   programs: any;
   ngOnInit(): void {
     this.adminService.GetAllPrograms();
-    console.log(this.adminService.programs);
   }
 
   currentTab = 'tab1';

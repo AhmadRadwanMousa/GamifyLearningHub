@@ -45,6 +45,7 @@ export class SharedService {
       .get('https://localhost:7036/api/plan/GetAllPlansWithPrograms')
       .subscribe({
         next: (plan) => {
+          console.log(plan);
           this.planswithprograms = plan;
           this.spinner.hide();
         },
