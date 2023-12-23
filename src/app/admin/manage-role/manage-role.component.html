@@ -3,16 +3,14 @@
     <div class="card w-100">
       <div class="card-body p-4">
         <h5 class="card-title fw-semibold mb-4">All ROLES</h5>
-        <div class="table-responsive text-center">
+        <hr>
+        <div class="table-responsive ">
+          <button class="btn btn-primary mb-4" (click)="OpenCreateDialog()">
+            <span>Create New Role</span>
+          </button>
           <table class="table text-nowrap mb-0 align-middle">
             <thead class="text-dark fs-4">
-              <button
-                (click)="OpenCreateDialog()"
-                mat-raised-button
-                color="primary"
-              >
-                <span style="color: white">Create</span>
-              </button>
+              
               <tr>
                 <th class="border-bottom-0">
                   <h6 class="fw-semibold mb-0">ROLE ID</h6>
@@ -36,7 +34,7 @@
                 </td>
 
                 <td class="border-bottom-0">
-                  <button class="btn btn-primary m-2">
+                  <button class="btn btn-primary m-2" (click)="OpenUpdateDialog(c)">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       class="icon icon-tabler icon-tabler-edit"
@@ -93,52 +91,60 @@
             </tbody>
           </table>
 
+
+          <!-- dialogs -->
+
           <ng-template #CreateDialog>
             <form [formGroup]="CreateRoleForm">
-              <div class="example-container">
+              <div class="example-container" style="display: none;">
                 <mat-form-field>
-                  <mat-label>Enter Number</mat-label>
-                  <input
-                    matInput
-                    placeholder="pat@example.com"
-                    formControlName="roleid"
-                    required
-                  />
-                  <mat-error
-                    *ngIf="
-                      CreateRoleForm.controls['roleid'].hasError('required')
-                    "
-                    >Role-ID is required</mat-error
-                  >
+                  <mat-label>ID will be generated </mat-label>
+                  <input matInput placeholder="Like: 5" formControlName="roleid" required />
                 </mat-form-field>
               </div>
-
+          
               <div class="example-container pt-3 mb-3">
                 <mat-form-field>
                   <mat-label>Enter Role Name</mat-label>
-                  <input
-                    matInput
-                    placeholder="pat@example.com"
-                    formControlName="rolename"
-                    required
-                  />
-                  <mat-error
-                    *ngIf="
-                      CreateRoleForm.controls['rolename'].hasError('required')
-                    "
-                    >Role-Name is required</mat-error
-                  >
+                  <input matInput placeholder="Like: Manager2" formControlName="rolename" required />
+                  <mat-error *ngIf="roleName?.hasError('required')">Role-Name is required</mat-error>
+                  <mat-error *ngIf="roleName?.hasError('minlength')">Role-Name must be at least 4 characters</mat-error>
+                  <mat-error *ngIf="roleName?.hasError('invalidRoleName')">Section Name Should Start With Letter</mat-error>
+
                 </mat-form-field>
               </div>
-
-              <button
-                mat-dialog-close
-                (click)="CreateRole()"
-                mat-raised-button
-                color="primary"
-              >
+          
+              <button class="mt-4" [disabled]="CreateRoleForm.invalid" mat-dialog-close (click)="CreateRole()" mat-raised-button color="primary">
                 Create
               </button>
+            </form>
+          </ng-template>
+
+
+
+          <ng-template #UpdateDialog>
+            <form [formGroup]="UpdateRoleForm">
+              <div class="example-container" style="display: none;">
+                <mat-form-field>
+                  <mat-label>Role ID</mat-label>
+                  <input matInput placeholder="Role ID" formControlName="roleid" required>
+                  <mat-error *ngIf="UpdateRoleForm.controls['roleid'].hasError('required')">Role ID is required</mat-error>
+                </mat-form-field>
+              </div>
+          
+              <div class="example-container pt-3 mb-3">
+                <mat-form-field>
+                  <mat-label>Role Name</mat-label>
+                  <input matInput placeholder="Role Name" formControlName="rolename" required>
+                  <mat-error *ngIf="UpdateRoleForm.controls['rolename'].hasError('required')">Role Name is required</mat-error>
+                  <mat-error *ngIf="roleName?.hasError('minlength')">Role-Name must be at least 4 characters</mat-error>
+                  <mat-error *ngIf="roleName?.hasError('invalidRoleName')">Role Name Should Start With Letter</mat-error>
+                </mat-form-field>
+              </div>
+          
+              
+          
+              <button class="mt-4" [disabled]="UpdateRoleForm.invalid" mat-raised-button color="primary" (click)="UpdateRole()">Update</button>
             </form>
           </ng-template>
 

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { URL } from '../constants/url';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,56 +16,185 @@ export class AdminService {
   ) {}
   Role: any = [];
 
-  //Get  Role
+  //Get Role
   GetAllRoles() {
+    this.spinner.show();
     this.http.get('https://localhost:7036/api/Role').subscribe({
       next: (x) => {
         this.Role = x;
+        this.spinner.hide();
       },
       error: (err) => {
         console.log(err);
+        this.spinner.hide();
+        this.toastr.error('Failed to retrieve roles');
       },
     });
   }
 
+   
   //Delete Role
   DeleteRole(id: number) {
+    this.spinner.show();
     this.http.delete('https://localhost:7036/api/Role/' + id).subscribe({
       next: () => {
         console.log('Deleted');
         this.GetAllRoles();
+        this.spinner.hide();
+        this.toastr.success('Role deleted successfully');
       },
       error: (err) => {
         console.log(err);
+        this.spinner.hide();
+        this.toastr.error('Failed to delete role');
       },
     });
   }
 
   //Post Role
   CreateRole(data: any) {
+    this.spinner.show();
     this.http.post('https://localhost:7036/api/Role', data).subscribe({
       next: () => {
         console.log('Role Created');
         this.GetAllRoles();
+        this.spinner.hide();
+        this.toastr.success('Role created successfully');
       },
       error: (err) => {
         console.log(err);
+        this.spinner.hide();
+        this.toastr.error('Failed to create role');
       },
     });
   }
 
   //Put Role
   UpdateRole(data: any) {
+    this.spinner.show();
     this.http.put('https://localhost:7036/api/Role', data).subscribe({
       next: () => {
         console.log('Updated');
         this.GetAllRoles();
+        this.spinner.hide();
+        this.toastr.success('Role updated successfully');
       },
       error: (err) => {
         console.log(err);
+        this.spinner.hide();
+        this.toastr.error('Failed to update role');
       },
     });
   }
+
+
+  //Section 
+  
+  sections: any = [];
+  instructorSection: any =[] ;
+
+ //  get sections
+ getAllSections() {
+  this.spinner.show();
+  this.http.get<any[]>('https://localhost:7036/api/Section').subscribe({
+    next: (result) => {
+      this.sections = result.map((section: any) => {
+        // Access to get (user-name) in section  >  users  
+        const userFirstName = section.user?.firsname || 'Unknown';
+        const userLastName = section.user?.lastname || 'Unknown';
+
+        return {
+          ...section,
+          userFirstName,
+          userLastName,
+        };
+      });
+
+      this.spinner.hide();
+    },
+    error: (err) => {
+      console.log(err);
+      this.spinner.hide();
+      this.toastr.error('Failed to retrieve sections');
+    },
+  });
+}
+
+
+  // Delete section
+  DeleteSection(id: number) {
+    this.spinner.show();
+    this.http.delete('https://localhost:7036/api/Section/'+ id).subscribe({
+      next: () => {
+        console.log('Deleted');
+        this.getAllSections();
+        this.spinner.hide();
+        this.toastr.success('Section deleted successfully');
+      },
+      error: (err) => {
+        console.log(err);
+        this.spinner.hide();
+        this.toastr.error('Failed to delete section');
+      },
+    });
+  }
+
+
+ //Post Section 
+  CreateSection(data: any) {
+    this.spinner.show();
+    this.http.post('https://localhost:7036/api/Section', data).subscribe({
+      next: () => {
+        console.log('Section Created');
+        this.getAllSections();
+        this.spinner.hide();
+        this.toastr.success('Section created successfully');
+      },
+      error: (err) => {
+        console.log(err);
+        this.spinner.hide();
+        this.toastr.error('Failed to create Section');
+      },
+    });
+  }
+  
+  //get (Users With RoleId2)  in  (post section) 
+
+  getAllUsersWithRoleId2(): Observable<any[]> {
+    const url = 'https://localhost:7036/api/Section/GetAllUsersWithRoleId2';
+    // Update the method to store the list of users
+    return this.http.get<any[]>(url).pipe(
+      map((users) => {
+        this.instructorSection = users;
+        return users;
+      })
+    );
+  }
+  
+  //put Section 
+
+  UpdateSection(data: any) {
+    const sectionId = data.sectionid; // Assuming your data object has the 'sectionid' property
+  
+    this.http.put(`https://localhost:7036/api/Section/${sectionId}`, data).subscribe({
+      next: () => {
+        console.log('Updated');
+        this.getAllSections();
+        this.spinner.hide();
+        this.toastr.success('Section updated successfully');
+      },
+      error: (err) => {
+        console.log(err);
+        this.spinner.hide();
+        this.toastr.error('Failed to update Section');
+      },
+    });
+  }
+
+
+
+
+
 
   programs: any = [];
   filePath: string = '';

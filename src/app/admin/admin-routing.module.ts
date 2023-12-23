@@ -6,6 +6,7 @@ import { ManagePlanComponent } from './manage-plan/manage-plan.component';
 import { ManageEducationPeriodComponent } from './manage-education-period/manage-education-period.component';
 import { ManageProgramsComponent } from './manage-programs/manage-programs.component';
 import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
+import { ManageSectionComponent } from './manage-section/manage-section.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
     component: IndexComponent,
   },
   { path: 'role', component: ManageRoleComponent },
+  { path: 'section', component: ManageSectionComponent },
   {
     path: 'plan',
     component: ManagePlanComponent,
