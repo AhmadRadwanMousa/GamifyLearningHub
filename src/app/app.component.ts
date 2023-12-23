@@ -1,4 +1,5 @@
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+
 import { Component } from '@angular/core';
 import {
   NavigationCancel,

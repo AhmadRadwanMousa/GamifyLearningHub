@@ -18,6 +18,8 @@ import { AdminService } from './Services/admin.service';
 import { LearnerService } from './Services/learner.service';
 import { InstructorService } from './Services/instructor.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     NgxSpinnerModule,
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
+    FormsModule
   ],
   providers: [AdminService, LearnerService, InstructorService],
   bootstrap: [AppComponent],

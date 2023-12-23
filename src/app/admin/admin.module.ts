@@ -7,6 +7,10 @@ import { ManageProgramsComponent } from './manage-programs/manage-programs.compo
 import { ManagePlanComponent } from './manage-plan/manage-plan.component';
 import { ManageEducationPeriodComponent } from './manage-education-period/manage-education-period.component';
 import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
+import { BadgeComponent } from './badge/badge.component';
+import { CuoponComponent } from './coupon/cuopon.component';
+import { PointsComponent } from './points/points.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +19,10 @@ import { ManageCoursesComponent } from './manage-courses/manage-courses.componen
     ManagePlanComponent,
     ManageEducationPeriodComponent,
     ManageCoursesComponent,
+    BadgeComponent,
+    CuoponComponent,
+    PointsComponent,
+    MessageComponent
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
   exports: [],

@@ -5,6 +5,10 @@ import { ManagePlanComponent } from './manage-plan/manage-plan.component';
 import { ManageEducationPeriodComponent } from './manage-education-period/manage-education-period.component';
 import { ManageProgramsComponent } from './manage-programs/manage-programs.component';
 import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
+import { BadgeComponent } from './badge/badge.component';
+import { PointsComponent } from './points/points.component';
+import { CuoponComponent } from './coupon/cuopon.component';
+import { MessageComponent } from './message/message.component';
 
 const routes: Routes = [
   {
@@ -23,7 +27,22 @@ const routes: Routes = [
     path: 'programs',
     component: ManageProgramsComponent,
   },
-  { path: 'manageCourses', component: ManageCoursesComponent },
+  {
+     path: 'manageCourses', component: ManageCoursesComponent 
+  },
+  {
+    path: 'badge', component:BadgeComponent
+  },
+  {
+    path: 'Points',component :PointsComponent
+  },
+  {
+    path:'Cuopon',component:CuoponComponent
+  },
+  {
+    path: 'messages',
+    component: MessageComponent,
+  },
 ];
 
 @NgModule({
