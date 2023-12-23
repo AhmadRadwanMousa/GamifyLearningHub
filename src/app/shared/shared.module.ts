@@ -31,6 +31,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 @NgModule({
   declarations: [
     FooterComponent,
@@ -66,6 +68,10 @@ import { MatOptionModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatOptionModule,
+    MatCheckboxModule,
   ],
   exports: [
     FooterComponent,
@@ -91,6 +97,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatNativeDateModule,
     MatButtonModule,
     MatOptionModule,
+    MatCheckboxModule,
   ],
 })
 export class SharedModule {}

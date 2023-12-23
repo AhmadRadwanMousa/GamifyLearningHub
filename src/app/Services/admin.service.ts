@@ -87,6 +87,9 @@ export class AdminService {
       });
   }
 
+
+
+
   DeleteProgram(id: number) {
     this.spinner.show();
     this.http
@@ -147,6 +150,99 @@ export class AdminService {
     });
   }
 
+
+
+  courseSequence: any = [];
+
+  GetCoursesSequenceByProgramId(id : number) {
+    this.spinner.show();
+    this.http
+      .get('https://localhost:7036/api/CourseSequence/GetByProgramId/'+ id)
+      .subscribe({
+        next: (x :any) => {
+          this.courseSequence = x.sort((a: any, b: any) => (new Date(a.startdate) as any) - (new Date(b.startdate) as any));
+          this.spinner.hide();
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+
+
+  CreateCoursesSequence(data: any) {
+    this.spinner.show();
+    this.http.post('https://localhost:7036/api/CourseSequence', data).subscribe({
+      next: (x) => {
+        console.log('Created');
+        this.GetCoursesSequenceByProgramId(data.programid);
+        this.spinner.hide();
+        if (x != null) {
+          this.toastr.success('Create Courses Sequence success');
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastr.error('Create Courses Sequence error');
+        this.spinner.hide();
+      },
+    });
+  }
+
+
+
+  DeleteCoursesSequence(id: number , programid :number) {
+    this.spinner.show();
+    this.http
+      .delete('https://localhost:7036/api/CourseSequence/' + id)
+      .subscribe({
+        next: (x : any) => {
+          console.log('Deleted');
+          this.GetCoursesSequenceByProgramId(programid);
+          this.spinner.hide();
+            if (x.rowsAffected == 1) {
+            this.toastr.success('Delete Courses Sequence success');        
+          }
+          else {
+            this.toastr.error('Delete Courses Sequence error');
+          }
+        },
+        error: (err) => {
+          console.log('error');
+
+          this.toastr.error('Delete Courses Sequence error');
+          this.spinner.hide();
+        },
+      });
+  }
+
+  UpdateCourseSequence(data: any , programid : number) {
+    this.spinner.show();
+    this.http.put('https://localhost:7036/api/CourseSequence', data).subscribe({
+      next: (x :any) => {
+        console.log('Updated');
+        this.GetCoursesSequenceByProgramId(programid);
+        this.spinner.hide();
+        if (x.rowsAffected == 1) {
+          this.toastr.success('Update Course Sequence');   
+        }
+        else {
+          this.toastr.error('Update Course Sequence error');
+        }
+       
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastr.error('Update Course Sequence error');
+        this.spinner.hide();
+      },
+    });
+  }
+
+
+
   plans: any = [];
   GetAllPlans_duplicate() {
     this.spinner.show();
@@ -200,6 +296,25 @@ export class AdminService {
       })
     );
   }
+
+
+
+
+  UploadFiles(file: FormData) {
+    return this.http.post(`${URL}/Upload/UploadFile`, file).pipe(
+      map((res: any) => {
+        if (res) {
+          this.toastr.info('File has been created!', '', {
+            easeTime: 300,
+            easing: 'ease-in-out',
+          });
+          return res.path;
+        }
+        return '';
+      })
+    );
+  }
+
 
   CreatePlan(newPlan: any) {
     return this.http.post(`${URL}/plan/CreatePlan`, newPlan);

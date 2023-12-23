@@ -1,0 +1,285 @@
+<app-admin-container>
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">All Programs</h5>
+        <hr />
+        <button
+          mat-dialog-close
+          (click)="OpenCreateDialog()"
+          class="btn btn-primary mb-4"
+        >
+          Create Course Sequence
+        </button>
+        <div class="table-responsive text-center">
+          <table class="table text-nowrap mb-0 align-middle">
+            <thead class="text-dark fs-4">
+              <tr>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Course Name</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Previuse Course</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Start Date</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">End Date</h6>
+                </th>
+  
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Actions</h6>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let x of _adminService.courseSequence">
+                <td class="border-bottom-0">
+                  <h6 class="fw-semibold mb-1">{{ x.course.coursename }}</h6>
+                </td>      
+  
+                <td class="border-bottom-0">
+                    <p class="mb-0 fw-normal" *ngIf="x.perviouscourseid != null">{{ x.perviouscourse.coursename }}</p>
+                
+                    <p class="mb-0 fw-normal" *ngIf="x.perviouscourseid == null">-</p>
+
+                </td>
+
+             
+           
+                <td class="border-bottom-0">
+                    <p class="mb-0 fw-normal">{{ x.startdate | date : "mediumDate" }}</p>
+                  </td>
+                               
+                <td class="border-bottom-0">
+                    <p class="mb-0 fw-normal">{{ x.enddate | date : "mediumDate"}}</p>
+                  </td>
+             
+                <td class="border-bottom-0">
+                  <button
+                  (click)="OpenUpdateDialog(x)"
+                    class="btn btn-primary m-2"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-edit"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                      />
+                      <path
+                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                      />
+                      <path d="M16 5l3 3" />
+                    </svg>
+                  </button>
+                  <button
+                  (click)="OpenConfirmDialog(x.coursesequenceid)"
+                    class="btn btn-danger"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon icon-tabler icon-tabler-trash-filled"
+                      width="24" 
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                        stroke-width="0"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                        stroke-width="0"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+
+    <ng-template #CreateDialog >
+        <form [formGroup]="CreateCourseSequenceForm">
+          <div class="row w-100" style="padding: 25px;">
+            <h3 class="mb-5">Create Course Sequence</h3>
+
+                <mat-form-field  class="col-6">
+                  <mat-label>Course Name</mat-label>
+                  <select matNativeControl required formControlName="courseid" (change)="Change()">
+                    <option label="--Select Course --"></option>
+                    <option *ngFor="let course of _adminService.courses" [value]="course.courseid">{{ course.coursename }}</option>
+                  </select>
+                  <mat-error *ngIf="CreateCourseSequenceForm.controls['courseid'].hasError('required')">Course is required</mat-error>
+                </mat-form-field>
+              
+
+
+                <mat-form-field class="col-6">
+                  <mat-label>Previous Course Name</mat-label>
+                  <select matNativeControl formControlName="perviouscourseid">
+                    <option  [value]="0" label="--Previous Course --"></option>
+                    <option *ngFor="let course of _adminService.courses" [value]="course.courseid" [disabled]="CreateCourseSequenceForm.controls['courseid'].invalid || course.courseid == MyCourse">
+                        {{ course.coursename }}
+                      </option>
+                      
+                  </select>
+                </mat-form-field>
+              
+
+
+
+            <mat-form-field class="col-6">
+                <mat-label>Start Date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="startDatePicker"
+                  formControlName="startdate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="startDatePicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+                <mat-error *ngIf="CreateCourseSequenceForm.controls['startdate'].hasError('required')">Start Date is required</mat-error>
+
+              </mat-form-field>
+          
+
+              <mat-form-field class="col-6">
+                <mat-label>End Date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="endDatePicker"
+                  formControlName="enddate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="endDatePicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+                <mat-error *ngIf="CreateCourseSequenceForm.controls['enddate'].hasError('required')">End Date is required</mat-error>
+              </mat-form-field>
+    
+    
+          <button
+            mat-dialog-close
+            (click)="CreateCourseSequence()"
+            [disabled]="CreateCourseSequenceForm.invalid"
+            class="btn btn-primary w-50" style="margin: auto;">
+            Create
+          </button>
+          </div>
+        </form>
+      </ng-template>
+    
+
+      <ng-template #ConfirmationDialog>
+        <h1 mat-dialog-title>Delete Course Sequence</h1>
+        <div mat-dialog-content>Would you like to delete Course Sequence?</div>
+        <div mat-dialog-actions style="justify-content:center !important;">
+          <button mat-dialog-close="no" cdkFocusInitial class="btn btn-secondary w-25 m-2">No</button>
+          <button  mat-dialog-close="yes" class="btn btn-danger w-25 m-2">Yes</button>
+        </div>
+      </ng-template>
+    
+
+
+
+
+
+      <ng-template #UpdateDialog >
+        <form [formGroup]="UpdateCourseSequenceForm">
+          <div class="row w-100" style="padding: 25px;">
+            <h3 class="mb-5">Update Course Sequence</h3>
+
+                <mat-form-field  class="col-6">
+                  <mat-label>Course Name</mat-label>
+                  <select matNativeControl required formControlName="courseid">
+                    <option label="--Select Course --"></option>
+                    <option *ngFor="let course of _adminService.courses" [value]="course.courseid">{{ course.coursename }}</option>
+                  </select>
+                  <mat-error *ngIf="UpdateCourseSequenceForm.controls['courseid'].hasError('required')">Course is required</mat-error>
+                </mat-form-field>
+              
+
+
+                <mat-form-field class="col-6">
+                  <mat-label>Previous Course Name</mat-label>
+                  <select matNativeControl formControlName="perviouscourseid">
+                    <option [value]="0" label="--Previous Course --"></option>
+                    <option *ngFor="let course of _adminService.courses" [value]="course.courseid" [disabled]="CreateCourseSequenceForm.controls['courseid'].invalid">
+                        {{ course.coursename }}
+                    </option>
+                  </select>
+                </mat-form-field>
+              
+
+
+
+            <mat-form-field class="col-6">
+                <mat-label>Start Date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="startDatePicker"
+                  formControlName="startdate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="startDatePicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+              </mat-form-field>
+          
+
+              <mat-form-field class="col-6">
+                <mat-label>End Date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="endDatePicker"
+                  formControlName="enddate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="endDatePicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+              </mat-form-field>
+    
+    
+          <button
+            mat-dialog-close
+            (click)="UpdateCourseSequence()"
+            [disabled]="UpdateCourseSequenceForm.invalid"
+            class="btn btn-primary w-50" style="margin: auto;">
+            Update 
+          </button>
+          </div>
+        </form>
+      </ng-template>
+    
+
+  
+  </app-admin-container>
+  

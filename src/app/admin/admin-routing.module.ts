@@ -6,6 +6,7 @@ import { ManagePlanComponent } from './manage-plan/manage-plan.component';
 import { ManageEducationPeriodComponent } from './manage-education-period/manage-education-period.component';
 import { ManageProgramsComponent } from './manage-programs/manage-programs.component';
 import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
+import { ManageCourseSequenceComponent } from './manage-course-sequence/manage-course-sequence.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 const routes: Routes = [
@@ -28,6 +29,11 @@ const routes: Routes = [
   },
   { path: 'manageCourses', component: ManageCoursesComponent },
   { path: 'user', component: ManageUsersComponent },
+
+  {
+    path: 'course-sequence/:programid',
+    component: ManageCourseSequenceComponent,
+  },
 ];
 
 @NgModule({
