@@ -32,7 +32,9 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),
-    ToastNoAnimationModule.forRoot(),
+    ToastNoAnimationModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
     FormsModule
   ],
   providers: [AdminService, LearnerService, InstructorService, SharedService],
