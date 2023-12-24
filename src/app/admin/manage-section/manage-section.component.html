@@ -152,24 +152,34 @@
                       </mat-error>
                     </div>
                   </div>
+
+
+                  <input
+                  type="file"
+                  class="file-input"
+                  (change)="UploadFile($event)"
+                  #fileUpload
+                />
+          
+                <div class="file-upload border border-2 rounded-2 col-10 mt-3" style="margin: auto; text-align: center;">
+                  {{ fileName || "No image uploaded  yet. (Upload Image Section)" }}
+              
+                  <button
+                    mat-mini-fab
+                    color="primary"
+                    class="upload-btn btn btn-outline-primary"
+                    (click)="fileUpload.click()"
+                  >
+                    <mat-icon>upload-btn</mat-icon>
+                  </button>
+
                 </div>
-  
-                <div class="row mb-3">
-                  <div class="col-md-6 " style="display: flex; align-items: center; justify-content: center;">
-                    <div class="mb-3 pt-2">
-                      <label for="imageFile" class="form-label">Upload Image:</label>
-                      <input type="file" id="imageFile" formControlName="imageFile" (change)="onFileChange($event)" class="form-control" />
-                      <mat-error *ngIf="CreateSectionForm.controls['imageFile'].hasError('required')">
-                        Image is required
-                      </mat-error>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <!-- Display the selected image -->
-                    <img [src]="getImagePath()" alt="Selected Image" class="mt-2 text-first" style="width: 200px; height: 150px;" *ngIf="CreateSectionForm.get('imageFile')?.value && CreateSectionForm.get('imageFile')?.value !== ''" />
-                  </div>
+
+                  
                 </div>
-  
+                
+             
+            
                 <div class="row mt-5">
                   <div class="col-md-12 text-center">
                     <button type="submit" class="btn btn-primary" [mat-dialog-close]="true">Create</button>
@@ -232,6 +242,30 @@
                     </mat-error>
                   </div>
                 </div>
+
+                <input
+                type="file"
+                class="file-input"
+                (change)="UploadFile($event)"
+                #fileUpload
+              />
+              <div>
+                
+              </div>
+              <div class="file-upload border border-2 rounded-2 col-10 mt-3" style="margin: auto; text-align: center;">
+                {{ fileName || "No image uploaded  yet. (Upload Image Section)" }}
+            
+                <button
+                  mat-mini-fab
+                  color="primary"
+                  class="upload-btn btn btn-outline-primary"
+                  (click)="fileUpload.click()"
+                >
+                  <mat-icon>upload-btn</mat-icon>
+                </button>
+              </div>
+            
+               
               </div>
 
               
@@ -240,7 +274,7 @@
 
               <div class="row mt-5">
                 <div class="col-md-12 text-center">
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary" [mat-dialog-close]="true">Update</button>
                 </div>
               </div>
             </form>
