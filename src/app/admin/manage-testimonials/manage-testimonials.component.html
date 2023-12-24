@@ -1,0 +1,137 @@
+<app-admin-container>
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">All Testimonials</h5>
+        <hr />
+
+        <div class="table-responsive text-center">
+          <table class="table text-nowrap mb-0 align-middle">
+            <thead class="text-dark fs-4">
+              <tr>
+
+                <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">User Image </h6>
+                  </th>
+
+                  <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">User Name</h6>
+                    </th>
+  
+                <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Review</h6>
+                  </th>
+
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Actions</h6>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let testimonial of _adminService.testimonialsWaiting">
+  
+                  <td class="border-bottom-0">
+                      <img [src]="testimonial.user.userimage" style="width: 100px; height: 80px;" />
+                    </td>
+                <td class="border-bottom-0">
+                  <h6 class="fw-semibold mb-1">{{ testimonial.user.firsname }}   {{ testimonial.user.lastname }}</h6>
+                </td>
+  
+             
+                <td class="border-bottom-0">
+                  <p class="mb-0 fw-normal">{{ testimonial.review  | slice:0:20 }}{{  testimonial.review.length > 20 ? '...' : '' }}</p>
+                </td>
+
+             
+  
+                <td class="border-bottom-0">
+
+
+                    <button
+                    (click)="OpenAcceptDialog(testimonial.testimonialid)"
+                    class="btn btn-success m-2"
+                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" 
+                  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" 
+                  fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" 
+                  d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>
+                  </button>
+
+
+                  <button
+                  (click)="OpenRejectDialog(testimonial.testimonialid)"
+                  class="btn btn-danger m-2"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x"
+                 width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
+                 stroke="currentColor" fill="none" stroke-linecap="round" 
+                 stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"
+                  fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                </button>
+
+                <button
+                (click)="OpenDetailsDialog(testimonial)"
+                class="btn btn-warning m-2"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle"
+               width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" 
+               fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" 
+               d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+               <path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>
+              </button>
+  
+  
+  
+  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+
+   
+    <ng-template #AcceptDialog>
+        <h1 mat-dialog-title>Accept Testimonial</h1>
+        <div mat-dialog-content>Would you like to accept testimonial?</div>
+        <div mat-dialog-actions style="justify-content:center !important;">
+            <button mat-dialog-close="no"  class="btn btn-secondary w-25 m-2">No</button>
+            <button  mat-dialog-close="yes" cdkFocusInitial class="btn btn-danger w-25 m-2">Yes</button>
+        </div>
+      </ng-template>
+    
+  
+
+      <ng-template #RejectDialog>
+        <h1 mat-dialog-title>Reject Testimonial</h1>
+        <div mat-dialog-content>Would you like to reject testimonial?</div>
+        <div mat-dialog-actions style="justify-content:center !important;">
+            <button mat-dialog-close="no" cdkFocusInitial class="btn btn-secondary w-25 m-2">No</button>
+            <button  mat-dialog-close="yes" class="btn btn-danger w-25 m-2">Yes</button>
+        </div>
+      </ng-template>
+
+
+
+      <ng-template #DeatailsDialog>
+        <div style="width: 400px;">
+            <h1 mat-dialog-title class="mb-2">Details Testimonial</h1>
+        
+            <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black;">  User Name : </span>{{ data.user.firsname }}   {{ data.user.lastname }}</div>
+           
+            <div mat-dialog-content ><span style="font-weight:500; color: black">  Review : </span> {{ data.review }}</div>
+      
+            <div mat-dialog-actions style="justify-content:center !important;">
+                <button  mat-dialog-close="accept" class="btn btn-success w-27 m-2">Accept</button>
+                <button mat-dialog-close="reject" class="btn btn-danger  w-27 m-2">Reject</button>
+                <button  mat-dialog-close="cancel" cdkFocusInitial class="btn btn-primary w-27 m-2">Cancel</button>
+    
+            </div>
+        </div>
+      
+      </ng-template>
+
+  </app-admin-container>
+  
+

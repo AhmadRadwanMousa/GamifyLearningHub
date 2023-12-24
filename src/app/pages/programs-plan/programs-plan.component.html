@@ -53,11 +53,12 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <div class="row">
 
-            <div class="col-lg-3 col-md-6" *ngFor="let program of _sharedService.searchprograms" >
-                <div class="single-courses-item mb-30" style="box-shadow: 0px 2px 5px black; display: flex; flex-direction: column; height: 490px;border-radius: 35px; overflow: auto;">
+            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-md-6" *ngFor="let program of _sharedService.searchprograms" >
+                <a [routerLink]="['/ProgramDetails/' , program.programId]" class="d-inline-block">
+                <div class="single-courses-box mb-30" style="display: flex; flex-direction: column; height: 520px;border-radius: 30px;width: 100%; overflow: auto;">
                     
 
                     <div class="courses-image">
@@ -80,7 +81,7 @@
                         </ul>
                     </div>
                     <hr>
-                    <div class="courses-content">
+                    <div class="courses-content" style="padding: 0px 25px 20px;; overflow: auto;">
                   
                         <p style="font-weight: bold;font-size: 15px;"><a [routerLink]="['/ProgramDetails/' , program.programId]" class="d-inline-block">{{program.programName}}</a></p>
                         <p>{{ program.programDescription | slice:0:100 }}{{ program.programDescription.length > 100 ? '...' : '' }}</p>
@@ -88,7 +89,7 @@
                     </div>
                    
                    
-                    <div class="courses-box-footer" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+                    <div class="courses-box-footer" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; overflow: auto;">
                       <hr style="margin-top:0px;">
                         <ul>
                             <li class="students-number">
@@ -112,6 +113,7 @@
                    
                 </div>
                 </div>
+            </a>
             </div>
       
    
@@ -125,6 +127,10 @@
                     <a routerLink="courses-4-columns-style-2" class="next page-numbers"><i class='bx bx-chevron-right'></i></a>
                 </div>
             </div> -->
+
+
+
+       
         </div>
     </div>
 </div>

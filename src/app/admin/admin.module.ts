@@ -13,6 +13,7 @@ import { ManageSectionComponent } from './manage-section/manage-section.componen
 
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageUserSectionComponent } from './manage-user-section/manage-user-section.component';
+import { ManageTestimonialsComponent } from './manage-testimonials/manage-testimonials.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ManageUserSectionComponent } from './manage-user-section/manage-user-se
 
     ManageUsersComponent,
     ManageUserSectionComponent,
+    ManageTestimonialsComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
   exports: [],

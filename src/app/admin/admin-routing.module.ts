@@ -10,6 +10,7 @@ import { ManageSectionComponent } from './manage-section/manage-section.componen
 import { ManageUserSectionComponent } from './manage-user-section/manage-user-section.component';
 import { ManageCourseSequenceComponent } from './manage-course-sequence/manage-course-sequence.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageTestimonialsComponent } from './manage-testimonials/manage-testimonials.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,9 @@ const routes: Routes = [
   },
 
   { path: 'user', component: ManageUsersComponent },
+
+  { path: 'testimonial', component: ManageTestimonialsComponent },
+
 ];
 
 @NgModule({

@@ -191,8 +191,12 @@ export class AdminService {
       });
   }
 
+
+
   programs: any = [];
   filePath: string = '';
+
+  // get programs
   GetAllPrograms() {
     this.spinner.show();
     this.http
@@ -210,6 +214,7 @@ export class AdminService {
       });
   }
 
+  // delete program
   DeleteProgram(id: number) {
     this.spinner.show();
     this.http
@@ -232,6 +237,8 @@ export class AdminService {
       });
   }
 
+
+//create program
   CreateProgram(data: any) {
     this.spinner.show();
     this.http.post('https://localhost:7036/api/Program', data).subscribe({
@@ -251,6 +258,8 @@ export class AdminService {
     });
   }
 
+
+  // update program
   UpdateProgram(data: any) {
     this.spinner.show();
     this.http.put('https://localhost:7036/api/Program', data).subscribe({
@@ -269,6 +278,73 @@ export class AdminService {
       },
     });
   }
+
+
+
+// get Testimonials
+testimonials: any = [];
+testimonialsWaiting: any = [];
+testimonialsAccepted : any = [];
+  GetAllTestimonial() {
+    this.spinner.show();
+    this.http
+      .get('https://localhost:7036/api/Testimonial')
+      .subscribe({
+        next: (testimonial :any) => {
+          this.spinner.hide();
+          this.testimonials = testimonial;
+          this.testimonialsWaiting = testimonial.filter((testimonial :any) => testimonial.status == "w");
+          this.testimonialsAccepted = testimonial
+          .filter((testimonial :any) => testimonial.status == "a")
+          .sort((a :any, b :any) => b.testimonialId - a.testimonialId);        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+
+
+
+// accept Testimonials
+  AcceptTestimonial(id : number) {
+    this.spinner.show();
+    this.http
+      .get('https://localhost:7036/api/Testimonial/AcceptTestimonial/' + id)
+      .subscribe({
+        next: (testimonial :any) => {
+          this.spinner.hide();
+          console.log(testimonial);
+          this.GetAllTestimonial();
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+
+  // reject Testimonials
+ RejectTestimonial(id : number) {
+    this.spinner.show();
+    this.http
+      .get('https://localhost:7036/api/Testimonial/RejectTestimonial/' + id)
+      .subscribe({
+        next: (testimonial :any) => {
+          this.spinner.hide();
+          this.GetAllTestimonial();
+          console.log(testimonial);
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+
 
   courseSequence: any = [];
 
