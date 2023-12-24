@@ -15,7 +15,7 @@ export class AdminService {
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
-<<<<<<< HEAD
+
     private toastr: ToastrService
   ) {}
   Role: any = [];
@@ -193,9 +193,6 @@ export class AdminService {
       });
   }
 
-
-
-
   programs: any = [];
   filePath: string = '';
 
@@ -240,8 +237,7 @@ export class AdminService {
       });
   }
 
-
-//create program
+  //create program
   CreateProgram(data: any) {
     this.spinner.show();
     this.http.post('https://localhost:7036/api/Program', data).subscribe({
@@ -260,7 +256,6 @@ export class AdminService {
       },
     });
   }
-
 
   // update program
   UpdateProgram(data: any) {
@@ -282,41 +277,37 @@ export class AdminService {
     });
   }
 
-
-
-// get Testimonials
-testimonials: any = [];
-testimonialsWaiting: any = [];
-testimonialsAccepted : any = [];
+  // get Testimonials
+  testimonials: any = [];
+  testimonialsWaiting: any = [];
+  testimonialsAccepted: any = [];
   GetAllTestimonial() {
     this.spinner.show();
-    this.http
-      .get('https://localhost:7036/api/Testimonial')
-      .subscribe({
-        next: (testimonial :any) => {
-          this.spinner.hide();
-          this.testimonials = testimonial;
-          this.testimonialsWaiting = testimonial.filter((testimonial :any) => testimonial.status == "w");
-          this.testimonialsAccepted = testimonial
-          .filter((testimonial :any) => testimonial.status == "a")
-          .sort((a :any, b :any) => b.testimonialId - a.testimonialId);        },
-        error: (err) => {
-          console.log(err);
-          this.spinner.hide();
-        },
-      });
+    this.http.get('https://localhost:7036/api/Testimonial').subscribe({
+      next: (testimonial: any) => {
+        this.spinner.hide();
+        this.testimonials = testimonial;
+        this.testimonialsWaiting = testimonial.filter(
+          (testimonial: any) => testimonial.status == 'w'
+        );
+        this.testimonialsAccepted = testimonial
+          .filter((testimonial: any) => testimonial.status == 'a')
+          .sort((a: any, b: any) => b.testimonialId - a.testimonialId);
+      },
+      error: (err) => {
+        console.log(err);
+        this.spinner.hide();
+      },
+    });
   }
 
-
-
-
-// accept Testimonials
-  AcceptTestimonial(id : number) {
+  // accept Testimonials
+  AcceptTestimonial(id: number) {
     this.spinner.show();
     this.http
       .get('https://localhost:7036/api/Testimonial/AcceptTestimonial/' + id)
       .subscribe({
-        next: (testimonial :any) => {
+        next: (testimonial: any) => {
           this.spinner.hide();
           console.log(testimonial);
           this.GetAllTestimonial();
@@ -328,14 +319,13 @@ testimonialsAccepted : any = [];
       });
   }
 
-
   // reject Testimonials
- RejectTestimonial(id : number) {
+  RejectTestimonial(id: number) {
     this.spinner.show();
     this.http
       .get('https://localhost:7036/api/Testimonial/RejectTestimonial/' + id)
       .subscribe({
-        next: (testimonial :any) => {
+        next: (testimonial: any) => {
           this.spinner.hide();
           this.GetAllTestimonial();
           console.log(testimonial);
@@ -346,8 +336,6 @@ testimonialsAccepted : any = [];
         },
       });
   }
-
-
 
   courseSequence: any = [];
 
@@ -591,7 +579,6 @@ testimonialsAccepted : any = [];
     });
   }
 
-<<<<<<< HEAD
   // UserSection functionality =>
   // sections: any = [];
   students: any = [];
@@ -694,13 +681,13 @@ testimonialsAccepted : any = [];
     );
     this.spinner.hide();
   }
-=======
+
   /* Badge */
-  badge:any = [];
-  getAllBadges(){
+  badge: any = [];
+  getAllBadges() {
     this.spinner.show();
     this.http.get('https://localhost:7036/api/BadgeActivity/').subscribe({
-      next: (res) =>{
+      next: (res) => {
         this.badge = res;
         this.spinner.hide();
       },
@@ -708,29 +695,26 @@ testimonialsAccepted : any = [];
         this.toastr.error(err.message);
         this.spinner.hide();
       },
-    })
+    });
   }
 
-
-  updateBadge(data:any){
-    this.http.put('https://localhost:7036/api/BadgeActivity/',data).subscribe({
-      next:(res) =>{
+  updateBadge(data: any) {
+    this.http.put('https://localhost:7036/api/BadgeActivity/', data).subscribe({
+      next: (res) => {
         this.getAllBadges();
         this.toastr.success('Badge Updated Successfuly');
         return res;
       },
-      error: (err)=> {
+      error: (err) => {
         console.log(err);
-        this.toastr.error('Sorry, Badge Updated Failed')
+        this.toastr.error('Sorry, Badge Updated Failed');
       },
     });
   }
- 
-
 
   /* Points */
-  points:any = [];
-  getAllPoints(){
+  points: any = [];
+  getAllPoints() {
     this.spinner.show();
     this.http.get('https://localhost:7036/api/PointsActivity/').subscribe({
       next: (result) => {
@@ -745,17 +729,19 @@ testimonialsAccepted : any = [];
   }
 
   updatePoints(data: any) {
-    this.http.put('https://localhost:7036/api/PointsActivity/', data).subscribe({
-      next: (result) => {
-        this.getAllPoints();
-        this.toastr.success('Points Updated');
-        return result;
-      },
-      error: (err) => {
-        console.log(err);
-        this.toastr.error('Sorry, Points Update Failed');
-      },
-    });
+    this.http
+      .put('https://localhost:7036/api/PointsActivity/', data)
+      .subscribe({
+        next: (result) => {
+          this.getAllPoints();
+          this.toastr.success('Points Updated');
+          return result;
+        },
+        error: (err) => {
+          console.log(err);
+          this.toastr.error('Sorry, Points Update Failed');
+        },
+      });
   }
   /*
   updateCourse(data: any) {
@@ -773,11 +759,13 @@ testimonialsAccepted : any = [];
     });
   } */
 
-    /* Cuopon */
-    coupon: any = [];
-    getAllCoupon() {
-      this.spinner.show();
-      this.http.get('https://localhost:7036/api/Coupon/GetAllCoupons/').subscribe({
+  /* Cuopon */
+  coupon: any = [];
+  getAllCoupon() {
+    this.spinner.show();
+    this.http
+      .get('https://localhost:7036/api/Coupon/GetAllCoupons/')
+      .subscribe({
         next: (result) => {
           this.coupon = result;
           this.spinner.hide();
@@ -787,10 +775,12 @@ testimonialsAccepted : any = [];
           this.spinner.hide();
         },
       });
-    }
+  }
 
-    createCoupon(data: any) {
-      this.http.post('https://localhost:7036/api/Coupon/CreateCoupon/', data).subscribe({
+  createCoupon(data: any) {
+    this.http
+      .post('https://localhost:7036/api/Coupon/CreateCoupon/', data)
+      .subscribe({
         next: () => {
           console.log('Coupon has been Created');
           this.toastr.success('Coupon Created');
@@ -801,29 +791,30 @@ testimonialsAccepted : any = [];
           this.toastr.error('Sorry, Coupon creation failed');
         },
       });
-    }
+  }
 
-    
-    deleteCoupon(id: number) {
-      this.spinner.show();
-      this.http.delete('https://localhost:7036/api/Coupon/' + id).subscribe({
-          next: (result) => {
-            this.toastr.success('Coupon has been deleted');
-            this.getAllCoupon();
-            this.spinner.hide();
-            return result;
-          },
-          error: (err) => {
-            console.log(err);
-            this.toastr.error('Sorry, Error Deleting Coupon');
-            this.spinner.hide();
-            this.toastr.error('Sorry, Error Deleting Coupon')
-          },
-        });
-    }
+  deleteCoupon(id: number) {
+    this.spinner.show();
+    this.http.delete('https://localhost:7036/api/Coupon/' + id).subscribe({
+      next: (result) => {
+        this.toastr.success('Coupon has been deleted');
+        this.getAllCoupon();
+        this.spinner.hide();
+        return result;
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastr.error('Sorry, Error Deleting Coupon');
+        this.spinner.hide();
+        this.toastr.error('Sorry, Error Deleting Coupon');
+      },
+    });
+  }
 
-    updateCoupon(data: any) {
-      this.http.put('https://localhost:7036/api/Coupon/UpdateCoupon/', data).subscribe({
+  updateCoupon(data: any) {
+    this.http
+      .put('https://localhost:7036/api/Coupon/UpdateCoupon/', data)
+      .subscribe({
         next: (result) => {
           this.getAllCoupon();
           this.toastr.success('Coupon has been Updated');
@@ -834,13 +825,15 @@ testimonialsAccepted : any = [];
           this.toastr.error('Sorry, Coupon Updated Failed');
         },
       });
-    }
-    
-    /*Contact Us*/
-    messages: any = [];
-    getAllMessages() {
-      this.spinner.show();
-      this.http.get('https://localhost:7036/api/ContactUs/GetAllContacts').subscribe({
+  }
+
+  /*Contact Us*/
+  messages: any = [];
+  getAllMessages() {
+    this.spinner.show();
+    this.http
+      .get('https://localhost:7036/api/ContactUs/GetAllContacts')
+      .subscribe({
         next: (result) => {
           this.messages = result;
           this.spinner.hide();
@@ -850,32 +843,31 @@ testimonialsAccepted : any = [];
           this.spinner.hide();
         },
       });
-    }
+  }
 
-    deleteMessages(id: number) {
-      
-      this.http.delete('https://localhost:7036/api/ContactUs/' + id).subscribe({
-          next: (result) => {
-            this.getAllMessages();
-            this.toastr.success('Message has been deleted successfuly');
-            return result;
-          },
-          error: (err) => {
-            console.log(err);
-            this.toastr.error('Sorry, Error Deleting Message');
-          },
-        });
-    }
-    AlertShow: boolean = false;
-    CreateMessage(data: any) {
-      //debugger
-      this.http.post(`${URL}/ContactUs`, data).subscribe(
-        {
-          next: ()=>{this.AlertShow = true},
-          error:(err)=>{this.toastr.error(err.message)}
-        }
-      );
-    }
-
+  deleteMessages(id: number) {
+    this.http.delete('https://localhost:7036/api/ContactUs/' + id).subscribe({
+      next: (result) => {
+        this.getAllMessages();
+        this.toastr.success('Message has been deleted successfuly');
+        return result;
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastr.error('Sorry, Error Deleting Message');
+      },
+    });
+  }
+  AlertShow: boolean = false;
+  CreateMessage(data: any) {
+    //debugger
+    this.http.post(`${URL}/ContactUs`, data).subscribe({
+      next: () => {
+        this.AlertShow = true;
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+      },
+    });
+  }
 }
-

@@ -48,16 +48,20 @@ const routes: Routes = [
   { path: 'testimonial', component: ManageTestimonialsComponent },
 
   {
-     path: 'manageCourses', component: ManageCoursesComponent 
+    path: 'manageCourses',
+    component: ManageCoursesComponent,
   },
   {
-    path: 'badge', component:BadgeComponent
+    path: 'badge',
+    component: BadgeComponent,
   },
   {
-    path: 'Points',component :PointsComponent
+    path: 'Points',
+    component: PointsComponent,
   },
   {
-    path:'Cuopon',component:CuoponComponent
+    path: 'coupon',
+    component: CuoponComponent,
   },
   {
     path: 'messages',
