@@ -580,14 +580,14 @@ export class AdminService {
   }
 
   // UserSection functionality =>
-  // sections: any = [];
+  Mysections: any = [];
   students: any = [];
   filterdStudents: any = [];
   getSectionByCourseId(id: number) {
     this.http.get(`${URL}/Section/GetSectionByCourseId/` + id).subscribe({
       next: (res) => {
         this.spinner.show();
-        this.sections = res;
+        this.Mysections = res;
         this.spinner.hide();
       },
       error: (err) => {
@@ -613,12 +613,30 @@ export class AdminService {
 
   createUserSection(data: any) {
     this.http.post(`${URL}/UserSection`, data).subscribe({
-      next: () => {
-        this.toastr.success('Student Added to section');
+      next: (res) => {
+        if(res === 0){
+          this.toastr.error('Section is full, Or student already in section');
+        }
+        else{
+          this.toastr.success('User Added in the section');
+        }
       },
       error: (err) => {
         this.toastr.error(err.message);
       },
+    });
+  }
+  UserSectionsBySectionId: any = [];
+  GetAllUserSectionBySectionId(id: number){
+    this.http.get(`${URL}/UserSection/GetAllUserSectionsBySectionId/${id}`).subscribe({
+      next:(res)=>{this.spinner.show(); this.UserSectionsBySectionId = res; this.spinner.hide();},
+      error:()=>{this.spinner.hide(); this.toastr.error('Can not load data')}
+    });
+  }
+  DeleteUserSection(id: number){
+    this.http.delete(`${URL}/UserSection/${id}`).subscribe({
+      next:()=>{this.toastr.success('User Deleted from section')},
+      error:()=>{this.toastr.error('Can not delete user from section')}
     });
   }
   Users: any;
