@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { AdminService } from 'src/app/Services/admin.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -6,25 +8,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent {
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+  constructor(public admin: AdminService) { }
 
-  submit(form: any){
-      var name = form.name;
-      console.log(name);
-      
-      var email = form.email;
-      console.log(email);
+  
 
-      var number = form.number;
-      console.log(number);
-      
-      var subject = form.subject;
-      console.log(subject);
-      
-      var message = form.message;
-      console.log(message);
-  }
+      CreateMessageForm: FormGroup = new FormGroup({
+        name: new FormControl(),
+        phonenumber: new FormControl(),
+        subject: new FormControl(),
+        message: new FormControl(),
+        email: new FormControl(),
+        messagereceived: new FormControl()
+        
+      });
+      PostMessage() {
+        this.CreateMessageForm.controls['messagereceived'].setValue(new Date().toJSON());
+        this.admin.CreateMessage(this.CreateMessageForm.value);
+        
+      }
 }
+

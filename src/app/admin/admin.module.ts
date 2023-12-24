@@ -14,6 +14,10 @@ import { ManageSectionComponent } from './manage-section/manage-section.componen
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageUserSectionComponent } from './manage-user-section/manage-user-section.component';
 import { ManageTestimonialsComponent } from './manage-testimonials/manage-testimonials.component';
+import { BadgeComponent } from './badge/badge.component';
+import { CuoponComponent } from './coupon/cuopon.component';
+import { PointsComponent } from './points/points.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,10 @@ import { ManageTestimonialsComponent } from './manage-testimonials/manage-testim
     ManageUsersComponent,
     ManageUserSectionComponent,
     ManageTestimonialsComponent,
+    BadgeComponent,
+    CuoponComponent,
+    PointsComponent,
+    MessageComponent
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
   exports: [],

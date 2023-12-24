@@ -7,6 +7,7 @@ import { CoursesDetailsPageComponent } from './pages/courses-details-page/course
 import { ProgramDetailsPageComponent } from './pages/program-details-page/program-details-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { BadgeComponent } from './admin/badge/badge.component';
 import { AuthGuard } from './RouteGuard/auth-guard.guard';
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'CourseDetails', component: CoursesDetailsPageComponent },
   { path: 'ProgramDetails/:id', component: ProgramDetailsPageComponent },
   { path: '**', component: NotFoundComponent },
+  
 ];
 
 @NgModule({

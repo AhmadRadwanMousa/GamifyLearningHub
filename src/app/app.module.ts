@@ -19,6 +19,8 @@ import { InstructorService } from './Services/instructor.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedService } from './Services/shared.service';
 import { AuthGuard } from './RouteGuard/auth-guard.guard';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +33,7 @@ import { AuthGuard } from './RouteGuard/auth-guard.guard';
     NgxSpinnerModule,
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
+    FormsModule
   ],
   providers: [AdminService, LearnerService, InstructorService, SharedService],
   bootstrap: [AppComponent],
