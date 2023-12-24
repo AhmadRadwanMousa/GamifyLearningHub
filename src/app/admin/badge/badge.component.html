@@ -52,12 +52,7 @@
                         <p class="mb-0 fw-normal">{{ b.badgepoints }}</p>
                       </td>
                       <td class="border-bottom-0">
-                        <div class="d-flex align-items-center gap-2">
-                            <span
-                              class="badge bg-primary rounded-3 fw-semibold"
-                              >{{ b.badgeimage }}</span
-                            >
-                          </div>
+                        <img [src]="b.badgeimage" width="150px" style="border-radius: 10px;">
                       </td>
                       
                       <td class="border-bottom-0">
@@ -132,18 +127,15 @@
           required
         />
       </mat-form-field>
-
-      <mat-form-field class="col-lg-7">
-        <mat-label>Enter Badge Image</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="previous_data.badgeimage"
-          formControlName="badgeimage"
-          required
-        />
-      </mat-form-field>
     </div>
+      <input type="file" class="file-input" (change)="UploadFile($event)" #fileUpload  />
+      <div class="file-upload border border-2 rounded-2 p-2">
+        {{ fileName || "No file uploaded yet." }}
+  
+        <button mat-mini-fab color="primary" class="upload-btn btn btn-outline-primary mx-2" (click)="fileUpload.click()">
+          <mat-icon>upload-btn</mat-icon>
+        </button>
+      </div>
   
     <div class="row">
       <div class="col-lg-4">

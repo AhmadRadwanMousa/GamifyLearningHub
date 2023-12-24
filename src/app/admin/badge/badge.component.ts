@@ -11,6 +11,8 @@ import { AdminService } from 'src/app/Services/admin.service';
 })
 export class BadgeComponent {
   @ViewChild('UpdateDialog') UpdateDialog: any;
+  fileName: any;
+  filePath: any;
   constructor(public admin: AdminService,public dialog:MatDialog){}
 
   previous_data: any;
@@ -43,8 +45,23 @@ export class BadgeComponent {
     });
   }
   UpdateBadge() {
-    console.log(this.UpdateBadgesForm.value);
+    this.UpdateBadgesForm.controls['badgeimage'].setValue(
+      this.filePath
+    );
 
     this.admin.updateBadge(this.UpdateBadgesForm.value);
+  }
+
+  UploadFile(event: any) {
+    let fileToUpload = event.target.files[0] as File;
+    if (!fileToUpload) {
+      return;
+    }
+    this.fileName = fileToUpload.name;
+    const formData = new FormData();
+    formData.append('file', fileToUpload);
+    this.admin.UploadFile(formData).subscribe((path: string) => {
+      this.filePath = path;
+    });
   }
 }

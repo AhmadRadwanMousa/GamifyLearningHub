@@ -249,7 +249,7 @@ export class AdminService {
 
 
   updateBadge(data:any){
-    this.http.put('https://localhost:7036/api/BadgeActivity',data).subscribe({
+    this.http.put('https://localhost:7036/api/BadgeActivity/',data).subscribe({
       next:(res) =>{
         this.getAllBadges();
         this.toastr.success('Badge Updated Successfuly');
@@ -261,6 +261,7 @@ export class AdminService {
       },
     });
   }
+ 
 
 
   /* Points */
@@ -280,7 +281,7 @@ export class AdminService {
   }
 
   updatePoints(data: any) {
-    this.http.put('https://localhost:7036/api/PointsActivity/' + data.pointsactivityid, data).subscribe({
+    this.http.put('https://localhost:7036/api/PointsActivity/', data).subscribe({
       next: (result) => {
         this.getAllPoints();
         this.toastr.success('Points Updated');
@@ -292,7 +293,21 @@ export class AdminService {
       },
     });
   }
-  
+  /*
+  updateCourse(data: any) {
+    //debugger
+    this.http.put('https://localhost:7036/api/Course/', data).subscribe({
+      next: (res) => {
+        this.getAllCourses();
+        this.toastr.success('Course Updated');
+        return res;
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastr.error('Course Update Faild');
+      },
+    });
+  } */
 
     /* Cuopon */
     coupon: any = [];
@@ -329,7 +344,7 @@ export class AdminService {
       this.spinner.show();
       this.http.delete('https://localhost:7036/api/Coupon/' + id).subscribe({
           next: (result) => {
-            console.log('Coupon has been deleted');
+            this.toastr.success('Coupon has been deleted');
             this.getAllCoupon();
             this.spinner.hide();
             return result;

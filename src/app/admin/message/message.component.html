@@ -33,18 +33,12 @@
                       <th class="border-bottom-0">
                         <h6 class="fw-semibold mb-0">Name </h6>
                       </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Email </h6>
-                      </th>
+                     
                       <th class="border-bottom-0">
                         <h6 class="fw-semibold mb-0">Phone Number</h6>
                       </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Subject</h6>
-                      </th>
-                      <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Message</h6>
-                      </th>
+                    
+                    
                       <th class="border-bottom-0">
                         <h6 class="fw-semibold mb-0">Date Received </h6>
                       </th>
@@ -55,20 +49,12 @@
                       <td class="border-bottom-0">
                         <h6 class="fw-semibold mb-1">{{ c.name }}</h6>
                       </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">{{ c.email }}</h6>
-                      </td>
+                      
                       <td class="border-bottom-0">
                         <p class="mb-0 fw-normal">{{ c.phonenumber }}</p>
                       </td>
-                      <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">{{ c.subject }}</p>
-                      </td>
-                      <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0 fs-4">
-                          {{ c.message }}
-                        </h6>
-                      </td>
+                   
+                     
                       <td class="border-bottom-0">
                         <p class="mb-0 fw-normal">{{ c.messagereceived }}</p>
                       </td>
@@ -103,6 +89,23 @@
                             />
                           </svg>
                         </button>
+                        <button
+                    class="btn btn-warning ms-2"
+                    (click)="OpenDetailsDialog(c)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-info-circle-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"
+                      />
+                    </svg>
+                  </button>
                       </td>
                     </tr>
                   </tbody>
@@ -139,3 +142,22 @@
 
 
 
+<ng-template #DetailsDialog>
+    <h2 mat-dialog-title>Message Details</h2>
+    <mat-dialog-content class="mat-typography">
+      <h1>Email </h1>
+      <p>{{messageInformation.email}}</p>
+
+      <h2>Subject</h2>
+      <p>
+        {{ messageInformation.subject }}
+      </p>
+
+      <h2>Message</h2>
+      <p>
+        {{ messageInformation.message  }}
+      </p>
+
+      
+    </mat-dialog-content>
+  </ng-template>

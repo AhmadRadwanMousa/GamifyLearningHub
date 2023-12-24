@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
 
@@ -11,6 +11,13 @@ import { AdminService } from 'src/app/Services/admin.service';
 export class MessageComponent {
   @ViewChild('DeleteConfirmDialog') DeleteConfirmDialog: any;
   @ViewChild('CreateMessageDialog') CreateMessageDialog: any;
+  @ViewChild('DetailsDialog') DetailsDialog: any;
+  messageDetails = new FormGroup({
+    email: new FormControl('', Validators.required),
+    message: new FormControl('', Validators.required),
+   
+  });
+  messageInformation: any;
 
   constructor(public admin: AdminService, public dialog: MatDialog) {}
  
@@ -39,6 +46,14 @@ export class MessageComponent {
           this.admin.deleteMessages(id);
         }
       }
+    });
+  }
+
+  OpenDetailsDialog(messageDetails: any) {
+    this.messageInformation = messageDetails;
+    this.dialog.open(this.DetailsDialog, {
+      width: '600px',
+      height: '550px',
     });
   }
 }
