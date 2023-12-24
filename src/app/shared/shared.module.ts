@@ -35,6 +35,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HomeCategoriesComponent } from './home-page-categories/home-page-categories.component';
 import { HomePagePrograms } from '../pages/home-page/home-page-programs/home-page-programs.component';
+import { InsturctorContainerComponent } from './insturctor-container/insturctor-container.component';
+import { SidebarInstructorComponent } from './sidebar-instructor/sidebar-instructor.component';
+import { HeaderInstructorComponent } from './header-instructor/header-instructor.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { HomePagePrograms } from '../pages/home-page/home-page-programs/home-pag
     FooterAdminComponent,
     SidebarAdminComponent,
     AdminContainerComponent,
+    InsturctorContainerComponent,
+    SidebarInstructorComponent,
+    HeaderInstructorComponent,
   ],
   imports: [
     CommonModule,
@@ -102,6 +108,9 @@ import { HomePagePrograms } from '../pages/home-page/home-page-programs/home-pag
     MatOptionModule,
     MatCheckboxModule,
     MatAutocompleteModule,
+    InsturctorContainerComponent,
+    SidebarInstructorComponent,
+    HeaderInstructorComponent,
   ],
 })
 export class SharedModule {}

@@ -77,6 +77,7 @@ export class ManageUsersComponent implements OnInit {
         updatedUser.userid = user.userid;
         updatedUser.userimage = this.filePath;
         updatedUser.isaccepted = true;
+        updatedUser.totalpoints = user.totalpoints;
 
         this.adminService.UpdateUser(updatedUser);
       }

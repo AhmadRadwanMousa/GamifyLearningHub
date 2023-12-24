@@ -8,7 +8,7 @@ describe('SidebarAdminComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SidebarAdminComponent]
+      declarations: [SidebarAdminComponent],
     });
     fixture = TestBed.createComponent(SidebarAdminComponent);
     component = fixture.componentInstance;
