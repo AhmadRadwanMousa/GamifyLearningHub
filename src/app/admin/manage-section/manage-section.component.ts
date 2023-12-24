@@ -30,6 +30,7 @@ export class ManageSectionComponent {
   constructor(public _sectionService: AdminService, public dialog: MatDialog) {}
 
   
+ 
   // CRUD
   ngOnInit() {
     this._sectionService.getAllSections();
@@ -38,26 +39,44 @@ export class ManageSectionComponent {
     });
   }
 
+  fileName: any;
+  filePath: any;
+
+
   DeleteSection(id: number) {
     this._sectionService.DeleteSection(id);
   }
 
   CreateSection() {
-    const formData = new FormData();
-    formData.append('file', this.CreateSectionForm.get('imageFile')?.value);
+    // Check if a file is selected
+    const fileToUpload = this.CreateSectionForm.get('imageFile')?.value;
 
-    this._sectionService.UploadFile(formData).subscribe((path: string) => {
-      // Update the image path in your form
-      this.CreateSectionForm.patchValue({ imageName: path });
+    if (fileToUpload) {
+      // Upload the file first
+      const formData = new FormData();
+      formData.append('file', fileToUpload);
 
-      // Continue with creating the section
+      this._sectionService.UploadFile(formData).subscribe((path: string) => {
+        // Update the image path in your form
+        this.CreateSectionForm.patchValue({ imageName: path });
+
+        // Continue with creating the section
+        this.CreateSectionForm.controls['imagename'].setValue(this.filePath);
+
+        // Now, create the section
+        this._sectionService.CreateSection(this.CreateSectionForm.value);
+      });
+    } else {
+      // No file selected, create the section without uploading
+      this.CreateSectionForm.controls['imagename'].setValue(this.filePath);
       this._sectionService.CreateSection(this.CreateSectionForm.value);
-    });
+    }
   }
 
   UpdateSection() {
-    const formData = new FormData();
-  
+    // const formData = new FormData();
+    this.UpdateSectionForm.controls['imagename'].setValue(this.filePath);
+
     this._sectionService.UpdateSection(this.UpdateSectionForm.value);
   }
 
@@ -65,8 +84,8 @@ export class ManageSectionComponent {
   CreateSectionForm: FormGroup = new FormGroup({
     sectionname: new FormControl('', [Validators.required, Validators.minLength(4), NameValidator]),
     sectionsize: new FormControl('', [Validators.required, numberValidator]), 
-    imageFile: new FormControl('', [Validators.required, ]), 
-    imageName: new FormControl('', [Validators.required]),
+    imageFile: new FormControl(''), 
+    imagename: new FormControl(''),
     userid: new FormControl('', [Validators.required]), 
   });
 
@@ -77,6 +96,7 @@ export class ManageSectionComponent {
     sectionid: new FormControl(''),
     sectionname: new FormControl(''),
     sectionsize: new FormControl(''),
+    imagename: new FormControl(''),
     userid: new FormControl('', [Validators.required]),
    
   });
@@ -109,6 +129,7 @@ export class ManageSectionComponent {
       sectionid: section.sectionid,
       sectionname: section.sectionname,
       sectionsize: section.sectionsize,
+      imagename : '',
       userid: section.userid,
       
     });
@@ -134,6 +155,20 @@ export class ManageSectionComponent {
     return URL.createObjectURL(imageFileControl.value);
   }
   return null;
+}
+
+
+UploadFile(event: any) {
+  let fileToUpload = event.target.files[0] as File;
+  if (!fileToUpload) {
+    return;
+  }
+  this.fileName = fileToUpload.name;
+  const formData = new FormData();
+  formData.append('file', fileToUpload);
+  this._sectionService.UploadFile(formData).subscribe((path: string) => {
+    this.filePath = path;
+  });
 }
 
 
