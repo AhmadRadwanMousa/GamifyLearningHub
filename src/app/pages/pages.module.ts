@@ -16,7 +16,6 @@ import { HomePagePrograms } from './home-page/home-page-programs/home-page-progr
 import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProgramsPlanComponent } from './programs-plan/programs-plan.component';
-import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,6 @@ import { BrowserModule } from '@angular/platform-browser';
   ],
   imports: [
     CommonModule,
-    BrowserModule,
     PagesRoutingModule,
     SharedModule,
     FormsModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { AdminService } from 'src/app/Services/admin.service';
 
 @Component({
   selector: 'app-feedback',
@@ -7,9 +8,11 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./feedback.component.scss'],
 })
 export class FeedbackComponent implements OnInit {
-  constructor() {}
+  constructor(public _adminService: AdminService, ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._adminService.GetAllTestimonial();
+  }
 
   testimonialsSlides: OwlOptions = {
     loop: true,

@@ -139,6 +139,17 @@
                 </button>
 
                 <button
+                (click)="OpenDetailsDialog(x)"
+                class="btn btn-warning m-2"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle"
+               width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" 
+               fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" 
+               d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+               <path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>
+              </button>
+
+                <button
                 (click)="OpenCourseSequence(x.programid)"
                 class="btn btn-success  m-2"
               >
@@ -485,5 +496,30 @@ class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
 
      
     </form>
+  </ng-template>
+
+
+
+  <ng-template #DeatailsDialog>
+  <div style="width: 400px;">
+    <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black;">  Program Name : </span>{{ data.programname }}  </div>
+    <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black;">  Program Name : </span>{{ data.programprice }}  </div>
+
+    <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black">  Program Description : </span> {{ data.programdescription }}</div>
+
+    <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black">  Plan Name : </span> {{ data.plan.planname }}</div>
+
+    <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black">  Program Syllabus : </span>  <a [href]="data.programsyllabus" target="_blank">Download File</a> </div>
+    <div mat-dialog-content ><span style="font-weight:500; color: black">  Program Image : </span> <img [src]="data.programimage" style="width: 100px; height: 80px;" /></div>
+
+
+    <!-- <div mat-dialog-actions style="justify-content:center !important;">
+        <button  mat-dialog-close="accept" class="btn btn-success w-27 m-2">Accept</button>
+        <button mat-dialog-close="reject" class="btn btn-danger  w-27 m-2">Reject</button>
+        <button  mat-dialog-close="cancel" cdkFocusInitial class="btn btn-primary w-27 m-2">Cancel</button>
+
+    </div> -->
+          
+  </div>
   </ng-template>
 </app-admin-container>

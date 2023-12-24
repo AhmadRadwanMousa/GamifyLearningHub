@@ -26,6 +26,9 @@ export class ManageProgramsComponent {
   @ViewChild('CreateDialog') CreateProgramDialog: any;
   @ViewChild('ConfirmationDialog') ConfirmationDeleteDialog: any;
   @ViewChild('UpdateDialog') UpdateProgramDialog: any;
+  @ViewChild('DeatailsDialog') DetailsDialog: any;
+
+
   fileName: any;
   filePath: any;
 
@@ -125,4 +128,16 @@ export class ManageProgramsComponent {
       this.filesPath = path;
     });
   }
+
+
+  data : any = {};
+  OpenDetailsDialog(data: any) {
+    this.data = data;
+    console.log( this.data );
+    var dialog = this.dialog.open(this.DetailsDialog);
+    dialog.afterClosed().subscribe((result) => {
+    
+    });
+  }
+
 }

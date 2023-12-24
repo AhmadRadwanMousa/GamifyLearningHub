@@ -1,78 +1,21 @@
+
 <div class="testimonials-slides">
   <owl-carousel-o [options]="testimonialsSlides">
-    <ng-template carouselSlide>
+
+    <ng-template carouselSlide *ngFor="let testimonial of _adminService.testimonialsAccepted">
       <div class="single-testimonials-item">
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
+          {{testimonial.review }}
         </p>
         <div class="info">
           <img
-            src="assets/img/user1.jpg"
+          [src]="testimonial.user.userimage"
             class="shadow rounded-circle"
             alt="image"
           />
-          <h3>John Smith</h3>
-          <span>Student</span>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="single-testimonials-item">
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </p>
-        <div class="info">
-          <img
-            src="assets/img/user2.jpg"
-            class="shadow rounded-circle"
-            alt="image"
-          />
-          <h3>Sarah Taylor</h3>
-          <span>Student</span>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="single-testimonials-item">
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </p>
-        <div class="info">
-          <img
-            src="assets/img/user3.jpg"
-            class="shadow rounded-circle"
-            alt="image"
-          />
-          <h3>David Warner</h3>
-          <span>Student</span>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template carouselSlide>
-      <div class="single-testimonials-item">
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </p>
-        <div class="info">
-          <img
-            src="assets/img/user4.jpg"
-            class="shadow rounded-circle"
-            alt="image"
-          />
-          <h3>James Anderson</h3>
-          <span>Student</span>
+          <h3>{{testimonial.user.firsname}}  {{testimonial.user.lastname}}</h3>
+          <span>{{testimonial.user.userlogins[0].role.rolename}}</span>
+
         </div>
       </div>
     </ng-template>
