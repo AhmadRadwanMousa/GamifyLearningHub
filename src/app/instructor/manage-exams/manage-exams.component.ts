@@ -4,24 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { jwtDecode } from 'jwt-decode';
 import { InstructorService } from 'src/app/Services/instructor.service';
 import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+import { DOCUMENT } from '@angular/common';
 
-class Question{
-  public Questionid: any;
-  public Examid: any;
-  public Questionweight: any;
-  public Questiondescription: any;
-}
 
-class Option {
-  public Questionoptionid: any;
-  public Questionid: any;
-  public Questionoptiondescription: any;
-  public Iscorrect: any;
-}
 
 class QuestionOptions{
-  public question : Question = new Question();
-  public options: Option[] = [];
+  
 }
 
 @Component({
@@ -32,6 +20,8 @@ class QuestionOptions{
 export class ManageExamsComponent {
   @ViewChild('CreateExamDialog') CreateExamDialog: any;
   @ViewChild('CreateQuestionDialog') CreateQuestionDialog: any;
+  @ViewChild('DeleteConfirmDialog') DeleteConfirmDialog: any;
+  @ViewChild('DetailsDialog') DetailsDialog: any;
   
   constructor(public instructorService: InstructorService, public dialog: MatDialog) {}
   selectedSection : any;
@@ -80,7 +70,7 @@ export class ManageExamsComponent {
     this.CreateFormGroup.controls['openat'].setValue(this.mergeDateTime(this.CreateFormGroup.get('openat')?.value));
     this.CreateFormGroup.controls['closeat'].setValue(this.mergeDateTime(this.CreateFormGroup.get('closeat')?.value));
     this.instructorService.CreateExam(this.CreateFormGroup.value);
-    console.log(this.CreateFormGroup.value);
+    
   }
   selectedType: any;
   selectedStatus: any;
@@ -113,8 +103,36 @@ export class ManageExamsComponent {
   AddQuestion(){
     this.questions.push(new QuestionOptions());
   }
+  RemoveQuestion(){
+    this.questions.pop();
+  }
   
+  OpenDeleteDialog(id: number) {
+    const dialogRef = this.dialog.open(this.DeleteConfirmDialog, {
+      panelClass: 'mat-btn',
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res != undefined) {
+        if (res === 'yes') {
+          this.instructorService.DeleteExam(id);
+          
+        }
+      }
+    });
+  }
   
+  OpenDetailsDialog(id: number){
+    this.examId = id;
+    this.instructorService.GetQuestionAndOptionsByExamId(id);
+    this.dialog.open(this.DetailsDialog, {
+      width: '1020px',
+      height: '710px',
+    });
+  }
+  DeleteQuestion(id: number){
+    this.instructorService.DeleteQuestion(id);
+    this.instructorService.GetQuestionAndOptionsByExamId(this.examId);
+  }
   
 }
 

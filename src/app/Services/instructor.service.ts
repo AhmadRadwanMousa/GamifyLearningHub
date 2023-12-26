@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { URL } from '../constants/url';
 import { QuestionWithOptions } from 'src/app/instructor/question-form/question-form.component';
 import { catchError } from 'rxjs';
+import { RouterPreloader } from '@angular/router';
 
 
 @Injectable({
@@ -35,20 +36,12 @@ export class InstructorService {
   CreateExam(data: any){
     this.http.post(`${URL}/Exam/`, data).subscribe(
       {
-        next:()=>{this.toastr.success('Exam created successflly')},
-        error:()=>{this.toastr.error('Exam Creat Faild')}
+        next:()=>{this.toastr.success('Exam created successflly');},
+        error:()=>{this.toastr.error('Exam Create Faild')}
       }
     );
   }
-  /*CreateQuestionWithOptions(examId: number, data: any){
-    this.http.post(`${URL}/Exam/CreateQuestionWithOptions/${examId}`, data).subscribe(
-      {
-        next:()=>{this.toastr.success('Question Created')},
-        error:(err)=>{this.toastr.error('Create Question Faild'); console.log(err.message);
-        }
-      }
-    );
-  }*/
+  
   CreateQuestionWithOptions(examId: number, questionWithOptions: QuestionWithOptions) {
     const url = `${URL}/Exam/CreateQuestionWithOptions/${examId}`;
     const headers = new HttpHeaders({
@@ -62,6 +55,33 @@ export class InstructorService {
       })
     );
   }
+  DeleteExam(id: number){
+    this.http.delete(`${URL}/Exam/DeleteExam/${id}`).subscribe(
+      {
+        next:()=>{this.toastr.success('Exam deleted successflly');},
+        error:()=>{this.toastr.error('Exam delete Faild')}
+      }
+    );
+  }
 
+  QuestionAndOptions: any = [];
+  GetQuestionAndOptionsByExamId(id: number){
+    this.http.get(`${URL}/Exam/GetAllQuestionByExamId/${id}`).subscribe(
+      {
+        next:(res)=>{this.QuestionAndOptions = res; console.log(this.QuestionAndOptions);
+        },
+        error:()=>{this.toastr.error('load questions faild')}
+      }
+    );
+  }
+
+  DeleteQuestion(id: number){
+    this.http.delete(`${URL}/Exam/DeleteQuestion/${id}`).subscribe(
+      {
+        next:()=>{this.toastr.success('Deleted Seccessfully')},
+        error:()=>{this.toastr.error('Deleted Faild')}
+      }
+    );
+  }
   
 }

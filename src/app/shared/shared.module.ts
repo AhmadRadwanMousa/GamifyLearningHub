@@ -39,6 +39,7 @@ import { InsturctorContainerComponent } from './insturctor-container/insturctor-
 import { SidebarInstructorComponent } from './sidebar-instructor/sidebar-instructor.component';
 import { HeaderInstructorComponent } from './header-instructor/header-instructor.component';
 import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
     InsturctorContainerComponent,
     SidebarInstructorComponent,
     HeaderInstructorComponent,
-    NgxMatTimepickerModule
+    NgxMatTimepickerModule,
+    MatCardModule
   ],
 })
 export class SharedModule {}

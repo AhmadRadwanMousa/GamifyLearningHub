@@ -1,11 +1,11 @@
-<!-- question-form.component.html -->
-<form>
+
+<form style="border-bottom: 2px solid #ccc;" class="py-3">
     <div class="row">
       <mat-form-field class="col-8">
         <mat-label>Question description</mat-label>
         <input matInput placeholder="Question.." [(ngModel)]="question.Questiondescription" name="Questiondescription" [disabled]="Created">
       </mat-form-field>
-      <mat-form-field class="col-3 mx-1">
+      <mat-form-field class="col-4">
         <mat-label>Question Weight</mat-label>
         <input matInput placeholder="Weight.." [(ngModel)]="question.Questionweight" name="Questionweight" [disabled]="Created">
       </mat-form-field>
