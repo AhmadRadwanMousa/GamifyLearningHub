@@ -11,7 +11,7 @@ import { AdminService } from 'src/app/Services/admin.service';
 })
 export class ManageCourseSequenceComponent {
 
-  constructor(private route: ActivatedRoute,public _adminService: AdminService, public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute,public _adminService: AdminService, public dialog: MatDialog,private router: Router) { }
   id : any = 0;
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -24,10 +24,17 @@ export class ManageCourseSequenceComponent {
    
   }
 
+
+
    
   @ViewChild('CreateDialog') CreateCorseSequenceDialog: any;
   @ViewChild('ConfirmationDialog') ConfirmationDeleteDialog: any;
   @ViewChild('UpdateDialog') UpdateCorseSequenceDialog: any;
+
+
+  OpenSections(id: number) {
+    this.router.navigate(['/admin/section', id]);
+}
 
   OpenCreateDialog() {
     this.dialog.open(this.CreateCorseSequenceDialog, {
