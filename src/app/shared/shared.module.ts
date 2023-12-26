@@ -38,6 +38,7 @@ import { HomePagePrograms } from '../pages/home-page/home-page-programs/home-pag
 import { InsturctorContainerComponent } from './insturctor-container/insturctor-container.component';
 import { SidebarInstructorComponent } from './sidebar-instructor/sidebar-instructor.component';
 import { HeaderInstructorComponent } from './header-instructor/header-instructor.component';
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { HeaderInstructorComponent } from './header-instructor/header-instructor
     InsturctorContainerComponent,
     SidebarInstructorComponent,
     HeaderInstructorComponent,
+    NgxMatTimepickerModule
   ],
 })
 export class SharedModule {}

@@ -1,0 +1,188 @@
+<app-insturctor-container>
+    <div class="col-lg-12 d-flex align-items-stretch">
+        <div class="card w-100">
+            <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Manage Exams And Quizzes</h5>
+                <hr />
+
+                <form class="m-3">
+                    <h5 class="my-4">Select section from the list to create exams </h5>
+                    <mat-form-field>
+                        <mat-label>Select section</mat-label>
+                        <mat-select [(ngModel)]="selectedSection" name="selectedSection">
+                            <mat-option *ngFor="let s of instructorService.MyInstructorSections" [value]="s.sectionid"
+                                (click)="loadExams(s.sectionid)">
+                                {{s.sectionname}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </form>
+                <button *ngIf="selectedSection > 0" class="btn btn-primary mb-4" (click)="OpenCreateDialog()">Add
+                    Exam</button>
+                <div *ngIf="this.instructorService.examsBySection.length > 0">
+
+                    <table class="table text-nowrap mb-0 align-middle text-center">
+
+                        <thead class="text-dark fs-4">
+                            <tr>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Exam type</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">exam date</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Exam mark</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Status</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Open At</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Close At</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Action</h6>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let e of instructorService.examsBySection">
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{e.examtype}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{e.examdate | date: "longDate"}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{e.exammark}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{e.examstatus}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{e.openat | date: "hh:mm:ss"}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">{{e.closeat | date: "hh:mm:ss"}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <button class="btn btn-primary" (click)="OpenCreateQuestionDialog(e.examid)">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-user-plus" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                            <path d="M16 19h6" />
+                                            <path d="M19 16v6" />
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+                                        </svg>
+                                    </button>
+                                    <button class="btn btn-warning mx-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-file-description" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                            <path
+                                                d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                            <path d="M9 17h6" />
+                                            <path d="M9 13h6" />
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="this.instructorService.examsBySection.length == 0 && selectedSection > 0 "
+                    class="d-flex justify-content-center">
+                    <p class="fs-4">No exams in this section</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</app-insturctor-container>
+
+
+<ng-template #CreateExamDialog>
+    <div class="container mt-4">
+        <form [formGroup]="CreateFormGroup">
+            <div class="row">
+                <mat-form-field class="col-lg-6">
+                    <mat-label>Select Type</mat-label>
+                    <mat-select [(value)]="selectedType">
+                        <mat-option value="1">Exam</mat-option>
+                        <mat-option value="2">Quiz</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-lg-6">
+                    <mat-label>Exam Date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="examdate">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+            <div class="row">
+                <mat-form-field class="col-lg-6">
+                    <mat-label>Exam Total Mark</mat-label>
+                    <input matInput placeholder="Ex. 100" formControlName="exammark">
+                </mat-form-field>
+                <mat-form-field class="col-lg-6">
+                    <mat-label>Exam status</mat-label>
+                    <mat-select [(value)]="selectedStatus">
+                        <mat-option [value]="true">Active</mat-option>
+                        <mat-option [value]="false">Not active</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <mat-form-field class="col-12">
+                        <input matInput name="selected_time_A" formControlName="openat" [ngxMatTimepicker]="pickerA"
+                            placeholder="Open At" />
+                        <mat-icon matSuffix (click)="pickerA.open()">
+                            watch_later
+                        </mat-icon>
+                    </mat-form-field>
+                    <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+                </div>
+                
+                <div class="col-lg-6">
+                    <mat-form-field class="col-12">
+                        <input matInput name="selected_time_A" formControlName="closeat" [ngxMatTimepicker]="pickerB"
+                            placeholder="Close At" />
+                        <mat-icon matSuffix (click)="pickerB.open()">
+                            watch_later
+                        </mat-icon>
+                    </mat-form-field>
+                    <ngx-mat-timepicker #pickerB></ngx-mat-timepicker>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input mat-dialog-close (click)="createExam(selectedSection)"  mat-raised-button class="btn btn-primary" value="Create">
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+
+<ng-template #CreateQuestionDialog>
+    <div class="container mt-3">
+        <button class="btn btn-warning" (click)="AddQuestion()">Add Question</button>
+    <div *ngFor="let question of questions; let i = index">
+        <app-question-form [questionIndex]="i" [examId]="examId"></app-question-form>
+      </div>
+    </div>
+</ng-template>

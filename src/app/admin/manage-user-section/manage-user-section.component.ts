@@ -21,6 +21,7 @@ export class ManageUserSectionComponent {
     
   }
   selectedCourse: any;
+  selectedStudent: any;
 
   ngOnInit() {
     this.admin.getAllCourses();
@@ -81,5 +82,6 @@ export class ManageUserSectionComponent {
   DeleteUserSection(id: number){
     this.admin.DeleteUserSection(id);
   }
+  
   
 }

@@ -1,0 +1,25 @@
+<!-- question-form.component.html -->
+<form>
+    <div class="row">
+      <mat-form-field class="col-8">
+        <mat-label>Question description</mat-label>
+        <input matInput placeholder="Question.." [(ngModel)]="question.Questiondescription" name="Questiondescription" [disabled]="Created">
+      </mat-form-field>
+      <mat-form-field class="col-3 mx-1">
+        <mat-label>Question Weight</mat-label>
+        <input matInput placeholder="Weight.." [(ngModel)]="question.Questionweight" name="Questionweight" [disabled]="Created">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <div class="col-3" *ngFor="let option of questionOption; let i = index">
+        <mat-form-field class="col-12">
+          <mat-label>Option {{ i + 1 }}</mat-label>
+          <input matInput placeholder="Option" [(ngModel)]="option.Questionoptiondescription" name="Questionoptiondescription" [disabled]="Created">
+          <mat-checkbox [(ngModel)]="option.Iscorrect" name="Iscorrect" [disabled]="Created">Is Correct</mat-checkbox>
+        </mat-form-field>
+      </div>
+    </div>
+    <button (click)="CreateQuestion()" class="btn btn-primary" [disabled]="Created">Create Question</button>
+  </form>
+  
+  
