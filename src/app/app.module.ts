@@ -20,11 +20,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SharedService } from './Services/shared.service';
 import { AuthGuard } from './RouteGuard/auth-guard.guard';
 import { FormsModule } from '@angular/forms';
-import { ManageAttendenceSectionsComponent } from './manage-attendence-sections/manage-attendence-sections.component';
 
 
 @NgModule({
-  declarations: [AppComponent, ManageAttendenceSectionsComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
