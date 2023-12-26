@@ -21,14 +21,14 @@
             </thead>
             <tbody>
               <!-- Table rows for each section -->
-              <tr *ngFor="let section of _sectionService.sections">
+              <tr *ngFor="let section of _sectionService.sectionsByCoursesSequence">
                 <!-- Section information -->
                 <!-- <td class="border-bottom-0"><h6 class="fw-semibold mb-1">{{ section.sectionid }}</h6></td> -->
                 <td class="border-bottom-0"><h6 class="fw-semibold mb-1">{{ section.sectionname }}</h6></td>
-                <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ section.userFirstName || 'Unknown' }} {{ section.userLastName || 'Unknown' }} </p></td>
+                <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ section.user.firsname || 'Unknown' }} {{ section.user.lastname || 'Unknown' }} </p></td>
                 <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ section.sectionsize }}</p></td>
                 <td class="border-bottom-0">
-                  <img [src]="section.imageName" width="100" height="100" />
+                  <img [src]="section.imagename" width="100" height="100" />
                 </td>                
 
                 <td class="border-bottom-0">
@@ -118,7 +118,7 @@
           <div class="card w-100">
             <div class="card-body p-4">
               <h1 class="card-title fw-semibold mb-4">Create Section</h1>
-              <form [formGroup]="CreateSectionForm" (ngSubmit)="CreateSection()">
+              <form [formGroup]="CreateSectionForm">
                 <div class="row mb-3">
                   <div class="col-md-4">
                     <div class="mb-3">
@@ -182,7 +182,8 @@
             
                 <div class="row mt-5">
                   <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary" [mat-dialog-close]="true">Create</button>
+                    <button   mat-dialog-close
+                    (click)="CreateSection()" class="btn btn-primary" [mat-dialog-close]="true" >Create</button>
                   </div>
                 </div>
               </form>
@@ -208,7 +209,7 @@
         <div class="card w-100">
           <div class="card-body p-4">
             <h1 class="card-title fw-semibold mb-4">Update Section</h1>
-            <form [formGroup]="UpdateSectionForm" (ngSubmit)="UpdateSection()">
+            <form [formGroup]="UpdateSectionForm">
               <div class="row mb-3">
                 <div class="col-md-4" style="display: none;">
                   <div class="mb-3">
@@ -274,7 +275,10 @@
 
               <div class="row mt-5">
                 <div class="col-md-12 text-center">
-                  <button type="submit" class="btn btn-primary" [mat-dialog-close]="true">Update</button>
+                  <button
+                  mat-dialog-close
+                  (click)="UpdateSection()"
+                   class="btn btn-primary" [mat-dialog-close]="true">Update</button>
                 </div>
               </div>
             </form>
@@ -293,3 +297,4 @@
 
   
 </app-admin-container>
+

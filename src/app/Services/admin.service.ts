@@ -90,11 +90,11 @@ export class AdminService {
     });
   }
 
-  //Section
-
+ //Section
+ 
   sections: any = [];
   instructorSection: any = [];
-
+ 
   //  get sections
   getAllSections() {
     this.spinner.show();
@@ -104,14 +104,14 @@ export class AdminService {
           // Access to get (user-name) in section  >  users
           const userFirstName = section.user?.firsname || 'Unknown';
           const userLastName = section.user?.lastname || 'Unknown';
-
+ 
           return {
             ...section,
             userFirstName,
             userLastName,
           };
         });
-
+ 
         this.spinner.hide();
       },
       error: (err) => {
@@ -121,15 +121,16 @@ export class AdminService {
       },
     });
   }
-
+ 
   // Delete section
-  DeleteSection(id: number) {
+  DeleteSection(id: number , coursesequenceid : number) {
     this.spinner.show();
     this.http.delete('https://localhost:7036/api/Section/' + id).subscribe({
       next: () => {
         console.log('Deleted');
         this.getAllSections();
         this.spinner.hide();
+        this.GetSectionsByCoursesSequence(coursesequenceid);
         this.toastr.success('Section deleted successfully');
       },
       error: (err) => {
@@ -139,14 +140,14 @@ export class AdminService {
       },
     });
   }
-
+ 
   //Post Section
   CreateSection(data: any) {
     this.spinner.show();
     this.http.post('https://localhost:7036/api/Section', data).subscribe({
       next: () => {
         console.log('Section Created');
-        this.getAllSections();
+        this.GetSectionsByCoursesSequence(data.coursesequenceid);
         this.spinner.hide();
         this.toastr.success('Section created successfully');
       },
@@ -157,9 +158,32 @@ export class AdminService {
       },
     });
   }
-
+ 
+ 
+ 
+ 
+  sectionsByCoursesSequence: any = [];
+ 
+  GetSectionsByCoursesSequence(id: number) {
+    this.spinner.show();
+    this.http
+      .get('https://localhost:7036/api/Section/GetAllSectionsByCourseSequenceId/' + id)
+      .subscribe({
+        next: (section: any) => {
+          this.sectionsByCoursesSequence = section;
+          console.log(this.sectionsByCoursesSequence)
+          this.spinner.hide();
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+ 
+ 
   //get (Users With RoleId2)  in  (post section)
-
+ 
   getAllUsersWithRoleId2(): Observable<any[]> {
     const url = 'https://localhost:7036/api/Section/GetAllUsersWithRoleId2';
     // Update the method to store the list of users
@@ -170,12 +194,12 @@ export class AdminService {
       })
     );
   }
-
+ 
   //put Section
-
+ 
   UpdateSection(data: any) {
     const sectionId = data.sectionid; // Assuming your data object has the 'sectionid' property
-
+ 
     this.http
       .put(`https://localhost:7036/api/Section/${sectionId}`, data)
       .subscribe({
@@ -183,6 +207,7 @@ export class AdminService {
           console.log('Updated');
           this.getAllSections();
           this.spinner.hide();
+          this.GetSectionsByCoursesSequence(data.coursesequenceid);
           this.toastr.success('Section updated successfully');
         },
         error: (err) => {
@@ -336,6 +361,10 @@ export class AdminService {
         },
       });
   }
+
+
+
+
 
   courseSequence: any = [];
 

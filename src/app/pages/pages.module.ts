@@ -16,6 +16,8 @@ import { HomePagePrograms } from './home-page/home-page-programs/home-page-progr
 import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProgramsPlanComponent } from './programs-plan/programs-plan.component';
+import { InstructorPajeComponent } from './instructor-page/instructor-paje.component';
+import { InstructorDetailsPageComponent } from './instructor-details-page/instructor-details-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { ProgramsPlanComponent } from './programs-plan/programs-plan.component';
     ProgramDetailsPageComponent,
     NotFoundComponent,
     ProgramsPlanComponent,
+    InstructorPajeComponent,
+    InstructorDetailsPageComponent,
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,11 @@ const routes: Routes = [
     path: 'index',
     component: IndexComponent,
   },
+  {
+    path: 'my-sections',
+    component: IndexComponent,
+  },
+ 
 ];
 
 @NgModule({

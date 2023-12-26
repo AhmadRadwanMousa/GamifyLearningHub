@@ -1,0 +1,139 @@
+<div class="page-title-area item-bg1">
+    <div class="container">
+        <div class="page-title-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Instructor Details</li>
+            </ul>
+            <h2>Instructor Details</h2>
+        </div>
+    </div>
+</div>
+
+<div class="instructor-details-area pt-100 pb-70">
+    <div class="container">
+        <div class="instructor-details-desc">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="instructor-details-sidebar">
+                        <img class="img-ins-size" src="{{this.shard.InstructorDetails.userimage}}" alt="image" style="height: 323px; width: 300px;">
+                        <!-- <div class="instructor-details-meta">
+                            <ul>
+                                <li>
+                                    <i class='bx bxs-group'></i>
+                                    <span>Follower</span>
+                                    <a routerLink="/">102</a>
+                                </li>
+                                <li>
+                                    <i class='bx bx-group'></i>
+                                    <span>Following</span>
+                                    <a routerLink="/">81</a>
+                                </li>
+                            </ul>
+                        </div> -->
+                        <!-- <a routerLink="/contact" class="default-btn"><i class='bx bx-plus-circle icon-arrow before'></i><span class="label">Follow</span><i class="bx bx-plus-circle icon-arrow after"></i></a> -->
+                        <ul class="social-link">
+                            <li><a href="#" class="d-block facebook" target="_blank"><i class='bx bxl-facebook'></i></a></li>
+                            <li><a href="#" class="d-block twitter" target="_blank"><i class='bx bxl-twitter'></i></a></li>
+                            <li><a href="#" class="d-block instagram" target="_blank"><i class='bx bxl-instagram'></i></a></li>
+                            <li><a href="#" class="d-block linkedin" target="_blank"><i class='bx bxl-linkedin'></i></a></li>
+                            <li><a href="#" class="d-block pinterest" target="_blank"><i class='bx bxl-pinterest-alt'></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="instructor-details">
+                        <h3>{{this.shard.InstructorDetails.firsname}}  {{this.shard.InstructorDetails.lastname}}</h3>
+                        <span class="sub-title">Angular Teacher</span>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                        <div class="instructor-details-info">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12">
+                                    <h3>My Education</h3>
+                                    <ul>
+                                        <li>
+                                            <i class='bx bxs-graduation'></i>
+                                            <span>Harvard University</span>
+                                            Bachelor in Mathematics
+                                        </li>
+                                        <li>
+                                            <i class='bx bxs-graduation'></i>
+                                            <span>University of Toronto</span>
+                                            Bachelor in English
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <h3>My Experience</h3>
+                                    <ul>
+                                        <li>
+                                            <i class='bx bx-briefcase'></i>
+                                            <span>Envato</span>
+                                            2000-2010
+                                        </li>
+                                        <li>
+                                            <i class='bx bx-briefcase'></i>
+                                            <span>EnvyTheme</span>
+                                            2010-2020
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-title text-start">
+            <h2>Section by {{this.shard.InstructorDetails.firsname}}  {{this.shard.InstructorDetails.lastname}}</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6" *ngFor="let section of shard.SectionDetails">
+                <div class="single-courses-box mb-30"  >
+                    <div class="courses-image">
+                        <a routerLink="/single-courses" class="d-block"><img src="{{section.imageName}}" alt="image"></a>
+                        <!-- <div class="courses-tag">
+                            <a routerLink="/" class="d-block">Business</a>
+                        </div> -->
+                    </div>
+                    <div class="courses-content">
+                        <div class="course-author d-flex align-items-center">
+                            <img src="assets/img/user1.jpg" class="rounded-circle mr-2" alt="image">
+                            <span>{{section.sectionname}}</span>
+                        </div>
+                        <h3><a routerLink="/single-courses" class="d-inline-block">Raque Professional IT Expert Certificate Course</a></h3>
+                        <div class="courses-rating">
+                            <div class="review-stars-rated">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                            <div class="rating-total">
+                                5.0 (1 rating)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="courses-box-footer">
+                        <ul>
+                            <li class="students-number">
+                                <i class='bx bx-user'></i> 10 students
+                            </li>
+                            <li class="courses-lesson">
+                                <i class='bx bx-book-open'></i> 6 lessons
+                            </li>
+                            <li class="courses-price">
+                                Free
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+    </div>
+</div>

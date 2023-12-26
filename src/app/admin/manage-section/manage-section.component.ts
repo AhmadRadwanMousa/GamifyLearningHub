@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators ,ValidatorFn  , AbstractControl } from '@angular/forms';
 import { AdminService } from 'src/app/Services/admin.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 //validations
@@ -27,16 +28,26 @@ const NameValidator: ValidatorFn = (control: AbstractControl): { [key: string]: 
   styleUrls: ['./manage-section.component.scss'],
 })
 export class ManageSectionComponent {
-  constructor(public _sectionService: AdminService, public dialog: MatDialog) {}
+  constructor(private route: ActivatedRoute,public _sectionService: AdminService, public dialog: MatDialog,private router: Router) { }
 
-  
- 
+  id : any = 0;
   // CRUD
   ngOnInit() {
-    this._sectionService.getAllSections();
+    // this._sectionService.getAllSections();
+
+    this.route.params.subscribe(params => {
+      this.id = +params?.['id'];
+      console.log(this.id);
+     this._sectionService.GetSectionsByCoursesSequence(this.id);
+     
+ });
+
+
     this._sectionService.getAllUsersWithRoleId2().subscribe(() => {
      
     });
+
+    
   }
 
   fileName: any;
@@ -44,39 +55,45 @@ export class ManageSectionComponent {
 
 
   DeleteSection(id: number) {
-    this._sectionService.DeleteSection(id);
+    this._sectionService.DeleteSection(id , this.id);
   }
 
   CreateSection() {
     // Check if a file is selected
-    const fileToUpload = this.CreateSectionForm.get('imageFile')?.value;
 
-    if (fileToUpload) {
-      // Upload the file first
-      const formData = new FormData();
-      formData.append('file', fileToUpload);
+    this.CreateSectionForm.controls['imagename'].setValue(this.filePath);
+    this.CreateSectionForm.controls['coursesequenceid'].setValue(this.id);
+    this._sectionService.CreateSection(this.CreateSectionForm.value);
 
-      this._sectionService.UploadFile(formData).subscribe((path: string) => {
-        // Update the image path in your form
-        this.CreateSectionForm.patchValue({ imageName: path });
+    // const fileToUpload = this.CreateSectionForm.get('imageFile')?.value;
 
-        // Continue with creating the section
-        this.CreateSectionForm.controls['imagename'].setValue(this.filePath);
+    // if (fileToUpload) {
+    //   // Upload the file first
+    //   const formData = new FormData();
+    //   formData.append('file', fileToUpload);
 
-        // Now, create the section
-        this._sectionService.CreateSection(this.CreateSectionForm.value);
-      });
-    } else {
-      // No file selected, create the section without uploading
-      this.CreateSectionForm.controls['imagename'].setValue(this.filePath);
-      this._sectionService.CreateSection(this.CreateSectionForm.value);
-    }
+    //   this._sectionService.UploadFile(formData).subscribe((path: string) => {
+    //     // Update the image path in your form
+    //     this.CreateSectionForm.patchValue({ imageName: path });
+
+    //     // Continue with creating the section
+    //     this.CreateSectionForm.controls['imagename'].setValue(this.filePath);
+    //     this.CreateSectionForm.controls['coursesequenceid'].setValue(this.id);
+    //     // Now, create the section
+    //     this._sectionService.CreateSection(this.CreateSectionForm.value);
+    //   });
+    // } else {
+    //   // No file selected, create the section without uploading
+    //   this.CreateSectionForm.controls['imagename'].setValue(this.filePath);
+    //   this.CreateSectionForm.controls['coursesequenceid'].setValue(this.id);
+    //   this._sectionService.CreateSection(this.CreateSectionForm.value);
+    // }
   }
 
   UpdateSection() {
     // const formData = new FormData();
     this.UpdateSectionForm.controls['imagename'].setValue(this.filePath);
-
+    this.UpdateSectionForm.controls['coursesequenceid'].setValue(this.id);
     this._sectionService.UpdateSection(this.UpdateSectionForm.value);
   }
 
@@ -87,6 +104,7 @@ export class ManageSectionComponent {
     imageFile: new FormControl(''), 
     imagename: new FormControl(''),
     userid: new FormControl('', [Validators.required]), 
+    coursesequenceid :  new FormControl(),
   });
 
   //create validations
@@ -98,7 +116,8 @@ export class ManageSectionComponent {
     sectionsize: new FormControl(''),
     imagename: new FormControl(''),
     userid: new FormControl('', [Validators.required]),
-   
+    coursesequenceid :  new FormControl(),
+
   });
 
   
@@ -130,6 +149,7 @@ export class ManageSectionComponent {
       sectionname: section.sectionname,
       sectionsize: section.sectionsize,
       imagename : '',
+      coursesequenceid : this.id,
       userid: section.userid,
       
     });
@@ -141,10 +161,10 @@ export class ManageSectionComponent {
   }
 
   // File upload change event
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    this.CreateSectionForm.patchValue({ imageFile: file });
-  }
+  // onFileChange(event: any) {
+  //   const file = event.target.files[0];
+  //   this.CreateSectionForm.patchValue({ imageFile: file });
+  // }
 
   
 

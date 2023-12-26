@@ -5,7 +5,8 @@ import { CoursesDetailsPageComponent } from './courses-details-page/courses-deta
 import { ProgramsComponent } from './programs/programs.component';
 import { ProgramsPlanComponent } from './programs-plan/programs-plan.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-
+import {InstructorPajeComponent} from './instructor-page/instructor-paje.component'
+import { InstructorDetailsPageComponent } from './instructor-details-page/instructor-details-page.component';
 const routes: Routes = [
   {
     path: 'programs',
@@ -20,6 +21,14 @@ const routes: Routes = [
   {
     path: 'contact-us',
     component: ContactUsComponent,
+  },
+  {
+    path: 'instructor',
+    component: InstructorPajeComponent,
+  },
+  {
+    path: 'instructorDetails/:id',
+    component: InstructorDetailsPageComponent,
   },
 ];
 
