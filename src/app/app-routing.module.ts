@@ -9,6 +9,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { BadgeComponent } from './admin/badge/badge.component';
 import { AuthGuard } from './RouteGuard/auth-guard.guard';
+import { RoleGuard } from './RouteGuard/role.guard';
 const routes: Routes = [
   {
     path: 'pages',
@@ -19,11 +20,28 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((x) => x.AdminModule),
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRoleId: 1,
+    },
   },
   {
     path: 'instructor',
     loadChildren: () =>
       import('./instructor/instructor.module').then((x) => x.InstructorModule),
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRoleId: 2,
+    },
+  },
+  {
+    path: 'learner',
+    loadChildren: () =>
+      import('./learner/learner.module').then((x) => x.LearnerModule),
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRoleId: 3,
+    },
   },
   {
     path: 'Login',
@@ -44,7 +62,6 @@ const routes: Routes = [
   { path: 'CourseDetails', component: CoursesDetailsPageComponent },
   { path: 'ProgramDetails/:id', component: ProgramDetailsPageComponent },
   { path: '**', component: NotFoundComponent },
-  
 ];
 
 @NgModule({

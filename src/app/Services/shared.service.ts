@@ -21,8 +21,12 @@ export class SharedService {
       (res: any) => {
         if (!isNaN(res)) {
           setTimeout(() => {
+            this.toastr.success(
+              'Your account has been created successfully',
+              'Success '
+            );
             this.spinner.hide();
-            this.route.navigate(['/']);
+            this.route.navigate(['/Login']);
           }, 1000);
         }
       },

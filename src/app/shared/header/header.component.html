@@ -19,12 +19,17 @@
         </div>
         <div class="col-lg-4 col-md-4">
           <ul class="top-header-login-register">
-            <li>
+            <li *ngIf="!this.authService.isLoggedIn">
               <a routerLink="/Login"><i class="bx bx-log-in"></i> Login</a>
             </li>
             <li>
               <a routerLink="/Register"
                 ><i class="bx bx-log-in-circle"></i> Register</a
+              >
+            </li>
+            <li *ngIf="this.authService.isLoggedIn">
+              <a (click)="Logout()" class="cursor-pointer"
+                ><i class="bx bx-log-in"></i> Logout</a
               >
             </li>
           </ul>

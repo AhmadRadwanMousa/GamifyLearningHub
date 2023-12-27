@@ -1,0 +1,71 @@
+<app-admin-container>
+  <div class="col-md-12">
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">All Requests</h5>
+        <hr />
+        <div class="table-responsive text-center">
+          <table class="table text-nowrap mb-0 align-middle">
+            <thead class="text-dark fs-4">
+              <tr>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Instructor name</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Email</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Date Of Birth</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Status</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Accept/Reject</h6>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let userRequest of this.adminService.unAcceptedUser">
+                <td class="border-bottom-0">
+                  <h6 class="fw-semibold mb-1">
+                    {{ userRequest.firsname }} {{ userRequest.lastname }}
+                  </h6>
+                </td>
+                <td class="border-bottom-0">
+                  <p class="mb-0 fw-normal">
+                    {{ userRequest.userlogins[0].username }}
+                  </p>
+                </td>
+                <td class="border-bottom-0">
+                  <p class="mb-0 fw-normal">
+                    {{ userRequest.dateofbirth | date }}
+                  </p>
+                </td>
+                <td class="border-bottom-0">
+                  <p class="mb-0 fw-normal">
+                    {{ userRequest.userlogins[0].isaccepted }}
+                  </p>
+                </td>
+                <td class="border-bottom-0">
+                  <button
+                    class="btn btn-success m-2"
+                    (click)="HandleStatusChange(true, userRequest.userid)"
+                  >
+                    <i class="ti ti-circle-check fs-6"></i>
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    (click)="HandleStatusChange(false, userRequest.userid)"
+                  >
+                    <i class="ti ti-circle-x fs-6"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-admin-container>

@@ -24,7 +24,6 @@ export class AuthService {
         if (res.token) {
           localStorage.setItem('token', res.token);
           const tokenPayload: any = jwtDecode(res.token);
-
           let roleId: number = Number(tokenPayload.roleId);
           this.HandleNavigate(roleId);
           setTimeout(() => {
@@ -46,6 +45,16 @@ export class AuthService {
         }
       }
     );
+  }
+  Logout() {
+    localStorage.removeItem('token');
+  }
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+  isLoggedIn(): boolean {
+    const token = this.getToken();
+    return !!token;
   }
   HandleNavigate(roleId: number) {
     if (roleId === 1) {

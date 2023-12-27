@@ -18,6 +18,7 @@ import { BadgeComponent } from './badge/badge.component';
 import { CuoponComponent } from './coupon/cuopon.component';
 import { PointsComponent } from './points/points.component';
 import { MessageComponent } from './message/message.component';
+import { ManageUserStatusComponent } from './manage-user-status/manage-user-status.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MessageComponent } from './message/message.component';
     BadgeComponent,
     CuoponComponent,
     PointsComponent,
-    MessageComponent
+    MessageComponent,
+    ManageUserStatusComponent
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
   exports: [],

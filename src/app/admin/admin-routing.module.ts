@@ -15,6 +15,7 @@ import { ManageUserSectionComponent } from './manage-user-section/manage-user-se
 import { ManageCourseSequenceComponent } from './manage-course-sequence/manage-course-sequence.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageTestimonialsComponent } from './manage-testimonials/manage-testimonials.component';
+import { ManageUserStatusComponent } from './manage-user-status/manage-user-status.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'messages',
     component: MessageComponent,
+  },
+  {
+    path: 'usersRequests',
+    component: ManageUserStatusComponent,
   },
 ];
 

@@ -1,0 +1,167 @@
+<app-insturctor-container>
+  <div class="col-md-12">
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">Assignments Solution</h5>
+        <hr />
+        <div>
+          <div
+            class="table-responsive text-center"
+            *ngIf="
+              this.instructorService.assignmentSolutions.length > 0;
+              else noAssignments
+            "
+          >
+            <table class="table text-nowrap mb-0 align-middle">
+              <thead class="text-dark fs-4">
+                <tr>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Student Name</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Assignment Title</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Student solution</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Submitted At</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Assignment Mark</h6>
+                  </th>
+
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Set mark</h6>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let assignmentsolution of instructorService.assignmentSolutions
+                  "
+                >
+                  <td class="border-bottom-0">
+                    <h6 class="fw-semibold mb-1">
+                      {{ assignmentsolution.user.firsname }}
+                      {{ assignmentsolution.user.lastname }}
+                    </h6>
+                  </td>
+                  <td class="border-bottom-0">
+                    {{ assignmentsolution.assignment.assignmentname }}
+                    <!-- [href]="assignment.assignmentdescription" -->
+                  </td>
+                  <td class="border-bottom-0">
+                    <div mat-dialog-content class="pb-0">
+                      <a
+                        target="_blank"
+                        [href]="assignmentsolution.assignmentsolutionvalue"
+                        >Download File</a
+                      >
+                    </div>
+                  </td>
+                  <td class="border-bottom-0">
+                    <p class="mb-0 fw-normal">
+                      {{ assignmentsolution.submittedat | date }}
+                    </p>
+                  </td>
+                  <td class="border-bottom-0">
+                    <p class="mb-0 fw-normal">
+                      {{
+                        assignmentsolution.assignmentsolutionmark ||
+                          "Not reviewed yet"
+                      }}
+                    </p>
+                  </td>
+
+                  <td class="border-bottom-0">
+                    <button
+                      class="btn btn-success m-2"
+                      (click)="
+                        OpenUpdateDialog(
+                          assignmentsolution.assignmentsolutionid,
+                          assignmentsolution.assignmentid
+                        )
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-edit"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                        />
+                        <path
+                          d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                        />
+                        <path d="M16 5l3 3" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #UpdateDialog>
+    <h1 mat-dialog-title>Delete file</h1>
+    <div mat-dialog-content>Would you like to delete this user ?</div>
+    <div class="d-flex justify-content-center align-items-center">
+      <mat-form-field appearance="outline">
+        <mat-label>set mark</mat-label>
+        <input
+          matInput
+          placeholder="Placeholder"
+          [formControl]="assignmentsolutionmark"
+          align="center"
+        />
+        <mat-icon matSuffix>mark</mat-icon>
+        <mat-error *ngIf="assignmentsolutionmark.hasError('required')">
+          The mark is required
+        </mat-error>
+        <mat-error *ngIf="assignmentsolutionmark.hasError('max')">
+          The entered value exceeds the maximum mark ({{
+            this.instructorService.maxMark
+          }})
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button
+        mat-button
+        [mat-dialog-close]="false"
+        class="btn btn-dark m-3"
+        cdkFocusInitial
+      >
+        Cancel
+      </button>
+      <button
+        [mat-dialog-close]="true"
+        class="btn btn-info"
+        [disabled]="this.assignmentsolutionmark.invalid"
+      >
+        Confirm mark <i class="ti ti-pencil"></i>
+      </button>
+    </div>
+  </ng-template>
+  <ng-template #noAssignments>
+    <div class="d-flex justify-content-center align-items-center">
+      <p>
+        No assignments solutions yet! <mat-icon>assignment_returned</mat-icon>
+      </p>
+    </div>
+  </ng-template>
+</app-insturctor-container>

@@ -1,0 +1,417 @@
+<app-insturctor-container>
+  <div class="col-md-12">
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">All Assignments</h5>
+        <hr />
+        <mat-form-field>
+          <mat-label>Select Section </mat-label>
+          <!-- <mat-icon class="ms-4 fs-4"
+              >chrome_reader_mode
+            </mat-icon> -->
+          <mat-select
+            [(ngModel)]="sectionid"
+            (selectionChange)="ShowAssignments()"
+          >
+            <mat-option
+              *ngFor="
+                let section of this.instructorService.sectionsByInstructorId
+              "
+              [value]="section.sectionid"
+              >{{ section.sectionname }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="showAssignments">
+          <button
+            class="btn btn-primary mb-4"
+            (click)="OpenCreateAssignmentDialog()"
+          >
+            Create Assignment <mat-icon>assignment</mat-icon>
+          </button>
+
+          <div
+            class="table-responsive text-center"
+            *ngIf="
+              this.instructorService.assignmentsBySection.length > 0;
+              else noAssignments
+            "
+          >
+            <table class="table text-nowrap mb-0 align-middle">
+              <thead class="text-dark fs-4">
+                <tr>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Assignment Name</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Assignment File</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Assignment Mark</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Assignment DeadLine</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">SectionId</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Edit/Delete</h6>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let assignment of this.instructorService
+                      .assignmentsBySection
+                  "
+                >
+                  <td class="border-bottom-0">
+                    <h6 class="fw-semibold mb-1">
+                      {{ assignment.assignmentname }}
+                    </h6>
+                  </td>
+                  <td class="border-bottom-0">
+                    <div mat-dialog-content class="pb-0">
+                      <a
+                        [href]="assignment.assignmentdescription"
+                        target="_blank"
+                        >Download File</a
+                      >
+                    </div>
+                  </td>
+                  <td class="border-bottom-0">
+                    <p class="mb-0 fw-normal">
+                      {{ assignment.assignmentmark }}
+                    </p>
+                  </td>
+                  <td class="border-bottom-0">
+                    <p class="mb-0 fw-normal">
+                      {{ assignment.assignmentdeadline }}
+                    </p>
+                  </td>
+                  <td class="border-bottom-0">
+                    <p class="mb-0 fw-normal">
+                      {{ assignment.sectionid | number }}
+                    </p>
+                  </td>
+
+                  <td class="border-bottom-0">
+                    <button
+                      class="btn btn-success m-2"
+                      (click)="OpenUpdateAssignmentDialog(assignment)"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-edit"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                        />
+                        <path
+                          d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                        />
+                        <path d="M16 5l3 3" />
+                      </svg>
+                    </button>
+                    <button
+                      class="btn btn-danger"
+                      (click)="
+                        OpenDeleteAssignmentDialog(assignment.assignmentid)
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-trash-filled"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                          d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                          stroke-width="0"
+                          fill="currentColor"
+                        />
+                        <path
+                          d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                          stroke-width="0"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="btn btn-info ms-2"
+                      [routerLink]="[
+                        '/instructor/assignments',
+                        assignment.assignmentid
+                      ]"
+                    >
+                      <i class="ti ti-file-certificate fs-6"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #CreateDialog>
+    <h2 mat-dialog-title>Create Assignment</h2>
+    <mat-dialog-content>
+      <form [formGroup]="assignmentDetails" class="pt-4">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="example-container">
+              <mat-form-field class="widthInput w-100">
+                <mat-label> Assignment Title</mat-label>
+                <input
+                  matInput
+                  placeholder="ex:Ahmad"
+                  formControlName="assignmentname"
+                />
+                <mat-error
+                  *ngIf="
+                    assignmentDetails
+                      .get('assignmentname')
+                      ?.hasError('required')
+                  "
+                >
+                  Assignment Title is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="example-container">
+              <mat-form-field class="widthInput w-100">
+                <mat-label> Assignment Weight</mat-label>
+                <input
+                  matInput
+                  placeholder="Assignment Weight"
+                  formControlName="assignmentmark"
+                />
+                <mat-error
+                  *ngIf="
+                    assignmentDetails
+                      .get('assignmentmark')
+                      ?.hasError('required')
+                  "
+                >
+                  Assignment weight is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="example-container">
+              <mat-form-field class="w-100">
+                <mat-label>Assignment DeadLine</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="assignmentdate"
+                  formControlName="assignmentdate"
+                  class="w-100"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="assignmentdate"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #assignmentdate></mat-datepicker>
+                <mat-error
+                  *ngIf="
+                    assignmentDetails
+                      .get('assignmentdate')
+                      ?.hasError('required')
+                  "
+                >
+                  Assignment deadline is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div
+              class="example-container"
+              *ngIf="
+                !assignmentDetails.get('assignmentdate')?.hasError('required')
+              "
+            >
+              <mat-form-field class="w-100">
+                <input
+                  matInput
+                  [ngxMatTimepicker]="pickerA"
+                  placeholder="4:00 PM"
+                  formControlName="assignmenttime"
+                  class="w-100"
+                />
+                <mat-icon matSuffix (click)="pickerA.open()">
+                  watch_later
+                </mat-icon>
+              </mat-form-field>
+              <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="example-container text-center w-50">
+                <input
+                  type="file"
+                  class="file-input"
+                  (change)="UploadFile($event)"
+                  #fileUpload
+                />
+
+                <div class="file-upload border border-2 rounded-2">
+                  {{ filename || "No file uploaded yet." }}
+                  <button
+                    mat-mini-fab
+                    color="primary"
+                    class="upload-btn btn btn-outline-primary"
+                    (click)="fileUpload.click()"
+                  >
+                    <mat-icon>upload-btn</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <mat-dialog-actions align="center">
+            <button class="btn btn-primary mt-2" [mat-dialog-close]="true">
+              Create Assignment
+            </button>
+          </mat-dialog-actions>
+        </div>
+      </form>
+    </mat-dialog-content>
+  </ng-template>
+  <ng-template #DeleteDialog>
+    <h1 mat-dialog-title>Delete file</h1>
+    <div mat-dialog-content>Would you like to delete this user ?</div>
+    <div mat-dialog-actions align="center">
+      <button
+        mat-button
+        [mat-dialog-close]="false"
+        class="btn btn-dark m-3"
+        cdkFocusInitial
+      >
+        Cancel
+      </button>
+      <button [mat-dialog-close]="true" class="btn btn-danger">Delete</button>
+    </div>
+  </ng-template>
+  <ng-template #UpdateDialog>
+    <h2 mat-dialog-title>Update Assignment</h2>
+    <mat-dialog-content>
+      <form [formGroup]="assignmentDetails" class="pt-4">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="example-container">
+              <mat-form-field class="widthInput w-100">
+                <mat-label> Assignment Title</mat-label>
+                <input
+                  matInput
+                  placeholder="ex:Ahmad"
+                  formControlName="assignmentname"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="example-container">
+              <mat-form-field class="widthInput w-100">
+                <mat-label> Assignment Weight</mat-label>
+                <input
+                  matInput
+                  placeholder="Last Name"
+                  formControlName="assignmentmark"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="example-container">
+              <mat-form-field class="w-100">
+                <mat-label>Assignment DeadLine</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="assignmentdate"
+                  formControlName="assignmentdate"
+                  class="w-100"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="assignmentdate"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #assignmentdate></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div
+              class="example-container"
+              *ngIf="
+                !assignmentDetails.get('assignmentdate')?.hasError('required')
+              "
+            >
+              <mat-form-field class="w-100">
+                <input
+                  matInput
+                  [ngxMatTimepicker]="pickerA"
+                  placeholder="4:00 PM"
+                  formControlName="assignmenttime"
+                  class="w-100"
+                />
+                <mat-icon matSuffix (click)="pickerA.open()">
+                  watch_later
+                </mat-icon>
+              </mat-form-field>
+              <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="example-container text-center w-50">
+                <input
+                  type="file"
+                  class="file-input"
+                  (change)="UploadFile($event)"
+                  #fileUpload
+                />
+
+                <div class="file-upload border border-2 rounded-2">
+                  {{ filename || "No file uploaded yet." }}
+                  <button
+                    mat-mini-fab
+                    color="primary"
+                    class="upload-btn btn btn-outline-primary"
+                    (click)="fileUpload.click()"
+                  >
+                    <mat-icon>upload-btn</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <mat-dialog-actions align="center">
+            <button class="btn btn-primary mt-2" [mat-dialog-close]="true">
+              Update Assignment
+            </button>
+          </mat-dialog-actions>
+        </div>
+      </form>
+    </mat-dialog-content>
+  </ng-template>
+  <ng-template #noAssignments>
+    <div class="d-flex justify-content-center align-items-center">
+      <p>No assignments available. <mat-icon>assignment_returned</mat-icon></p>
+    </div>
+  </ng-template>
+</app-insturctor-container>

@@ -20,12 +20,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SharedService } from './Services/shared.service';
 import { AuthGuard } from './RouteGuard/auth-guard.guard';
 import { FormsModule } from '@angular/forms';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './RouteGuard/auth-interceptor';
+import { RoleGuard } from './RouteGuard/role.guard';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     SharedModule,
     PagesModule,
@@ -33,9 +34,21 @@ import { FormsModule } from '@angular/forms';
     NgxSpinnerModule,
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
-    FormsModule
+    FormsModule,
   ],
-  providers: [AdminService, LearnerService, InstructorService, SharedService],
+  providers: [
+    AdminService,
+    LearnerService,
+    InstructorService,
+    SharedService,
+    AuthGuard,
+    RoleGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -870,4 +870,41 @@ export class AdminService {
       },
     });
   }
+  unAcceptedUser: any = [];
+  GetUnAcceptedUsers() {
+    this.spinner.show();
+    this.http.get(`${URL}/User/GetUnAcceptedUsers`).subscribe(
+      (res) => {
+        this.unAcceptedUser = res;
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 1000);
+      },
+      (error) => {
+        setTimeout(() => {
+          this.spinner.hide();
+          this.toastr.error(error.message, 'Something went wrong');
+        }, 1000);
+      }
+    );
+  }
+  UpdatedUserStatus(userDetails: any) {
+    this.http.put(`${URL}/User/UpdatedUserStatus`, userDetails).subscribe(
+      (res) => {
+        if (res) {
+          setTimeout(() => {
+            this.spinner.hide();
+            this.toastr.success('User status has been updated');
+            this.GetUnAcceptedUsers();
+          }, 1000);
+        }
+      },
+      (error) => {
+        setTimeout(() => {
+          this.spinner.hide();
+          this.toastr.error(error.message, 'Something went wrong');
+        }, 1000);
+      }
+    );
+  }
 }
