@@ -18,7 +18,7 @@
                 <h6 class="fw-semibold mb-0">Course Name</h6>
               </th>
               <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">Previuse Course</h6>
+                <h6 class="fw-semibold mb-0">Pervious Course</h6>
               </th>
               <th class="border-bottom-0">
                 <h6 class="fw-semibold mb-0">Start Date</h6>
@@ -115,6 +115,12 @@
                       fill="currentColor"
                     />
                   </svg>
+                </button>
+                <button
+                  [routerLink]="['/admin/section/', x.coursesequenceid]"
+                  class="btn btn-success ms-2"
+                >
+                  <i class="ti ti-books fs-6"></i>
                 </button>
               </td>
             </tr>
