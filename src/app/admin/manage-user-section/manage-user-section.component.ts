@@ -14,13 +14,14 @@ import { Observable } from 'rxjs';
 
 export class ManageUserSectionComponent {
   @ViewChild('OpenAddDialog') OpenAddDialog: any;
+  @ViewChild('ViewAllDialog') ViewAllDialog: any;
 
   formGroup: FormGroup = new FormGroup({});
   constructor(public admin: AdminService, public dialog: MatDialog, public fb: FormBuilder) {
     
   }
   selectedCourse: any;
-  selectedUser: any;
+  selectedStudent: any;
 
   ngOnInit() {
     this.admin.getAllCourses();
@@ -29,7 +30,7 @@ export class ManageUserSectionComponent {
 
   initForm(){
     this.formGroup = this.fb.group({
-      'userid' : ['', [Validators.required, Validators.pattern('^[1-9]$')]],
+      'userid' : ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       'sectionid' : ['', Validators.required]
     });
     this.formGroup.get('userid')?.valueChanges.subscribe(
@@ -51,7 +52,11 @@ export class ManageUserSectionComponent {
   loadSection(id: number) {
     this.admin.getSectionByCourseId(id);
   }
-
+  /*
+  loadUserSection(id: number) {
+    this.admin.GetAllUserSectionBySectionId(id);
+  }
+  */
   AddDialog(id: number) {
     this.admin.getAllStudents();
     this.formGroup.controls['sectionid'].setValue(id);
@@ -61,9 +66,22 @@ export class ManageUserSectionComponent {
     });
   }
 
+  ViewDialog(id: number){
+    this.admin.GetAllUserSectionBySectionId(id);
+    this.dialog.open(this.ViewAllDialog, {
+      width: '800px',
+      height: '500px',
+    });
+  }
+
 
   CreateUserSection() {
     this.admin.createUserSection(this.formGroup.value);
   }
+
+  DeleteUserSection(id: number){
+    this.admin.DeleteUserSection(id);
+  }
+  
   
 }

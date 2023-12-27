@@ -35,6 +35,10 @@ import { RoleGuard } from './RouteGuard/role.guard';
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
     FormsModule,
+    ToastNoAnimationModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
+    FormsModule,
   ],
   providers: [
     AdminService,

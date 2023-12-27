@@ -1,0 +1,302 @@
+<app-insturctor-container>
+    <div class="col-lg-12 d-flex align-items-stretch">
+        <div class="card w-100">
+            <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Manage Exams And Quizzes</h5>
+                <hr />
+
+                <form class="m-3">
+                    <h5 class="my-4">Select section from the list to create exams </h5>
+                    <mat-form-field>
+                        <mat-label>Select section</mat-label>
+                        <mat-select [(ngModel)]="selectedSection" name="selectedSection">
+                            <mat-option *ngFor="let s of instructorService.MyInstructorSections" [value]="s.sectionid"
+                                (click)="loadExams(s.sectionid)">
+                                {{s.sectionname}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </form>
+                <button *ngIf="selectedSection > 0" class="btn btn-primary mb-4" (click)="OpenCreateDialog()">Add
+                    Exam</button>
+                <div *ngIf="this.instructorService.examsBySection.length > 0">
+
+                    <table class="table text-nowrap mb-0 align-middle text-center">
+
+                        <thead class="text-dark fs-4">
+                            <tr>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Exam type</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">exam date</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Exam mark</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Status</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Open At</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Close At</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Action</h6>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let e of instructorService.examsBySection">
+                                <td class="border-bottom-0" *ngIf="e.examtype == 1">
+                                    <h6 class="mb-1">Exam</h6>
+                                </td>
+                                <td class="border-bottom-0" *ngIf="e.examtype == 2">
+                                    <h6 class="mb-1">Quiz</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="mb-1">{{e.examdate | date: "longDate"}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="mb-1">{{e.exammark}}</h6>
+                                </td>
+                                <td class="border-bottom-0" *ngIf="e.examstatus == true">
+                                    <h6 class="mb-1">Active</h6>
+                                </td>
+                                <td class="border-bottom-0" *ngIf="e.examstatus == false">
+                                    <h6 class="mb-1">Not active</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="mb-1">{{e.openat | date: "hh:mm:ss"}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="mb-1">{{e.closeat | date: "hh:mm:ss"}}</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <button class="btn btn-primary" (click)="OpenCreateQuestionDialog(e.examid)">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-text-plus" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M19 10h-14" />
+                                            <path d="M5 6h14" />
+                                            <path d="M14 14h-9" />
+                                            <path d="M5 18h6" />
+                                            <path d="M18 15v6" />
+                                            <path d="M15 18h6" />
+                                        </svg>
+                                    </button>
+                                    <button (click)="OpenDetailsDialog(e.examid)" class="btn btn-warning mx-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-file-description" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                            <path
+                                                d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                            <path d="M9 17h6" />
+                                            <path d="M9 13h6" />
+                                        </svg>
+                                    </button>
+                                    <button class="btn btn-danger" (click)="OpenDeleteDialog(e.examid)">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-trash-filled" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                                                stroke-width="0" fill="currentColor" />
+                                            <path
+                                                d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                                                stroke-width="0" fill="currentColor" />
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="this.instructorService.examsBySection.length == 0 && selectedSection > 0 "
+                    class="d-flex justify-content-center">
+                    <p class="fs-4">No exams in this section</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</app-insturctor-container>
+
+
+<ng-template #CreateExamDialog>
+    <div class="container mt-4">
+        <form [formGroup]="CreateFormGroup">
+            <div class="row">
+                <mat-form-field class="col-lg-6">
+                    <mat-label>Select Type</mat-label>
+                    <mat-select [(value)]="selectedType">
+                        <mat-option value="1">Exam</mat-option>
+                        <mat-option value="2">Quiz</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-lg-6">
+                    <mat-label>Exam Date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="examdate">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+            <div class="row">
+                <mat-form-field class="col-lg-6">
+                    <mat-label>Exam Total Mark</mat-label>
+                    <input matInput placeholder="Ex. 100" formControlName="exammark">
+                </mat-form-field>
+                <mat-form-field class="col-lg-6">
+                    <mat-label>Exam status</mat-label>
+                    <mat-select [(value)]="selectedStatus">
+                        <mat-option [value]="true">Active</mat-option>
+                        <mat-option [value]="false">Not active</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <mat-form-field class="col-12">
+                        <input matInput name="selected_time_A" formControlName="openat" [ngxMatTimepicker]="pickerA"
+                            placeholder="Open At" />
+                        <mat-icon matSuffix (click)="pickerA.open()">
+                            watch_later
+                        </mat-icon>
+                    </mat-form-field>
+                    <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+                </div>
+
+                <div class="col-lg-6">
+                    <mat-form-field class="col-12">
+                        <input matInput name="selected_time_A" formControlName="closeat" [ngxMatTimepicker]="pickerB"
+                            placeholder="Close At" />
+                        <mat-icon matSuffix (click)="pickerB.open()">
+                            watch_later
+                        </mat-icon>
+                    </mat-form-field>
+                    <ngx-mat-timepicker #pickerB></ngx-mat-timepicker>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input mat-dialog-close (click)="createExam(selectedSection)" mat-raised-button
+                        class="btn btn-primary" value="Create">
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+
+<ng-template #CreateQuestionDialog>
+    <div class="container mt-3">
+        <button class="btn btn-warning" (click)="AddQuestion()">Add Question <svg xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 5l0 14" />
+                <path d="M5 12l14 0" />
+            </svg> </button>
+        <button class="btn btn-danger mx-2" (click)="RemoveQuestion()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="24"
+                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M9 14l-4 -4l4 -4" />
+                <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
+            </svg>
+        </button>
+        <button mat-dialog-close class="btn btn-info ">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-floppy" width="24"
+                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M14 4l0 4l-6 0l0 -4" />
+            </svg>
+        </button>
+        <div *ngFor="let question of questions; let i = index">
+            <app-question-form [questionIndex]="i" [examId]="examId" class="mx-4"></app-question-form>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #DeleteConfirmDialog>
+    <h1 mat-dialog-title>Delete exam</h1>
+    <div mat-dialog-content>
+        Would you like to delete exam?
+    </div>
+    <div mat-dialog-actions>
+        <input class="btn btn-primary" mat-button mat-dialog-close="no" value="No">
+        <input class="btn btn-danger m-2" mat-button mat-dialog-close="yes" cdkFocusInitial value="Delete">
+    </div>
+</ng-template>
+
+<ng-template #DetailsDialog>
+    <div class="container p-5" *ngFor="let q of instructorService.QuestionAndOptions ">
+        <h4>Questions: </h4>
+        <div class="row">
+            <div class="card col-12 border-1">
+                <div class="card-body">
+                  <h5 class="card-title">{{q.questiondescription}}</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Weight: {{q.questionweight}}</h6>
+                  
+                    <div class="d-flex flex-row">
+                    <div class="p-2 flex-fill" *ngFor="let o of q.questionoptions">
+                        
+                        <h3 [ngStyle]="{'color': o.iscorrect ? '#8ae019' : 'black' }">{{o.questionoptiondescription}}</h3>
+                        
+                      </div>
+                    
+
+                    <div class="row">
+                        <div class="col-lg-12 d-flex justify-content-end">
+                            <button class="btn btn-danger" (click)="DeleteQuestion(q.questionid)">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  class="icon icon-tabler icon-tabler-trash-filled"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  stroke-width="2"
+                                  stroke="currentColor"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                >
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                  <path
+                                    d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                                    stroke-width="0"
+                                    fill="currentColor"
+                                  />
+                                  <path
+                                    d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                                    stroke-width="0"
+                                    fill="currentColor"
+                                  />
+                                </svg>
+                              </button>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+              </div>
+        </div>
+    </div>
+</ng-template>
