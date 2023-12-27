@@ -36,16 +36,16 @@ export class InstructorService {
 
 
   //Get All Users In Single Section 
-  //Get Users Section
-  UsersSection:any;
+  //Get Users By Section ID
+  UsersInSection:any;
 
-  getAllUsersSection(id: number) {
+  getUsersBySectionId(id: number) {
     this.spinner.show();
   
-    this.http.get('https://localhost:7036/api/UserSection/GetAllUserSectionsBySectionId/' + id).subscribe({
+    this.http.get('https://localhost:7036/api/UserSection/GetUsersBySectionId/' + id).subscribe({
       next: (res) => {
         console.log(res); 
-        this.UsersSection = res;
+        this.UsersInSection = res;
         this.spinner.hide();
       },
       error: (err) => {

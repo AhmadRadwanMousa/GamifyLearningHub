@@ -1,1 +1,47 @@
-<p>manage-attendence-sections works!</p>
+<div class="card w-100">
+    <div class="card-body p-4">
+      <h5 class="card-title fw-semibold mb-4">All Sections</h5>
+      <hr />
+      
+      <div class="table-responsive text-center">
+        <table class="table text-nowrap mb-0 align-middle">
+            <thead class="text-dark fs-4">
+              <!-- Table headers for section information -->
+              <tr>
+                <!-- <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Section ID</h6></th> -->
+                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Section Name</h6></th>
+                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Section Size</h6></th>
+                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">image </h6></th>
+                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Actions</h6></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Table rows for each section -->
+              <tr *ngFor="let section of shard.SectionsByInstructorId ">
+                <!-- Section information -->
+                <!-- <td class="border-bottom-0"><h6 class="fw-semibold mb-1">{{ section.sectionid }}</h6></td> -->
+                <td class="border-bottom-0"><h6 class="fw-semibold mb-1">{{section.sectionname}}</h6></td>
+                <td class="border-bottom-0"><p class="mb-0 fw-normal">{{section.sectionsize}} </p></td>
+                <td class="border-bottom-0">
+                  <img [src]="section.imagename" width="100" height="100" />
+                </td>                
+
+                <td class="border-bottom-0">
+                    <button (click)=GoToUsers(section.sectionid)
+               
+                class="btn btn-success  m-2"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="24" height="24" 
+              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" 
+              stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+              <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg>
+              </button>
+                  </td>
+              </tr>
+          
+              
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
