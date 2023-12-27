@@ -1,208 +1,210 @@
-
 <app-insturctor-container>
-    <div class="col-lg-12 d-flex align-items-stretch">
-        <div class="card w-100">
-          <div class="card-body p-4">
-            <h5 class="card-title fw-semibold mb-4">Add Matereal</h5>
-            <hr />
-              <form>
-                <mat-form-field>   
-                    <mat-label>Select Section</mat-label>
-                    <mat-select [(ngModel)]="selectedSection" name="sectionSelect">
-                        <mat-option *ngFor="let section of _instructorService.sectionsByUserId" [value]="section.sectionid" (click)="loadMaterial(section.sectionid)">
-                            {{section.sectionname}}
-                        </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  
-              </form>
+  <div class="col-lg-12 d-flex align-items-stretch">
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">Add Matereal</h5>
+        <hr />
+        <form>
+          <mat-form-field>
+            <mat-label>Select Section</mat-label>
+            <mat-select [(ngModel)]="selectedSection" name="sectionSelect">
+              <mat-option
+                *ngFor="let section of _instructorService.sectionsByUserId"
+                [value]="section.sectionid"
+                (click)="loadMaterial(section.sectionid)"
+              >
+                {{ section.sectionname }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
 
-
-<div>
-
-  <div *ngIf="_instructorService.allMaterialsBySectionId !== null && _instructorService.allMaterialsBySectionId.length > 0" class="example-action-buttons">
-    <button
-    mat-dialog-close
-    (click)="OpenCreateDialog()"
-    class="btn btn-primary mb-4"
-  >
-    Create Course Section
-  </button>
-
-    <div class="example-action-buttons">
-      <button mat-button (click)="openAllPanels()">Expand All</button>
-      <button mat-button (click)="closeAllPanels()">Collapse All</button>
-    </div>
-    <div>
-    <mat-accordion *ngFor="let x of _instructorService.allMaterialsBySectionId"  #accordion class="example-headers-align"  multi>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{x.coursesectionname}}
-          </mat-panel-title>
-          <mat-panel-description>
-            <!-- Type your name and age -->
-            <!-- <mat-icon>account_circle</mat-icon> -->
-          </mat-panel-description>
-          
-          <!-- Buttons placed at the end using Flexbox -->
-          <div class="button-container">
-
+        <div>
+          <div *ngIf="selectedSection != null" class="example-action-buttons">
             <button
-            class="btn btn-primary m-2"
-            (click)="OpenCreateLectureDialog(x.coursesectionid)"
-          >
-          Create Lecture
-            </button>
-            <button 
-            (click)="OpenUpdateDialog(x)"
-            class="btn btn-success m-2">
-              <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-edit"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              mat-dialog-close
+              (click)="OpenCreateDialog()"
+              class="btn btn-primary mb-4"
             >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
-              />
-              <path
-                d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
-              />
-              <path d="M16 5l3 3" />
-            </svg>
+              Create Course Section
             </button>
-            <button 
-            (click)="OpenConfirmDialog(x.coursesectionid)"
-            class="btn btn-danger m-2">
-              <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-trash-filled"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
-                stroke-width="0"
-                fill="currentColor"
-              />
-              <path
-                d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
-                stroke-width="0"
-                fill="currentColor"
-              />
-            </svg>
-            </button>
+
+            <div class="example-action-buttons">
+              <button mat-button (click)="openAllPanels()">Expand All</button>
+              <button mat-button (click)="closeAllPanels()">
+                Collapse All
+              </button>
+            </div>
+            <div>
+              <mat-accordion
+                *ngFor="let x of _instructorService.allMaterialsBySectionId"
+                #accordion
+                class="example-headers-align"
+                multi
+              >
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{ x.coursesectionname }}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      <!-- Type your name and age -->
+                      <!-- <mat-icon>account_circle</mat-icon> -->
+                    </mat-panel-description>
+
+                    <!-- Buttons placed at the end using Flexbox -->
+                    <div class="button-container">
+                      <button
+                        class="btn btn-primary m-2"
+                        (click)="OpenCreateLectureDialog(x.coursesectionid)"
+                      >
+                        Create Lecture
+                      </button>
+                      <button
+                        (click)="OpenUpdateDialog(x)"
+                        class="btn btn-success m-2"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-edit"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path
+                            d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                          />
+                          <path
+                            d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                          />
+                          <path d="M16 5l3 3" />
+                        </svg>
+                      </button>
+                      <button
+                        (click)="OpenConfirmDialog(x.coursesectionid)"
+                        class="btn btn-danger m-2"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-trash-filled"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path
+                            d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                            stroke-width="0"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                            stroke-width="0"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </mat-expansion-panel-header>
+
+                  <div *ngIf="x.lectures != null">
+                    <div
+                      class="row"
+                      *ngFor="let l of x.lectures"
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                      "
+                    >
+                      <div class="col-5">
+                        <p>{{ l.lecturename }}</p>
+                      </div>
+
+                      <div class="col-5">
+                        <p>
+                          <a [href]="l.lecturefile" target="_blank"
+                            >Download File</a
+                          >
+                        </p>
+                      </div>
+
+                      <div class="col-2">
+                        <button
+                          class="btn btn-primary m-2"
+                          (click)="OpenUpdateLectureDialog(l)"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-edit"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                              d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                            />
+                            <path
+                              d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                            />
+                            <path d="M16 5l3 3" />
+                          </svg>
+                        </button>
+                        <button
+                          (click)="OpenConfirmLectureDialog(l.lectureid)"
+                          class="btn btn-danger m-2"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-trash-filled"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                              d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                              stroke-width="0"
+                              fill="currentColor"
+                            />
+                            <path
+                              d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                              stroke-width="0"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
           </div>
-        </mat-expansion-panel-header>
-        
-    
-        <div  *ngIf="x.lectures != null">
 
-        <div  class="row" *ngFor="let l of x.lectures" style="display: flex; justify-content: space-between; align-items: center;">
-          
-          <div class="col-5">
-            <p>{{l.lecturename}} </p>
-          </div>
-        
-          <div class="col-5">
-            <p>  <a [href]="l.lecturefile" target="_blank">Download File</a> </p>
-          </div>
-       
-        
-          <div class="col-2">   
-            <button
-                  class="btn btn-primary m-2"
-                  (click)="OpenUpdateLectureDialog(l)"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-edit"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path
-                      d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
-                    />
-                    <path
-                      d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
-                    />
-                    <path d="M16 5l3 3" />
-                  </svg>
-                </button>
-              <button
-              (click)="OpenConfirmLectureDialog(l.lectureid)"
-                  class="btn btn-danger  m-2"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-trash-filled"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path
-                      d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
-                      stroke-width="0"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
-                      stroke-width="0"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </button>
-
-          
-          </div>
-      </div>
-      
-
-
-      </div>
-     
-    
-      
-    
-      </mat-expansion-panel> 
-    </mat-accordion>
-    
-  
-</div>
-</div>
-
-
-
-              <!-- <table *ngIf="_instructorService.allMaterialsBySectionId !== null && _instructorService.allMaterialsBySectionId.length > 0" class="table text-nowrap mb-0 align-middle text-center">
+          <!-- <table *ngIf="_instructorService.allMaterialsBySectionId !== null && _instructorService.allMaterialsBySectionId.length > 0" class="table text-nowrap mb-0 align-middle text-center">
                 <thead class="text-dark fs-4">
                     <tr>
                       <th class="border-bottom-0">
@@ -236,10 +238,10 @@
                     </tr>
                   </tbody>
               </table> -->
-          </div>
         </div>
       </div>
     </div>
+  </div>
 </app-insturctor-container>
 <!-- 
 <ng-template #OpenAddDialog>
@@ -264,259 +266,270 @@
       <br>
         -->
 
-        
-    <ng-template #CreateDialog >
-      <form [formGroup]="CreateCourseSectionForm">
-        <div class="row w-100" style="padding: 25px;">
-          <h3 class="mb-5">Create Course Section</h3>
+<ng-template #CreateDialog>
+  <form [formGroup]="CreateCourseSectionForm">
+    <div class="row w-100" style="padding: 25px">
+      <h3 class="mb-5">Create Course Section</h3>
 
-          <mat-form-field class="col-12">
-            <mat-label> Course Section Name</mat-label>
-            <input
-              matInput
-              placeholder="Course Section Name"
-              formControlName="coursesectionname"
-              required
-            />
-            <mat-error
-              *ngIf="
-                CreateCourseSectionForm.controls['coursesectionname'].hasError('required')
-              "
-              >course section name is required</mat-error
-            >
-          </mat-form-field>
-
-
-          <mat-form-field class="col-12">
-            <mat-label> Course Section Duration</mat-label>
-            <input
-              matInput
-              placeholder="Course Section Duration"
-              formControlName="coursesectionduration"
-              required
-            />
-            <mat-error
-              *ngIf="
-                CreateCourseSectionForm.controls['coursesectionduration'].hasError('required')
-              "
-              >course section duration is required</mat-error
-            >
-          </mat-form-field>
-  
-  
-        <button
-          mat-dialog-close
-          (click)="CreateCourseSection()"
-          [disabled]="CreateCourseSectionForm.invalid"
-          class="btn btn-primary w-50" style="margin: auto;">
-          Create
-        </button>
-        </div>
-      </form>
-    </ng-template>
-
-
-
-    
-    <ng-template #UpdateDialog >
-      <form [formGroup]="UpdateCourseSectionForm">
-        <div class="row w-100" style="padding: 25px;">
-          <h3 class="mb-5">Update Course Section</h3>
-
-      
-
-              <mat-form-field class="col-12">
-                <mat-label>Course Section Name</mat-label>
-                <input type="text" matInput formControlName="coursesectionname" />
-                <mat-error *ngIf="UpdateCourseSectionForm.controls['coursesectionname'].hasError('required')">course section name required</mat-error>
-
-              </mat-form-field>
-
-
-              
-              <mat-form-field class="col-12">
-                <mat-label>Course Section Name</mat-label>
-                <input type="number" matInput formControlName="coursesectionduration" />
-                <mat-error *ngIf="UpdateCourseSectionForm.controls['coursesectionduration'].hasError('required')">course section duration required</mat-error>
-
-              </mat-form-field>
-
-
-  
-        <button
-          mat-dialog-close
-          (click)="UpdateCourseSection()"
-          [disabled]="UpdateCourseSectionForm.invalid"
-          class="btn btn-primary w-50" style="margin: auto;">
-          Update 
-        </button>
-        </div>
-      </form>
-    </ng-template>
-  
-
-    <ng-template #ConfirmationDialog>
-      <h1 mat-dialog-title>Delete Course Section</h1>
-      <div mat-dialog-content>Would you like to delete Course Section?</div>
-      <div mat-dialog-actions style="justify-content:center !important;">
-        <button mat-dialog-close="no" cdkFocusInitial class="btn btn-secondary w-25 m-2">No</button>
-        <button  mat-dialog-close="yes" class="btn btn-danger w-25 m-2">Yes</button>
-      </div>
-    </ng-template>
-  
-
-
-    <ng-template #CreateLectureDialog >
-      <form [formGroup]="CreateLectureForm">
-        <div class="row w-100" style="padding: 25px;">
-          <h3 class="mb-5">Create New Lecture </h3>
-
-          <mat-form-field class="col-12">
-            <mat-label> Course Lecture Name</mat-label>
-            <input
-              matInput
-              placeholder="Course Lecture Name"
-              formControlName="lecturename"
-              required
-            />
-            <mat-error
-              *ngIf="
-                CreateLectureForm.controls['lecturename'].hasError('required')
-              "
-              >lecture name is required</mat-error
-            >
-          </mat-form-field>
-
-
-          <mat-form-field class="col-12">
-            <mat-label> Lecture Duration</mat-label>
-            <input
-              matInput
-              placeholder="Lecture Duration"
-              formControlName="lectureduration"
-              required
-            />
-            <mat-error
-              *ngIf="
-                CreateLectureForm.controls['lectureduration'].hasError('required')
-              "
-              >lecture duration is required</mat-error
-            >
-          </mat-form-field>
-  
-          
-      
-          <input
-          type="file"
-          class="file-input"
-          (change)="UploadFiles($event)"
-          #filesUpload
+      <mat-form-field class="col-12">
+        <mat-label> Course Section Name</mat-label>
+        <input
+          matInput
+          placeholder="Course Section Name"
+          formControlName="coursesectionname"
+          required
         />
-        <div class="file-upload border border-2 rounded-2 col-10" style="margin: auto; text-align: center;">
-          {{ filesName || "No file uploaded  yet." }}
-      
-          <button
-            mat-mini-fab
-            color="primary"
-            class="upload-btn btn btn-outline-primary "
-            (click)="filesUpload.click()"
-          >
-            <mat-icon>upload-btn</mat-icon>
-          </button>
-        </div>
+        <mat-error
+          *ngIf="
+            CreateCourseSectionForm.controls['coursesectionname'].hasError(
+              'required'
+            )
+          "
+          >course section name is required</mat-error
+        >
+      </mat-form-field>
 
-        <button
-          mat-dialog-close
-          (click)="CreateLecture()"
-          [disabled]="CreateLectureForm.invalid"
-          class="btn btn-primary w-50 mt-4" style="margin: auto;">
-          Create
-        </button>
-        </div>
-      </form>
-    </ng-template>
-
-
-    <ng-template #ConfirmationLectureDialog>
-      <h1 mat-dialog-title>Delete Lecture</h1>
-      <div mat-dialog-content>Would you like to delete Lecture?</div>
-      <div mat-dialog-actions style="justify-content:center !important;">
-        <button mat-dialog-close="no" cdkFocusInitial class="btn btn-secondary w-25 m-2">No</button>
-        <button  mat-dialog-close="yes" class="btn btn-danger w-25 m-2">Yes</button>
-      </div>
-    </ng-template>
-  
-
-
-
-    <ng-template #UpdateLectureDialog >
-
-      <form [formGroup]="UpdateLectureForm">
-        <div class="row w-100" style="padding: 25px;">
-          <h3 class="mb-5">Update Lecture </h3>
-
-          <mat-form-field class="col-12">
-            <mat-label> Update Lecture Name</mat-label>
-            <input
-              matInput
-              placeholder="Lecture Name"
-              formControlName="lecturename"
-              required
-            />
-            <mat-error
-              *ngIf="
-                UpdateLectureForm.controls['lecturename'].hasError('required')
-              "
-              >lecture name is required</mat-error
-            >
-          </mat-form-field>
-
-
-          <mat-form-field class="col-12">
-            <mat-label> Lecture Duration</mat-label>
-            <input
-              matInput
-              placeholder="Lecture Duration"
-              formControlName="lectureduration"
-              required
-            />
-            <mat-error
-              *ngIf="
-                UpdateLectureForm.controls['lectureduration'].hasError('required')
-              "
-              >lecture duration is required</mat-error
-            >
-          </mat-form-field>
-  
-          
-      
-          <input
-          type="file"
-          class="file-input"
-          (change)="UploadFiles($event)"
-          #filesUpload
+      <mat-form-field class="col-12">
+        <mat-label> Course Section Duration</mat-label>
+        <input
+          matInput
+          placeholder="Course Section Duration"
+          formControlName="coursesectionduration"
+          required
         />
-        <div class="file-upload border border-2 rounded-2 col-10" style="margin: auto; text-align: center;">
-          {{ filesName || "No file uploaded  yet." }}
-      
-          <button
-            mat-mini-fab
-            color="primary"
-            class="upload-btn btn btn-outline-primary "
-            (click)="filesUpload.click()"
-          >
-            <mat-icon>upload-btn</mat-icon>
-          </button>
-        </div>
+        <mat-error
+          *ngIf="
+            CreateCourseSectionForm.controls['coursesectionduration'].hasError(
+              'required'
+            )
+          "
+          >course section duration is required</mat-error
+        >
+      </mat-form-field>
+
+      <button
+        mat-dialog-close
+        (click)="CreateCourseSection()"
+        [disabled]="CreateCourseSectionForm.invalid"
+        class="btn btn-primary w-50"
+        style="margin: auto"
+      >
+        Create
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #UpdateDialog>
+  <form [formGroup]="UpdateCourseSectionForm">
+    <div class="row w-100" style="padding: 25px">
+      <h3 class="mb-5">Update Course Section</h3>
+
+      <mat-form-field class="col-12">
+        <mat-label>Course Section Name</mat-label>
+        <input type="text" matInput formControlName="coursesectionname" />
+        <mat-error
+          *ngIf="
+            UpdateCourseSectionForm.controls['coursesectionname'].hasError(
+              'required'
+            )
+          "
+          >course section name required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <mat-label>Course Section Name</mat-label>
+        <input type="number" matInput formControlName="coursesectionduration" />
+        <mat-error
+          *ngIf="
+            UpdateCourseSectionForm.controls['coursesectionduration'].hasError(
+              'required'
+            )
+          "
+          >course section duration required</mat-error
+        >
+      </mat-form-field>
+
+      <button
+        mat-dialog-close
+        (click)="UpdateCourseSection()"
+        [disabled]="UpdateCourseSectionForm.invalid"
+        class="btn btn-primary w-50"
+        style="margin: auto"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #ConfirmationDialog>
+  <h1 mat-dialog-title>Delete Course Section</h1>
+  <div mat-dialog-content>Would you like to delete Course Section?</div>
+  <div mat-dialog-actions style="justify-content: center !important">
+    <button
+      mat-dialog-close="no"
+      cdkFocusInitial
+      class="btn btn-secondary w-25 m-2"
+    >
+      No
+    </button>
+    <button mat-dialog-close="yes" class="btn btn-danger w-25 m-2">Yes</button>
+  </div>
+</ng-template>
+
+<ng-template #CreateLectureDialog>
+  <form [formGroup]="CreateLectureForm">
+    <div class="row w-100" style="padding: 25px">
+      <h3 class="mb-5">Create New Lecture</h3>
+
+      <mat-form-field class="col-12">
+        <mat-label> Course Lecture Name</mat-label>
+        <input
+          matInput
+          placeholder="Course Lecture Name"
+          formControlName="lecturename"
+          required
+        />
+        <mat-error
+          *ngIf="CreateLectureForm.controls['lecturename'].hasError('required')"
+          >lecture name is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <mat-label> Lecture Duration</mat-label>
+        <input
+          matInput
+          placeholder="Lecture Duration"
+          formControlName="lectureduration"
+          required
+        />
+        <mat-error
+          *ngIf="
+            CreateLectureForm.controls['lectureduration'].hasError('required')
+          "
+          >lecture duration is required</mat-error
+        >
+      </mat-form-field>
+
+      <input
+        type="file"
+        class="file-input"
+        (change)="UploadFiles($event)"
+        #filesUpload
+      />
+      <div
+        class="file-upload border border-2 rounded-2 col-10"
+        style="margin: auto; text-align: center"
+      >
+        {{ filesName || "No file uploaded  yet." }}
 
         <button
-          mat-dialog-close
-          (click)="UpdateLecture()"
-          [disabled]="UpdateLectureForm.invalid"
-          class="btn btn-primary w-50 mt-4" style="margin: auto;">
-         Update
+          mat-mini-fab
+          color="primary"
+          class="upload-btn btn btn-outline-primary"
+          (click)="filesUpload.click()"
+        >
+          <mat-icon>upload-btn</mat-icon>
         </button>
-        </div>
-      </form>
-    </ng-template>
-  
+      </div>
+
+      <button
+        mat-dialog-close
+        (click)="CreateLecture()"
+        [disabled]="CreateLectureForm.invalid"
+        class="btn btn-primary w-50 mt-4"
+        style="margin: auto"
+      >
+        Create
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #ConfirmationLectureDialog>
+  <h1 mat-dialog-title>Delete Lecture</h1>
+  <div mat-dialog-content>Would you like to delete Lecture?</div>
+  <div mat-dialog-actions style="justify-content: center !important">
+    <button
+      mat-dialog-close="no"
+      cdkFocusInitial
+      class="btn btn-secondary w-25 m-2"
+    >
+      No
+    </button>
+    <button mat-dialog-close="yes" class="btn btn-danger w-25 m-2">Yes</button>
+  </div>
+</ng-template>
+
+<ng-template #UpdateLectureDialog>
+  <form [formGroup]="UpdateLectureForm">
+    <div class="row w-100" style="padding: 25px">
+      <h3 class="mb-5">Update Lecture</h3>
+
+      <mat-form-field class="col-12">
+        <mat-label> Update Lecture Name</mat-label>
+        <input
+          matInput
+          placeholder="Lecture Name"
+          formControlName="lecturename"
+          required
+        />
+        <mat-error
+          *ngIf="UpdateLectureForm.controls['lecturename'].hasError('required')"
+          >lecture name is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <mat-label> Lecture Duration</mat-label>
+        <input
+          matInput
+          placeholder="Lecture Duration"
+          formControlName="lectureduration"
+          required
+        />
+        <mat-error
+          *ngIf="
+            UpdateLectureForm.controls['lectureduration'].hasError('required')
+          "
+          >lecture duration is required</mat-error
+        >
+      </mat-form-field>
+
+      <input
+        type="file"
+        class="file-input"
+        (change)="UploadFiles($event)"
+        #filesUpload
+      />
+      <div
+        class="file-upload border border-2 rounded-2 col-10"
+        style="margin: auto; text-align: center"
+      >
+        {{ filesName || "No file uploaded  yet." }}
+
+        <button
+          mat-mini-fab
+          color="primary"
+          class="upload-btn btn btn-outline-primary"
+          (click)="filesUpload.click()"
+        >
+          <mat-icon>upload-btn</mat-icon>
+        </button>
+      </div>
+
+      <button
+        mat-dialog-close
+        (click)="UpdateLecture()"
+        [disabled]="UpdateLectureForm.invalid"
+        class="btn btn-primary w-50 mt-4"
+        style="margin: auto"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</ng-template>
