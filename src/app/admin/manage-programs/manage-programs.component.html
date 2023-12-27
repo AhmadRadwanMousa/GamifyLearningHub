@@ -26,12 +26,7 @@
               <th class="border-bottom-0">
                 <h6 class="fw-semibold mb-0">Plan Name</h6>
               </th>
-              <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">Educational Period</h6>
-              </th>
-              <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">Program syllabus </h6>
-              </th>
+             
              
 
               <th class="border-bottom-0">
@@ -57,7 +52,7 @@
                 </div>
               </td>
 
-              <td class="border-bottom-0" *ngIf="x.programprice !== 0">
+              <td class="border-bottom-0" *ngIf="x.programprice !== 0 && x.programsale ==0 ">
                 <div class="d-flex align-items-center gap-2">
                   <span class="badge bg-primary rounded-3 fw-semibold w-100"
                     >{{ x.programprice }} $</span
@@ -65,19 +60,21 @@
                 </div>
               </td>
 
+              <td class="border-bottom-0" *ngIf="x.programprice !== 0 && x.programsale !=0 ">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-danger rounded-3 fw-semibold w-100">
+               <span style="text-decoration: line-through" > {{x.programprice}}$ </span> &nbsp;&nbsp; 
+                {{x.programprice - (x.programprice * x.programsale/100 )}} $
+                    </span
+                  >
+                </div>
+              </td>
+
+
               <td class="border-bottom-0">
                 <p class="mb-0 fw-normal">{{ x.plan.planname }}</p>
               </td>
-              <td class="border-bottom-0">
-                <p class="mb-0 fw-normal">
-                  {{ x.educationalperiod.startdate | date : "shortDate" }}
-                  - {{ x.educationalperiod.enddate | date : "shortDate" }}
-                </p>
-              </td>
-
-              <td class="border-bottom-0">
-                <a [href]="x.programsyllabus" target="_blank">Download File</a>
-              </td>
+            
              
              
 
@@ -157,7 +154,7 @@
               viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" 
               stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
               <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg>
-              </button>
+            </button>
 
 
 
@@ -502,23 +499,33 @@ class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
 
   <ng-template #DeatailsDialog>
   <div style="width: 400px;">
+    <h1 mat-dialog-title class="mb-2">Details Program</h1>
+    <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black"> </span> <img [src]="data.programimage" style="width: 120px; height: 100px;" /></div>
+
     <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black;">  Program Name : </span>{{ data.programname }}  </div>
-    <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black;">  Program Name : </span>{{ data.programprice }}  </div>
+
+    <div mat-dialog-content class="pb-0" *ngIf="data.programprice != 0 && data.programsale == 0"><span style="font-weight:500; color: black;">  Program Price : </span>{{ data.programprice }} $  </div>
+    <div mat-dialog-content class="pb-0" *ngIf="data.programprice != 0 && data.programsale != 0"><span style="font-weight:500; color: black;"> 
+       Program Price : </span>  <span style="text-decoration: line-through;font-size: 17px; font-weight: 500;" class="text-danger" > {{data.programprice}}$ </span> &nbsp;&nbsp;  {{data.programprice - (data.programprice * data.programsale/100 )}} $ </div>
+    <div mat-dialog-content class="pb-0" *ngIf="data.programprice == 0"><span style="font-weight:500; color: black;">  Program Price : </span> Free  </div>
+
+
+
 
     <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black">  Program Description : </span> {{ data.programdescription }}</div>
 
     <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black">  Plan Name : </span> {{ data.plan.planname }}</div>
 
-    <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black">  Program Syllabus : </span>  <a [href]="data.programsyllabus" target="_blank">Download File</a> </div>
-    <div mat-dialog-content ><span style="font-weight:500; color: black">  Program Image : </span> <img [src]="data.programimage" style="width: 100px; height: 80px;" /></div>
+    <div mat-dialog-content class="pb-0"><span style="font-weight:500; color: black">  Educational Period : </span>   {{ data.educationalperiod.startdate | date : "mediumDate" }}
+      - {{ data.educationalperiod.enddate | date : "mediumDate" }} </div>
+
+    <div mat-dialog-content ><span style="font-weight:500; color: black">  Program Syllabus : </span>  <a [href]="data.programsyllabus" target="_blank">Download File</a> </div>
 
 
-    <!-- <div mat-dialog-actions style="justify-content:center !important;">
-        <button  mat-dialog-close="accept" class="btn btn-success w-27 m-2">Accept</button>
-        <button mat-dialog-close="reject" class="btn btn-danger  w-27 m-2">Reject</button>
-        <button  mat-dialog-close="cancel" cdkFocusInitial class="btn btn-primary w-27 m-2">Cancel</button>
+    <div mat-dialog-actions style="justify-content:center !important;">
+        <button  mat-dialog-close="ok" cdkFocusInitial class="btn btn-success w-40 m-3">Ok</button>
 
-    </div> -->
+    </div>
           
   </div>
   </ng-template>

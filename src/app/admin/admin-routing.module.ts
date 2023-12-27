@@ -68,6 +68,11 @@ const routes: Routes = [
     path: 'messages',
     component: MessageComponent,
   },
+
+  {
+    path: 'section/:id',
+    component: ManageSectionComponent,
+  },
   {
     path: 'usersRequests',
     component: ManageUserStatusComponent,
