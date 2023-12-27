@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { InstructorRoutingModule } from './instructor-routing.module';
 import { IndexComponent } from './index/index.component';
 import { SharedModule } from '../shared/shared.module';
+import { ManageAttendenceSectionsComponent } from './manage-attendence-sections/manage-attendence-sections.component';
+import { ManageAttendenceUsersComponent } from './manage-attendence-users/manage-attendence-users.component';
+
 import { ManageExamsComponent } from './manage-exams/manage-exams.component';
 import { QuestionFormComponent } from './question-form/question-form.component';
 import { ManageAssignmentsComponent } from './manage-assignments/manage-assignments.component';
@@ -26,6 +29,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ManageMaterialComponent,
     ManageExamsComponent,
     QuestionFormComponent,
+    ManageAttendenceSectionsComponent,
+    ManageAttendenceUsersComponent,
   ],
   imports: [
     CommonModule,

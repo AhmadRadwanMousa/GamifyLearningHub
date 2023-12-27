@@ -14,6 +14,8 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root',
 })
 export class InstructorService {
+  //Attendence
+  //get Sections by instructor id
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
@@ -459,5 +461,41 @@ export class InstructorService {
           }, 1000);
         }
       );
+  }
+  SectionsByInstructorId: any = [];
+
+  getAllInstructorSections(id: number = 109) {
+    this.http
+      .get(`${URL}/TakeAttendenceBySection/GetSectionsByInstructor/${id}`)
+      .subscribe({
+        next: (res) => {
+          this.SectionsByInstructorId = res;
+        },
+        error: (err) => {
+          this.toastr.error(err.message);
+        },
+      });
+  }
+
+  //Get All Users In Single Section
+  //Get Users By Section ID
+  UsersInSection: any;
+
+  getUsersBySectionId(id: number) {
+    this.spinner.show();
+
+    this.http
+      .get('https://localhost:7036/api/UserSection/GetUsersBySectionId/' + id)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.UsersInSection = res;
+          this.spinner.hide();
+        },
+        error: (err) => {
+          this.toastr.error(err.message);
+          this.spinner.hide();
+        },
+      });
   }
 }

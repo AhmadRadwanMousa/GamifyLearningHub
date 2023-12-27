@@ -25,6 +25,10 @@ const routes: Routes = [
   { path: 'role', component: ManageRoleComponent },
   { path: 'section', component: ManageSectionComponent },
   {
+    path: 'section/:id',
+    component: ManageSectionComponent,
+  },
+  {
     path: 'plan',
     component: ManagePlanComponent,
   },

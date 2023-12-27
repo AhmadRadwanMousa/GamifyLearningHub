@@ -5,6 +5,8 @@ import { ManageMaterialComponent } from './manage-material/manage-material.compo
 import { ManageAssignmentsComponent } from './manage-assignments/manage-assignments.component';
 import { ManageAssignmentSolutionComponent } from './manage-assignment-solution/manage-assignment-solution.component';
 import { ManageExamsComponent } from './manage-exams/manage-exams.component';
+import { ManageAttendenceSectionsComponent } from './manage-attendence-sections/manage-attendence-sections.component';
+import { ManageAttendenceUsersComponent } from './manage-attendence-users/manage-attendence-users.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'manageExams',
     component: ManageExamsComponent,
+  },
+  {
+    path: 'my-sections',
+    component: ManageAttendenceSectionsComponent,
+  },
+  {
+    path: 'my-sectionsDetails/:id',
+    component: ManageAttendenceUsersComponent,
   },
 ];
 
