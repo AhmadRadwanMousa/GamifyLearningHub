@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
+import { ManageAttendenceSectionsComponent } from './manage-attendence-sections/manage-attendence-sections.component';
 
 const routes: Routes = [
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'my-sections',
-    component: IndexComponent,
+    component: ManageAttendenceSectionsComponent,
   },
  
 ];
