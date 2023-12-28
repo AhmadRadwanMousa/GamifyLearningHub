@@ -1,0 +1,77 @@
+<div class="container-fluid my-5">
+    
+    <div class="row">
+        <div class="col-lg-3 col-md-12">
+            <nav id="sidebar">
+                <div class="p-4 pt-5">
+                    <ul class="list-unstyled components mb-5">
+                        <li class="active">
+                            <a routerLink="/learner/userDashboard">
+                                <i class="bx bx-home fs-6"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/learner/enrolledPrograms">
+                                <i class="bx bx-book-bookmark"></i>
+                                Enrolled Programs
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/learner/userAttendence">
+                                <i class="bx bx-calendar"></i>
+                                Attendence
+                            </a>
+                        </li>
+
+                        <li>
+                            <a routerLink="/learner/userExams">
+                                <i class="bx bx-pencil"></i>
+                                Exams and Quizzes
+                            </a>
+                        </li>
+                        <li>
+                        <li>
+                            <a routerLink="/learner/userAssignments">
+                                <i class="bx bx-book"></i>
+                                Assignments
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/learner/userEditProfile">
+                                <i class="bx bx-user"></i>
+                                Edit profile
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/learner/userCompletedPrograms">
+                                <i class="bx bx-check"></i>
+                                Completed Programs
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/learner/userTestimonial">
+                                <i class="fa-solid fa-quote-right"></i>
+                                Testimonials
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="#">
+                                <i class="bx bxs-shopping-bag"></i>
+                                Orders List
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-lg-9 col-md-12">
+            <div class="p-4">
+                <div class="my-card pb-2">
+                    <ng-content></ng-content>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

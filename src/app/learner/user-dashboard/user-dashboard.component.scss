@@ -1,0 +1,41 @@
+.state-box{
+    padding: 25px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 25px;
+    border: 1px solid var(--borderColor);
+}
+
+
+.state-box{
+    padding: 25px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 25px;
+    border: 1px solid #eeeeee;
+}
+.state-icon{
+    width: 80px;
+    height: 80px;
+    font-size: 42px;
+    margin-bottom: 20px;
+    color: var(--mainColor);
+    transition: var(--transition);
+    background: rgba(195, 60, 103, 0.1);
+}
+.state-icon:hover{
+    background: var(--mainColor);
+    transition: var(--transition);
+}
+.state-icon > i {
+    left: 0;
+    top: 50%;
+    right: 0;
+    line-height: 1;
+    position: absolute;
+    transform: translateY(-50%);
+}
+.state-icon:hover {
+    color: var(--whiteColor);
+    transition: var(--transition);
+}

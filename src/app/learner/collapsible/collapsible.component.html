@@ -1,0 +1,10 @@
+<!-- src/app/collapsible/collapsible.component.html -->
+<div class="custom-collapse">
+    <div class="collapse-header" (click)="toggleCollapse()">
+      {{Tilte}}
+    </div>
+    <div class="collapse-body" [@expandCollapse]="isCollapsed ? 'collapsed' : 'expanded'">
+      <p>{{Content}}</p>
+    </div>
+  </div>
+  

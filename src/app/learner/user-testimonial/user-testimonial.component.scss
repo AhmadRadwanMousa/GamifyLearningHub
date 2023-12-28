@@ -1,0 +1,37 @@
+.testimonial-card {
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 15px;
+  }
+
+  .testimonial-quote {
+    position: absolute;
+    top: 34px;
+    right: 36px;
+    font-size: 50px;
+    color: #eb1d46;
+    opacity: 0.8;
+  }
+
+  .testimonial-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  .testimonial-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+  }
+
+  .testimonial-author {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+  }
