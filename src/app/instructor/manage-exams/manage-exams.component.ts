@@ -39,7 +39,7 @@ export class ManageExamsComponent {
   
   ngOnInit(){
     //console.log(this.getUserIdFromToken());
-    this.instructorService.GetAllInstructorSectionsById(this.getUserIdFromToken());
+    this.instructorService.GetSectionsByUserId();
     
   }
 
