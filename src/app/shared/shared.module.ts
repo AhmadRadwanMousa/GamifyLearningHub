@@ -42,7 +42,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { UserDashboardContainerComponent } from './user-dashboard-container/user-dashboard-container.component';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -120,6 +120,7 @@ import { UserDashboardContainerComponent } from './user-dashboard-container/user
     NgxMatTimepickerModule,
     MatCardModule,
     UserDashboardContainerComponent,
+    MatSlideToggleModule
   ],
 })
 export class SharedModule {}

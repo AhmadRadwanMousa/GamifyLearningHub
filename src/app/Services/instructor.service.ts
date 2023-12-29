@@ -4,7 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { URL } from '../constants/url';
 import { QuestionWithOptions } from 'src/app/instructor/question-form/question-form.component';
-import { catchError } from 'rxjs';
+import { Observable, catchError, finalize } from 'rxjs';
 import { RouterPreloader } from '@angular/router';
 import { max } from 'rxjs';
 import { map } from 'rxjs';
@@ -119,7 +119,7 @@ export class InstructorService {
     this.http
       .get(
         'https://localhost:7036/api/Section/GetAllSectionsByUserId/' +
-          this.userId
+        this.userId
       )
       .subscribe({
         next: (section: any) => {
@@ -141,7 +141,7 @@ export class InstructorService {
     this.http
       .get(
         'https://localhost:7036/api/CourseSection/GetCoursesSectionBySectionId/' +
-          sectionId
+        sectionId
       )
       .subscribe({
         next: (material: any) => {
@@ -479,23 +479,39 @@ export class InstructorService {
 
   //Get All Users In Single Section
   //Get Users By Section ID
-  UsersInSection: any;
-
-  getUsersBySectionId(id: number) {
+  getUsersBySectionId(id: number): Observable<any[]> {
     this.spinner.show();
-
-    this.http
-      .get('https://localhost:7036/api/UserSection/GetUsersBySectionId/' + id)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.UsersInSection = res;
+    return this.http
+      .get<any[]>('https://localhost:7036/api/UserSection/GetUsersBySectionId/' + id)
+      .pipe(
+        finalize(() => {
           this.spinner.hide();
-        },
-        error: (err) => {
-          this.toastr.error(err.message);
+        }),
+        catchError((error) => {
+          this.toastr.error(error.message);
           this.spinner.hide();
-        },
-      });
+          throw error; 
+        })
+      );
+  }
+  careteAttendence(data: any){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    this.http.post(`${URL}/TakeAttendenceBySection`, data, { headers, responseType: 'text' }).subscribe(
+      {
+        next:(res)=>{this.toastr.success(res)},
+        error:(err)=>{this.toastr.error(err)}
+      }
+    )
+  }
+  attendenceDetails: any = [];
+  GetAttendencDetails(id: number){
+    this.http.get(`${URL}/TakeAttendenceBySection/GetAttendenceBySection/${id}`).subscribe(
+      {
+        next:(res)=>{this.spinner.show(); this.attendenceDetails = res; this.spinner.hide()},
+        error:()=>{this.spinner.hide(); this.toastr.error("Can't load details")}
+      }
+    );
   }
 }
