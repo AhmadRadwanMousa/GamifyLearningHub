@@ -24,6 +24,7 @@ export class InstructorService {
     let token: any = localStorage.getItem('token');
     const tokenPayload: any = jwtDecode(token);
     this.userId = Number(tokenPayload.userId);
+    
   }
   MyInstructorSections: any = [];
   GetAllInstructorSectionsById(id: number) {
@@ -498,4 +499,28 @@ export class InstructorService {
         },
       });
   }
+
+  // <! -- Report Properties --!> 
+  
+  
+  report: any;
+  filterdReport: any = []
+  reported:any = []
+  
+  
+  
+  reports: any = [];
+    getAllReports() {
+      this.http.get('https://localhost:7036/api/Report/GetAllReport').subscribe({
+        next: (result) => {
+          this.report = result;
+        
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+      
+      
+    }
 }

@@ -41,6 +41,8 @@ import { HeaderInstructorComponent } from './header-instructor/header-instructor
 import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { ReportFilterPipe } from '../report-filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     InsturctorContainerComponent,
     SidebarInstructorComponent,
     HeaderInstructorComponent,
+    ReportFilterPipe
   ],
   imports: [
     CommonModule,
@@ -117,6 +120,7 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     HeaderInstructorComponent,
     NgxMatTimepickerModule,
     MatCardModule,
+    ReportFilterPipe
   ],
 })
 export class SharedModule {}

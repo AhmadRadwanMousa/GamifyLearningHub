@@ -7,6 +7,7 @@ import { ManageAssignmentSolutionComponent } from './manage-assignment-solution/
 import { ManageExamsComponent } from './manage-exams/manage-exams.component';
 import { ManageAttendenceSectionsComponent } from './manage-attendence-sections/manage-attendence-sections.component';
 import { ManageAttendenceUsersComponent } from './manage-attendence-users/manage-attendence-users.component';
+import { ReportComponent } from './reportComponent/report.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'my-sectionsDetails/:id',
     component: ManageAttendenceUsersComponent,
+  },
+  {
+    path: 'report',
+    component: ReportComponent
   },
 ];
 
