@@ -30,6 +30,7 @@ export class ManageCourseSequenceComponent {
   @ViewChild('CreateDialog') CreateCorseSequenceDialog: any;
   @ViewChild('ConfirmationDialog') ConfirmationDeleteDialog: any;
   @ViewChild('UpdateDialog') UpdateCorseSequenceDialog: any;
+  @ViewChild('ConfirmationCertificationDialog') ConfirmationCertificationDialog: any;
 
 
   OpenSections(id: number) {
@@ -64,6 +65,7 @@ export class ManageCourseSequenceComponent {
     program : new FormControl(),
     certifications : new FormControl(),
     sections  : new FormControl(),
+    certificationsNavigation : new FormControl(),
   });
 
 
@@ -75,12 +77,21 @@ export class ManageCourseSequenceComponent {
   }
 
   CreateCourseSequence() {
+    const nextDay = new Date( this.CreateCourseSequenceForm.controls['startdate'].value);
+    nextDay.setDate(nextDay.getDate() + 1);
+    this.CreateCourseSequenceForm.controls['startdate'].setValue(nextDay);
+
+
+    const nextDay1 = new Date( this.CreateCourseSequenceForm.controls['enddate'].value);
+    nextDay1.setDate(nextDay1.getDate() + 1);
+    this.CreateCourseSequenceForm.controls['enddate'].setValue(nextDay1);
+
     if(this.CreateCourseSequenceForm.controls['perviouscourseid'].value == 0)
     this.CreateCourseSequenceForm.controls['perviouscourseid'].setValue(null);
     this.CreateCourseSequenceForm.controls['programid'].setValue(this.id);
     this._adminService.CreateCoursesSequence(this.CreateCourseSequenceForm.value);
   }
-
+ 
   DeletCourseSequence(id: number) {
     this._adminService.DeleteCoursesSequence(id , this.id);
   }
@@ -93,12 +104,34 @@ export class ManageCourseSequenceComponent {
   }
 
 
+  CertificationCourseSequence(id: number) {
+    this._adminService.CreateCertificationCourseSequence(id , this.id);
+  }
+
+  OpenConfirmCertificationDialog(id: number) {
+    var dialog = this.dialog.open(this.ConfirmationCertificationDialog);
+    dialog.afterClosed().subscribe((result) => {
+      if (result == 'yes') this.CertificationCourseSequence(id);
+    });
+  }
+
   OpenUpdateDialog(data : any){
     this.UpdateCourseSequenceForm.setValue(data);
     this.dialog.open(this.UpdateCorseSequenceDialog);
     }
     
     UpdateCourseSequence(){
+
+      const nextDay = new Date( this.UpdateCourseSequenceForm.controls['startdate'].value);
+      nextDay.setDate(nextDay.getDate() + 1);
+      this.UpdateCourseSequenceForm.controls['startdate'].setValue(nextDay);
+  
+  
+      const nextDay1 = new Date( this.UpdateCourseSequenceForm.controls['enddate'].value);
+      nextDay1.setDate(nextDay1.getDate() + 1);
+      this.UpdateCourseSequenceForm.controls['enddate'].setValue(nextDay1);
+
+
       if(this.UpdateCourseSequenceForm.controls['perviouscourseid'].value == 0)
       this.UpdateCourseSequenceForm.controls['perviouscourseid'].setValue(null);
       this._adminService.UpdateCourseSequence(this.UpdateCourseSequenceForm.value , this.id);

@@ -1,6 +1,6 @@
 import { SharedRoutingModule } from './shared-routing.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
@@ -41,6 +41,7 @@ import { HeaderInstructorComponent } from './header-instructor/header-instructor
 import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { AuthGuard } from '../RouteGuard/auth-guard.guard';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     InsturctorContainerComponent,
     SidebarInstructorComponent,
     HeaderInstructorComponent,
+    
   ],
   imports: [
     CommonModule,

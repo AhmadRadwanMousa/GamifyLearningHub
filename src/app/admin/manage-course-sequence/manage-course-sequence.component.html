@@ -1,7 +1,7 @@
 <app-admin-container>
   <div class="card w-100">
     <div class="card-body p-4">
-      <h5 class="card-title fw-semibold mb-4">All Programs</h5>
+      <h5 class="card-title fw-semibold mb-4">All Course Sequence</h5>
       <hr />
       <button
         mat-dialog-close
@@ -50,12 +50,14 @@
 
               <td class="border-bottom-0">
                 <p class="mb-0 fw-normal">
-                  {{ x.startdate | date : "mediumDate" }}
+                  {{ x.startdate| date : "mediumDate" }}
+
                 </p>
               </td>
 
               <td class="border-bottom-0">
                 <p class="mb-0 fw-normal">
+                
                   {{ x.enddate | date : "mediumDate" }}
                 </p>
               </td>
@@ -116,12 +118,35 @@
                     />
                   </svg>
                 </button>
+           
+           
+           
+
+
+
                 <button
                   [routerLink]="['/admin/section/', x.coursesequenceid]"
                   class="btn btn-success ms-2"
                 >
                   <i class="ti ti-books fs-6"></i>
                 </button>
+             
+             
+                <button
+                (click)="OpenConfirmCertificationDialog(x.coursesequenceid)"
+                [disabled] = "x.certifications == 1"
+                class="btn btn-danger ms-2"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-certificate"
+               width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"
+                 fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                 <path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5" /><path d="M6 14m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                 <path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5" /></svg>
+              </button>
+
+             
+             
               </td>
             </tr>
           </tbody>
@@ -279,7 +304,7 @@
             <option
               *ngFor="let course of _adminService.courses"
               [value]="course.courseid"
-              [disabled]="CreateCourseSequenceForm.controls['courseid'].invalid"
+              [disabled]="UpdateCourseSequenceForm.controls['courseid'].invalid"
             >
               {{ course.coursename }}
             </option>
@@ -326,4 +351,23 @@
       </div>
     </form>
   </ng-template>
+
+
+  <ng-template #ConfirmationCertificationDialog>
+    <h1 mat-dialog-title>Create Certification</h1>
+    <div mat-dialog-content>Would you like to create certification?</div>
+    <div mat-dialog-actions style="justify-content: center !important">
+      <button
+        mat-dialog-close="no"
+        cdkFocusInitial
+        class="btn btn-secondary w-25 m-2"
+      >
+        No
+      </button>
+      <button mat-dialog-close="yes" class="btn btn-danger w-25 m-2">
+        Yes
+      </button>
+    </div>
+  </ng-template>
+
 </app-admin-container>

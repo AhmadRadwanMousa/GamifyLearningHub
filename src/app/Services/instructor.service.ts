@@ -111,6 +111,103 @@ export class InstructorService {
     });
   }
 
+
+// announcements
+  
+  announcementsBySectionId: any = [];
+
+  GetAnnouncementsBySectionId(sectionId : number) {
+    this.spinner.show();
+    this.http
+      .get(
+        'https://localhost:7036/api/Announcement/GetAnnouncementsBySectionId/' +
+        sectionId
+      )
+      .subscribe({
+        next: (announcements: any) => {
+          this.announcementsBySectionId = announcements;
+
+          this.spinner.hide();
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+
+
+  CreateAnnouncements(data: any) {
+    this.spinner.show();
+    this.http.post('https://localhost:7036/api/Announcement', data).subscribe({
+      next: () => {
+        this.GetSectionsByUserId();
+        this.GetAllMaterialsBySectionId(data.sectionid);
+        this.GetAnnouncementsBySectionId(data.sectionid);
+        this.spinner.hide();
+        this.toastr.success('Announcement created successfully');
+      },
+      error: (err) => {
+        console.log(err);
+        this.spinner.hide();
+        this.toastr.error('Failed to create announcement');
+      },
+    });
+  }
+
+
+  UpdateAnnouncements(data: any) {
+    this.spinner.show();
+    this.http
+      .put(
+        'https://localhost:7036/api/Announcement' , data )
+      .subscribe({
+        next: () => {
+          console.log('Announcement Updated');
+          this.GetSectionsByUserId();
+          this.GetAllMaterialsBySectionId(data.sectionid);
+          this.GetAnnouncementsBySectionId(data.sectionid);
+          this.spinner.hide();
+          this.toastr.success('Announcement updated successfully');
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+          this.toastr.error('Failed to update announcement');
+        },
+      });
+  }
+
+  DeleteAnnouncements(id: number, sectionid: number) {
+    console.log(id);
+    this.spinner.show();
+    this.http
+      .delete('https://localhost:7036/api/Announcement/' + id)
+      .subscribe({
+        next: (x: any) => {
+          this.GetSectionsByUserId();
+          this.GetAllMaterialsBySectionId(sectionid);
+          this.GetAnnouncementsBySectionId(sectionid);
+
+          this.spinner.hide();
+          if (x == 1) {
+            this.toastr.success('Delete announcement success');
+          }
+        },
+        error: (err) => {
+          console.log('error');
+
+          this.toastr.error('Delete announcement error');
+          this.spinner.hide();
+        },
+      });
+  }
+
+
+
+
+
   userId: any = 0;
   sectionsByUserId: any = [];
 

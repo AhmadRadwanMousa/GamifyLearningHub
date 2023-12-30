@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 import { AuthService } from 'src/app/Services/auth.service';
 import { RouteService } from 'src/app/Services/route-service.service';
 
@@ -28,9 +29,17 @@ export class HeaderComponent implements OnInit {
     private routeService: RouteService,
     public route: Router,
     public authService: AuthService
-  ) {}
+  ) {
+    let data = this.authService.isLoggedIn();
+    if(data == true ){
+      this.login = true;
+    }
+  }
 
-  ngOnInit(): void {}
+  login = false;
+  ngOnInit() {
+
+  }
 
   classApplied = false;
   toggleClass() {
