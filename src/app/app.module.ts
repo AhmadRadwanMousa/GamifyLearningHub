@@ -23,9 +23,11 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './RouteGuard/auth-interceptor';
 import { RoleGuard } from './RouteGuard/role.guard';
+import { ReportComponent } from './instructor/reportComponent/report.component';
+import { ReportFilterPipe } from './report-filter.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ReportComponent],
   imports: [
     AppRoutingModule,
     SharedModule,
