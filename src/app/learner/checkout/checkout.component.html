@@ -24,7 +24,8 @@
         <div class="col-lg-6 col-md-12">
           <div class="billing-details">
             <h3 class="title">Billing Details</h3>
-            <div class="row">
+            <div id="paypalbutton" *ngIf="view === 'paypal'"></div>
+            <div class="row" *ngIf="view === 'default'">
               <div class="col-lg-12 col-md-12">
                 <div class="form-group">
                   <label>Country <span class="required">*</span></label>
@@ -110,20 +111,20 @@
                     </td>
                   </tr>
 
-                  <tr>
+                  <!-- <tr>
                     <td class="order-subtotal">
                       <span>Cart Subtotal</span>
                     </td>
                     <td class="order-subtotal-price">
                       <span class="order-subtotal-amount">$1683.50</span>
                     </td>
-                  </tr>
+                  </tr> -->
                   <tr>
                     <td class="order-shipping">
                       <span>Shipping</span>
                     </td>
                     <td class="shipping-price">
-                      <span>$30.00</span>
+                      <span>Free</span>
                     </td>
                   </tr>
                   <tr>
@@ -131,7 +132,9 @@
                       <span>Order Total</span>
                     </td>
                     <td class="product-subtotal">
-                      <span class="subtotal-amount">$1713.50</span>
+                      <span class="subtotal-amount"
+                        >${{ this.learnerService.CartTotal }}</span
+                      >
                     </td>
                   </tr>
                 </tbody>
@@ -144,7 +147,8 @@
                     type="radio"
                     id="direct-bank-transfer"
                     name="radio-group"
-                    checked
+                    [checked]="view === 'default'"
+                    (change)="OnRadioButtonChange('default')"
                   />
                   <label for="direct-bank-transfer">Direct Bank Transfer</label>
 
@@ -153,19 +157,17 @@
                   shipped until the funds have cleared in our account.
                 </p>
                 <p>
-                  <input type="radio" id="paypal" name="radio-group" />
-                  <label for="paypal">PayPal</label>
-                </p>
-                <p>
                   <input
                     type="radio"
-                    id="cash-on-delivery"
+                    id="paypal"
                     name="radio-group"
+                    [checked]="view === 'paypal'"
+                    (change)="OnRadioButtonChange('paypal')"
                   />
-                  <label for="cash-on-delivery">Cash on Delivery</label>
+                  <label for="paypal">PayPal</label>
                 </p>
               </div>
-              <a routerLink="/checkout" class="default-btn"
+              <a class="default-btn"
                 ><i class="bx bx-paper-plane icon-arrow before"></i
                 ><span class="label">Place Order</span
                 ><i class="bx bx-paper-plane icon-arrow after"></i

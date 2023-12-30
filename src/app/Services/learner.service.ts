@@ -19,19 +19,33 @@ export class LearnerService {
   }
   userId: any;
   CartItemsByUserId: any = [];
+  CartTotal: any;
+  CartId: any;
   GetCartItemsByUserId(userId: number) {
     this.spinner.show();
     this.http.get(`${URL}/CartItems/` + userId).subscribe(
-      (res) => {
+      (res: any) => {
         this.CartItemsByUserId = res;
         setTimeout(() => {
           this.spinner.hide();
         }, 1000);
+        this.CartId = res[0].cartid;
+        let cartId = 0;
+        if (res && res[0] && res[0].cartid) {
+          cartId = res[0].cartid;
+        }
+        this.CartId = cartId;
+        this.CartTotal = res.reduce((accumulator: any, currentItem: any) => {
+          const discountedPrice =
+            currentItem.program.programprice -
+            currentItem.program.programprice *
+              (currentItem.program.programsale / 100);
+          return accumulator + discountedPrice;
+        }, 0);
       },
       (error) => {
         setTimeout(() => {
           this.spinner.hide();
-          this.toastr.error(error.message, 'Something went wrong');
         }, 1000);
       }
     );
@@ -48,6 +62,7 @@ export class LearnerService {
         }
       },
       (error) => {
+        console.log(error.message);
         setTimeout(() => {
           this.spinner.hide();
           this.toastr.info('item is already exist on your cart ');
@@ -77,7 +92,27 @@ export class LearnerService {
         }
       );
   }
-  // GetCartByUserId() {
-  //   return this.http.get(`${URL}/CartItems/GetCartByUserId/` + this.userId);
-  // }
+  CreatePayment(paymentDetails: any) {
+    this.spinner.show();
+    this.http.post(`${URL}/Payment`, paymentDetails).subscribe(
+      (res) => {
+        if (res) {
+          setTimeout(() => {
+            this.spinner.hide();
+            this.toastr.success(
+              'Thank you for your shopping with us',
+              'Successfully paid!'
+            );
+          }, 1000);
+        }
+      },
+      (error) => {
+        setTimeout(() => {
+          this.spinner.hide();
+          console.log(error);
+          this.toastr.info('item is already exist on your cart ');
+        }, 1000);
+      }
+    );
+  }
 }
