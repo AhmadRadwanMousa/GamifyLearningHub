@@ -5,6 +5,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 import { AuthService } from 'src/app/Services/auth.service';
 import { LearnerService } from 'src/app/Services/learner.service';
 import { RouteService } from 'src/app/Services/route-service.service';

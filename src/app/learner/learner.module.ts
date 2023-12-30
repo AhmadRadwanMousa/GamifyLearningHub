@@ -21,7 +21,8 @@ import { StudentReportComponent } from './student-report/student-report.componen
 import { CartComponent } from './cart/cart.component';
 import { CartDetailsComponent } from './cart/cart-details/cart-details.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-
+import { TestimonialComponent } from './testimonial/testimonial.component';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     UserDashboardComponent,
@@ -42,6 +43,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     CartComponent,
     CartDetailsComponent,
     CheckoutComponent,
+    TestimonialComponent,
   ],
   imports: [CommonModule, LearnerRoutingModule, SharedModule],
 })

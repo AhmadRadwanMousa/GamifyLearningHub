@@ -7,6 +7,7 @@ import { ProgramsPlanComponent } from './programs-plan/programs-plan.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import {InstructorPajeComponent} from './instructor-page/instructor-paje.component'
 import { InstructorDetailsPageComponent } from './instructor-details-page/instructor-details-page.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 const routes: Routes = [
   {
     path: 'programs',
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'instructorDetails/:id',
     component: InstructorDetailsPageComponent,
+  },
+  {
+    path: 'about',
+    component: AboutUsComponent,
   },
 ];
 

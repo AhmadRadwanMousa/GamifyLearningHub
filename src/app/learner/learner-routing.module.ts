@@ -14,6 +14,7 @@ import { CompletedCoursesComponent } from './completed-courses/completed-courses
 import { StudentReportComponent } from './student-report/student-report.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { TestimonialComponent } from './testimonial/testimonial.component';
 
 const routes: Routes = [
   { path: 'userDashboard', component: UserDashboardComponent },
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
+  },
+  {
+    path: 'testimonial',
+    component: TestimonialComponent,
   },
 ];
 

@@ -449,6 +449,30 @@ export class AdminService {
     });
   }
 
+
+  CreateCertificationCourseSequence(id: number, programid: number) {
+    this.spinner.show();
+    this.http
+      .get('https://localhost:7036/api/Certification/PassUser/' + id)
+      .subscribe({
+        next: (x: any) => {
+          this.GetCoursesSequenceByProgramId(programid);
+          this.spinner.hide();
+          if (x.rowsAffected == 1) {
+            this.toastr.success('Created Certification success');
+          } else {
+            this.toastr.error('Created Certification error');
+          }
+         
+        },
+        error: (err) => {
+          this.toastr.error('Created Certification error');
+          this.spinner.hide();
+        },
+      });
+  }
+
+
   plans: any = [];
   GetAllPlans_duplicate() {
     this.spinner.show();

@@ -18,6 +18,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ProgramsPlanComponent } from './programs-plan/programs-plan.component';
 import { InstructorPajeComponent } from './instructor-page/instructor-paje.component';
 import { InstructorDetailsPageComponent } from './instructor-details-page/instructor-details-page.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { InstructorDetailsPageComponent } from './instructor-details-page/instru
     ProgramsPlanComponent,
     InstructorPajeComponent,
     InstructorDetailsPageComponent,
+    AboutUsComponent,
   ],
   imports: [
     CommonModule,

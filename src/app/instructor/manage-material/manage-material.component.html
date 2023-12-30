@@ -20,6 +20,122 @@
         </form>
 
         <div>
+
+
+
+
+
+          <div *ngIf="selectedSection != null" class="example-action-buttons">
+            <button
+              mat-dialog-close
+              (click)="OpenCreateAnnouncementDialog()"
+              class="btn btn-primary mb-4"
+            >
+              Create Announcement
+            </button>
+
+            <div>
+              <mat-accordion 
+                *ngFor="let x of _instructorService.announcementsBySectionId" 
+              
+                class="example-headers-align"
+                
+              >
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header >
+                    <mat-panel-title>
+                      {{ x.declaration }}
+                    </mat-panel-title>
+        
+
+                    <div class="button-container">
+           
+                      <button
+                        (click)="OpenUpdateAnnouncementDialog(x)"
+                        class="btn btn-success m-2"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-edit"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path
+                            d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                          />
+                          <path
+                            d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                          />
+                          <path d="M16 5l3 3" />
+                        </svg>
+                      </button>
+                      <button
+                        (click)="OpenConfirmAnnouncementDialog(x.announcementid)"
+                        class="btn btn-danger m-2"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-trash-filled"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path
+                            d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                            stroke-width="0"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                            stroke-width="0"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </mat-expansion-panel-header>
+
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+
+            <div *ngIf="_instructorService.announcementsBySectionId.length == 0 ||  _instructorService.announcementsBySectionId == null">
+              <p style="color: white;
+              align-items: center!important;
+              background: #807f7f;
+              text-align: center;
+              font-weight: 700;"> data is empty </p>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
           <div *ngIf="selectedSection != null" class="example-action-buttons">
             <button
               mat-dialog-close
@@ -29,7 +145,16 @@
               Create Course Section
             </button>
 
-            <div class="example-action-buttons">
+            <div *ngIf="_instructorService.allMaterialsBySectionId.length == 0 ||  _instructorService.allMaterialsBySectionId == null">
+              <p style="color: white;
+              align-items: center!important;
+              background: #807f7f;
+              text-align: center;
+              font-weight: 700;"> data is empty </p>
+            </div>
+
+
+            <div *ngIf="_instructorService.allMaterialsBySectionId != null && _instructorService.allMaterialsBySectionId.length > 0" class="example-action-buttons"   >
               <button mat-button (click)="openAllPanels()">Expand All</button>
               <button mat-button (click)="closeAllPanels()">
                 Collapse All
@@ -526,6 +651,92 @@
         (click)="UpdateLecture()"
         [disabled]="UpdateLectureForm.invalid"
         class="btn btn-primary w-50 mt-4"
+        style="margin: auto"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+
+<ng-template #CreateAnnouncementDialog>
+  <form [formGroup]="CreateAnnouncementForm">
+    <div class="row w-100" style="padding: 25px">
+      <h3 class="mb-5">Create Announcement</h3>
+
+      <mat-form-field class="col-12">
+        <mat-label>Declaration</mat-label>
+        <input
+          matInput
+          placeholder="Declaration"
+          formControlName="declaration"
+          required
+        />
+        <mat-error
+          *ngIf="
+            CreateAnnouncementForm.controls['declaration'].hasError(
+              'required'
+            )
+          "
+          >declaration is required</mat-error
+        >
+      </mat-form-field>
+
+
+      <button
+        mat-dialog-close
+        (click)="CreateAnnouncement()"
+        [disabled]="CreateAnnouncementForm.invalid"
+        class="btn btn-primary w-50"
+        style="margin: auto"
+      >
+        Create
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+
+<ng-template #ConfirmationAnnouncementDialog>
+  <h1 mat-dialog-title>Delete Announcement</h1>
+  <div mat-dialog-content>Would you like to delete Announcement?</div>
+  <div mat-dialog-actions style="justify-content: center !important">
+    <button
+      mat-dialog-close="no"
+      cdkFocusInitial
+      class="btn btn-secondary w-25 m-2"
+    >
+      No
+    </button>
+    <button mat-dialog-close="yes" class="btn btn-danger w-25 m-2">Yes</button>
+  </div>
+</ng-template>
+
+<ng-template #UpdateAnnouncementDialog>
+  <form [formGroup]="UpdateAnnouncementForm">
+    <div class="row w-100" style="padding: 25px">
+      <h3 class="mb-5">Update Announcement</h3>
+
+      <mat-form-field class="col-12">
+        <mat-label>Declaration</mat-label>
+        <input type="text" matInput formControlName="declaration" />
+        <mat-error
+          *ngIf="
+            UpdateAnnouncementForm.controls['declaration'].hasError(
+              'required'
+            )
+          "
+          >Declaration required</mat-error
+        >
+      </mat-form-field>
+
+
+      <button
+        mat-dialog-close
+        (click)="UpdateAnnouncement()"
+        [disabled]="UpdateAnnouncementForm.invalid"
+        class="btn btn-primary w-50"
         style="margin: auto"
       >
         Update
