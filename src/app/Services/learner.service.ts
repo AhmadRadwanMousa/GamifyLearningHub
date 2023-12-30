@@ -16,9 +16,14 @@ export class LearnerService {
     private toastr: ToastrService
   ) {
     let token: any = getToken();
-    this.userId = token.userId;
+    let userId = 0;
+
+    if (token && token.userId != null) {
+      userId = token.userId;
+    }
+    this.userId = userId;
   }
-  userId: any;
+  userId: any = 0;
   CartItemsByUserId: any = [];
   CartTotal: any;
   CartId: any;
@@ -120,8 +125,6 @@ export class LearnerService {
 
   CreateTestimonial(data: any) {
     data.userid = this.userId;
-    console.log(data);
-
     this.spinner.show();
     this.http.post('https://localhost:7036/api/Testimonial', data).subscribe({
       next: () => {

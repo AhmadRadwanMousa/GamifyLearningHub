@@ -209,8 +209,7 @@
               ></a>
               <ul class="dropdown-menu">
                 <li class="nav-item">
-                  <a routerLink="/pages/about" class="nav-link"
-                    >About</a>
+                  <a routerLink="/pages/about" class="nav-link">About</a>
 
                   <!-- <a routerLink="/pages/about" class="nav-link"
                   >About <i class="bx bx-chevron-right"></i
@@ -662,7 +661,7 @@
               >
             </li>
 
-            <li *ngIf="login" class="nav-item">
+            <li *ngIf="isLoggedIn" class="nav-item">
               <a
                 routerLink="/learner/testimonial"
                 class="nav-link"
@@ -671,7 +670,6 @@
                 >Review</a
               >
             </li>
-
           </ul>
         </div>
         <div class="others-option">

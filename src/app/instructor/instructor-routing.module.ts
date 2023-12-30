@@ -6,8 +6,8 @@ import { ManageAssignmentsComponent } from './manage-assignments/manage-assignme
 import { ManageAssignmentSolutionComponent } from './manage-assignment-solution/manage-assignment-solution.component';
 import { ManageExamsComponent } from './manage-exams/manage-exams.component';
 import { ManageAttendenceComponent } from './manage-attendence/manage-attendence.component';
-import { ManageAttendenceSectionsComponent } from './manage-attendence-sections/manage-attendence-sections.component';
-import { ManageAttendenceUsersComponent } from './manage-attendence-users/manage-attendence-users.component';
+// import { ManageAttendenceSectionsComponent } from './manage-attendence-sections/manage-attendence-sections.component';
+// import { ManageAttendenceUsersComponent } from './manage-attendence-users/manage-attendence-users.component';
 import { ReportComponent } from './reportComponent/report.component';
 
 const routes: Routes = [
