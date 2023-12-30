@@ -1,0 +1,70 @@
+<app-user-dashboard-container>
+    <div class="mb-4">
+        <h4>Student Report</h4>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <select class="form-select form-select-lg mb-3" aria-label="Large select">
+                <option selected disabled>Select program</option>
+                <option value="1">Program One</option>
+                <option value="2">Program Two</option>
+                <option value="3">Program Three</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-10">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="search" placeholder="Search course">
+                <label for="search">Search course</label>
+            </div>
+        </div>
+        <div class="col-2">
+            <button type="submit" class="default-btn rounded-1">
+                <i class=""></i>
+                <i class="icon-arrow before fa-solid fa-magnifying-glass"></i>
+                <span class="label mx-1 my-1">
+                    Search
+                </span>
+                
+                <i class="icon-arrow after fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </div>
+    <div class="fs-4">
+        <table mat-table [dataSource]="dataSource" class="student-report-table fs-4">
+            
+            <!-- courseName Column -->
+            <ng-container matColumnDef="courseName">
+                <th mat-header-cell *matHeaderCellDef>Course name</th>
+                <td mat-cell *matCellDef="let element"> {{element.courseName}} </td>
+            </ng-container>
+
+            <!-- numberOfAbsence Column -->
+            <ng-container matColumnDef="numberOfAbsence">
+                <th mat-header-cell *matHeaderCellDef>Absecnes</th>
+                <td mat-cell *matCellDef="let element"> {{element.numberOfAbsence}} </td>
+            </ng-container>
+
+            <!-- pointsEarned Column -->
+            <ng-container matColumnDef="pointsEarned">
+                <th mat-header-cell *matHeaderCellDef>Points Earned</th>
+                <td mat-cell *matCellDef="let element"> {{element.pointsEarned}} </td>
+            </ng-container>
+
+            <!-- totalMark Column -->
+            <ng-container matColumnDef="totalMark">
+                <th mat-header-cell *matHeaderCellDef>Total Mark</th>
+                <td mat-cell *matCellDef="let element"> {{element.totalMark}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+
+</app-user-dashboard-container>

@@ -1,0 +1,115 @@
+<app-insturctor-container>
+    <div class="col-md-12">
+        <div class="card w-100">
+            <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Take Attendence</h5>
+                <hr />
+                <div class="row align-items-center">
+                    <div class="col-4">
+
+                        <mat-form-field class="w-100">
+                            <mat-label>Select section</mat-label>
+                            <mat-select [(ngModel)]="selectedSection" name="selectedSection">
+                                <mat-option *ngFor="let s of instructorService.sectionsByUserId" [value]="s.sectionid"
+                                    (click)="loadStudents(s.sectionid)">
+                                    {{s.sectionname}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="w-100" *ngIf="this.UsersInSection.length > 0">
+                            <mat-label>Select Date</mat-label>
+                            <input matInput [matDatepicker]="picker" [(ngModel)]="attendence.attenddate">
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4 fs-5">
+                        <button *ngIf="this.UsersInSection.length > 0" (click)="OpenDetails()"
+                            class="btn btn-warning mb-2 p-2"><i class="fa-solid fa-list mx-2"></i> Details</button>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-row">
+                        <div class="table-responsive text-center" *ngIf="this.UsersInSection.length > 0">
+
+                            <table class="table align-middle">
+                                <thead class="text-dark fs-4">
+                                    <tr>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">Student Name</h6>
+                                        </th>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">Is attended</h6>
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let s of UsersInSection">
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">
+                                                {{s.firsname}} {{s.lastname}}
+                                            </h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <mat-slide-toggle (change)="changeStatus(s.userid)"><span
+                                                    class="p-2">Attended</span></mat-slide-toggle>
+                                        </td>
+
+
+                                    </tr>
+                                </tbody>
+
+
+                            </table>
+                            <button (click)="saveAttendence()" type="submit"
+                                class="btn btn-primary px-5 py-2">Save</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</app-insturctor-container>
+
+<ng-template #DetailsDialog>
+
+    <div *ngFor="let a of this.instructorService.attendenceDetails" class="container my-4">
+        <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{a.attenddate | date: 'longDate'}}
+                </mat-panel-title>
+                <mat-panel-description class="text-center">
+                    Click to show more
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>Student name</th>
+                        <th>Is Attended</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let d of a.attendencedetails">
+                        <td>{{d.user.firsname}} {{d.user.lastname}}</td>
+                        <td *ngIf="d.isattended == false"><span class="bg-danger p-2 text-light rounded-2">No</span>
+                        </td>
+                        <td *ngIf="d.isattended"><span class="bg-success p-2 text-light rounded-2">Yes</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-expansion-panel>
+    </div>
+
+</ng-template>

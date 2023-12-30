@@ -1,0 +1,38 @@
+.card{
+    border-top:4px solid #ff1949;
+  }
+    .my-highlight{
+    font-weight: bolder;
+    background-image: linear-gradient(to right, #d5163f, #ff315e);
+    background-clip: text;
+    color: transparent;
+    }
+    .icon{
+      padding-top: 30px;
+      width: 135px;
+      height: 135px;
+      font-size: 65px;
+      margin-bottom: 20px;
+      color: var(--mainColor);
+      transition: var(--transition);
+      background: rgba(195, 60, 103, 0.1);
+    }
+    .icon:hover{
+      color: white;
+      background:#ff1949
+    }
+    .ranking-icon{
+      width: 80px;
+      height: 80px;
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: var(--mainColor);
+      transition: var(--transition);
+      background: rgba(195, 60, 103, 0.1);
+      padding-top: 15px;
+    }
+    .ranking-icon:hover{
+      color: white;
+      background:#ff1949
+    }
+    

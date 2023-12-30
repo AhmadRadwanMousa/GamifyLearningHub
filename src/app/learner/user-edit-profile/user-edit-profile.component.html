@@ -1,0 +1,70 @@
+<app-user-dashboard-container>
+    <form class="edit-profile-form">
+        <h2>Edit Profile</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-2 col-sm-5">
+                <div class="profile-image-container">
+                    <img class="profile-image" src="https://picsum.photos/seed/picsum/200/300" alt="Profile Image">
+                    <label for="file-input" class="edit-icon"><i class="fas fa-edit"></i></label>
+                    <input type="file" id="file-input" class="file-input">
+                  </div>
+            </div>
+            <div class="col-lg-10 col-sm-7">
+                <h4>Your image</h4>
+                <p>Click on image to change</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="firstName" value="Mones">
+                    <label for="firstName">Enter your first name</label>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="lastName" value="Ahmad">
+                    <label for="lastName">Enter your last name</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" value="mones@gmail.com">
+                    <label for="email">Enter your email</label>
+                  </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="password" value="123456">
+                    <label for="password">Enter your password</label>  
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="lastLogin" value="12/1/2023" disabled>
+                    <label for="lastLogin">Last Login</label>  
+                  </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="birthDate" placeholder="Enter your birthdate">
+                    <label for="birthDate">Enter your birthdate</label>  
+                  </div>
+            </div>
+        </div>
+        
+        <button type="submit" class="default-btn my-4"> 
+            <i class=""></i>
+            <i class="icon-arrow before fa-regular fa-floppy-disk"></i> 
+            <span class="label mx-1">
+                Save Changes
+            </span>
+            <i class="icon-arrow after fa-regular fa-floppy-disk"></i> 
+        </button>
+      </form>
+</app-user-dashboard-container>

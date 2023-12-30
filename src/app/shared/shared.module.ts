@@ -41,7 +41,10 @@ import { HeaderInstructorComponent } from './header-instructor/header-instructor
 import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-
+import { UserDashboardContainerComponent } from './user-dashboard-container/user-dashboard-container.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -59,6 +62,7 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     InsturctorContainerComponent,
     SidebarInstructorComponent,
     HeaderInstructorComponent,
+    UserDashboardContainerComponent,
   ],
   imports: [
     CommonModule,
@@ -117,6 +121,11 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     HeaderInstructorComponent,
     NgxMatTimepickerModule,
     MatCardModule,
+    UserDashboardContainerComponent,
+    MatSlideToggleModule,
+    MatTableModule,
+    MatPaginatorModule,
+
   ],
 })
 export class SharedModule {}

@@ -1,0 +1,58 @@
+/* src/app/collapsible/collapsible.component.scss */
+.custom-collapse {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+    .collapse-header {
+      padding: 15px;
+      border-top:4px solid #f3c212;
+      font-size:20px;
+      color: #4a4a4a;
+      font-weight: 800;
+      cursor: pointer;
+      border-bottom: 1px solid #e0e0e0;
+      position: relative;
+      transition: background-color 0.3s ease;
+    }
+  
+    .collapsed .collapse-header {
+      background-color: #ff6b78; /* Adjust the color for the collapsed state */
+    }
+  
+    .collapsed .collapse-header::after {
+      content: '\25BC';
+    }
+  
+    .collapse-body {
+      padding: 15px;
+      max-height: 1000px; /* Adjust to a suitable max-height */
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+    }
+  
+    .collapsed .collapse-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+    }
+  }
+  .announcements-list{
+    font-size: 18px;
+    margin-top: 5px;
+  }
+
+  .icon{
+    color:#f3c212;
+    font-size: 32px;
+    margin-right: 10px;
+  }
+  .announcement-title{
+    margin-bottom: 30px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #4a4a4a27;
+  }
