@@ -1,0 +1,207 @@
+.cart-table {
+  table {
+    margin-bottom: 0;
+
+    thead {
+      tr {
+        border: none;
+
+        th {
+          border-bottom-width: 0px;
+          vertical-align: middle;
+          padding: 0 0 15px;
+          text-transform: uppercase;
+          border: none;
+          white-space: nowrap;
+          font: {
+            size: var(--fontSize);
+            weight: 600;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          vertical-align: middle;
+          color: var(--paragraphColor);
+          white-space: nowrap;
+          padding: {
+            left: 0;
+            right: 0;
+          }
+          border: {
+            color: #eaedff;
+            left: none;
+            right: none;
+          }
+          &.product-thumbnail {
+            a {
+              display: block;
+
+              img {
+                width: 130px;
+                border-radius: 0.5rem;
+              }
+            }
+          }
+          &.product-name {
+            a {
+              color: var(--paragraphColor);
+              font-weight: 500;
+              display: inline-block;
+
+              &:hover {
+                color: var(--blackColor);
+              }
+            }
+          }
+          &.product-subtotal {
+            .remove {
+              color: red;
+              float: right;
+              position: relative;
+              top: -1px;
+              font-size: 18px;
+            }
+          }
+          &.product-quantity {
+            .input-counter {
+              max-width: 130px;
+              min-width: 130px;
+              text-align: center;
+              display: inline-block;
+              position: relative;
+
+              input {
+                height: 45px;
+                color: var(--blackColor);
+                outline: 0;
+                display: block;
+                border: none;
+                background-color: #f8f8f8;
+                text-align: center;
+                width: 100%;
+                font: {
+                  size: 17px;
+                  weight: 600;
+                }
+                &::placeholder {
+                  color: var(--blackColor);
+                }
+                &::-webkit-inner-spin-button {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+          &.product-subtotal {
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+}
+.cart-buttons {
+  margin-top: 30px;
+
+  .shopping-coupon-code {
+    position: relative;
+    max-width: 530px;
+
+    .form-control {
+      height: 50px;
+
+      &::placeholder {
+        transition: var(--transition);
+      }
+      &:focus {
+        &::placeholder {
+          color: transparent;
+        }
+      }
+    }
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 50px;
+      background: var(--blackColor);
+      color: var(--whiteColor);
+      border: none;
+      padding: 0 25px;
+      line-height: 48px;
+      outline: 0;
+      transition: var(--transition);
+      font: {
+        size: var(--fontSize);
+        weight: 600;
+      }
+      &:hover {
+        background-color: var(--mainColor);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .cart-table {
+    table {
+      thead {
+        tr {
+          th {
+            padding: 0 20px 15px;
+            font-size: 14px;
+
+            &:nth-child(1) {
+              padding-left: 0;
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            padding: {
+              left: 20px;
+              right: 20px;
+            }
+            &:nth-child(1) {
+              padding-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  .cart-buttons {
+    .text-end {
+      text-align: center !important;
+      margin-top: 25px;
+    }
+  }
+  .cart-totals {
+    padding: 25px;
+    max-width: 100%;
+    margin-top: 40px;
+
+    h3 {
+      font-size: 18px;
+    }
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .cart-buttons {
+    .text-end {
+      text-align: end !important;
+      margin-top: 0;
+    }
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+@media only screen and (min-width: 1200px) and (max-width: 1275px) {
+}

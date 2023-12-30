@@ -41,7 +41,9 @@
           >
             <div class="single-courses-box mb-30">
               <div class="courses-image">
-                <a routerLink="/single-courses" class="d-block"
+                <a
+                  [routerLink]="['/ProgramDetails', program.programid]"
+                  class="d-block"
                   ><img [src]="program.programimage" alt="image"
                 /></a>
                 <div class="courses-tag">

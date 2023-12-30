@@ -1,6 +1,12 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
+import { LearnerService } from 'src/app/Services/learner.service';
 import { RouteService } from 'src/app/Services/route-service.service';
 
 @Component({
@@ -27,10 +33,20 @@ export class HeaderComponent implements OnInit {
   constructor(
     private routeService: RouteService,
     public route: Router,
-    public authService: AuthService
+    public authService: AuthService,
+    public learnerService: LearnerService
   ) {}
-
-  ngOnInit(): void {}
+  isLoggedIn: boolean = false;
+  ngOnInit(): void {
+    this.authService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
+      this.isLoggedIn = isLoggedIn;
+    });
+    this.learnerService.GetCartItemsByUserId(this.learnerService.userId);
+  }
+  Logout() {
+    this.isLoggedIn = false;
+    this.authService.Logout();
+  }
 
   classApplied = false;
   toggleClass() {
@@ -53,9 +69,5 @@ export class HeaderComponent implements OnInit {
       this.routeService.currentRoute.startsWith('/Login') ||
       this.routeService.currentRoute.startsWith('/Register')
     );
-  }
-  Logout() {
-    this.authService.Logout();
-    this.route.navigate(['/Login']);
   }
 }

@@ -1,52 +1,58 @@
 <div class="page-title-area">
-    <div class="container">
-        <div class="page-title-content">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a >Programs</a></li>
-                <li>{{this.shard.program.programname}}</li>
-            </ul>
-        </div>
+  <div class="container">
+    <div class="page-title-content">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a>Programs</a></li>
+        <li>{{ this.shard.program.programname }}</li>
+      </ul>
     </div>
+  </div>
 </div>
 
 <div class="courses-details-area pt-100 pb-70">
-    <div class="container">
-        <div class="courses-details-header">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <div class="courses-title">
-                        <h2>{{this.shard.program.programname}}</h2>
-                    </div>
-                    <div class="courses-meta">
-                        <ul>
-                            <li>
-                                <i class='bx bx-folder-open'></i>
-                                <span>Plan</span>
-                                <a>{{this.shard.program.plan.planname}}</a>
-                            </li>
-                            <li>
-                                <i class='bx bx-group'></i>
-                                <span>Students Enrolled</span>
-                                <a>{{this.shard.numberOfStudentsInProgram}}</a>
-                            </li>
-                            <li>
-                                <i class='bx bx-calendar'></i>
-                                <span>Start Date</span>
-                                <a >{{this.shard.program.educationalperiod.startdate | date : "mediumDate"}}</a>
-                            </li>
-                            <li>
-                                <i class='bx bx-calendar'></i>
-                                <span>End Date</span>
-                                <a>{{this.shard.program.educationalperiod.enddate | date : "mediumDate"}}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="courses-price">
-                        <div class="courses-review">
-                            <!--
+  <div class="container">
+    <div class="courses-details-header">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="courses-title">
+            <h2>{{ this.shard.program.programname }}</h2>
+          </div>
+          <div class="courses-meta">
+            <ul>
+              <li>
+                <i class="bx bx-folder-open"></i>
+                <span>Plan</span>
+                <a>{{ this.shard.program.plan.planname }}</a>
+              </li>
+              <li>
+                <i class="bx bx-group"></i>
+                <span>Students Enrolled</span>
+                <a>{{ this.shard.numberOfStudentsInProgram }}</a>
+              </li>
+              <li>
+                <i class="bx bx-calendar"></i>
+                <span>Start Date</span>
+                <a>{{
+                  this.shard.program.educationalperiod.startdate
+                    | date : "mediumDate"
+                }}</a>
+              </li>
+              <li>
+                <i class="bx bx-calendar"></i>
+                <span>End Date</span>
+                <a>{{
+                  this.shard.program.educationalperiod.enddate
+                    | date : "mediumDate"
+                }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="courses-price">
+            <div class="courses-review">
+              <!--
                                 <div class="review-stars">
                                 <i class='bx bxs-star'></i>
                                 <i class='bx bxs-star'></i>
@@ -55,123 +61,161 @@
                                 <i class='bx bxs-star'></i>
                             </div>
                             -->
-                            <!-- <span class="reviews-total d-inline-block">(2 reviews)</span> -->
-                        </div>
-                        <div *ngIf="this.shard.program.programprice === 0" class="price">Free</div>
-                        <div *ngIf="this.shard.program.programprice > 0" class="price">${{this.shard.program.programprice}}</div>
-                        <a *ngIf="this.shard.program.programprice === 0" routerLink="/single-courses" class="default-btn"><i class='bx bx-paper-plane icon-arrow before'></i><span class="label">Get Program</span><i class="bx bx-paper-plane icon-arrow after"></i></a>
-                        <a *ngIf="this.shard.program.programprice > 0" routerLink="/single-courses" class="default-btn"><i class='bx bx-paper-plane icon-arrow before'></i><span class="label">Buy Program</span><i class="bx bx-paper-plane icon-arrow after"></i></a>
-                    </div>
-                </div>
+              <!-- <span class="reviews-total d-inline-block">(2 reviews)</span> -->
             </div>
+            <div *ngIf="this.shard.program.programprice === 0" class="price">
+              Free
+            </div>
+            <div *ngIf="this.shard.program.programprice > 0" class="price">
+              ${{ this.shard.program.programprice }}
+            </div>
+            <a
+              *ngIf="this.shard.program.programprice === 0"
+              routerLink="/single-courses"
+              class="default-btn"
+              ><i class="bx bx-paper-plane icon-arrow before"></i
+              ><span class="label">Get Program</span
+              ><i class="bx bx-paper-plane icon-arrow after"></i
+            ></a>
+            <a
+              *ngIf="this.shard.program.programprice > 0"
+              (click)="AddToCart(this.shard.program.programid)"
+              class="default-btn"
+              ><i class="bx bx-paper-plane icon-arrow before"></i
+              ><span class="label">Buy Program</span
+              ><i class="bx bx-paper-plane icon-arrow after"></i
+            ></a>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="courses-details-image text-center">
-                    <img [src]="this.shard.program.programimage" alt="image">
-                    
-                </div>
-                <div class="courses-details-desc">
-                    
-                    
-                    <div class="courses-review-comments">
-                        <h3>3 Reviews</h3>
-                        <div class="user-review">
-                            <img src="assets/img/user1.jpg" alt="image">
-                            
-                            <span class="d-block sub-comment">Excellent</span>
-                            <p>Very well built theme, couldn't be happier with it. Can't wait for future updates to see what else they add in.</p>
-                        </div>
-                        <div class="user-review">
-                            <img src="assets/img/user2.jpg" alt="image">
-                            <div class="review-rating">
-                                <div class="review-stars">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                </div>
-                                <span class="d-inline-block">Sarah Taylor</span>
-                            </div>
-                            <span class="d-block sub-comment">Video Quality!</span>
-                            <p>Was really easy to implement and they quickly answer my additional questions!</p>
-                        </div>
-                        <div class="user-review">
-                            <img src="assets/img/user3.jpg" alt="image">
-                            <div class="review-rating">
-                                <div class="review-stars">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                </div>
-                                <span class="d-inline-block">David Warner</span>
-                            </div>
-                            <span class="d-block sub-comment">Perfect Coding!</span>
-                            <p>Stunning design, very dedicated crew who welcome new ideas suggested by customers, nice support.</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-lg-6">
-                <div class="courses-sidebar-information">
-                    <ul>
-                        <li>
-                            <span><i class='bx bx-group'></i> Students:</span>
-                            {{this.shard.numberOfStudentsInProgram}}
-                        </li>
-                        <li>
-                            <span><i class='bx bx-time'></i> Length:</span>
-                            {{ calculateWeeksDuration()}} Weeks
-                        </li>
-                        <li>
-                            <span><i class='bx bx-tachometer'></i> Effort:</span>
-                            2–5 hours per week
-                        </li>
-                        
-                        
-                        <li>
-                            <span><i class='bx bx-atom'></i> Quizzes:</span>
-                            Yes
-                        </li>
-                        
-                        
-                        
-                        <li>
-                            <span><i class='bx bx-certification'></i> Certificate:</span>
-                            Yes
-                        </li>
-                    </ul>
-                </div>
-                <div class="courses-sidebar-syllabus">
-                    <h3>Courses in this program</h3>
-                    
-                    <div *ngFor="let course of this.shard.CoursesInProgram">
-                        <div class="row my-4">
-                            <div class="col-lg-3">
-                                <img class="rounded-2" [src]="course.course.courseimage" alt="image" width="300px" height="300px">
-                            </div>
-                            <div class="col-lg-9">
-                                <div class="progam-courses d-flex flex-column">
-                                    <a class="fw-bold fs-4" [routerLink]="['/CourseDetails/', course.course.courseid]">{{course.course.coursename}}</a>
-                                    <span>Course level : <strong>{{course.course.courselevel}}</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
-                    
-                </div>
-                <div class="courses-purchase-info">
-                    <h4>Interested in this P for your Business or Team?</h4>
-                    <p>Train your employees in the most in-demand topics, with edX for Business.</p>
-                    <a routerLink="/single-courses" class="d-inline-block">Purchase now</a>
-                    <a routerLink="/single-courses" class="d-inline-block">Request Information</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="courses-details-image text-center">
+          <img [src]="this.shard.program.programimage" alt="image" />
+        </div>
+        <div class="courses-details-desc">
+          <div class="courses-review-comments">
+            <h3>3 Reviews</h3>
+            <div class="user-review">
+              <img src="assets/img/user1.jpg" alt="image" />
+
+              <span class="d-block sub-comment">Excellent</span>
+              <p>
+                Very well built theme, couldn't be happier with it. Can't wait
+                for future updates to see what else they add in.
+              </p>
+            </div>
+            <div class="user-review">
+              <img src="assets/img/user2.jpg" alt="image" />
+              <div class="review-rating">
+                <div class="review-stars">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                </div>
+                <span class="d-inline-block">Sarah Taylor</span>
+              </div>
+              <span class="d-block sub-comment">Video Quality!</span>
+              <p>
+                Was really easy to implement and they quickly answer my
+                additional questions!
+              </p>
+            </div>
+            <div class="user-review">
+              <img src="assets/img/user3.jpg" alt="image" />
+              <div class="review-rating">
+                <div class="review-stars">
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                </div>
+                <span class="d-inline-block">David Warner</span>
+              </div>
+              <span class="d-block sub-comment">Perfect Coding!</span>
+              <p>
+                Stunning design, very dedicated crew who welcome new ideas
+                suggested by customers, nice support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="courses-sidebar-information">
+          <ul>
+            <li>
+              <span><i class="bx bx-group"></i> Students:</span>
+              {{ this.shard.numberOfStudentsInProgram }}
+            </li>
+            <li>
+              <span><i class="bx bx-time"></i> Length:</span>
+              {{ calculateWeeksDuration() }} Weeks
+            </li>
+            <li>
+              <span><i class="bx bx-tachometer"></i> Effort:</span>
+              2–5 hours per week
+            </li>
+
+            <li>
+              <span><i class="bx bx-atom"></i> Quizzes:</span>
+              Yes
+            </li>
+
+            <li>
+              <span><i class="bx bx-certification"></i> Certificate:</span>
+              Yes
+            </li>
+          </ul>
+        </div>
+        <div class="courses-sidebar-syllabus">
+          <h3>Courses in this program</h3>
+
+          <div *ngFor="let course of this.shard.CoursesInProgram">
+            <div class="row my-4">
+              <div class="col-lg-3">
+                <img
+                  class="rounded-2"
+                  [src]="course.course.courseimage"
+                  alt="image"
+                  width="300px"
+                  height="300px"
+                />
+              </div>
+              <div class="col-lg-9">
+                <div class="progam-courses d-flex flex-column">
+                  <a
+                    class="fw-bold fs-4"
+                    [routerLink]="['/CourseDetails/', course.course.courseid]"
+                    >{{ course.course.coursename }}</a
+                  >
+                  <span
+                    >Course level :
+                    <strong>{{ course.course.courselevel }}</strong></span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="courses-purchase-info">
+          <h4>Interested in this P for your Business or Team?</h4>
+          <p>
+            Train your employees in the most in-demand topics, with edX for
+            Business.
+          </p>
+          <a routerLink="/single-courses" class="d-inline-block"
+            >Purchase now</a
+          >
+          <a routerLink="/single-courses" class="d-inline-block"
+            >Request Information</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

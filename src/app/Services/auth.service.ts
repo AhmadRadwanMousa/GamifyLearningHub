@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,8 @@ export class AuthService {
     private spinner: NgxSpinnerService
   ) {}
 
+  private isLoggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
+  isLoggedIn$ = this.isLoggedInSubject.asObservable();
   Login(loginDetails: any) {
     this.spinner.show();
     this.http.post(`${URL}/Authentication`, loginDetails).subscribe(
@@ -25,6 +28,7 @@ export class AuthService {
           localStorage.setItem('token', res.token);
           const tokenPayload: any = jwtDecode(res.token);
           let roleId: number = Number(tokenPayload.roleId);
+          this.isLoggedInSubject.next(true);
           this.HandleNavigate(roleId);
           setTimeout(() => {
             this.spinner.hide();
@@ -48,6 +52,8 @@ export class AuthService {
   }
   Logout() {
     localStorage.removeItem('token');
+    this.isLoggedInSubject.next(false);
+    this.route.navigate(['/Login']);
   }
   getToken(): string | null {
     return localStorage.getItem('token');

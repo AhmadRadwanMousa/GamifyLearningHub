@@ -1,0 +1,122 @@
+<div class="page-title-area item-bg4">
+  <div class="container">
+    <div class="page-title-content">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li>Shop</li>
+      </ul>
+      <h2>Cart</h2>
+    </div>
+  </div>
+</div>
+
+<div class="cart-area ptb-100">
+  <div class="container">
+    <form
+      *ngIf="this.learnerService.CartItemsByUserId.length > 0; else EmptyCart"
+    >
+      <div class="cart-table table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Name</th>
+              <th scope="col">Unit Price</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cartItem of this.learnerService.CartItemsByUserId">
+              <td class="product-thumbnail">
+                <a routerLink="/single-products">
+                  <img [src]="cartItem.program.programimage" alt="item" />
+                </a>
+              </td>
+              <td class="product-name">
+                <a routerLink="/single-products">{{
+                  cartItem.program.programname
+                }}</a>
+              </td>
+              <td class="product-price">
+                <span class="unit-amount"
+                  ><del class="text-danger me-2"
+                    >${{ cartItem.program.programprice }}</del
+                  >${{
+                    cartItem.program.programprice -
+                      (cartItem.program.programprice *
+                        cartItem.program.programsale) /
+                        100
+                  }}
+                </span>
+              </td>
+
+              <td class="product-subtotal">
+                <span class="subtotal-amount">$455.00</span>
+                <a
+                  (click)="
+                    this.learnerService.DeleteCartItem(
+                      cartItem.cartitemsid,
+                      cartItem.program.programprice -
+                        (cartItem.program.programprice *
+                          cartItem.program.programsale) /
+                          100
+                    )
+                  "
+                  class="remove cursor-pointer"
+                  ><i class="bx bx-trash"></i
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cart-buttons">
+        <div class="row align-items-center">
+          <div class="col-lg-7 col-sm-7 col-md-7">
+            <div class="shopping-coupon-code">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Coupon code"
+                name="coupon-code"
+                id="coupon-code"
+              />
+              <button type="submit">Apply Coupon</button>
+            </div>
+          </div>
+          <div class="col-lg-5 col-sm-5 col-md-5 text-end">
+            <a routerLink="/cart" class="default-btn"
+              ><i class="bx bx-cart icon-arrow before"></i
+              ><span class="label">Update Cart</span
+              ><i class="bx bx-cart icon-arrow after"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <app-cart-details
+        [cartItems]="this.learnerService.CartItemsByUserId"
+      ></app-cart-details>
+    </form>
+  </div>
+</div>
+<ng-template #EmptyCart>
+  <div class="containter">
+    <div
+      class="d-flex justify-content-center align-items-center flex-column gap-3"
+    >
+      <img
+        src="https://gymscanner.com/assets/img/empty-cart.svg"
+        width="300"
+        alt=""
+      />
+      <h3>Your cart is empty! :(</h3>
+      <p>Continue shopping on our website with great courses and programs :)</p>
+
+      <a routerLink="/cart" class="default-btn"
+        ><i class="bx bx-cart icon-arrow before"></i
+        ><span class="label">View Programs</span
+        ><i class="bx bx-cart icon-arrow after"></i
+      ></a>
+    </div>
+  </div>
+</ng-template>

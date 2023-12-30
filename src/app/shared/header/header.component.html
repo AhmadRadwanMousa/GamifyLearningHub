@@ -19,17 +19,17 @@
         </div>
         <div class="col-lg-4 col-md-4">
           <ul class="top-header-login-register">
-            <li *ngIf="!this.authService.isLoggedIn">
+            <li *ngIf="!isLoggedIn">
               <a routerLink="/Login"><i class="bx bx-log-in"></i> Login</a>
+            </li>
+            <li *ngIf="this.isLoggedIn">
+              <a (click)="Logout()" class="cursor-pointer"
+                ><i class="bx bx-log-in"></i> Logout</a
+              >
             </li>
             <li>
               <a routerLink="/Register"
                 ><i class="bx bx-log-in-circle"></i> Register</a
-              >
-            </li>
-            <li *ngIf="this.authService.isLoggedIn">
-              <a (click)="Logout()" class="cursor-pointer"
-                ><i class="bx bx-log-in"></i> Logout</a
               >
             </li>
           </ul>
@@ -716,9 +716,13 @@
               </a>
             </div>
           </div>
-          <a routerLink="/cart" class="cart-wrapper-btn d-inline-block">
+          <a
+            routerLink="/learner/cart"
+            class="cart-wrapper-btn d-inline-block"
+            *ngIf="isLoggedIn"
+          >
             <i class="bx bx-cart-alt"></i>
-            <span>01</span>
+            <span>{{ this.learnerService.CartItemsByUserId.length }}</span>
           </a>
           <div class="search-box d-inline-block">
             <i class="bx bx-search" (click)="toggleClass3()"></i>
