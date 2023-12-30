@@ -14,6 +14,10 @@ import { UserTestimonialComponent } from './user-testimonial/user-testimonial.co
 import { UserCoursesComponent } from './user-courses/user-courses.component';
 import { CourseContentComponent } from './course-content/course-content.component';
 import { CollapsibleComponent } from './collapsible/collapsible.component';
+import { TopStudentsComponent } from './top-students/top-students.component';
+import { SectionAnnouncementsComponent } from './section-announcements/section-announcements.component';
+import { CompletedCoursesComponent } from './completed-courses/completed-courses.component';
+import { StudentReportComponent } from './student-report/student-report.component';
 
 
 @NgModule({
@@ -29,6 +33,10 @@ import { CollapsibleComponent } from './collapsible/collapsible.component';
         UserCoursesComponent,
         CourseContentComponent,
         CollapsibleComponent,
+        TopStudentsComponent,
+        SectionAnnouncementsComponent,
+        CompletedCoursesComponent,
+        StudentReportComponent,
         
     ],
     imports: [

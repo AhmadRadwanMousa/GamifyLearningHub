@@ -10,6 +10,8 @@ import { UserCompletedProgramsComponent } from './user-completed-programs/user-c
 import { UserTestimonialComponent } from './user-testimonial/user-testimonial.component';
 import { UserCoursesComponent } from './user-courses/user-courses.component';
 import { CourseContentComponent } from './course-content/course-content.component';
+import { CompletedCoursesComponent } from './completed-courses/completed-courses.component';
+import { StudentReportComponent } from './student-report/student-report.component';
 
 const routes: Routes = [
   { path: 'userDashboard', component:UserDashboardComponent },
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'userTestimonial', component:UserTestimonialComponent },
   { path: 'userCourses', component:UserCoursesComponent },
   { path: 'courseContent', component:CourseContentComponent },
+  { path: 'completedCourses', component:CompletedCoursesComponent },
+  { path: 'studentReport', component:StudentReportComponent },
 ];
 
 @NgModule({

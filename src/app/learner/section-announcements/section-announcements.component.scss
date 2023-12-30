@@ -9,9 +9,9 @@
   
     .collapse-header {
       padding: 15px;
-      border-top:4px solid #ff1949;
-      color: #ff1949;
-      font-size: larger;
+      border-top:4px solid #f3c212;
+      font-size:20px;
+      color: #4a4a4a;
       font-weight: 800;
       cursor: pointer;
       border-bottom: 1px solid #e0e0e0;
@@ -40,17 +40,19 @@
       transition: max-height 0.3s ease-in-out;
     }
   }
-  .lectures-file-list{
+  .announcements-list{
     font-size: 18px;
     margin-top: 5px;
   }
 
-  .file-icon{
-    color:#ff1949;
+  .icon{
+    color:#f3c212;
     font-size: 32px;
     margin-right: 10px;
   }
-  .file{
+  .announcement-title{
     margin-bottom: 30px;
     font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #4a4a4a27;
   }
