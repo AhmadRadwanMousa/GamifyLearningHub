@@ -1,0 +1,25 @@
+<div class="container p-5">
+    <div class="row" *ngFor="let q of _instructorService.QuestionAndOptions">
+      <div class="card col-12 border-1">
+        <div class="card-body">
+          <h5 class="card-title">{{ q.questiondescription }}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Weight: {{ q.questionweight }}</h6>
+  
+          <div class="d-flex flex-row">
+            <div class="p-2 flex-fill" *ngFor="let o of q.questionoptions">
+              <div class="d-flex align-items-center">
+                <input type="radio" [(ngModel)]="selectedOptions[q.questionid]" [value]="o.questionoptionid" (change)="print()">
+  
+                <h4 style="margin-left: 5px;">
+                  {{ o.questionoptiondescription }}
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="Submit()">Submit</button>
+  </div>
+  

@@ -4,12 +4,14 @@
     </div>
    <div class="row">
     <div class="col-12">
-        <select class="form-select form-select-lg mb-3" aria-label="Large select">
-            <option selected disabled>Select section</option>
-            <option value="1">Section One</option>
-            <option value="2">Section Two</option>
-            <option value="3">Section Three</option>
+
+        <select class="form-select form-select-lg mb-3" [(ngModel)]="selectedSection" (change)="loadData(selectedSection)" aria-label="Large select">
+            <option [value]="undefined" selected disabled>Select section</option>
+            <option *ngFor="let section of _learnerService.allSectionsByLearnerId" [value]="section.sectionid"  >
+              {{ section.sectionname }}
+            </option>
           </select>
+
     </div>
     <div class="col-12">
         <table class="table text-center fs-4">
@@ -26,63 +28,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Exam</td>
-                    <td>31/12/2023</td>
-                    <td>Not active</td>
-                    <td>1:00 PM</td>
-                    <td>2:00 PM</td>
-                    <td>20</td>
-                    <td>25</td>
-                    <td>
-                        <button type="button" class="default-btn" disabled> 
+                <tr *ngFor="let data of _learnerService.allExamByUserSection">
+                    <td *ngIf="data.examtype ==  1">Exam</td>
+                    <td *ngIf="data.examtype ==  2">Quiz</td>
+                    <td>{{data.examdate  | date:'mediumDate'}}</td>
+                    <td *ngIf="data.examstatus ==  1">Active</td>
+                    <td *ngIf="data.examstatus ==  0">Not Active</td>
+                    <td>{{data.openat | date:'shortTime' }}</td>
+                    <td>{{data.closeat  | date:'shortTime'}}</td>
+                    <td>0</td>
+                    <td>{{data.exammark }}</td>
+                    <td >
+                        <button type="button" class="default-btn" [disabled]="!isButtonEnabled(data)" [routerLink]="['/learner/exam/', data.examid]">
                             <i class=""></i>
-                            <i class="icon-arrow before fa-solid fa-play"></i> 
-                            <span class="label">
-                                Start
-                            </span>
-                            <i class="icon-arrow after fa-solid fa-play"></i> 
-                        </button>
-                    </td>
-                
-                <tr>
-                    <td>Exam</td>
-                    <td>31/12/2023</td>
-                    <td>Active</td>
-                    <td>1:00 PM</td>
-                    <td>2:00 PM</td>
-                    <td>Not submitted</td>
-                    <td>25</td>
-                    <td>
-                        <button type="button" class="default-btn"> 
-                            <i class=""></i>
-                            <i class="icon-arrow before fa-solid fa-play"></i> 
-                            <span class="label">
-                                Start
-                            </span>
-                            <i class="icon-arrow after fa-solid fa-play"></i> 
+                            <i class="icon-arrow before fa-solid fa-play"></i>
+                            <span class="label">Start</span>
+                            <i class="icon-arrow after fa-solid fa-play"></i>
                         </button>
                     </td>
                 </tr>
-                <tr>
-                    <td>Exam</td>
-                    <td>31/12/2023</td>
-                    <td>Active</td>
-                    <td>1:00 PM</td>
-                    <td>2:00 PM</td>
-                    <td>Not submitted</td>
-                    <td>25</td>
-                    <td>
-                        <button type="button" class="default-btn"> 
-                            <i class=""></i>
-                            <i class="icon-arrow before fa-solid fa-play"></i> 
-                            <span class="label">
-                                Start
-                            </span>
-                            <i class="icon-arrow after fa-solid fa-play"></i> 
-                        </button>
-                    </td>
-                </tr>
+              
             </tbody>
         </table>
     </div>

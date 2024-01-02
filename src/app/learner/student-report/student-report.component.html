@@ -4,67 +4,77 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <select class="form-select form-select-lg mb-3" aria-label="Large select">
-                <option selected disabled>Select program</option>
-                <option value="1">Program One</option>
-                <option value="2">Program Two</option>
-                <option value="3">Program Three</option>
-            </select>
+            <select class="form-select form-select-lg mb-3" [(ngModel)]="selectedProgram" (change)="loadData(selectedProgram)" aria-label="Large select">
+                <option [value]="undefined" selected disabled>Select program</option>
+                <option *ngFor="let program of _learnerService.programsBytUserId" [value]="program.programid"  >
+                  {{ program.programname }}
+                </option>
+              </select>
         </div>
     </div>
     <div class="row mt-5">
         <div class="col-10">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="search" placeholder="Search course">
-                <label for="search">Search course</label>
-            </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="search" [(ngModel)]="searchText" placeholder="Search course">
+            <label for="search">Search course</label>
+          </div>
         </div>
         <div class="col-2">
-            <button type="submit" class="default-btn rounded-1">
-                <i class=""></i>
-                <i class="icon-arrow before fa-solid fa-magnifying-glass"></i>
-                <span class="label mx-1 my-1">
-                    Search
-                </span>
-                
-                <i class="icon-arrow after fa-solid fa-magnifying-glass"></i>
-            </button>
+          <button type="button" class="default-btn rounded-1" (click)="Search()">
+            <i class=""></i>
+            <i class="icon-arrow before fa-solid fa-magnifying-glass"></i>
+            <span class="label mx-1 my-1">
+              Search
+            </span>
+            <i class="icon-arrow after fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
-    </div>
-    <div class="fs-4">
-        <table mat-table [dataSource]="dataSource" class="student-report-table fs-4">
-            
-            <!-- courseName Column -->
-            <ng-container matColumnDef="courseName">
-                <th mat-header-cell *matHeaderCellDef>Course name</th>
-                <td mat-cell *matCellDef="let element"> {{element.courseName}} </td>
-            </ng-container>
+      </div>
+      
 
-            <!-- numberOfAbsence Column -->
-            <ng-container matColumnDef="numberOfAbsence">
-                <th mat-header-cell *matHeaderCellDef>Absecnes</th>
-                <td mat-cell *matCellDef="let element"> {{element.numberOfAbsence}} </td>
-            </ng-container>
 
-            <!-- pointsEarned Column -->
-            <ng-container matColumnDef="pointsEarned">
-                <th mat-header-cell *matHeaderCellDef>Points Earned</th>
-                <td mat-cell *matCellDef="let element"> {{element.pointsEarned}} </td>
-            </ng-container>
+<div class="fs-4">
+    <button *ngIf="_learnerService.reportUserFilter.length > 0" mat-button color="accent" class="mt-5" (click)="print()">
+        <mat-icon class="mat-24" aria-label="Example icon-button with a heart icon">print</mat-icon>
+     Print
+    </button>
+    <table mat-table [dataSource]="_learnerService.reportUserFilter" class="student-report-table fs-4">
+    
+      <!-- courseName Column -->
+      <ng-container matColumnDef="courseName">
+        <th mat-header-cell *matHeaderCellDef>Course name</th>
+        <td mat-cell *matCellDef="let element"> {{element.coursename}} </td>
+      </ng-container>
+  
+      <!-- numberOfAbsence Column -->
+      <ng-container matColumnDef="numberOfAbsence">
+        <th mat-header-cell *matHeaderCellDef>Absecnes</th>
+        <td mat-cell *matCellDef="let element"> {{element.attendance_count}} </td>
+      </ng-container>
+  
+      <!-- pointsEarned Column -->
+      <ng-container matColumnDef="pointsEarned">
+        <th mat-header-cell *matHeaderCellDef>Points Earned</th>
+        <td mat-cell *matCellDef="let element"> {{element.total_points}} </td>
+      </ng-container>
+  
+      <!-- totalMark Column -->
+      <ng-container matColumnDef="totalMark">
+        <th mat-header-cell *matHeaderCellDef>Total Mark</th>
+        <td mat-cell *matCellDef="let element"> {{element.studentmark}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-            <!-- totalMark Column -->
-            <ng-container matColumnDef="totalMark">
-                <th mat-header-cell *matHeaderCellDef>Total Mark</th>
-                <td mat-cell *matCellDef="let element"> {{element.totalMark}} </td>
-            </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+    </table>
+    <!-- <button (click)="downloadAsPDF()">Download as PDF</button> -->
+ 
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-            aria-label="Select page of periodic elements">
-        </mat-paginator>
-    </div>
+  </div>
+
 
 </app-user-dashboard-container>

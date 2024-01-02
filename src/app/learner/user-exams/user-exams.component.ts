@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LearnerService } from 'src/app/Services/learner.service';
 
 @Component({
   selector: 'app-user-exams',
@@ -6,5 +7,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-exams.component.scss']
 })
 export class UserExamsComponent {
+
+
+  constructor(public _learnerService: LearnerService) {}
+  ngOnInit() {
+    this._learnerService.GetAllSectionsByLearnerId();
+  }
+
+  selectedSection: any ;
+  loadData(sectionId : number){
+    this._learnerService.GetAllExamByUserSection(sectionId);
+  }
+
+  isButtonEnabled(data: any): boolean {
+    const currentDate = new Date();
+    const examDate = new Date(data.examdate);
+    const openAt = new Date(data.openat);
+    const closeAt = new Date(data.closeat);
+
+    return currentDate >= examDate && currentDate >= openAt && currentDate <= closeAt;
+}
+  
 
 }
