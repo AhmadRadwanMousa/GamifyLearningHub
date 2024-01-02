@@ -42,7 +42,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { AuthGuard } from '../RouteGuard/auth-guard.guard';
-import { ReportFilterPipe } from '../report-filter.pipe';
+//import { ReportFilterPipe } from '../report-filter.pipe';
 
 import { UserDashboardContainerComponent } from './user-dashboard-container/user-dashboard-container.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -67,7 +67,6 @@ import { MatTable, MatTableModule } from '@angular/material/table';
     SidebarInstructorComponent,
     HeaderInstructorComponent,
     UserDashboardContainerComponent,
-    ReportFilterPipe,
   ],
   imports: [
     CommonModule,
@@ -130,7 +129,6 @@ import { MatTable, MatTableModule } from '@angular/material/table';
     MatSlideToggleModule,
     MatTableModule,
     MatPaginatorModule,
-    ReportFilterPipe,
   ],
 })
 export class SharedModule {}
