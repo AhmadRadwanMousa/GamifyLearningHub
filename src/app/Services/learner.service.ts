@@ -260,4 +260,102 @@ export class LearnerService {
       this.userId = token.userId;
     }
   }
+
+  reportUser: any = [];
+  reportUserFilter: any = [];
+  GetCoursesByProgramId(programId: number) {
+    this.spinner.show();
+    this.http
+      .get(
+        'https://localhost:7036/api/User/ReportsByUserId/' +
+          this.userId +
+          '/' +
+          programId
+      )
+      .subscribe({
+        next: (x: any) => {
+          this.reportUser = x;
+          console.log('-----------');
+          console.log(this.reportUser);
+          console.log('-----------');
+          this.reportUserFilter = x;
+          this.spinner.hide();
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+  programsBytUserId: any = [];
+  GetProgramsByUserId() {
+    this.spinner.show();
+    this.http
+      .get('https://localhost:7036/api/User/GetProgramsByUserId/' + this.userId)
+      .subscribe({
+        next: (x: any) => {
+          this.programsBytUserId = x;
+          this.spinner.hide();
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+  allSectionsByLearnerId: any = [];
+  GetAllSectionsByLearnerId() {
+    this.spinner.show();
+    this.http
+      .get(
+        'https://localhost:7036/api/ExamLearner/GetAllSectionsByLearnerId/' +
+          this.userId
+      )
+      .subscribe({
+        next: (x: any) => {
+          this.allSectionsByLearnerId = x;
+          this.spinner.hide();
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+  allExamByUserSection: any = [];
+  GetAllExamByUserSection(sectionId: number) {
+    this.spinner.show();
+    this.http
+      .get(
+        'https://localhost:7036/api/ExamLearner/GetAllExamByUserSection/' +
+          this.userId +
+          '/' +
+          sectionId
+      )
+      .subscribe({
+        next: (x: any) => {
+          this.allExamByUserSection = x;
+          this.spinner.hide();
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+  CreateExamSolution(data: any) {
+    this.spinner.show();
+    this.http.post('https://localhost:7036/api/ExamLearner', data).subscribe({
+      next: () => {
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.spinner.hide();
+      },
+    });
+  }
 }

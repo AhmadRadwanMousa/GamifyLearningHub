@@ -1,7 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { LearnerService } from 'src/app/Services/learner.service';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+import 'jspdf-autotable';
+import { Renderer2 } from '@angular/core';
 
+declare let jsPDF: any; // Declare jsPDF to avoid TypeScript errors
 
 @Component({
   selector: 'app-student-report',
@@ -9,45 +15,57 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./student-report.component.scss']
 })
 export class StudentReportComponent {
+
+  constructor(private renderer: Renderer2, private el: ElementRef, public _learnerService: LearnerService) {}
+  
+  print = () => {
+    const pdfTable = this.el.nativeElement.querySelector('.student-report-table');
+  
+    html2canvas(pdfTable).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+  
+      const doc = new jspdf.jsPDF();
+      const pdfWidth = doc.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+  
+      doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      doc.save('table.pdf');
+    });
+  }
+  getLiveData() {
+    return [['log1', '$100'], ['log2', '$200']];
+  }
+  
+
+
   displayedColumns: string[] = ['courseName', 'numberOfAbsence', 'pointsEarned', 'totalMark'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  ngOnInit() {
+    this._learnerService.GetProgramsByUserId();
+}
+selectedProgram: any ;
+searchText : string = '';
+loadData(programId : number){
+  this._learnerService.GetCoursesByProgramId(programId);
+}
+
+Search(){
+
+  if (this.searchText == ''){
+    this._learnerService.reportUserFilter = this._learnerService.reportUser;
+  }
+  else {
+    this._learnerService.reportUserFilter = this._learnerService.reportUser.filter((x:any)=> x.coursename.toUpperCase().includes(this.searchText.toUpperCase()));
+
   }
 }
 
-/* Sample of Data */
-export interface PeriodicElement {
-  courseName: string;
-  numberOfAbsence: number;
-  pointsEarned: number;
-  totalMark: number;
+
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {courseName: 'C# Basics', numberOfAbsence: 0, pointsEarned: 240, totalMark: 96},
-  {courseName: 'C# OOP', numberOfAbsence: 1, pointsEarned: 250, totalMark: 93},
-  {courseName: 'Web Design', numberOfAbsence: 0, pointsEarned: 600, totalMark: 98},
-  {courseName: 'Oracle Database', numberOfAbsence: 2, pointsEarned: 780, totalMark: 94},
-  {courseName: '.NET MVC', numberOfAbsence: 0, pointsEarned: 780, totalMark: 95},
-  {courseName: '.NET Web API', numberOfAbsence: 1, pointsEarned: 980, totalMark: 99},
-  {courseName: 'Angular', numberOfAbsence: 0, pointsEarned: 740, totalMark: 99},
-  {courseName: 'C# Basics', numberOfAbsence: 0, pointsEarned: 240, totalMark: 96},
-  {courseName: 'C# OOP', numberOfAbsence: 1, pointsEarned: 250, totalMark: 93},
-  {courseName: 'Web Design', numberOfAbsence: 0, pointsEarned: 600, totalMark: 98},
-  {courseName: 'Oracle Database', numberOfAbsence: 2, pointsEarned: 780, totalMark: 94},
-  {courseName: '.NET MVC', numberOfAbsence: 0, pointsEarned: 780, totalMark: 95},
-  {courseName: '.NET Web API', numberOfAbsence: 1, pointsEarned: 980, totalMark: 99},
-  {courseName: 'Angular', numberOfAbsence: 0, pointsEarned: 740, totalMark: 99},
-  {courseName: 'C# Basics', numberOfAbsence: 0, pointsEarned: 240, totalMark: 96},
-  {courseName: 'C# OOP', numberOfAbsence: 1, pointsEarned: 250, totalMark: 93},
-  {courseName: 'Web Design', numberOfAbsence: 0, pointsEarned: 600, totalMark: 98},
-  {courseName: 'Oracle Database', numberOfAbsence: 2, pointsEarned: 780, totalMark: 94},
-  {courseName: '.NET MVC', numberOfAbsence: 0, pointsEarned: 780, totalMark: 95},
-  {courseName: '.NET Web API', numberOfAbsence: 1, pointsEarned: 980, totalMark: 99},
-  {courseName: 'Angular', numberOfAbsence: 0, pointsEarned: 740, totalMark: 99},
-];
+
+
+

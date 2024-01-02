@@ -48,6 +48,7 @@ import { UserDashboardContainerComponent } from './user-dashboard-container/user
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTable, MatTableModule } from '@angular/material/table';
+
 @NgModule({
   declarations: [
     FooterComponent,

@@ -15,6 +15,7 @@ import { StudentReportComponent } from './student-report/student-report.componen
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
+import { LearnerExamComponent } from './learner-exam/learner-exam.component';
 import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
     path: 'testimonial',
     component: TestimonialComponent,
   },
+  { path: 'exam/:examid', component: LearnerExamComponent },
 ];
 
 @NgModule({
