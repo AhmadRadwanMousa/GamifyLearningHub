@@ -20,9 +20,6 @@ export class RoleGuard implements CanActivate {
     const token: any = getToken();
     const userRoleId: number | undefined = Number(token.roleId);
     const allowedRoleId: number = route.data['expectedRoleId'];
-    console.log('routeRole', allowedRoleId);
-    console.log('userRoleId', userRoleId);
-
     if (userRoleId === allowedRoleId) {
       return true;
     } else {

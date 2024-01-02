@@ -37,12 +37,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     InstructorDetailsPageComponent,
     AboutUsComponent,
   ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    SharedModule,
-    FormsModule,
-  ],
+  imports: [CommonModule, PagesRoutingModule, SharedModule],
   exports: [HomePageComponent],
 })
 export class PagesModule {}

@@ -1,4 +1,10 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -10,12 +16,12 @@ import { Component, Input } from '@angular/core';
       state('collapsed', style({ height: '0', display: 'none' })),
       state('expanded', style({ height: '*' })),
       transition('collapsed => expanded', animate('300ms ease-in')),
-      transition('expanded => collapsed', animate('300ms ease-out'))
-    ])
-  ]
+      transition('expanded => collapsed', animate('300ms ease-out')),
+    ]),
+  ],
 })
 export class SectionAnnouncementsComponent {
-  @Input() Content: string = '';
+  @Input() Content: any = [];
   isCollapsed = true;
   toggleCollapse(): void {
     this.isCollapsed = !this.isCollapsed;

@@ -28,7 +28,7 @@ export class AuthService {
           localStorage.setItem('token', res.token);
           const tokenPayload: any = jwtDecode(res.token);
           let roleId: number = Number(tokenPayload.roleId);
-          this.isLoggedInSubject.next(true);
+          this.isLoggedInSubject.next(roleId === 3);
           this.HandleNavigate(roleId);
           setTimeout(() => {
             this.spinner.hide();

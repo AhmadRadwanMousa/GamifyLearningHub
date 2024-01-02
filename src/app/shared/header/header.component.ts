@@ -42,7 +42,8 @@ export class HeaderComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
     });
-    this.learnerService.GetCartItemsByUserId(this.learnerService.userId);
+    this.learnerService.updateUserId();
+    this.learnerService.GetCartItemsByUserId();
   }
   Logout() {
     this.isLoggedIn = false;

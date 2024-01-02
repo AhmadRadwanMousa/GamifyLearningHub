@@ -374,6 +374,7 @@ export class AdminService {
             (a: any, b: any) =>
               (new Date(a.startdate) as any) - (new Date(b.startdate) as any)
           );
+          console.log(x);
           this.spinner.hide();
         },
         error: (err) => {
@@ -389,7 +390,6 @@ export class AdminService {
       .post('https://localhost:7036/api/CourseSequence', data)
       .subscribe({
         next: (x) => {
-          console.log('Created');
           this.GetCoursesSequenceByProgramId(data.programid);
           this.spinner.hide();
           if (x != null) {
@@ -410,7 +410,6 @@ export class AdminService {
       .delete('https://localhost:7036/api/CourseSequence/' + id)
       .subscribe({
         next: (x: any) => {
-          console.log('Deleted');
           this.GetCoursesSequenceByProgramId(programid);
           this.spinner.hide();
           if (x.rowsAffected == 1) {
@@ -449,7 +448,6 @@ export class AdminService {
     });
   }
 
-
   CreateCertificationCourseSequence(id: number, programid: number) {
     this.spinner.show();
     this.http
@@ -463,7 +461,6 @@ export class AdminService {
           } else {
             this.toastr.error('Created Certification error');
           }
-         
         },
         error: (err) => {
           this.toastr.error('Created Certification error');
@@ -471,7 +468,6 @@ export class AdminService {
         },
       });
   }
-
 
   plans: any = [];
   GetAllPlans_duplicate() {
@@ -861,7 +857,6 @@ export class AdminService {
       .post('https://localhost:7036/api/Coupon/CreateCoupon/', data)
       .subscribe({
         next: () => {
-          console.log('Coupon has been Created');
           this.toastr.success('Coupon Created');
           this.getAllCoupon();
         },

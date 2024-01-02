@@ -79,7 +79,7 @@
             ></a>
             <a
               *ngIf="this.shard.program.programprice > 0"
-              (click)="AddToCart(this.shard.program.programid)"
+              (click)="OpenSectionsDialog(this.shard.program.programid)"
               class="default-btn"
               ><i class="bx bx-paper-plane icon-arrow before"></i
               ><span class="label">Buy Program</span
@@ -219,3 +219,37 @@
     </div>
   </div>
 </div>
+<ng-template #SectionDialog>
+  <div
+    class="d-flex justify-content-center align-items-center gap-3 flex-column h-100"
+  >
+    <h4>Select Section :</h4>
+    <mat-form-field color="accent">
+      <mat-label>Section Instructor</mat-label>
+      <mat-select [(ngModel)]="selectedSection">
+        <mat-option disabled *ngIf="this.sectionsByCourseSequence.length === 0"
+          >Select Section
+        </mat-option>
+        <mat-option
+          class="pt-3"
+          *ngFor="let section of this.sectionsByCourseSequence"
+          [value]="section.sectionid"
+          >{{ section.sectionname }}
+          <br />
+          <span>by {{ section.user.firsname }}{{ section.user.lastname }}</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-dialog-actions align="center">
+      <button [mat-dialog-close]="false" mat-raised-button>Cancel</button>
+      <button
+        [mat-dialog-close]="true"
+        mat-raised-button
+        color="accent"
+        [disabled]="!selectedSection"
+      >
+        Confirm
+      </button>
+    </mat-dialog-actions>
+  </div>
+</ng-template>

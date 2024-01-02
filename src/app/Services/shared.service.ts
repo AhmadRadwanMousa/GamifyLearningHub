@@ -102,9 +102,6 @@ export class SharedService {
     });
   }
 
-  
- 
-
   program: any;
   getProgramById(id: number) {
     //debugger
@@ -112,6 +109,7 @@ export class SharedService {
       next: (res) => {
         this.spinner.show();
         this.program = res;
+
         this.spinner.hide();
       },
       error: (err) => {
@@ -119,10 +117,6 @@ export class SharedService {
       },
     });
   }
-
-  
-
-
 
   course: any;
   getCourseById(id: number) {
@@ -148,10 +142,40 @@ export class SharedService {
     });
   }
   CoursesInProgram: any = [];
+  FirstCourseSequenceId = 0;
   getAllCoursesInProgram(id: number) {
+    this.spinner.show();
     this.http.get(`${URL}/CourseSequence/GetByProgramId/${id}`).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.CoursesInProgram = res;
+        let response: any = res.filter((x: any) => x.perviouscourseid === null);
+        if (response && response.length > 0 && response[0].coursesequenceid) {
+          this.FirstCourseSequenceId = response[0].coursesequenceid;
+        } else {
+          this.FirstCourseSequenceId = 0;
+        }
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+        this.spinner.hide();
+      },
+    });
+  }
+  getSectionsByCourseSequence(courseSequenceId: number) {
+    return this.http.get(
+      `${URL}/Section/GetAllSectionsByCourseSequenceId/` + courseSequenceId
+    );
+  }
+  //Instructor Pages
+
+  //Show Instructors page
+  //Get All Instructors
+  Instructors: any = [];
+  getAllInstrutors() {
+    this.http.get(`${URL}/Section/GetAllUsersWithRoleId2`).subscribe({
+      next: (res) => {
+        this.Instructors = res;
       },
       error: (err) => {
         this.toastr.error(err.message);
@@ -159,32 +183,15 @@ export class SharedService {
     });
   }
 
-  //Instructor Pages
-
-   //Show Instructors page
-  //Get All Instructors
-  Instructors: any =[];
-  getAllInstrutors(){
-    this.http.get(`${URL}/Section/GetAllUsersWithRoleId2`).subscribe({
-      next:(res)=> {
-        this.Instructors=res;
-      },
-      error: (err) => {
-        this.toastr.error(err.message);
-      },
-    })
-  }
-
- 
   //Get InstrutorDetails
-  InstructorDetails:any;
+  InstructorDetails: any;
 
   getInstructorDetails(id: number) {
     this.spinner.show();
-  
+
     this.http.get('https://localhost:7036/api/user/' + id).subscribe({
       next: (res) => {
-        console.log(res); 
+        console.log(res);
         this.InstructorDetails = res;
         this.spinner.hide();
       },
@@ -197,18 +204,17 @@ export class SharedService {
 
   //Get  SectionsDetails For Instructor Page
 
-  SectionDetails: any =[];
-  getAllSectionDetails(id:number){
-    this.http.get(`${URL}/TakeAttendenceBySection/GetSectionsByInstructor/${id}`).subscribe({
-      next:(res)=> {
-        this.SectionDetails =res;
-      },
-      error: (err) => {
-        this.toastr.error(err.message);
-      },
-    })
+  SectionDetails: any = [];
+  getAllSectionDetails(id: number) {
+    this.http
+      .get(`${URL}/TakeAttendenceBySection/GetSectionsByInstructor/${id}`)
+      .subscribe({
+        next: (res) => {
+          this.SectionDetails = res;
+        },
+        error: (err) => {
+          this.toastr.error(err.message);
+        },
+      });
   }
-
-
- 
 }

@@ -13,6 +13,7 @@ export class CartComponent implements OnInit {
   userId: number = Number(this.token.userId);
 
   ngOnInit(): void {
-    this.learnerService.GetCartItemsByUserId(this.userId);
+    this.learnerService.updateUserId();
+    this.learnerService.GetCartItemsByUserId();
   }
 }

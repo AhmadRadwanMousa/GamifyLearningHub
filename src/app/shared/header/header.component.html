@@ -386,6 +386,11 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item" *ngIf="isLoggedIn">
+              <a routerLink="/learner/userDashboard" class="nav-link"
+                >My Dashboard
+              </a>
+            </li>
             <li class="nav-item">
               <a href="javascript:void(0)" class="nav-link"
                 >Courses <i class="bx bx-chevron-down"></i

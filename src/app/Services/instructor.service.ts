@@ -24,7 +24,6 @@ export class InstructorService {
     let token: any = localStorage.getItem('token');
     const tokenPayload: any = jwtDecode(token);
     this.userId = Number(tokenPayload.userId);
-    
   }
   MyInstructorSections: any = [];
   GetAllInstructorSectionsById(id: number) {
@@ -112,17 +111,16 @@ export class InstructorService {
     });
   }
 
+  // announcements
 
-// announcements
-  
   announcementsBySectionId: any = [];
 
-  GetAnnouncementsBySectionId(sectionId : number) {
+  GetAnnouncementsBySectionId(sectionId: number) {
     this.spinner.show();
     this.http
       .get(
         'https://localhost:7036/api/Announcement/GetAnnouncementsBySectionId/' +
-        sectionId
+          sectionId
       )
       .subscribe({
         next: (announcements: any) => {
@@ -136,8 +134,6 @@ export class InstructorService {
         },
       });
   }
-
-
 
   CreateAnnouncements(data: any) {
     this.spinner.show();
@@ -157,27 +153,23 @@ export class InstructorService {
     });
   }
 
-
   UpdateAnnouncements(data: any) {
     this.spinner.show();
-    this.http
-      .put(
-        'https://localhost:7036/api/Announcement' , data )
-      .subscribe({
-        next: () => {
-          console.log('Announcement Updated');
-          this.GetSectionsByUserId();
-          this.GetAllMaterialsBySectionId(data.sectionid);
-          this.GetAnnouncementsBySectionId(data.sectionid);
-          this.spinner.hide();
-          this.toastr.success('Announcement updated successfully');
-        },
-        error: (err) => {
-          console.log(err);
-          this.spinner.hide();
-          this.toastr.error('Failed to update announcement');
-        },
-      });
+    this.http.put('https://localhost:7036/api/Announcement', data).subscribe({
+      next: () => {
+        console.log('Announcement Updated');
+        this.GetSectionsByUserId();
+        this.GetAllMaterialsBySectionId(data.sectionid);
+        this.GetAnnouncementsBySectionId(data.sectionid);
+        this.spinner.hide();
+        this.toastr.success('Announcement updated successfully');
+      },
+      error: (err) => {
+        console.log(err);
+        this.spinner.hide();
+        this.toastr.error('Failed to update announcement');
+      },
+    });
   }
 
   DeleteAnnouncements(id: number, sectionid: number) {
@@ -205,10 +197,6 @@ export class InstructorService {
       });
   }
 
-
-
-
-
   userId: any = 0;
   sectionsByUserId: any = [];
 
@@ -217,16 +205,14 @@ export class InstructorService {
     this.http
       .get(
         'https://localhost:7036/api/Section/GetAllSectionsByUserId/' +
-        this.userId
+          this.userId
       )
       .subscribe({
         next: (section: any) => {
           this.sectionsByUserId = section;
-
           this.spinner.hide();
         },
         error: (err) => {
-          console.log(err);
           this.spinner.hide();
         },
       });
@@ -239,7 +225,7 @@ export class InstructorService {
     this.http
       .get(
         'https://localhost:7036/api/CourseSection/GetCoursesSectionBySectionId/' +
-        sectionId
+          sectionId
       )
       .subscribe({
         next: (material: any) => {
@@ -580,7 +566,9 @@ export class InstructorService {
   getUsersBySectionId(id: number): Observable<any[]> {
     this.spinner.show();
     return this.http
-      .get<any[]>('https://localhost:7036/api/UserSection/GetUsersBySectionId/' + id)
+      .get<any[]>(
+        'https://localhost:7036/api/UserSection/GetUsersBySectionId/' + id
+      )
       .pipe(
         finalize(() => {
           this.spinner.hide();
@@ -588,52 +576,60 @@ export class InstructorService {
         catchError((error) => {
           this.toastr.error(error.message);
           this.spinner.hide();
-          throw error; 
+          throw error;
         })
       );
   }
-  careteAttendence(data: any){
+  careteAttendence(data: any) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    this.http.post(`${URL}/TakeAttendenceBySection`, data, { headers, responseType: 'text' }).subscribe(
-      {
-        next:(res)=>{this.toastr.success(res)},
-        error:(err)=>{this.toastr.error(err)}
-      }
-    )
-  }
-  attendenceDetails: any = [];
-  GetAttendencDetails(id: number){
-    this.http.get(`${URL}/TakeAttendenceBySection/GetAttendenceBySection/${id}`).subscribe(
-      {
-        next:(res)=>{this.spinner.show(); this.attendenceDetails = res; this.spinner.hide()},
-        error:()=>{this.spinner.hide(); this.toastr.error("Can't load details")}
-      }
-    );
-  }
-
-  // <! -- Report Properties --!> 
-  
-  
-  report: any;
-  filterdReport: any = []
-  reported:any = []
-  
-  
-  
-  reports: any = [];
-    getAllReports() {
-      this.http.get('https://localhost:7036/api/Report/GetAllReport').subscribe({
-        next: (result) => {
-          this.report = result;
-        
+    this.http
+      .post(`${URL}/TakeAttendenceBySection`, data, {
+        headers,
+        responseType: 'text',
+      })
+      .subscribe({
+        next: (res) => {
+          this.toastr.success(res);
         },
         error: (err) => {
-          console.log(err);
-        }
+          this.toastr.error(err);
+        },
       });
-      
-      
-    }
+  }
+  attendenceDetails: any = [];
+  GetAttendencDetails(id: number) {
+    this.http
+      .get(`${URL}/TakeAttendenceBySection/GetAttendenceBySection/${id}`)
+      .subscribe({
+        next: (res) => {
+          this.spinner.show();
+          this.attendenceDetails = res;
+          this.spinner.hide();
+        },
+        error: () => {
+          this.spinner.hide();
+          this.toastr.error("Can't load details");
+        },
+      });
+  }
+
+  // <! -- Report Properties --!>
+
+  report: any;
+  filterdReport: any = [];
+  reported: any = [];
+
+  reports: any = [];
+  getAllReports() {
+    this.http.get('https://localhost:7036/api/Report/GetAllReport').subscribe({
+      next: (result) => {
+        this.report = result;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }

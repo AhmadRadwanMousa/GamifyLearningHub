@@ -15,6 +15,7 @@ import { StudentReportComponent } from './student-report/student-report.componen
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   { path: 'userDashboard', component: UserDashboardComponent },
@@ -25,10 +26,12 @@ const routes: Routes = [
   { path: 'userEditProfile', component: UserEditProfileComponent },
   { path: 'userCompletedPrograms', component: UserCompletedProgramsComponent },
   { path: 'userTestimonial', component: UserTestimonialComponent },
-  { path: 'userCourses', component: UserCoursesComponent },
-  { path: 'courseContent', component: CourseContentComponent },
+  { path: 'userCourses/:programId', component: UserCoursesComponent },
+  { path: 'courseContent/:courseId', component: CourseContentComponent },
   { path: 'completedCourses', component: CompletedCoursesComponent },
   { path: 'studentReport', component: StudentReportComponent },
+  { path: 'orders', component: OrdersComponent },
+
   {
     path: 'cart',
     component: CartComponent,

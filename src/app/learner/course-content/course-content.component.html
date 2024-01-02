@@ -1,9 +1,11 @@
 <app-user-dashboard-container>
-<app-top-students [isShow]="true"></app-top-students>
-<app-section-announcements Content="Any"></app-section-announcements>
-<app-collapsible Tilte="Section 1" Content="Any"></app-collapsible>
-<app-collapsible Tilte="Section 2" Content="Any"></app-collapsible>
-<app-collapsible Tilte="Section 3" Content="Any"></app-collapsible>
-<app-collapsible Tilte="Section 4" Content="Any"></app-collapsible>
-<app-collapsible Tilte="Section 5" Content="Any"></app-collapsible>
+  <app-top-students [isShow]="true"></app-top-students>
+  <app-section-announcements
+    [Content]="this.learnerService.SectionAnnocment"
+  ></app-section-announcements>
+  <app-collapsible
+    *ngFor="let courseSection of this.learnerService.CourseMaterials"
+    [Tilte]="courseSection.coursesectionname"
+    [Content]="courseSection.lectures"
+  ></app-collapsible>
 </app-user-dashboard-container>

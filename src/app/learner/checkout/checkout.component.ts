@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LearnerService } from 'src/app/Services/learner.service';
 import { render } from 'creditcardpayments/creditCardPayments';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/Services/admin.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -15,7 +16,8 @@ export class CheckoutComponent implements OnInit {
   view = 'default';
   isPayPalRendered = false;
   ngOnInit(): void {
-    this.learnerService.GetCartItemsByUserId(this.learnerService.userId);
+    this.learnerService.updateUserId();
+    this.learnerService.GetCartItemsByUserId();
     this.renderPayPalButton();
   }
 
@@ -33,6 +35,10 @@ export class CheckoutComponent implements OnInit {
               Cartid: this.learnerService.CartId,
             };
             this.learnerService.CreatePayment(paymentDetails);
+            let cartItems: any[] = this.learnerService.CartItemsByUserId;
+            cartItems.map((item: any) =>
+              this.learnerService.AddUserToSection(item.sectionid)
+            );
             this.route.navigate(['/']);
           },
         });

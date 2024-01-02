@@ -1,23 +1,26 @@
-
 <div class="custom-collapse">
-    <div class="collapse-header" (click)="toggleCollapse()">
-      {{Tilte}}
-    </div>
-    <div class="collapse-body" [@expandCollapse]="isCollapsed ? 'collapsed' : 'expanded'">
-      <ul class="lectures-file-list">
-        <li class="file">
-          <i class="fa-solid fa-file-pdf file-icon"></i>
-          <a href="#">Lecture #1</a>
-        </li>
-        <li class="file">
+  <div class="collapse-header" (click)="toggleCollapse()">
+    {{ Tilte }}
+  </div>
+  <div
+    class="collapse-body"
+    [@expandCollapse]="isCollapsed ? 'collapsed' : 'expanded'"
+  >
+    <ul class="lectures-file-list">
+      <li class="file" *ngFor="let lecture of this.Content">
+        <i class="fa-solid fa-file-pdf file-icon"></i>
+        <a [href]="lecture.lecturefile" [download]="lecture.lecturename">{{
+          lecture.lecturename
+        }}</a>
+      </li>
+      <!-- <li class="file">
           <i class="fa-solid fa-file-word file-icon"></i>
           <a href="#">Lecture #2</a>
         </li>
         <li class="file">
           <i class="fa-solid fa-file-powerpoint file-icon"></i>
           <a href="#">Lecture #3</a>
-        </li>
-      </ul>
-    </div>
+        </li> -->
+    </ul>
   </div>
-  
+</div>

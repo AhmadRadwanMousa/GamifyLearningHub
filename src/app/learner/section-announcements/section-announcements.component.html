@@ -1,23 +1,16 @@
-
 <div class="custom-collapse">
-    <div class="collapse-header" (click)="toggleCollapse()">
-        <i class="fa-solid fa-bullhorn mx-2"></i> Announcements
-    </div>
-    <div class="collapse-body" [@expandCollapse]="isCollapsed ? 'collapsed' : 'expanded'">
-      <ul class="announcements-list">
-        <li class="announcement-title">
-            <i class="fa-solid fa-newspaper icon"></i>
-            Title #1
-        </li>
-        <li class="announcement-title">
-            <i class="fa-solid fa-newspaper icon"></i>
-            Title #2
-        </li>
-        <li class="announcement-title">
-            <i class="fa-solid fa-newspaper icon"></i>
-            Title #3
-        </li>
-      </ul>
-    </div>
+  <div class="collapse-header" (click)="toggleCollapse()">
+    <i class="fa-solid fa-bullhorn mx-2"></i> Announcements
   </div>
-  
+  <div
+    class="collapse-body"
+    [@expandCollapse]="isCollapsed ? 'collapsed' : 'expanded'"
+  >
+    <ul class="announcements-list">
+      <li class="announcement-title" *ngFor="let message of this.Content">
+        <i class="fa-solid fa-newspaper icon"></i>
+        {{ message.declaration }}
+      </li>
+    </ul>
+  </div>
+</div>
