@@ -9,6 +9,7 @@ import { RouterPreloader } from '@angular/router';
 import { max } from 'rxjs';
 import { map } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root',
@@ -629,6 +630,17 @@ export class InstructorService {
       },
       error: (err) => {
         console.log(err);
+      },
+    });
+  }
+  reportsBySectionId: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+  getAllReportsBySectionId(id: number) {
+    this.http.get(`${URL}/Report/GetSectionReport/${id}`).subscribe({
+      next: (res) => {
+        this.reportsBySectionId.data = res as any[];
+      },
+      error: (err) => {
+        this.toastr.info('there is no reports in this section');
       },
     });
   }

@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges, OnInit, SimpleChange, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { jwtDecode } from 'jwt-decode';
 import { InstructorService } from 'src/app/Services/instructor.service';
 
@@ -16,9 +17,16 @@ export class ReportComponent   {
   }
   
   @ViewChild('DetailsDialog') DetailsDialog: any;
+  displayedColumns: string[] = ['firstName', 'lastName', 'points', 'absences','More Details'];
   
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.instructorService.reportsBySectionId.filter = filterValue.trim().toLowerCase();
+  }
+  selectedSection : any;
   // <!-- Tokens --!>
+  /*
   token: string | null = localStorage.getItem('token');
   getUserIdFromToken(): number{
     if(this.token != null){
@@ -29,7 +37,7 @@ export class ReportComponent   {
       return 0;
     }
   }
-
+*/
   // <!-- Moves hidden properties in Details Dialog --!>
   reportInformation: any;
   reportDetails = new FormGroup({
@@ -40,6 +48,7 @@ export class ReportComponent   {
     Isattended: new FormControl('', Validators.required),
     Points: new FormControl('', Validators.required),
     attendence: new FormControl('', Validators.required),
+    absences: new FormControl('', Validators.required),
   });
 
   // <!-- Details Dialog --!>
@@ -51,18 +60,20 @@ OpenDetailsDialog(reportDetails: any) {
   });
 }
 
-// <!-- Call function to retrieve the reports from DB --!>
+// <!-- Call function to retrieve the reports by Instructor ID--!>
 ngOnInit() {
-  this.instructorService.getAllReports();
-  
+  this.instructorService.GetSectionsByUserId();
 }
 
-searchText: string = '';
-Search()
-{
-  this.instructorService.filterdReport = this.instructorService.reported.filter((x:any)=> x.Firsname.toUpperCase().includes(this.searchText.toUpperCase()))
+loadReports(id: number){
+  console.log(id);
+  this.instructorService.getAllReportsBySectionId(id);
 }
 
 
 
+
+
+
 }
+
