@@ -7,6 +7,7 @@ import { Observable, map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 import { UrlHandlingStrategy } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root',
@@ -978,6 +979,53 @@ export class AdminService {
           this.spinner.hide();
           this.toastr.error(error.message, 'Something went wrong');
         }, 1000);
+      }
+    );
+  }
+
+  /* Admin Report */
+StudentsReports: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+  GetAllStudentsReports(){
+    this.http.get(`${URL}/AdminReport/GetAllStudentsReport`).subscribe(
+      {
+        next:(res)=>{
+          this.spinner.show();
+          this.StudentsReports.data = res as any[];
+          this.spinner.hide();
+        },
+        error:(err)=>{
+          this.toastr.error(err.message);
+        }
+      }
+    );
+  }
+
+  StudentReportsDetails: any = [];
+  GetStudentReportsDetails(id: number){
+    this.http.get(`${URL}/AdminReport/GetAllStudentsDetailsReport/${id}`).subscribe({
+      next:(res)=>{
+        this.spinner.show();
+        this.StudentReportsDetails = res;
+        this.spinner.hide();
+      },
+      error:(err)=>{
+        this.toastr.error(err.message);
+      }
+    });
+  }
+
+  SectionsReports: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+  GetAllSectionsReports(){
+    this.http.get(`${URL}/AdminReport/GetAllSectionsReport`).subscribe(
+      {
+        next:(res)=>{
+          this.spinner.show();
+          this.SectionsReports.data = res as any[];
+          this.spinner.hide();
+        },
+        error:(err)=>{
+          this.toastr.error(err.message);
+        }
       }
     );
   }
