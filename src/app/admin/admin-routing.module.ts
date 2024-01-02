@@ -16,6 +16,7 @@ import { ManageCourseSequenceComponent } from './manage-course-sequence/manage-c
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageTestimonialsComponent } from './manage-testimonials/manage-testimonials.component';
 import { ManageUserStatusComponent } from './manage-user-status/manage-user-status.component';
+import { AdminReportComponent } from './admin-report/admin-report.component';
 
 const routes: Routes = [
   {
@@ -80,6 +81,10 @@ const routes: Routes = [
   {
     path: 'usersRequests',
     component: ManageUserStatusComponent,
+  },
+  {
+    path: 'adminReport',
+    component: AdminReportComponent,
   },
 ];
 

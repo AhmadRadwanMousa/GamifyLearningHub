@@ -19,6 +19,7 @@ import { CuoponComponent } from './coupon/cuopon.component';
 import { PointsComponent } from './points/points.component';
 import { MessageComponent } from './message/message.component';
 import { ManageUserStatusComponent } from './manage-user-status/manage-user-status.component';
+import { AdminReportComponent } from './admin-report/admin-report.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ManageUserStatusComponent } from './manage-user-status/manage-user-stat
     CuoponComponent,
     PointsComponent,
     MessageComponent,
-    ManageUserStatusComponent
+    ManageUserStatusComponent,
+    AdminReportComponent
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
   exports: [],

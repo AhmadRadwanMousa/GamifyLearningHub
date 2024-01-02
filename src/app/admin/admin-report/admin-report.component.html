@@ -1,0 +1,156 @@
+<app-admin-container>
+  <!-- students table -->
+<div class="row">
+  <h4>Students Report</h4>
+<mat-form-field>
+    <mat-label>Filter students</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Student Name" #input>
+  </mat-form-field>
+<div>
+    <table mat-table [dataSource]="this.adminService.StudentsReports" class="text-center">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>First Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.firsname}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef>Last Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>Image</th>
+        <td mat-cell *matCellDef="let element">
+          <img [src]="element.userimage" width="70px" style="border-radius: 50%;">
+          </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Points">
+        <th mat-header-cell *matHeaderCellDef>Points</th>
+        <td mat-cell *matCellDef="let element"> {{element.totalpoints == null ? '0' : element.totalpoints}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="BirthDay">
+        <th mat-header-cell *matHeaderCellDef>Birth Day</th>
+        <td mat-cell *matCellDef="let element"> {{element.dateofbirth | date: 'longDate'}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Completed Courses">
+        <th mat-header-cell *matHeaderCellDef>Completed Courses</th>
+        <td mat-cell *matCellDef="let element"> {{element.completedcourses}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="More Deatils">
+        <th mat-header-cell *matHeaderCellDef>More Deatils</th>
+        <td mat-cell *matCellDef="let element"> 
+        <button (click)="ShowDetails(element.userid)" class="btn btn-primary">More</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsStudent"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsStudent;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of students">
+    </mat-paginator>
+  </div>
+</div>
+
+<!-- sections table -->
+  <div class="row mt-5">
+    <h4>Sections Report</h4>
+<mat-form-field>
+    <mat-label>Filter sections</mat-label>
+    <input matInput (keyup)="applyFilterSections($event)" placeholder="Student Name" #input>
+  </mat-form-field>
+<div>
+    <table mat-table [dataSource]="this.adminService.SectionsReports" class="text-center">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="SectionName">
+        <th mat-header-cell *matHeaderCellDef>Section name</th>
+        <td mat-cell *matCellDef="let element"> {{element.sectionname}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="InstructorName">
+        <th mat-header-cell *matHeaderCellDef>Instructor name</th>
+        <td mat-cell *matCellDef="let element"> {{element.firsname}} {{element.lastname}} </td>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="Capacity">
+        <th mat-header-cell *matHeaderCellDef>Capacity</th>
+        <td mat-cell *matCellDef="let element"> {{element.sectionsize}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="NumOfStudents">
+        <th mat-header-cell *matHeaderCellDef>Students in section</th>
+        <td mat-cell *matCellDef="let element">{{element.numberOfStudents}}</td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="NumOfExams">
+        <th mat-header-cell *matHeaderCellDef># of exams</th>
+        <td mat-cell *matCellDef="let element"> {{element.numberOfExams}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="NumOfAssignments">
+        <th mat-header-cell *matHeaderCellDef># of assignments</th>
+        <td mat-cell *matCellDef="let element"> {{element.numberOfAssignments}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="CourseName">
+        <th mat-header-cell *matHeaderCellDef>Course name</th>
+        <td mat-cell *matCellDef="let element"> {{element.coursename}} </td>
+      </ng-container>
+
+      
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsSection"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsSection;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of sections">
+    </mat-paginator>
+  </div>
+  </div>
+  
+</app-admin-container>
+
+<ng-template #DetailsDialog>
+  <div class="container mt-4">
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th>Section name</th>
+          <th>Absences</th>
+          <th>Exams marks</th>
+          <th>Assignments Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of this.adminService.StudentReportsDetails">
+          <td>{{d.sectionname}}</td>
+          <td>{{d.absences}}</td>
+          <td>{{d.total_section_exam_marks}}</td>
+          <td>{{d.total_section_assignment_marks}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
