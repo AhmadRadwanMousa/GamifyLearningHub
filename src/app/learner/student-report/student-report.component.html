@@ -49,19 +49,19 @@
       <!-- numberOfAbsence Column -->
       <ng-container matColumnDef="numberOfAbsence">
         <th mat-header-cell *matHeaderCellDef>Absecnes</th>
-        <td mat-cell *matCellDef="let element"> {{element.attendance_count}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.absences}} </td>
       </ng-container>
   
-      <!-- pointsEarned Column -->
+      <!-- pointsEarned Column 
       <ng-container matColumnDef="pointsEarned">
         <th mat-header-cell *matHeaderCellDef>Points Earned</th>
-        <td mat-cell *matCellDef="let element"> {{element.total_points}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.points_earned}} </td>
       </ng-container>
-  
+  -->
       <!-- totalMark Column -->
       <ng-container matColumnDef="totalMark">
         <th mat-header-cell *matHeaderCellDef>Total Mark</th>
-        <td mat-cell *matCellDef="let element"> {{element.studentmark}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.total_mark}} </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
