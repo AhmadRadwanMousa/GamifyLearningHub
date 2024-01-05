@@ -635,6 +635,7 @@ export class InstructorService {
   }
   reportsBySectionId: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   getAllReportsBySectionId(id: number) {
+    
     this.http.get(`${URL}/Report/GetSectionReport/${id}`).subscribe({
       next: (res) => {
         this.reportsBySectionId.data = res as any[];

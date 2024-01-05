@@ -6,7 +6,9 @@
                     <div class="state-icon ms-auto me-auto rounded-circle position-relative">
                         <i class="fa-solid fa-star"></i>
                     </div>
-                    <h3 class="fs-15">115</h3>
+                    <h3 class="fs-15">
+                        {{this.learnerService.UserDashboarInfoByUserId.totalpoints == null ? '0' : this.learnerService.UserDashboarInfoByUserId.totalpoints}}
+                    </h3>
                     <span class="d-block text-body-secondary">Total points</span>
                 </div>
             </div>
@@ -15,7 +17,7 @@
                     <div class="state-icon ms-auto me-auto rounded-circle position-relative">
                         <i class="fa-solid fa-medal"></i>
                     </div>
-                    <h3 class="fs-15">115</h3>
+                    <h3 class="fs-15">{{this.learnerService.UserDashboarInfoByUserId.total_Badges}}</h3>
                     <span class="d-block text-body-secondary">Total badges</span>
                 </div>
             </div>
@@ -24,7 +26,7 @@
                     <div class="state-icon ms-auto me-auto rounded-circle position-relative">
                         <i class="fa-solid fa-award"></i>
                     </div>
-                    <h3 class="fs-15">115</h3>
+                    <h3 class="fs-15">{{this.learnerService.UserDashboarInfoByUserId.total_Certificates}}</h3>
                     <span class="d-block text-body-secondary">Total certificates</span>
                 </div>
             </div>
@@ -33,7 +35,7 @@
                     <div class="state-icon ms-auto me-auto rounded-circle position-relative">
                         <i class="fa-solid fa-book"></i>
                     </div>
-                    <h3 class="fs-15">115</h3>
+                    <h3 class="fs-15">{{this.learnerService.UserDashboarInfoByUserId.total_Programs}}</h3>
                     <span class="d-block text-body-secondary">Total programs</span>
                 </div>
             </div>
@@ -42,7 +44,7 @@
                     <div class="state-icon ms-auto me-auto rounded-circle position-relative">
                         <i class="fa-solid fa-book-open-reader"></i>
                     </div>
-                    <h3 class="fs-15">115</h3>
+                    <h3 class="fs-15">{{this.learnerService.UserDashboarInfoByUserId.total_Certificates}}</h3>
                     <span class="d-block text-body-secondary">Completed courses</span>
                 </div>
             </div>
@@ -51,7 +53,7 @@
                     <div class="state-icon ms-auto me-auto rounded-circle position-relative">
                         <i class="fa-solid fa-quote-right"></i>
                     </div>
-                    <h3 class="fs-15">115</h3>
+                    <h3 class="fs-15">{{this.learnerService.UserDashboarInfoByUserId.total_Testimonials}}</h3>
                     <span class="d-block text-body-secondary">Total Testimonials</span>
                 </div>
             </div>

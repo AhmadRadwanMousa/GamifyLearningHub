@@ -21,15 +21,15 @@ import { OrdersComponent } from './orders/orders.component';
 const routes: Routes = [
   { path: 'userDashboard', component: UserDashboardComponent },
   { path: 'enrolledPrograms', component: EnrolledProgramsComponent },
-  { path: 'userAttendence', component: UserAttendenceComponent },
+  { path: 'userAttendence/:userid', component: UserAttendenceComponent },
   { path: 'userExams', component: UserExamsComponent },
   { path: 'userAssignments', component: UserAssignmnetsComponent },
-  { path: 'userEditProfile', component: UserEditProfileComponent },
+  { path: 'userEditProfile/:userid', component: UserEditProfileComponent },
   { path: 'userCompletedPrograms', component: UserCompletedProgramsComponent },
   { path: 'userTestimonial', component: UserTestimonialComponent },
   { path: 'userCourses/:programId', component: UserCoursesComponent },
   { path: 'courseContent/:courseId', component: CourseContentComponent },
-  { path: 'completedCourses', component: CompletedCoursesComponent },
+  { path: 'completedCourses/:userid', component: CompletedCoursesComponent },
   { path: 'studentReport', component: StudentReportComponent },
   { path: 'orders', component: OrdersComponent },
 
