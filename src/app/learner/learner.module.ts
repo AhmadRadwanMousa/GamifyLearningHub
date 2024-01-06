@@ -24,6 +24,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { OrdersComponent } from './orders/orders.component';
 import { LearnerExamComponent } from './learner-exam/learner-exam.component';
+import { MarkExamComponent } from './mark-exam/mark-exam.component';
 @NgModule({
   declarations: [
     UserDashboardComponent,
@@ -47,6 +48,7 @@ import { LearnerExamComponent } from './learner-exam/learner-exam.component';
     TestimonialComponent,
     LearnerExamComponent,
     OrdersComponent,
+    MarkExamComponent,
   ],
   imports: [CommonModule, LearnerRoutingModule, SharedModule],
 })

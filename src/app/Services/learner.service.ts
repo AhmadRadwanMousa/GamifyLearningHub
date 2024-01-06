@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
 import { URL } from '../constants/url';
 import { getToken } from '../constants/token';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -358,4 +359,58 @@ export class LearnerService {
       },
     });
   }
+
+  examDetailsByUserId : any = {}
+  GetExamDetailsByUserId(examId : number) {
+    this.spinner.show();
+    this.http
+      .get(
+        'https://localhost:7036/api/ExamLearner/GetExamDetailsByUserId/' +
+          this.userId + '/' + examId
+      )
+      .subscribe({
+        next: (result: any) => {
+          this.examDetailsByUserId = result;
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 5000);
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+
+
+
+  examDetailsById : any = {}
+  GetExamDetailsById(examId : number) {
+    console.log(examId)
+    this.spinner.show();
+    this.http
+      .get(
+        'https://localhost:7036/api/Exam/GetExamById/' + examId
+      )
+      .subscribe({
+        next: (result: any) => {
+          this.examDetailsById = result;
+          this.spinner.hide();
+        },
+        error: (err) => {
+          this.spinner.hide();
+        },
+      });
+  }
+
+
+  // startExam(): Observable<any> {
+  //   return this.http.post('/api/exam/start', {});
+  // }
+
+  // getRemainingTime(): Observable<any> {
+  //   return this.http.get('/api/exam/time');
+  // }
+
 }

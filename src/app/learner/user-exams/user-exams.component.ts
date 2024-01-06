@@ -22,6 +22,7 @@ export class UserExamsComponent {
   isButtonEnabled(data: any): boolean {
     const currentDate = new Date();
     const examDate = new Date(data.examdate);
+    examDate.setHours(0, 0, 0, 0);
     const openAt = new Date(data.openat);
     const closeAt = new Date(data.closeat);
 

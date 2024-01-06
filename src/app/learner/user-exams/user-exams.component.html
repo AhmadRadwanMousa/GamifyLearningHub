@@ -32,14 +32,16 @@
                     <td *ngIf="data.examtype ==  1">Exam</td>
                     <td *ngIf="data.examtype ==  2">Quiz</td>
                     <td>{{data.examdate  | date:'mediumDate'}}</td>
-                    <td *ngIf="data.examstatus ==  1">Active</td>
-                    <td *ngIf="data.examstatus ==  0">Not Active</td>
+                    <td *ngIf="isButtonEnabled(data)">Active</td>
+                    <td *ngIf="!isButtonEnabled(data)">Not Active</td>
                     <td>{{data.openat | date:'shortTime' }}</td>
                     <td>{{data.closeat  | date:'shortTime'}}</td>
-                    <td>0</td>
+
+                    <td  *ngIf="data.examsolutionmark == -1">not submit</td>
+                    <td  *ngIf="data.examsolutionmark != -1">{{data.examsolutionmark }}</td>
                     <td>{{data.exammark }}</td>
                     <td >
-                        <button type="button" class="default-btn" [disabled]="!isButtonEnabled(data)" [routerLink]="['/learner/exam/', data.examid]">
+                        <button type="button" class="default-btn" [disabled]="!isButtonEnabled(data) || data.examsolutionmark != -1" [routerLink]="['/learner/exam/', data.examid]">
                             <i class=""></i>
                             <i class="icon-arrow before fa-solid fa-play"></i>
                             <span class="label">Start</span>
