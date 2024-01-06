@@ -30,6 +30,30 @@ export class InstructorService {
     }
     this.userId = userId;
   }
+
+  allStudentsMarkByExamSectionId: any = [];
+
+  GetAllStudentsMarkByExamSectionId(examId : number , sectionId: number) {
+    this.spinner.show();
+    this.http
+      .get(
+        'https://localhost:7036/api/Exam/GetUserMarks/' + examId + '/'
+          + sectionId
+      )
+      .subscribe({
+        next: (result: any) => {
+          this.allStudentsMarkByExamSectionId = result;
+
+          this.spinner.hide();
+        },
+        error: (err) => {
+          this.spinner.hide();
+        },
+      });
+  }
+
+
+
   MyInstructorSections: any = [];
   GetAllInstructorSectionsById(id: number) {
     this.http

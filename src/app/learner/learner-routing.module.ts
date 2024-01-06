@@ -17,6 +17,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { LearnerExamComponent } from './learner-exam/learner-exam.component';
 import { OrdersComponent } from './orders/orders.component';
+import { MarkExamComponent } from './mark-exam/mark-exam.component';
 
 const routes: Routes = [
   { path: 'userDashboard', component: UserDashboardComponent },
@@ -46,6 +47,7 @@ const routes: Routes = [
     component: TestimonialComponent,
   },
   { path: 'exam/:examid', component: LearnerExamComponent },
+  { path: 'mark-exam/:examid', component: MarkExamComponent},
 ];
 
 @NgModule({

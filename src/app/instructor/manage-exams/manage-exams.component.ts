@@ -22,7 +22,9 @@ export class ManageExamsComponent {
   @ViewChild('CreateQuestionDialog') CreateQuestionDialog: any;
   @ViewChild('DeleteConfirmDialog') DeleteConfirmDialog: any;
   @ViewChild('DetailsDialog') DetailsDialog: any;
-  
+  //new
+  @ViewChild('StudentsMarksDialog') StudentsMarksDialog : any;
+
   constructor(public instructorService: InstructorService, public dialog: MatDialog) {}
   selectedSection : any;
   token: string | null = localStorage.getItem('token');
@@ -67,6 +69,11 @@ export class ManageExamsComponent {
     this.CreateFormGroup.controls['examstatus'].setValue(this.selectedStatus);
     this.CreateFormGroup.controls['openat'].setValue(this.mergeDateTime(this.CreateFormGroup.get('openat')?.value));
     this.CreateFormGroup.controls['closeat'].setValue(this.mergeDateTime(this.CreateFormGroup.get('closeat')?.value));
+
+    const nextDay = new Date( this.CreateFormGroup.controls['examdate'].value);
+    nextDay.setDate(nextDay.getDate() + 1);
+    this.CreateFormGroup.controls['examdate'].setValue(nextDay);
+
     this.instructorService.CreateExam(this.CreateFormGroup.value);
     
   }
@@ -96,6 +103,14 @@ export class ManageExamsComponent {
     });
   }
   
+  //new
+  OpenStudentsMarksDialog(examId : number){
+    this.instructorService.GetAllStudentsMarkByExamSectionId(examId , this.selectedSection);
+    this.dialog.open(this.StudentsMarksDialog, {
+      width: '1020px',
+      height: '710px',
+    });
+  }
   
   questions: QuestionOptions[] = [];
   AddQuestion(){
