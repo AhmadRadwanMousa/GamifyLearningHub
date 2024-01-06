@@ -38,7 +38,7 @@ export class StudentReportComponent {
   
 
 
-  displayedColumns: string[] = ['courseName', 'numberOfAbsence', 'pointsEarned', 'totalMark'];
+  displayedColumns: string[] = ['courseName', 'numberOfAbsence', 'totalMark'];
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;

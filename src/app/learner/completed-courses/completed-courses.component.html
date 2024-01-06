@@ -11,8 +11,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Course #1</td>
+            <tr *ngFor="let c of this.learnerService.MyCompletedCourses">
+                <td>{{c.coursename}}</td>
                 <td>
                     <div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100"
                         aria-valuemin="0" aria-valuemax="100">
@@ -20,14 +20,14 @@
                     </div>
                 </td>
                 <td>
-                    <button type="button" class="default-btn my-4">
+                    <a [href]="c.certificationimage" class="default-btn my-4">
                         <i class="icon-arrow before fa-solid fa-award"></i>
                         <span class="label mx-1">
                             Get Certificate
                         </span>
 
                         <i class="icon-arrow after fa-solid fa-award"></i>
-                    </button>
+                    </a>
                 </td>
             </tr>
         </tbody>

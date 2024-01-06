@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
 import { URL } from '../constants/url';
 import { getToken } from '../constants/token';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -520,5 +521,72 @@ export class LearnerService {
     this.userPrograms = [];
     this.UserProgress = [];
     this.userId = 0;
+  }
+
+  UserDashboarInfoByUserId: any;
+  UserDashboardInfoByUserId(id: number) {
+    this.http
+      .get(`${URL}/UserDashboardInfo/UserDashboardInfoByUserId/${id}`)
+      .subscribe({
+        next: (res) => {
+          this.spinner.show;
+          this.UserDashboarInfoByUserId = res;
+          this.spinner.hide;
+        },
+        error: (err) => {
+          this.toastr.error(err.message);
+        },
+      });
+  }
+
+  GetUserByUserId(id: number): Observable<any> {
+    return this.http.get(`${URL}/User/${id}`);
+  }
+  successFlag: boolean = false;
+  UpdateProfile(user: any) {
+    this.spinner.show();
+    this.http.put(`${URL}/User`, user).subscribe({
+      next: () => {
+        this.spinner.hide();
+        this.successFlag = true;
+        console.log(user);
+      },
+      error: () => {
+        this.toastr.error('Profile updated Faild');
+        console.log(user);
+      },
+    });
+    this.spinner.hide();
+  }
+
+  UserDashboardAttendences: any = [];
+  UserDashboardAttendence(userid: number, sectionid: number) {
+    this.http
+      .get(
+        `${URL}/UserDashboardInfo/UserDashboardAttendence/${userid}/${sectionid}`
+      )
+      .subscribe({
+        next: (res) => {
+          this.spinner.show;
+          this.UserDashboardAttendences = res;
+          this.spinner.hide;
+        },
+        error: (err) => {
+          this.toastr.error(err.message);
+        },
+      });
+  }
+  MyCompletedCourses: any = [];
+  CompletedCourses(id: number) {
+    this.http.get(`${URL}/UserDashboardInfo/CompletedCourses/${id}`).subscribe({
+      next: (res) => {
+        this.spinner.show;
+        this.MyCompletedCourses = res;
+        this.spinner.hide;
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+      },
+    });
   }
 }

@@ -1,12 +1,15 @@
 <app-user-dashboard-container>
-    <form class="edit-profile-form">
+    <div class="alert alert-success" role="alert" *ngIf="this.learnerService.successFlag">
+        Profile updated successfully!
+      </div>
+    <form class="edit-profile-form" [formGroup]="userDetails">
         <h2>Edit Profile</h2>
         <div class="row align-items-center">
             <div class="col-lg-2 col-sm-5">
                 <div class="profile-image-container">
-                    <img class="profile-image" src="https://picsum.photos/seed/picsum/200/300" alt="Profile Image">
+                    <img class="profile-image" (click)="fileUpload.click()" [src]="imagePreview" alt="Profile Image">
                     <label for="file-input" class="edit-icon"><i class="fas fa-edit"></i></label>
-                    <input type="file" id="file-input" class="file-input">
+                    <input type="file" id="file-input" (change)="UploadFile($event)" class="file-input" #fileUpload>
                   </div>
             </div>
             <div class="col-lg-10 col-sm-7">
@@ -17,13 +20,13 @@
         <div class="row">
             <div class="col-lg-6 col-sm-12">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="firstName" value="Mones">
+                    <input type="text" formControlName="firsname" class="form-control" id="firstName">
                     <label for="firstName">Enter your first name</label>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-12">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="lastName" value="Ahmad">
+                    <input type="text" formControlName="lastname" class="form-control" id="lastName">
                     <label for="lastName">Enter your last name</label>
                 </div>
             </div>
@@ -31,13 +34,13 @@
         <div class="row">
             <div class="col-lg-6 col-sm-12">
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="email" value="mones@gmail.com">
+                    <input type="email" formControlName="username"  class="form-control" id="email" >
                     <label for="email">Enter your email</label>
                   </div>
             </div>
             <div class="col-lg-6 col-sm-12">
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="password" value="123456">
+                    <input type="password" formControlName="password" class="form-control" id="password">
                     <label for="password">Enter your password</label>  
                 </div>
             </div>
@@ -46,19 +49,19 @@
         <div class="row">
             <div class="col-lg-6 col-sm-12">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="lastLogin" value="12/1/2023" disabled>
+                    <input type="text" class="form-control" id="lastLogin" [value]="this.UserInDashboard.userlogins[0].lastlogin | date: 'longDate' " disabled>
                     <label for="lastLogin">Last Login</label>  
                   </div>
             </div>
             <div class="col-lg-6 col-sm-12">
                 <div class="form-floating">
-                    <input type="date" class="form-control" id="birthDate" placeholder="Enter your birthdate">
+                    <input type="date" formControlName="dateofbirth" class="form-control" id="birthDate" >
                     <label for="birthDate">Enter your birthdate</label>  
                   </div>
             </div>
         </div>
         
-        <button type="submit" class="default-btn my-4"> 
+        <button (click)="onSubmit()" type="submit" class="default-btn my-4"> 
             <i class=""></i>
             <i class="icon-arrow before fa-regular fa-floppy-disk"></i> 
             <span class="label mx-1">
