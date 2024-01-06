@@ -6,6 +6,7 @@ import {
   animate,
 } from '@angular/animations';
 import { Component, Input } from '@angular/core';
+import { LearnerService } from 'src/app/Services/learner.service';
 
 @Component({
   selector: 'app-collapsible',
@@ -21,12 +22,24 @@ import { Component, Input } from '@angular/core';
   ],
 })
 export class CollapsibleComponent {
-  @Input() Tilte: string = '';
+  @Input() Tilte: any;
   @Input() Content: any = [];
+  isChecked: boolean = false;
 
+  constructor(public learnerService: LearnerService) {}
   isCollapsed = true;
 
   toggleCollapse(): void {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  ChangeUserProgress(event: any, lectureId: number, sectionId: number) {
+    event.target.disabled = true;
+    this.learnerService.CreateUserProgress(lectureId, sectionId);
+  }
+  IsLectureInProgress(lectureId: number): boolean {
+    return this.learnerService.UserProgress.some(
+      (progress: any) => progress.lectureid === lectureId
+    );
   }
 }

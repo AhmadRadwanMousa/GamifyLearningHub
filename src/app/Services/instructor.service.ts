@@ -10,6 +10,7 @@ import { max } from 'rxjs';
 import { map } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { MatTableDataSource } from '@angular/material/table';
+import { getToken } from '../constants/token';
 
 @Injectable({
   providedIn: 'root',
@@ -22,9 +23,12 @@ export class InstructorService {
     private spinner: NgxSpinnerService,
     private toastr: ToastrService
   ) {
-    let token: any = localStorage.getItem('token');
-    const tokenPayload: any = jwtDecode(token);
-    this.userId = Number(tokenPayload.userId);
+    let token: any = getToken();
+    let userId = 0;
+    if (token && token.userId != null) {
+      userId = token.userId;
+    }
+    this.userId = userId;
   }
   MyInstructorSections: any = [];
   GetAllInstructorSectionsById(id: number) {
@@ -408,8 +412,12 @@ export class InstructorService {
   GetAssignmentsBySectionId(sectionId: number) {
     this.spinner.show();
     this.http.get(`${URL}/Assignment/` + sectionId).subscribe(
-      (res) => {
-        this.assignmentsBySection = res;
+      (res: any) => {
+        if (res && res[0]) {
+          this.assignmentsBySection = res;
+        } else {
+          this.assignmentsBySection = [];
+        }
         setTimeout(() => {
           this.spinner.hide();
         }, 1000);
@@ -643,5 +651,15 @@ export class InstructorService {
         this.toastr.info('there is no reports in this section');
       },
     });
+  }
+  CleanInstructorData() {
+    this.assignmentsBySection = [];
+    this.assignmentSolutions = [];
+    this.sectionsByUserId = [];
+    this.MyInstructorSections = [];
+    this.SectionsByInstructorId = [];
+    this.SectionsByInstructorId = [];
+    this.QuestionAndOptions = [];
+    this.allMaterialsBySectionId = [];
   }
 }

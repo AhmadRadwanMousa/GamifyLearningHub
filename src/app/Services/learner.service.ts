@@ -145,7 +145,6 @@ export class LearnerService {
   GetAllOrders() {
     this.http.get(`${URL}/Cart/` + this.userId).subscribe((res) => {
       this.Orders = res;
-      console.log(res);
     });
   }
   AddUserToSection(sectionId: number) {
@@ -194,6 +193,7 @@ export class LearnerService {
 
   CourseMaterials: any = [];
   SectionAnnocment: any = [];
+  UserProgress: any = [];
   GetSectionsByCourseSequenceIdAndUserId(courseSequenceId: number) {
     this.spinner.show();
     this.http
@@ -208,6 +208,7 @@ export class LearnerService {
           if (res) {
             this.GetCourseMaterialBySectionId(res.sectionid);
             this.GetSectionAnnoncmentBySectionId(res.sectionid);
+            this.GetUserProgressBySectionId(res.sectionid);
           }
           setTimeout(() => {
             this.spinner.hide();
@@ -244,9 +245,30 @@ export class LearnerService {
         (res: any) => {
           if (res && res[0]) {
             this.SectionAnnocment = res;
-            console.log(res);
           } else {
             this.SectionAnnocment = [];
+          }
+        },
+        (error) => {
+          console.log(error.message);
+        }
+      );
+  }
+  GetUserProgressBySectionId(sectionId: number) {
+    this.spinner.show();
+    this.http
+      .get(
+        `${URL}/UserProgress/GetAllUserProgressPerSection/` +
+          this.userId +
+          '/' +
+          sectionId
+      )
+      .subscribe(
+        (res: any) => {
+          if (res && res[0]) {
+            this.UserProgress = res;
+          } else {
+            this.UserProgress = [];
           }
         },
         (error) => {
@@ -357,5 +379,146 @@ export class LearnerService {
         this.spinner.hide();
       },
     });
+  }
+  SectionsByUserId: any = [];
+  GetSectionsByUserId() {
+    this.spinner.show();
+    this.http
+      .get(`${URL}/Section/GetSectionsByUserId/` + this.userId)
+      .subscribe(
+        (res: any) => {
+          if (res && res[0]) {
+            this.SectionsByUserId = res;
+          } else {
+            this.SectionsByUserId = [];
+          }
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 1000);
+        },
+        (error) => {
+          setTimeout(() => {
+            this.spinner.hide();
+            console.log(error.message);
+            this.toastr.error(error.message);
+          }, 1000);
+        }
+      );
+  }
+  CreateAssignmentSolution(assignmentDetails: any) {
+    this.spinner.show();
+    this.http.post(`${URL}/AssignmentSolution`, assignmentDetails).subscribe(
+      (res) => {
+        if (res) {
+          setTimeout(() => {
+            this.toastr.success('Your solution has been sent successfully');
+            this.spinner.hide();
+          }, 1000);
+        }
+      },
+      (error) => {
+        setTimeout(() => {
+          this.spinner.hide();
+          console.log(error);
+        }, 1000);
+      }
+    );
+  }
+  GetAssignmentSolutionByUserId(assignmentId: number) {
+    return this.http.get(
+      `${URL}/AssignmentSolution/GetAssignmentSolutionByUserId/` +
+        assignmentId +
+        '/' +
+        this.userId
+    );
+  }
+  UpdateAssignmentSolution(assignmentSolutionDetails: any) {
+    this.http
+      .put(`${URL}/AssignmentSolution`, assignmentSolutionDetails)
+      .subscribe(
+        (res) => {
+          if (res) {
+            setTimeout(() => {
+              this.toastr.success(
+                'Your solution has been updated successfully'
+              );
+              this.spinner.hide();
+            }, 1000);
+          }
+        },
+        (error) => {
+          setTimeout(() => {
+            this.spinner.hide();
+            console.log(error);
+          }, 1000);
+        }
+      );
+  }
+  CreateUserProgress(lectureId: number, sectionId: number) {
+    let userProgress = {
+      lectureid: lectureId,
+      userid: this.userId,
+      sectionid: sectionId,
+    };
+    this.spinner.show();
+    this.http.post(`${URL}/UserProgress`, userProgress).subscribe(
+      (res) => {
+        if (res) {
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 300);
+        }
+      },
+      (error) => {
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 300);
+      }
+    );
+  }
+  DeleteUserProgress(lectureId: number) {
+    this.http.delete(`${URL}/userProgress/` + lectureId).subscribe(
+      (res) => {
+        if (res) {
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 300);
+        }
+      },
+      (error) => {
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 300);
+      }
+    );
+  }
+
+  GetUserProgressPerCourse(programId: number) {
+    return this.http.get(
+      `${URL}/Userprogress/GetProgressPerCourse/` +
+        this.userId +
+        '/' +
+        programId
+    );
+  }
+  GetLecturesPerCourse(programId: number) {
+    return this.http.get(
+      `${URL}/Lecture/GetLecturesCountPerCourse/` +
+        this.userId +
+        '/' +
+        programId
+    );
+  }
+  CleanLearnerData() {
+    this.CartId = 0;
+    this.CartItemsByUserId = [];
+    this.CartTotal = 0;
+    this.CourseMaterials = [];
+    this.Orders = [];
+    this.SectionAnnocment = [];
+    this.SectionsByUserId = [];
+    this.userPrograms = [];
+    this.UserProgress = [];
+    this.userId = 0;
   }
 }

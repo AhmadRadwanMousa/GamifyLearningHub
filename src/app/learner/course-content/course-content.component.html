@@ -5,7 +5,7 @@
   ></app-section-announcements>
   <app-collapsible
     *ngFor="let courseSection of this.learnerService.CourseMaterials"
-    [Tilte]="courseSection.coursesectionname"
+    [Tilte]="courseSection"
     [Content]="courseSection.lectures"
   ></app-collapsible>
 </app-user-dashboard-container>

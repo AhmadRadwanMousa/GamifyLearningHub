@@ -1,17 +1,32 @@
 <div class="custom-collapse">
   <div class="collapse-header" (click)="toggleCollapse()">
-    {{ Tilte }}
+    {{ Tilte.coursesectionname }}
   </div>
   <div
     class="collapse-body"
     [@expandCollapse]="isCollapsed ? 'collapsed' : 'expanded'"
   >
     <ul class="lectures-file-list">
-      <li class="file" *ngFor="let lecture of this.Content">
-        <i class="fa-solid fa-file-pdf file-icon"></i>
-        <a [href]="lecture.lecturefile" [download]="lecture.lecturename">{{
-          lecture.lecturename
-        }}</a>
+      <li
+        class="file d-flex justify-content-between"
+        *ngFor="let lecture of this.Content"
+      >
+        <div>
+          <i class="fa-solid fa-file-pdf file-icon"></i>
+          <a [href]="lecture.lecturefile" [download]="lecture.lecturename">{{
+            lecture.lecturename
+          }}</a>
+        </div>
+        <section class="example-section">
+          <mat-checkbox
+            class="example-margin"
+            [disabled]="IsLectureInProgress(lecture.lectureid)"
+            [checked]="IsLectureInProgress(lecture.lectureid)"
+            (click)="
+              ChangeUserProgress($event, lecture.lectureid, Tilte.sectionid)
+            "
+          ></mat-checkbox>
+        </section>
       </li>
       <!-- <li class="file">
           <i class="fa-solid fa-file-word file-icon"></i>

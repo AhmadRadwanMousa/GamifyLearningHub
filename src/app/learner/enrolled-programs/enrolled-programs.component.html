@@ -3,37 +3,48 @@
     <h4>Your Programs</h4>
   </div>
   <div class="row">
-    <div
-      class="col-lg-4 col-md-12"
-      *ngFor="let program of this.learnerService.userPrograms"
+    <ng-container
+      *ngIf="this.learnerService.userPrograms.length > 0; else EmptyPrograms"
     >
-      <div class="card shadow">
-        <img [src]="program.programimage" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">
-            <a [routerLink]="['/learner/userCourses/', program.programid]">
-              {{ program.programname }}
-            </a>
-          </h5>
-          <p class="card-text">
-            {{ program.programdescription }}
-          </p>
-        </div>
-        <div
-          class="progress mx-4 my-3"
-          role="progressbar"
-          aria-label="Example 10px high"
-          aria-valuenow="60"
-          aria-valuemin="0"
-          aria-valuemax="100"
-          style="height: 10px"
-        >
+      <div
+        class="col-lg-4 col-md-12"
+        *ngFor="let program of this.learnerService.userPrograms"
+      >
+        <div class="card shadow">
+          <img [src]="program.programimage" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">
+              <a [routerLink]="['/learner/userCourses/', program.programid]">
+                {{ program.programname }}
+              </a>
+            </h5>
+            <p class="card-text">
+              {{ program.programdescription }}
+            </p>
+          </div>
           <div
-            class="progress-bar progress-bar-striped progress-bar-animated"
-            style="width: 60%; background-color: var(--mainColor)"
-          ></div>
-        </div>
-      </div>
-    </div>
+            class="progress mx-4 my-3"
+            role="progressbar"
+            aria-label="Example 10px high"
+            aria-valuenow="60"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="height: 10px"
+          >
+            <div
+              class="progress-bar progress-bar-striped progress-bar-animated"
+              style="width: 60%; background-color: var(--mainColor)"
+            ></div>
+          </div>
+        </div></div
+    ></ng-container>
   </div>
+
+  <ng-template #EmptyPrograms>
+    <app-empty
+      message="You have no programs yet!"
+      imageSrc="https://gymscanner.com/assets/img/empty-cart.svg"
+      width="300"
+    ></app-empty>
+  </ng-template>
 </app-user-dashboard-container>

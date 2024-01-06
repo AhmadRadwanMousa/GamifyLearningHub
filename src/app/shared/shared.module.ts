@@ -48,6 +48,7 @@ import { UserDashboardContainerComponent } from './user-dashboard-container/user
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTable, MatTableModule } from '@angular/material/table';
+import { EmptyComponent } from './empty/empty.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
     SidebarInstructorComponent,
     HeaderInstructorComponent,
     UserDashboardContainerComponent,
+    EmptyComponent,
   ],
   imports: [
     CommonModule,
@@ -129,6 +131,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
     MatSlideToggleModule,
     MatTableModule,
     MatPaginatorModule,
+    EmptyComponent,
   ],
 })
 export class SharedModule {}

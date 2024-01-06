@@ -8,7 +8,12 @@
         class="card"
         [ngClass]="{ 'locked-card': isCourseLocked(course.startdate) }"
       >
-        <img [src]="course.course.courseimage" class="card-img-top" alt="..." />
+        <img
+          [src]="course.course.courseimage"
+          class="card-img-top"
+          style="height: 170px"
+          alt="..."
+        />
         <div class="card-body">
           <h5 class="card-title">
             <a
@@ -19,7 +24,6 @@
               >{{ course.course.coursename }}</a
             >
           </h5>
-          <p class="card-text">Description Description Description</p>
           <i
             [ngClass]="{
               'fas fa-lock icon': isCourseLocked(course.startdate)
@@ -37,7 +41,8 @@
         >
           <div
             class="progress-bar progress-bar-striped progress-bar-animated"
-            style="width: 100%; background-color: var(--mainColor)"
+            [style.width.%]="GetProgressPerCourse(course.coursesequenceid)"
+            style="background-color: var(--mainColor)"
           ></div>
         </div>
       </div>

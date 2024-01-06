@@ -6,6 +6,8 @@ import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject } from 'rxjs';
+import { LearnerService } from './learner.service';
+import { InstructorService } from './instructor.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,9 @@ export class AuthService {
     private http: HttpClient,
     public tostr: ToastrService,
     private route: Router,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private learnerService: LearnerService,
+    private instructorService: InstructorService
   ) {}
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
@@ -51,6 +55,8 @@ export class AuthService {
     );
   }
   Logout() {
+    this.learnerService.CleanLearnerData();
+    this.instructorService.CleanInstructorData();
     localStorage.removeItem('token');
     this.isLoggedInSubject.next(false);
     this.route.navigate(['/Login']);

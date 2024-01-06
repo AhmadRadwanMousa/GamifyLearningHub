@@ -1,90 +1,144 @@
 <app-user-dashboard-container>
-    <div class="mb-4">
-        <h4>Assignments</h4>
+  <div class="mb-4">
+    <h4>Assignments</h4>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <select
+        class="form-select form-select-lg mb-3"
+        aria-label="Large select"
+        [(ngModel)]="sectionId"
+        (change)="GetAssignmentsBySectionId()"
+      >
+        <option selected disabled [value]="0">Select section</option>
+        <option
+          *ngFor="let section of this.learnerService.SectionsByUserId"
+          [value]="section.sectionid"
+        >
+          {{ section.sectionname }}
+        </option>
+      </select>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <select class="form-select form-select-lg mb-3" aria-label="Large select">
-                <option selected disabled>Select section</option>
-                <option value="1">Section One</option>
-                <option value="2">Section Two</option>
-                <option value="3">Section Three</option>
-            </select>
-        </div>
-        <div class="col-12">
-            <table class="table text-center fs-4">
-                <thead>
-                    <tr>
-                        <th>Assignment name</th>
-                        <th>Description file</th>
-                        <th>Deadline</th>
-                        <th>Action</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Assignment #1</td>
-                        <td>
-                            <a routerLink="#" class="optional-btn">
-                                Download File
-                            </a>
-                        </td>
-                        <td>12/12/2023</td>
-                        <td>
-                            <button type="button" class="default-btn" disabled>
-                                <i class=""></i>
-                                <i class="icon-arrow before fa-solid fa-file-export"></i>
-                                <span class="label">
-                                    Submit solution
-                                </span>
-                                <i class="icon-arrow after fa-solid fa-file-export"></i>
-                            </button>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>Assignment #1</td>
-                        <td>
-                            <a routerLink="#" class="read-more-btn">
-                                Download File
-                            </a>
-                        </td>
-                        <td>12/12/2023</td>
-                        <td>
-                            <button type="button" class="default-btn">
-                                <i class=""></i>
-                                <i class="icon-arrow before fa-solid fa-file-export"></i>
-                                <span class="label">
-                                    Submit solution
-                                </span>
-                                <i class="icon-arrow after fa-solid fa-file-export"></i>
-                            </button>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>Assignment #1</td>
-                        <td>
-                            <a routerLink="#" class="optional-btn">
-                                Download File
-                            </a>
-                        </td>
-                        <td>12/12/2023</td>
-                        <td>
-                            <button type="button" class="default-btn">
-                                <i class=""></i>
-                                <i class="icon-arrow before fa-solid fa-file-export"></i>
-                                <span class="label">
-                                    Submit solution
-                                </span>
-                                <i class="icon-arrow after fa-solid fa-file-export"></i>
-                            </button>
-                        </td>
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="col-12">
+      <div
+        class="w-100 text-center"
+        *ngIf="this.instructorService.assignmentsBySection.length === 0"
+      >
+        <p>No assignment for this section yet!</p>
+      </div>
+      <table
+        class="table text-center fs-4"
+        *ngIf="this.instructorService.assignmentsBySection.length > 0"
+      >
+        <thead>
+          <tr>
+            <th>Assignment title</th>
+            <th>Description file</th>
+            <th>Assignment mark</th>
+            <th>Deadline</th>
+            <th>Action</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let assignment of this.instructorService.assignmentsBySection
+            "
+          >
+            <td>{{ assignment.assignmentname }}</td>
+            <td>
+              <a
+                [href]="assignment.assignmentdescription"
+                class="optional-btn"
+                [download]="assignment.assignmentname"
+              >
+                Download File
+              </a>
+            </td>
+            <td>
+              {{ assignment.assignmentmark }}
+            </td>
+            <td>
+              {{ assignment.assignmentdeadline | date }}
+              <br />
+              Close At:
+              {{ assignment.assignmentdeadline | date : "shortTime" }}
+            </td>
+            <td>
+              <button
+                class="border-0"
+                [disabled]="IsAssignmentClosed(assignment.assignmentdeadline)"
+              >
+                <label class="file-input-label">
+                  <input
+                    type="file"
+                    class="file-input"
+                    (change)="
+                      UploadAssignmentSolution($event, assignment.assignmentid)
+                    "
+                    [disabled]="
+                      IsAssignmentClosed(assignment.assignmentdeadline)
+                    "
+                  />
+                  <span class="default-btn">
+                    <i class=""></i>
+                    <i class="icon-arrow before fa-solid fa-file-export"></i>
+                    <span class="label"> Submit solution </span>
+                    <i class="icon-arrow after fa-solid fa-file-export"></i>
+                  </span>
+                </label>
+              </button>
+            </td>
+            <td>
+              <button
+                (click)="OpenAssignmentSolutionDetails(assignment.assignmentid)"
+                class="btn btn-dark"
+              >
+                <i class="fa-solid fa-circle-info"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </app-user-dashboard-container>
+<ng-template #AssignmentSolutionDetails>
+  <div
+    class="w-100 h-100 d-flex justify-content-center align-items-center"
+    *ngIf="IsAssignmentSolutionEmpty(assignmentSolution)"
+  >
+    You have not submitted a solution yet!
+  </div>
+  <div class="container" *ngIf="!IsAssignmentSolutionEmpty(assignmentSolution)">
+    <table>
+      <thead>
+        <th class="p-2">Your solution</th>
+        <th class="p-2">Submitted at</th>
+        <th class="p-2">Mark</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-2">
+            <a
+              [href]="assignmentSolution.assignmentsolutionvalue"
+              class="optional-btn"
+              [download]="assignmentSolution.assignmentsolutionvalue"
+            >
+              Download File
+            </a>
+          </td>
+          <td class="p-2">
+            {{ assignmentSolution.submittedat | date : "short" }}
+          </td>
+          <td class="p-2">
+            {{
+              assignmentSolution.assignmentsolutionmark || "not reviewed yet!"
+            }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

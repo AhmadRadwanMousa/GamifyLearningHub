@@ -3,54 +3,65 @@
     <h4>Your Orders</h4>
   </div>
   <div class="row">
-    <div
-      class="col-lg-4 col-md-6"
-      *ngFor="let order of this.learnerService.Orders"
+    <ng-container
+      *ngIf="this.learnerService.Orders.length > 0; else EmptyOrder"
     >
-      <div class="single-courses-box mb-30">
-        <div class="courses-image">
-          <a
-            [routerLink]="['/ProgramDetails', order.program.programid]"
-            class="d-block"
-            ><img [src]="order.program.programimage" alt="image"
-          /></a>
-          <div class="courses-tag">
+      <div
+        class="col-lg-4 col-md-6"
+        *ngFor="let order of this.learnerService.Orders"
+      >
+        <div class="single-courses-box mb-30">
+          <div class="courses-image">
             <a
               [routerLink]="['/ProgramDetails', order.program.programid]"
               class="d-block"
-              >{{ order.program.plan.planname }}</a
-            >
-          </div>
-        </div>
-        <div class="courses-content">
-          <div class="course-author d-flex align-items-center">
-            <img
-              src="assets/img/user1.jpg"
-              class="rounded-circle mr-2"
-              alt="image"
-            />
-            <!-- <span>{Steven Smith}</span> -->
-            <span>Instructor name</span>
-          </div>
-          <h3>
-            <a
-              [routerLink]="['/ProgramDetails', order.program.programid]"
-              class="d-inline-block"
-              >{{ order.program.programname }}</a
-            >
-          </h3>
-          <div class="courses-rating">
-            <div class="review-stars-rated">
-              <i class="bx bxs-star"></i>
-              <i class="bx bxs-star"></i>
-              <i class="bx bxs-star"></i>
-              <i class="bx bxs-star"></i>
-              <i class="bx bxs-star"></i>
+              ><img [src]="order.program.programimage" alt="image"
+            /></a>
+            <div class="courses-tag">
+              <a
+                [routerLink]="['/ProgramDetails', order.program.programid]"
+                class="d-block"
+                >{{ order.program.plan.planname }}</a
+              >
             </div>
-            <div class="rating-total">5.0 (1 rating)</div>
+          </div>
+          <div class="courses-content">
+            <div class="course-author d-flex align-items-center">
+              <img
+                src="assets/img/user1.jpg"
+                class="rounded-circle mr-2"
+                alt="image"
+              />
+              <!-- <span>{Steven Smith}</span> -->
+              <span>Instructor name</span>
+            </div>
+            <h3>
+              <a
+                [routerLink]="['/ProgramDetails', order.program.programid]"
+                class="d-inline-block"
+                >{{ order.program.programname }}</a
+              >
+            </h3>
+            <div class="courses-rating">
+              <div class="review-stars-rated">
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+              </div>
+              <div class="rating-total">5.0 (1 rating)</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
+  <ng-template #EmptyOrder>
+    <app-empty
+      message="You have no orders yet!"
+      imageSrc="https://gymscanner.com/assets/img/empty-cart.svg"
+      width="300"
+    ></app-empty>
+  </ng-template>
 </app-user-dashboard-container>

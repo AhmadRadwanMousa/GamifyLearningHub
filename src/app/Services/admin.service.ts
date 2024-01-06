@@ -42,7 +42,6 @@ export class AdminService {
     this.spinner.show();
     this.http.delete('https://localhost:7036/api/Role/' + id).subscribe({
       next: () => {
-        console.log('Deleted');
         this.GetAllRoles();
         this.spinner.hide();
         this.toastr.success('Role deleted successfully');
@@ -60,7 +59,6 @@ export class AdminService {
     this.spinner.show();
     this.http.post('https://localhost:7036/api/Role', data).subscribe({
       next: () => {
-        console.log('Role Created');
         this.GetAllRoles();
         this.spinner.hide();
         this.toastr.success('Role created successfully');
@@ -78,7 +76,6 @@ export class AdminService {
     this.spinner.show();
     this.http.put('https://localhost:7036/api/Role', data).subscribe({
       next: () => {
-        console.log('Updated');
         this.GetAllRoles();
         this.spinner.hide();
         this.toastr.success('Role updated successfully');
@@ -128,7 +125,6 @@ export class AdminService {
     this.spinner.show();
     this.http.delete('https://localhost:7036/api/Section/' + id).subscribe({
       next: () => {
-        console.log('Deleted');
         this.getAllSections();
         this.spinner.hide();
         this.GetSectionsByCoursesSequence(coursesequenceid);
@@ -148,7 +144,6 @@ export class AdminService {
     this.spinner.show();
     this.http.post('https://localhost:7036/api/Section', data).subscribe({
       next: () => {
-        console.log('Section Created');
         this.GetSectionsByCoursesSequence(data.coursesequenceid);
         this.spinner.hide();
         this.toastr.success('Section created successfully');
@@ -173,7 +168,6 @@ export class AdminService {
       .subscribe({
         next: (section: any) => {
           this.sectionsByCoursesSequence = section;
-          console.log(this.sectionsByCoursesSequence);
           this.spinner.hide();
         },
         error: (err) => {
@@ -205,7 +199,6 @@ export class AdminService {
       .put(`https://localhost:7036/api/Section/${sectionId}`, data)
       .subscribe({
         next: () => {
-          console.log('Updated');
           this.getAllSections();
           this.spinner.hide();
           this.GetSectionsByCoursesSequence(data.coursesequenceid);
@@ -231,7 +224,6 @@ export class AdminService {
         next: (x) => {
           this.spinner.hide();
           this.programs = x;
-          console.log(x);
         },
         error: (err) => {
           console.log(err);
@@ -247,7 +239,6 @@ export class AdminService {
       .delete('https://localhost:7036/api/Program/DeleteProgram/' + id)
       .subscribe({
         next: (x) => {
-          console.log('Deleted');
           this.GetAllPrograms();
           this.spinner.hide();
           if (x == 1) {
@@ -268,7 +259,6 @@ export class AdminService {
     this.spinner.show();
     this.http.post('https://localhost:7036/api/Program', data).subscribe({
       next: (x) => {
-        console.log('Created');
         this.GetAllPrograms();
         this.spinner.hide();
         if (x != null) {
@@ -335,7 +325,6 @@ export class AdminService {
       .subscribe({
         next: (testimonial: any) => {
           this.spinner.hide();
-          console.log(testimonial);
           this.GetAllTestimonial();
         },
         error: (err) => {
@@ -354,7 +343,6 @@ export class AdminService {
         next: (testimonial: any) => {
           this.spinner.hide();
           this.GetAllTestimonial();
-          console.log(testimonial);
         },
         error: (err) => {
           console.log(err);
@@ -375,7 +363,6 @@ export class AdminService {
             (a: any, b: any) =>
               (new Date(a.startdate) as any) - (new Date(b.startdate) as any)
           );
-          console.log(x);
           this.spinner.hide();
         },
         error: (err) => {
@@ -432,7 +419,6 @@ export class AdminService {
     this.spinner.show();
     this.http.put('https://localhost:7036/api/CourseSequence', data).subscribe({
       next: (x: any) => {
-        console.log('Updated');
         this.GetCoursesSequenceByProgramId(programid);
         this.spinner.hide();
         if (x.rowsAffected == 1) {
@@ -585,7 +571,6 @@ export class AdminService {
     debugger;
     this.http.post('https://localhost:7036/api/Course/', data).subscribe({
       next: () => {
-        console.log('Created');
         this.toastr.success('Course Created');
         this.getAllCourses();
       },
@@ -984,49 +969,47 @@ export class AdminService {
   }
 
   /* Admin Report */
-StudentsReports: MatTableDataSource<any> = new MatTableDataSource<any>([]);
-  GetAllStudentsReports(){
-    this.http.get(`${URL}/AdminReport/GetAllStudentsReport`).subscribe(
-      {
-        next:(res)=>{
-          this.spinner.show();
-          this.StudentsReports.data = res as any[];
-          this.spinner.hide();
-        },
-        error:(err)=>{
-          this.toastr.error(err.message);
-        }
-      }
-    );
-  }
-
-  StudentReportsDetails: any = [];
-  GetStudentReportsDetails(id: number){
-    this.http.get(`${URL}/AdminReport/GetAllStudentsDetailsReport/${id}`).subscribe({
-      next:(res)=>{
+  StudentsReports: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+  GetAllStudentsReports() {
+    this.http.get(`${URL}/AdminReport/GetAllStudentsReport`).subscribe({
+      next: (res) => {
         this.spinner.show();
-        this.StudentReportsDetails = res;
+        this.StudentsReports.data = res as any[];
         this.spinner.hide();
       },
-      error:(err)=>{
+      error: (err) => {
         this.toastr.error(err.message);
-      }
+      },
     });
   }
 
-  SectionsReports: MatTableDataSource<any> = new MatTableDataSource<any>([]);
-  GetAllSectionsReports(){
-    this.http.get(`${URL}/AdminReport/GetAllSectionsReport`).subscribe(
-      {
-        next:(res)=>{
+  StudentReportsDetails: any = [];
+  GetStudentReportsDetails(id: number) {
+    this.http
+      .get(`${URL}/AdminReport/GetAllStudentsDetailsReport/${id}`)
+      .subscribe({
+        next: (res) => {
           this.spinner.show();
-          this.SectionsReports.data = res as any[];
+          this.StudentReportsDetails = res;
           this.spinner.hide();
         },
-        error:(err)=>{
+        error: (err) => {
           this.toastr.error(err.message);
-        }
-      }
-    );
+        },
+      });
+  }
+
+  SectionsReports: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+  GetAllSectionsReports() {
+    this.http.get(`${URL}/AdminReport/GetAllSectionsReport`).subscribe({
+      next: (res) => {
+        this.spinner.show();
+        this.SectionsReports.data = res as any[];
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+      },
+    });
   }
 }
