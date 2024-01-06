@@ -28,7 +28,7 @@ export class ManageExamsComponent {
   constructor(public instructorService: InstructorService, public dialog: MatDialog) {}
   selectedSection : any;
   token: string | null = localStorage.getItem('token');
-/*
+
   getUserIdFromToken(): number{
     if(this.token != null){
       let decodedToken: any = jwtDecode(this.token);
@@ -38,10 +38,10 @@ export class ManageExamsComponent {
       return 0;
     }
   }
-  */
+  
   ngOnInit(){
     //console.log(this.getUserIdFromToken());
-    this.instructorService.GetSectionsByUserId();
+    this.instructorService.GetSectionsByInstructorId(this.getUserIdFromToken());
   }
 
   loadExams(id: number){

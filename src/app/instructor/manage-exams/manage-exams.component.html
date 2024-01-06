@@ -10,7 +10,7 @@
                     <mat-form-field>
                         <mat-label>Select section</mat-label>
                         <mat-select [(ngModel)]="selectedSection" name="selectedSection">
-                            <mat-option *ngFor="let s of instructorService.sectionsByUserId" [value]="s.sectionid"
+                            <mat-option *ngFor="let s of instructorService.sectionsByInstructorId" [value]="s.sectionid"
                                 (click)="loadExams(s.sectionid)">
                                 {{s.sectionname}}
                             </mat-option>
