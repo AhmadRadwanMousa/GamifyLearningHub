@@ -638,4 +638,20 @@ export class LearnerService {
   // getRemainingTime(): Observable<any> {
   //   return this.http.get('/api/exam/time');
   // }
+
+  testimonialByUserId: any = [];
+  GetTestimonialByUserId(id: number) {
+    console.log(id);
+    this.http.get(`${URL}/Testimonial/GetByUserId/` + id).subscribe({
+      next: (result) => {
+        this.spinner.show();
+        this.testimonialByUserId = result;
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+        this.spinner.hide();
+      },
+    });
+  }
 }
