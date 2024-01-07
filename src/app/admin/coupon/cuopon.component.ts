@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
 
@@ -20,19 +20,33 @@ export class CuoponComponent {
   }
   
   CreateCouponForm: FormGroup = new FormGroup({
-    
-    couponname: new FormControl(),
-    couponpercent: new FormControl(),
-    points: new FormControl(),
-    
+    couponname: new FormControl('', [Validators.required]),
+    couponpercent: new FormControl('', [Validators.required, this.percentGreaterThanZero]),
+    points: new FormControl('', [Validators.required, this.pointsGreaterThanZero]),
   });
-
+  
   UpdateCouponForm: FormGroup = new FormGroup({
     couponid: new FormControl(),
-    couponname: new FormControl(),
-    couponpercent: new FormControl(),
-    points: new FormControl(),
+    couponname: new FormControl('', [Validators.required]),
+    couponpercent: new FormControl('', [Validators.required, this.percentGreaterThanZero]),
+    points: new FormControl('', [Validators.required, this.pointsGreaterThanZero]),
   });
+  
+  percentGreaterThanZero(control: AbstractControl): { [key: string]: boolean } | null {
+    const value = control.value;
+    if (value !== null && (isNaN(value) || value <= 0)) {
+      return { 'percentGreaterThanZero': true };
+    }
+    return null;
+  }
+  
+  pointsGreaterThanZero(control: AbstractControl): { [key: string]: boolean } | null {
+    const value = control.value;
+    if (value !== null && (isNaN(value) || value <= 0)) {
+      return { 'pointsGreaterThanZero': true };
+    }
+    return null;
+  }
 
   CreateCoupon() {
     this.admin.createCoupon(this.CreateCouponForm.value);

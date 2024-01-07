@@ -63,12 +63,18 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="form-group">
                             <input required minlength="3" maxlength="50" formControlName="name"  type="text" class="form-control" id="name" placeholder="Your name">
-                            </div>
+                            <mat-error *ngIf="CreateMessageForm.get('name')?.hasError('required')">
+                                * Field required
+                            </mat-error> 
+                        </div>
                         </div>
                     
                     <div class="col-lg-6 col-md-6">
                         <div class="form-group">
                             <input required formControlName="email"  type="email" class="form-control" id="email" placeholder="Your email address">
+                            <mat-error *ngIf="CreateMessageForm.get('email')?.hasError('required')">
+                                * Field required
+                            </mat-error>
                         </div>
                     </div>
                 </div>
@@ -76,11 +82,18 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="form-group">
                             <input required formControlName="phonenumber"  type="tel" class="form-control" id="number" placeholder="Your phone number">
+                            <mat-error *ngIf="CreateMessageForm.get('phonenumber')?.hasError('required')">
+                                * Field required
+                            </mat-error>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="form-group">
-                            <input required formControlName="subject"  type="text" class="form-control" id="subject" placeholder="Your subject">
+                           
+                         <input required formControlName="subject"  type="text" class="form-control" id="subject" placeholder="Your subject">
+                         <mat-error *ngIf="CreateMessageForm.get('subject')?.hasError('required')">
+                            * Field required
+                        </mat-error>
                         </div>
                     </div>
                 </div>
@@ -88,6 +101,9 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="form-group">
                             <textarea required formControlName="message" id="message" cols="30" rows="5" class="form-control" placeholder="Your message..."></textarea>
+                            <mat-error *ngIf="CreateMessageForm.get('message')?.hasError('required')">
+                                * Field required
+                            </mat-error>
                         </div>
                     </div>
                 </div>
@@ -95,6 +111,7 @@
                         <i class='bx bx-paper-plane icon-arrow before'></i>
                         <span class="label">Send Message</span>
                         <i class="bx bx-paper-plane icon-arrow after"></i>
+                        
                       </button>
                
             </form>

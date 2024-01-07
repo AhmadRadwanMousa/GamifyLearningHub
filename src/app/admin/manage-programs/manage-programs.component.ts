@@ -1,7 +1,7 @@
 import { AdminService } from 'src/app/Services/admin.service';
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 
@@ -44,22 +44,31 @@ export class ManageProgramsComponent {
     planid: new FormControl('', [Validators.required]),
     programsyllabus: new FormControl(),
     educationalperiodid: new FormControl('', [Validators.required]),
-    programimage:new FormControl(),
-    programprice: new FormControl('', [Validators.required]),
-    programsale: new FormControl('0', [Validators.required]),
+    programimage: new FormControl(),
+    programprice: new FormControl('', [Validators.required, this.priceGreaterThanZeroValidator]),
+    programsale: new FormControl('0', [Validators.required,this.priceGreaterThanZeroValidator]),
   });
-
+  
   UpdateprogramForm: FormGroup = new FormGroup({
     programid: new FormControl(),
     programname: new FormControl('', [Validators.required]),
     programdescription: new FormControl('', [Validators.required]),
     planid: new FormControl('', [Validators.required]),
-    programimage:new FormControl(),
+    programimage: new FormControl(),
     programsyllabus: new FormControl(),
     educationalperiodid: new FormControl('', [Validators.required]),
-    programprice: new FormControl('', [Validators.required]),
-    programsale: new FormControl('0', [Validators.required]),
+    programprice: new FormControl('', [Validators.required, this.priceGreaterThanZeroValidator]),
+    programsale: new FormControl('0', [Validators.required, this.priceGreaterThanZeroValidator]),
   });
+  
+  priceGreaterThanZeroValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const value = control.value;
+    if (value !== null && (isNaN(value) || value <= 0)) {
+      return { 'PriceGreaterThanZero': true };
+    }
+    return null;
+  }
+
 
   CreateProgram() {
     this.CreateProgramForm.controls['programimage'].setValue(this.filePath);

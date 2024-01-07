@@ -157,10 +157,14 @@
               <mat-form-field class="widthInput w-100">
                 <mat-label> First Name</mat-label>
                 <input
+                type="text"
                   matInput
                   placeholder="ex:Ahmad"
                   formControlName="firsname"
                 />
+                <mat-error *ngIf="userDetails.get('firsname')?.hasError('required')">
+                  * Field required
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -168,10 +172,14 @@
               <mat-form-field class="widthInput w-100">
                 <mat-label> Last Name</mat-label>
                 <input
+                type="text"
                   matInput
                   placeholder="Last Name"
                   formControlName="lastname"
                 />
+                <mat-error *ngIf="userDetails.get('lastname')?.hasError('required')">
+                  * Field required
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -179,10 +187,14 @@
               <mat-form-field class="widthInput w-100">
                 <mat-label> Username </mat-label>
                 <input
+                type="text"
                   matInput
                   placeholder=" UserName"
                   formControlName="username"
                 />
+                <mat-error *ngIf="userDetails.get('username')?.hasError('required')">
+                  * Field required
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -194,6 +206,9 @@
                   formControlName="password"
                   [type]="hide ? 'password' : 'text'"
                 />
+                <mat-error *ngIf="userDetails.get('password')?.hasError('required')">
+                  * Field required
+                </mat-error>
                 <button
                   mat-icon-button
                   matSuffix
@@ -221,6 +236,9 @@
                   [for]="dateofbirth"
                 ></mat-datepicker-toggle>
                 <mat-datepicker #dateofbirth></mat-datepicker>
+                <mat-error *ngIf="userDetails.get('dateofbirth')?.hasError('required')">
+                  * Field required
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="example-container col-6">
@@ -239,7 +257,11 @@
                         : "school"
                     }}</mat-icon></mat-option
                   >
+                  
                 </mat-select>
+                <mat-error *ngIf="userDetails.get('roleid')?.hasError('required')">
+                  * Field required
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="d-flex justify-content-center align-items-center">
@@ -303,10 +325,14 @@
               <mat-form-field class="widthInput w-100">
                 <mat-label> First Name</mat-label>
                 <input
+                type="text"
                   matInput
                   placeholder="ex:Ahmad"
                   formControlName="firsname"
                 />
+                <mat-error *ngIf="userDetails.get('firsname')?.hasError('required')">
+                  * Field required
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -314,10 +340,14 @@
               <mat-form-field class="widthInput w-100">
                 <mat-label> Last Name</mat-label>
                 <input
+                type="text"
                   matInput
                   placeholder="Last Name"
                   formControlName="lastname"
                 />
+                <mat-error *ngIf="userDetails.get('lastname')?.hasError('required')">
+                  * Field required
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -329,6 +359,9 @@
                   placeholder=" UserName"
                   formControlName="username"
                 />
+                <mat-error *ngIf="userDetails.get('username')?.hasError('required')">
+                  * Field required
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -340,6 +373,9 @@
                   formControlName="password"
                   [type]="hide ? 'password' : 'text'"
                 />
+                <mat-error *ngIf="userDetails.get('password')?.hasError('required')">
+                  * Field required
+                </mat-error>
                 <button
                   mat-icon-button
                   matSuffix
@@ -367,6 +403,9 @@
                   [for]="dateofbirth"
                 ></mat-datepicker-toggle>
                 <mat-datepicker #dateofbirth></mat-datepicker>
+                <mat-error *ngIf="userDetails.get('dateofbirth')?.hasError('required')">
+                  * Field required
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="example-container col-6">
@@ -385,6 +424,9 @@
                         : "school"
                     }}</mat-icon>
                   </mat-option>
+                  <mat-error *ngIf="userDetails.get('roleid')?.hasError('required')">
+                    * Field required
+                  </mat-error>
                 </mat-select>
               </mat-form-field>
             </div>

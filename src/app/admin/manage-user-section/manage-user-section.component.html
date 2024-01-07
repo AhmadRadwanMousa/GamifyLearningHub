@@ -89,7 +89,8 @@
       <div class="row">
         <mat-form-field class="col-lg-12 mt-4">
           <mat-label>Select Student</mat-label>
-          <input matInput [matAutocomplete]="auto" formControlName="userid">
+          <input matInput [matAutocomplete]="auto" formControlName="userid" type="text">
+          
           <mat-autocomplete name="selectedStudent" #auto>
             <mat-option *ngFor="let student of admin.filterdStudents" [value]="student.userid">
               {{student.firsname}} {{student.lastname}}

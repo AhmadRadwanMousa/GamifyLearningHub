@@ -194,7 +194,7 @@
                       ?.hasError('required')
                   "
                 >
-                  Assignment Title is required
+                  * Field required
                 </mat-error>
               </mat-form-field>
             </div>
@@ -214,7 +214,7 @@
                       ?.hasError('required')
                   "
                 >
-                  Assignment weight is required
+                * Field required
                 </mat-error>
               </mat-form-field>
             </div>
@@ -240,7 +240,7 @@
                       ?.hasError('required')
                   "
                 >
-                  Assignment deadline is required
+                * Field required
                 </mat-error>
               </mat-form-field>
             </div>
@@ -259,6 +259,15 @@
                   formControlName="assignmenttime"
                   class="w-100"
                 />
+                <mat-error
+                  *ngIf="
+                    assignmentDetails
+                      .get('assignmenttime')
+                      ?.hasError('required')
+                  "
+                >
+                * Field required
+                </mat-error>
                 <mat-icon matSuffix (click)="pickerA.open()">
                   watch_later
                 </mat-icon>

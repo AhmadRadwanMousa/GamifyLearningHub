@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
 
@@ -18,10 +18,18 @@ export class PointsComponent {
   }
 
   UpdatePointsForm: FormGroup = new FormGroup({
-    pointsactivityid: new FormControl(),
-    pointsactivityname: new FormControl(),
-    points: new FormControl()
+    pointsactivityid: new FormControl('', Validators.required),
+    pointsactivityname: new FormControl('', Validators.required),
+    points: new FormControl('', [Validators.required, this.pointsGreaterThanZero]),
   });
+  
+  pointsGreaterThanZero(control: AbstractControl): { [key: string]: boolean } | null {
+    const value = control.value;
+    if (value !== null && (isNaN(value) || value <= 0)) {
+      return { 'pointsGreaterThanZero': true };
+    }
+    return null;
+  }
 
   openUpdateDialog(_points: any) {
     this.previous_data = {

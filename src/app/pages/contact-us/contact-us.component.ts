@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/Services/admin.service';
 
 @Component({
@@ -11,11 +11,11 @@ export class ContactUsComponent {
   constructor(public admin: AdminService) {}
 
   CreateMessageForm: FormGroup = new FormGroup({
-    name: new FormControl(),
-    phonenumber: new FormControl(),
-    subject: new FormControl(),
-    message: new FormControl(),
-    email: new FormControl(),
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    phonenumber: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/)]),
+    subject: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    message: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     messagereceived: new FormControl(),
   });
   PostMessage() {

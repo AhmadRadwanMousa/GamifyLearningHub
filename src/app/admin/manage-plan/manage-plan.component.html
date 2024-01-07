@@ -11,9 +11,7 @@
           <table class="table text-nowrap mb-0 align-middle">
             <thead class="text-dark fs-4">
               <tr>
-                <th class="border-bottom-0">
-                  <h6 class="fw-semibold mb-0">Plan Id</h6>
-                </th>
+                
                 <th class="border-bottom-0">
                   <h6 class="fw-semibold mb-0">Plan Name</h6>
                 </th>
@@ -27,9 +25,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let plan of plans">
-                <td class="border-bottom-0">
-                  <h6 class="fw-semibold mb-1">{{ plan.planid }}</h6>
-                </td>
+                
                 <td class="border-bottom-0">
                   <p class="mb-0 fw-normal">{{ plan.planname }}</p>
                 </td>
@@ -150,7 +146,7 @@
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
 
           <mat-error *ngIf="planDetails.get('planName')?.hasError('required')">
-            Plan name is <strong>required</strong>
+            * Field required
           </mat-error>
         </mat-form-field>
         <input
@@ -199,7 +195,7 @@
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
 
           <mat-error *ngIf="planDetails.get('planName')?.hasError('required')">
-            Plan name is <strong>required</strong>
+            * Field required
           </mat-error>
         </mat-form-field>
         <input
