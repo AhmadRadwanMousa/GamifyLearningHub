@@ -13,11 +13,9 @@
     <div class="section-title text-start">
       <span class="sub-title">Plans Categories</span>
       <h2>Browse Trending Plans</h2>
-      <a routerLink="/courses-category-style-2" class="default-btn"
-        ><i class="bx bx-show-alt icon-arrow before"></i
-        ><span class="label">View All</span
-        ><i class="bx bx-show-alt icon-arrow after"></i
-      ></a>
+      <a routerLink="/courses-category-style-2" class="default-btn"><i
+          class="bx bx-show-alt icon-arrow before"></i><span class="label">View All</span><i
+          class="bx bx-show-alt icon-arrow after"></i></a>
     </div>
     <app-home-categories></app-home-categories>
   </div>
@@ -50,34 +48,18 @@
   </div>
 </div>
 <ng-container *ngFor="let userPoints of userPoints; let i = index">
-  <p-dialog
-    [visible]="dialogVisibility[i]"
-    [breakpoints]="{ '960px': '75vw' }"
-    [style]="{ width: '35vw', height: '50vh' }"
-    [draggable]="true"
-    [resizable]="true"
-  >
-    <div
-      class="d-flex justify-content-center align-items-center flex-column h-100 gap-3"
-    >
-      <img
-        width="80"
-        height="80"
-        src="https://img.icons8.com/officel/80/rating.png"
-        alt="rating"
-      />
+  <p-dialog [visible]="dialogVisibility[i]" [breakpoints]="{ '960px': '75vw' }"
+    [style]="{ width: '35vw', height: '50vh' }" [draggable]="true" [resizable]="true">
+    <div class="d-flex justify-content-center align-items-center flex-column h-100 gap-3">
+      <img width="80" height="80" src="https://img.icons8.com/officel/80/rating.png" alt="rating" />
       <h3 class="congratulations-title">Congratulations!</h3>
       <p class="congratulations-message">
         You have earned {{ userPoints.pointsactivity.points }} points by
         <span class="text-decoration-underline">
-          {{ userPoints.pointsactivity.pointsactivityname }}.</span
-        >
+          {{ userPoints.pointsactivity.pointsactivityname }}.</span>
         <br />
       </p>
-      <button
-        class="btn btn-info"
-        (click)="CloseDialog(userPoints.userpointsactivityid, i)"
-      >
+      <button class="btn btn-info" (click)="CloseDialog(userPoints.userpointsactivityid, i)">
         Thanks <i class="fa-regular fa-star"></i>
       </button>
     </div>
