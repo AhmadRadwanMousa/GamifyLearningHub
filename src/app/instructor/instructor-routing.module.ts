@@ -9,6 +9,7 @@ import { ManageAttendenceComponent } from './manage-attendence/manage-attendence
 // import { ManageAttendenceSectionsComponent } from './manage-attendence-sections/manage-attendence-sections.component';
 // import { ManageAttendenceUsersComponent } from './manage-attendence-users/manage-attendence-users.component';
 import { ReportComponent } from './report/report.component';
+import { InstructorLeaderBoardComponent } from './instructor-leader-board/instructor-leader-board.component';
 
 const routes: Routes = [
   {
@@ -38,7 +39,11 @@ const routes: Routes = [
   },
   {
     path: 'report',
-    component: ReportComponent,
+    component: ReportComponent, 
+  },
+  {
+    path: 'instructorLeaderboard',
+    component: InstructorLeaderBoardComponent,
   },
 ];
 

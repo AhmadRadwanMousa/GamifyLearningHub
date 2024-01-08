@@ -1012,4 +1012,46 @@ export class AdminService {
       },
     });
   }
+
+  RankingByBadges: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+  GetRankingByBadges() {
+    this.http.get(`${URL}/AdminLeaderBoard/ByBadges`).subscribe({
+      next: (res) => {
+        this.spinner.show();
+        this.RankingByBadges.data = res as any[];
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+      },
+    });
+  }
+
+  RankingByPoints: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+  GetRankingByPoints() {
+    this.http.get(`${URL}/AdminLeaderBoard/ByPoints`).subscribe({
+      next: (res) => {
+        this.spinner.show();
+        this.RankingByPoints.data = res as any[];
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+      },
+    });
+  }
+
+  AdminStatistics: any = []
+  GetStatistics() {
+    this.http.get(`${URL}/AdminLeaderBoard/Statistics`).subscribe({
+      next: (res) => {
+        this.spinner.show();
+        this.AdminStatistics = res;
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+      },
+    });
+  }
 }

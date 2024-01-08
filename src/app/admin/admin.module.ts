@@ -20,6 +20,7 @@ import { PointsComponent } from './points/points.component';
 import { MessageComponent } from './message/message.component';
 import { ManageUserStatusComponent } from './manage-user-status/manage-user-status.component';
 import { AdminReportComponent } from './admin-report/admin-report.component';
+import { LeaderBoardComponent } from './leader-board/leader-board.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AdminReportComponent } from './admin-report/admin-report.component';
     PointsComponent,
     MessageComponent,
     ManageUserStatusComponent,
-    AdminReportComponent
+    AdminReportComponent,
+    LeaderBoardComponent
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
   exports: [],

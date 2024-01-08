@@ -687,4 +687,13 @@ export class InstructorService {
     this.QuestionAndOptions = [];
     this.allMaterialsBySectionId = [];
   }
+  NumberOfInstructorStudents: any;
+  GetInstructorStudents(id: number) {
+    this.http.get(`${URL}/AdminLeaderBoard/InstructorStudents/${id}`).subscribe({
+      next: (res) => {
+        this.NumberOfInstructorStudents = res;
+      },
+    });
+  }
+  
 }
