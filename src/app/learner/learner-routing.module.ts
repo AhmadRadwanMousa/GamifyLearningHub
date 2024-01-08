@@ -18,6 +18,7 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 import { LearnerExamComponent } from './learner-exam/learner-exam.component';
 import { OrdersComponent } from './orders/orders.component';
 import { MarkExamComponent } from './mark-exam/mark-exam.component';
+import { UserCouponsComponent } from './user-coupons/user-coupons.component';
 
 const routes: Routes = [
   { path: 'userDashboard', component: UserDashboardComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'completedCourses/:userid', component: CompletedCoursesComponent },
   { path: 'studentReport', component: StudentReportComponent },
   { path: 'orders', component: OrdersComponent },
+  { path: 'coupons', component: UserCouponsComponent },
 
   {
     path: 'cart',
@@ -47,7 +49,7 @@ const routes: Routes = [
     component: TestimonialComponent,
   },
   { path: 'exam/:examid', component: LearnerExamComponent },
-  { path: 'mark-exam/:examid', component: MarkExamComponent},
+  { path: 'mark-exam/:examid', component: MarkExamComponent },
 ];
 
 @NgModule({

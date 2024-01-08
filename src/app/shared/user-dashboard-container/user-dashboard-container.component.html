@@ -17,7 +17,12 @@
               </a>
             </li>
             <li>
-              <a [routerLink]="['/learner/userAttendence',this.getUserIdFromToken()]">
+              <a
+                [routerLink]="[
+                  '/learner/userAttendence',
+                  this.getUserIdFromToken()
+                ]"
+              >
                 <i class="bx bx-calendar"></i>
                 Attendence
               </a>
@@ -43,7 +48,12 @@
               </a>
             </li>
             <li>
-              <a [routerLink]="['/learner/userEditProfile',this.getUserIdFromToken()]">
+              <a
+                [routerLink]="[
+                  '/learner/userEditProfile',
+                  this.getUserIdFromToken()
+                ]"
+              >
                 <i class="bx bx-user"></i>
                 Edit profile
               </a>
@@ -55,9 +65,19 @@
               </a>
             </li>
             <li>
-              <a [routerLink]="['/learner/completedCourses',this.getUserIdFromToken()]">
+              <a
+                [routerLink]="[
+                  '/learner/completedCourses',
+                  this.getUserIdFromToken()
+                ]"
+              >
                 <i class="fa-regular fa-circle-check"></i>
                 Completed Courses
+              </a>
+            </li>
+            <li>
+              <a routerLink="/learner/coupons">
+                <i class="fa-solid fa-receipt"></i> Coupons
               </a>
             </li>
             <li>

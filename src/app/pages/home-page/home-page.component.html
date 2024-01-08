@@ -49,3 +49,37 @@
     <app-blog></app-blog>
   </div>
 </div>
+<ng-container *ngFor="let userPoints of userPoints; let i = index">
+  <p-dialog
+    [visible]="dialogVisibility[i]"
+    [breakpoints]="{ '960px': '75vw' }"
+    [style]="{ width: '35vw', height: '50vh' }"
+    [draggable]="true"
+    [resizable]="true"
+  >
+    <div
+      class="d-flex justify-content-center align-items-center flex-column h-100 gap-3"
+    >
+      <img
+        width="80"
+        height="80"
+        src="https://img.icons8.com/officel/80/rating.png"
+        alt="rating"
+      />
+      <h3 class="congratulations-title">Congratulations!</h3>
+      <p class="congratulations-message">
+        You have earned {{ userPoints.pointsactivity.points }} points by
+        <span class="text-decoration-underline">
+          {{ userPoints.pointsactivity.pointsactivityname }}.</span
+        >
+        <br />
+      </p>
+      <button
+        class="btn btn-info"
+        (click)="CloseDialog(userPoints.userpointsactivityid, i)"
+      >
+        Thanks <i class="fa-regular fa-star"></i>
+      </button>
+    </div>
+  </p-dialog>
+</ng-container>

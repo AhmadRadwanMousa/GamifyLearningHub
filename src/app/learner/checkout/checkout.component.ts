@@ -15,6 +15,9 @@ export class CheckoutComponent implements OnInit {
   constructor(public learnerService: LearnerService, private route: Router) {}
   view = 'default';
   isPayPalRendered = false;
+  couponName: string = '';
+  isDisabled: boolean = false;
+
   ngOnInit(): void {
     this.learnerService.updateUserId();
     this.learnerService.GetCartItemsByUserId();
@@ -45,6 +48,27 @@ export class CheckoutComponent implements OnInit {
         this.isPayPalRendered = false;
       });
     }
+  }
+  HandleCoupon() {
+    this.learnerService
+      .GetCouponByName(this.couponName)
+      .subscribe((res: any) => {
+        if (res) {
+          let couponDiscount = res.coupon.couponpercent;
+          let newCartTotal =
+            this.learnerService.CartTotal -
+            this.learnerService.CartTotal * (couponDiscount / 100);
+          let cartToUpdate = {
+            cartid: this.learnerService.CartId,
+            userid: this.learnerService.userId,
+            totalprice: newCartTotal,
+          };
+          this.learnerService.UpdateCartTotal(cartToUpdate);
+          this.learnerService.CartTotal = newCartTotal;
+          this.learnerService.UpdateUserCoupon(res.usercouponid);
+          this.isDisabled = true;
+        }
+      });
   }
   OnRadioButtonChange(view: string) {
     this.view = view;

@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject } from 'rxjs';
 import { LearnerService } from './learner.service';
 import { InstructorService } from './instructor.service';
+import { AdminService } from './admin.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,8 @@ export class AuthService {
     private route: Router,
     private spinner: NgxSpinnerService,
     private learnerService: LearnerService,
-    private instructorService: InstructorService
+    private instructorService: InstructorService,
+    private adminService: AdminService
   ) {}
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
@@ -32,7 +34,9 @@ export class AuthService {
           localStorage.setItem('token', res.token);
           const tokenPayload: any = jwtDecode(res.token);
           let roleId: number = Number(tokenPayload.roleId);
-          this.isLoggedInSubject.next(true);
+          if (roleId === 3) {
+            this.isLoggedInSubject.next(true);
+          }
           this.HandleNavigate(roleId);
           setTimeout(() => {
             this.spinner.hide();
@@ -57,8 +61,8 @@ export class AuthService {
   Logout() {
     this.learnerService.CleanLearnerData();
     this.instructorService.CleanInstructorData();
+    this.adminService.CleanAdminData();
     localStorage.removeItem('token');
-    this.isLoggedInSubject.next(false);
     this.route.navigate(['/Login']);
   }
   getToken(): string | null {

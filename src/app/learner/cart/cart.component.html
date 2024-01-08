@@ -70,29 +70,7 @@
           </tbody>
         </table>
       </div>
-      <div class="cart-buttons">
-        <div class="row align-items-center">
-          <div class="col-lg-7 col-sm-7 col-md-7">
-            <div class="shopping-coupon-code">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Coupon code"
-                name="coupon-code"
-                id="coupon-code"
-              />
-              <button type="submit">Apply Coupon</button>
-            </div>
-          </div>
-          <div class="col-lg-5 col-sm-5 col-md-5 text-end">
-            <a routerLink="/cart" class="default-btn"
-              ><i class="bx bx-cart icon-arrow before"></i
-              ><span class="label">Update Cart</span
-              ><i class="bx bx-cart icon-arrow after"></i
-            ></a>
-          </div>
-        </div>
-      </div>
+
       <app-cart-details
         [cartItems]="this.learnerService.CartItemsByUserId"
       ></app-cart-details>

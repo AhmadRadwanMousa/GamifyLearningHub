@@ -49,6 +49,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { EmptyComponent } from './empty/empty.component';
+import { DialogModule } from 'primeng/dialog';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { EmptyComponent } from './empty/empty.component';
     MatOptionModule,
     MatCheckboxModule,
     NgxMatTimepickerModule,
+    DialogModule,
+    ClipboardModule,
   ],
   exports: [
     FooterComponent,
@@ -132,6 +136,8 @@ import { EmptyComponent } from './empty/empty.component';
     MatTableModule,
     MatPaginatorModule,
     EmptyComponent,
+    DialogModule,
+    ClipboardModule,
   ],
 })
 export class SharedModule {}

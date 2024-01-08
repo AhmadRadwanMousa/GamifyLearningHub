@@ -289,7 +289,47 @@
     }
   }
 }
+.cart-buttons {
+  margin-top: 30px;
 
+  .shopping-coupon-code {
+    position: relative;
+    max-width: 530px;
+
+    .form-control {
+      height: 50px;
+
+      &::placeholder {
+        transition: var(--transition);
+      }
+      &:focus {
+        &::placeholder {
+          color: transparent;
+        }
+      }
+    }
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 50px;
+      background: var(--blackColor);
+      color: var(--whiteColor);
+      border: none;
+      padding: 0 25px;
+      line-height: 48px;
+      outline: 0;
+      transition: var(--transition);
+      font: {
+        size: var(--fontSize);
+        weight: 600;
+      }
+      &:hover {
+        background-color: var(--mainColor);
+      }
+    }
+  }
+}
 @media only screen and (max-width: 767px) {
   .billing-details {
     .title {

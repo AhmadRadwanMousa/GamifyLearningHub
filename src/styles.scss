@@ -211,6 +211,8 @@ h6 {
 @import "/node_modules/lightgallery/scss/lg-video";
 @import "/node_modules/lightgallery/scss/lg-zoom";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "primeng/resources/themes/saga-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
 /*default-btn*/
 .default-btn {
   transition: var(--transition);
@@ -2210,7 +2212,7 @@ textarea.form-control {
 .page-title-area {
   position: relative;
   z-index: 1;
-  
+
   padding: {
     top: 70px;
     bottom: 60px;
@@ -3864,7 +3866,6 @@ blockquote,
   }
 
   .page-title-area {
-    
     padding: {
       top: 265px;
       //bottom: 90px;

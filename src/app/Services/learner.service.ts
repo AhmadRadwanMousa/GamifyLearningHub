@@ -104,6 +104,13 @@ export class LearnerService {
         }
       );
   }
+  UpdateCartTotal(cartToUpdate: any) {
+    this.http.put(`${URL}/Cart`, cartToUpdate).subscribe((res) => {
+      if (res) {
+        console.log('CartUpdated!');
+      }
+    });
+  }
   CreatePayment(paymentDetails: any) {
     this.spinner.show();
     this.http.post(`${URL}/Payment`, paymentDetails).subscribe(
@@ -510,6 +517,53 @@ export class LearnerService {
         programId
     );
   }
+  GetUserPoints() {
+    return this.http.get(`${URL}/UserPoints/` + this.userId);
+  }
+  UpdateUserPointsStart(userPointsId: number) {
+    this.http.put(`${URL}/UserPoints/` + userPointsId, {}).subscribe((res) => {
+      if (res) {
+        console.log('update succ');
+      }
+    });
+  }
+  GetCouponByName(couponName: string) {
+    return this.http.get(
+      `${URL}/UserCoupon/GetUserCouponByUserIdAndCouponName/` +
+        this.userId +
+        '/' +
+        couponName
+    );
+  }
+  UpdateUserCoupon(userCouponId: number) {
+    this.http.put(`${URL}/UserCoupon/${userCouponId}`, {}).subscribe((res) => {
+      if (res) {
+        console.log('Done  ');
+      }
+    });
+  }
+  UserCoupons: any = [];
+  GetAllUserCoupons() {
+    this.spinner.show();
+    this.http
+      .get(`${URL}/UserCoupon/GetAllUserCouponsByUserId/` + this.userId)
+      .subscribe(
+        (res: any) => {
+          if (res && res[0]) {
+            this.UserCoupons = res;
+          }
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 500);
+        },
+        (error) => {
+          console.log(error.message);
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 500);
+        }
+      );
+  }
   CleanLearnerData() {
     this.CartId = 0;
     this.CartItemsByUserId = [];
@@ -520,6 +574,13 @@ export class LearnerService {
     this.SectionsByUserId = [];
     this.userPrograms = [];
     this.UserProgress = [];
+    this.UserDashboarInfoByUserId = [];
+    this.MyCompletedCourses = [];
+    this.UserDashboardAttendences = [];
+    this.allExamByUserSection = [];
+    this.allSectionsByLearnerId = [];
+    this.examDetailsById = [];
+    this.examDetailsByUserId = [];
     this.userId = 0;
   }
 

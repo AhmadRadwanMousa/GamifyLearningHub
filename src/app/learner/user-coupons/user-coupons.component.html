@@ -1,0 +1,43 @@
+<app-user-dashboard-container>
+  <div class="mb-5">
+    <h4>Your Coupons</h4>
+  </div>
+  <ng-container
+    *ngIf="this.learnerService.UserCoupons.length > 0; else emptyCoupons"
+  >
+    <table class="table fs-5 text-center">
+      <thead>
+        <tr class="table-title">
+          <th>Coupon code</th>
+          <th>Coupon status</th>
+          <th>Copy coupon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userCoupon of this.learnerService.UserCoupons">
+          <td>{{ userCoupon.coupon.couponname }}</td>
+          <td>{{ userCoupon.isused ? "Used" : "UnUsed" }}</td>
+          <td>
+            <button
+              class="default-btn my-4"
+              (click)="copyToClipboard(userCoupon.coupon.couponname)"
+              [disabled]="userCoupon.isused"
+            >
+              <i class="icon-arrow before fa-solid fa-receipt"></i>
+              <span class="label mx-1"> Copy Coupon </span>
+              <i class="icon-arrow after fa-solid fa-receipt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</app-user-dashboard-container>
+<ng-template #emptyCoupons>
+  <app-empty
+    message="You have no coupons yet!"
+    imageSrc="https://cdn-icons-png.flaticon.com/512/2851/2851418.png"
+    height="100"
+    width="120"
+  ></app-empty>
+</ng-template>

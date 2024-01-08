@@ -16,7 +16,6 @@ export class AdminService {
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
-
     private toastr: ToastrService
   ) {}
   Role: any = [];
@@ -1011,5 +1010,13 @@ export class AdminService {
         this.toastr.error(err.message);
       },
     });
+  }
+  CleanAdminData() {
+    this.Mysections = [];
+    this.Role = [];
+    this.StudentReportsDetails = [];
+    this.UserSectionsBySectionId = [];
+    this.Users = [];
+    this.educationalPeriods = [];
   }
 }

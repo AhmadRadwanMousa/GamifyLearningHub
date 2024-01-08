@@ -140,6 +140,35 @@
                 </tbody>
               </table>
             </div>
+
+            <div class="cart-buttons">
+              <div class="row align-items-center">
+                <div class="col-lg-7 col-sm-7 col-md-7">
+                  <div class="shopping-coupon-code" style="width: 500px">
+                    <input
+                      [(ngModel)]="couponName"
+                      [disabled]="isDisabled"
+                      type="text"
+                      class="form-control"
+                      placeholder="Coupon code"
+                      name="coupon-code"
+                      id="coupon-code"
+                    />
+                    <div class="text-success-emphasis" *ngIf="isDisabled">
+                      Coupon has been applied
+                      <i class="fa-solid fa-check text-success-emphasis"> </i>
+                    </div>
+                    <button
+                      type="submit"
+                      (click)="HandleCoupon()"
+                      [disabled]="couponName === '' || isDisabled"
+                    >
+                      Apply Coupon
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="payment-box">
               <div class="payment-method">
                 <p>
@@ -167,6 +196,7 @@
                   <label for="paypal">PayPal</label>
                 </p>
               </div>
+
               <a class="default-btn"
                 ><i class="bx bx-paper-plane icon-arrow before"></i
                 ><span class="label">Place Order</span
