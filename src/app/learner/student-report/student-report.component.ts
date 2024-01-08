@@ -44,9 +44,12 @@ export class StudentReportComponent {
   paginator!: MatPaginator;
 
   ngOnInit() {
+    this._learnerService.updateUserId();
+    this._learnerService.reportUser = [];
+    this._learnerService.reportUserFilter =[];
     this._learnerService.GetProgramsByUserId();
 }
-selectedProgram: any ;
+selectedProgram: any = 0;
 searchText : string = '';
 loadData(programId : number){
   this._learnerService.GetCoursesByProgramId(programId);

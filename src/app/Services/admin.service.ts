@@ -774,11 +774,18 @@ export class AdminService {
 
   /* Points */
   points: any = [];
+  pointsCoursesComplete : any = [];
+  pointsLoginDays : any = [];
+
   getAllPoints() {
     this.spinner.show();
     this.http.get('https://localhost:7036/api/PointsActivity/').subscribe({
-      next: (result) => {
-        this.points = result;
+      next: (result : any) => {
+        this.points = result.filter((x:any)=>x.pointsactivityname != 'Complete Course' && x.pointsactivityname != 'Login Days');
+        this.pointsCoursesComplete = result.filter((x:any)=>x.pointsactivityname == 'Complete Course');
+        this.pointsLoginDays = result.filter((x:any)=>x.pointsactivityname == 'Login Days');
+
+      
         this.spinner.hide();
       },
       error: (err) => {
@@ -787,6 +794,24 @@ export class AdminService {
       },
     });
   }
+
+  CreateNewPointsActivity(data: any) {
+    console.log(data)
+    this.http
+      .post('https://localhost:7036/api/PointsActivity/', data)
+      .subscribe({
+        next: (result) => {
+          this.getAllPoints();
+          this.toastr.success('Points Created');
+          return result;
+        },
+        error: (err) => {
+          this.toastr.error('Sorry, Points Create Failed');
+        },
+      });
+  }
+
+
 
   updatePoints(data: any) {
     this.http

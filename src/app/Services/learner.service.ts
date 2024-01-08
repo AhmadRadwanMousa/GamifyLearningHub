@@ -346,7 +346,10 @@ export class LearnerService {
       .subscribe({
         next: (x: any) => {
           this.allSectionsByLearnerId = x;
-          this.spinner.hide();
+          this.allExamByUserSection = [];
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 200);
         },
         error: (err) => {
           console.log(err);
@@ -368,10 +371,10 @@ export class LearnerService {
       .subscribe({
         next: (x: any) => {
           this.allExamByUserSection = x;
-          this.spinner.hide();
-        },
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 250);        },
         error: (err) => {
-          console.log(err);
           this.spinner.hide();
         },
       });
@@ -664,9 +667,7 @@ export class LearnerService {
       .subscribe({
         next: (result: any) => {
           this.examDetailsByUserId = result;
-          setTimeout(() => {
-            this.spinner.hide();
-          }, 5000);
+          this.spinner.hide();
         },
         error: (err) => {
           console.log(err);

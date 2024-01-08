@@ -65,7 +65,10 @@ export class LearnerExamComponent implements OnDestroy {
       questionoptionid: this.selectedOptions[key]
     }));
     this._learnerService.CreateExamSolution(result);
-    this.router.navigate(['/learner/mark-exam' , this.id]);
+
+    setTimeout(() => {
+    this.router.navigate(['/learner/mark-exam', this.id]);
+  }, 300);
 
   }
 

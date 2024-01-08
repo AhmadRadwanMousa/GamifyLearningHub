@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-12">
             <select class="form-select form-select-lg mb-3" [(ngModel)]="selectedProgram" (change)="loadData(selectedProgram)" aria-label="Large select">
-                <option [value]="undefined" selected disabled>Select program</option>
+                <option [value]="0" selected disabled>Select program</option>
                 <option *ngFor="let program of _learnerService.programsBytUserId" [value]="program.programid"  >
                   {{ program.programname }}
                 </option>

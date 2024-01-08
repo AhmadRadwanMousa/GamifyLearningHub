@@ -11,10 +11,11 @@ export class UserExamsComponent {
 
   constructor(public _learnerService: LearnerService) {}
   ngOnInit() {
+    this._learnerService.updateUserId();
     this._learnerService.GetAllSectionsByLearnerId();
   }
 
-  selectedSection: any ;
+  selectedSection: any  = 0 ;
   loadData(sectionId : number){
     this._learnerService.GetAllExamByUserSection(sectionId);
   }
