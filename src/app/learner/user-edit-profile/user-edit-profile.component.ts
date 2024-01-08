@@ -57,12 +57,7 @@ export class UserEditProfileComponent{
   onSubmit() {
     this.userDetails.controls['userid'].setValue(this.userId);
     this.userDetails.controls['userimage'].setValue(this.filePath == '' ? this.UserInDashboard.userimage : this.filePath);
-    this.userDetails.controls['firsname'].setValue(this.UserInDashboard.firsname);
-    this.userDetails.controls['lastname'].setValue(this.UserInDashboard.lastname);
-    this.userDetails.controls['username'].setValue(this.UserInDashboard.userlogins[0].username);
-    this.userDetails.controls['password'].setValue(this.UserInDashboard.userlogins[0].password);
     this.userDetails.controls['totalpoints'].setValue(this.UserInDashboard.totalpoints);
-    this.userDetails.controls['dateofbirth'].setValue(this.UserInDashboard.dateofbirth);
     if(this.userDetails.valid)
     {
       this.learnerService.UpdateProfile(this.userDetails.value);

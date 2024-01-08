@@ -617,10 +617,11 @@ export class LearnerService {
       },
       error: () => {
         this.toastr.error('Profile updated Faild');
+        this.spinner.hide();
         console.log(user);
       },
     });
-    this.spinner.hide();
+    
   }
 
   UserDashboardAttendences: any = [];
