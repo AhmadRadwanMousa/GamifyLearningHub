@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
 
@@ -10,6 +10,8 @@ import { AdminService } from 'src/app/Services/admin.service';
 })
 export class PointsComponent {
   @ViewChild('UpdateDialog') UpdateDialog: any;
+  @ViewChild('CreateDialog') CreateCorseCompleteDialog: any;
+
   constructor(public admin: AdminService, public dialog: MatDialog) {}
   previous_data: any;
 
@@ -22,6 +24,28 @@ export class PointsComponent {
     pointsactivityname: new FormControl(),
     points: new FormControl()
   });
+
+
+  CreateCourseCompleteForm: FormGroup = new FormGroup({
+
+    numberofcourses : new FormControl('0', Validators.required),
+    numberofdays : new FormControl('0', Validators.required),
+    points : new FormControl('', Validators.required),
+    Pointsactivityname : new FormControl('' , Validators.required),
+    
+  });
+
+
+  OpenCreateDialog() {
+    this.dialog.open(this.CreateCorseCompleteDialog);
+  }
+
+
+  CreateCourseComplete() {
+  
+    this.admin.CreateNewPointsActivity(this.CreateCourseCompleteForm.value);
+  }
+
 
   openUpdateDialog(_points: any) {
     this.previous_data = {

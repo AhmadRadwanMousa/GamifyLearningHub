@@ -26,6 +26,13 @@
             <div class="card-body p-4">
               <h5 class="card-title fw-semibold mb-4">All Points</h5>
               <hr />
+              <button
+              mat-dialog-close
+              (click)="OpenCreateDialog()"
+              class="btn btn-primary mb-4"
+            >
+           Create Activity Points
+            </button>
               <div class="table-responsive">
                 
                 <table class="table text-nowrap mb-0 align-middle text-center">
@@ -89,8 +96,171 @@
           </div>
         </div>
       </div>
+      <!-- <app-footer-admin></app-footer-admin> -->
+    </div>
+
+
+
+
+
+
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+          <div class="card w-100">
+            <div class="card-body p-4">
+              <h5 class="card-title fw-semibold mb-4">Points Courses Complete</h5>
+              <hr />
+           
+              <div class="table-responsive">
+                
+                <table class="table text-nowrap mb-0 align-middle text-center">
+                  <thead class="text-dark fs-4">
+                    <tr>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Points</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Number Of Courses Complete</h6>
+                      </th>
+                      
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let p of admin.pointsCoursesComplete">
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">{{ p.points }}</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <p class="mb-0 fw-normal">{{ p.numberofcourses }} Courses</p>
+                      </td>
+                      
+                      
+                      <td class="border-bottom-0">
+                        <button
+                          class="btn btn-primary m-2"
+                          (click)="openUpdateDialog(p)"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-edit"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                              d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                            />
+                            <path
+                              d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                            />
+                            <path d="M16 5l3 3" />
+                          </svg>
+                        </button>
+                       
+                           
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <app-footer-admin></app-footer-admin> -->
+    </div>
+
+
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+          <div class="card w-100">
+            <div class="card-body p-4">
+              <h5 class="card-title fw-semibold mb-4">Points Days Login</h5>
+              <hr />
+           
+              <div class="table-responsive">
+                
+                <table class="table text-nowrap mb-0 align-middle text-center">
+                  <thead class="text-dark fs-4">
+                    <tr>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Points</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Number Of Days Login</h6>
+                      </th>
+                      
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let p of admin.pointsLoginDays">
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">{{ p.points }}</h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <p class="mb-0 fw-normal">{{ p.numberofdays }} Days</p>
+                      </td>
+                      
+                      
+                      <td class="border-bottom-0">
+                        <button
+                          class="btn btn-primary m-2"
+                          (click)="openUpdateDialog(p)"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-edit"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                              d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                            />
+                            <path
+                              d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                            />
+                            <path d="M16 5l3 3" />
+                          </svg>
+                        </button>
+                       
+                           
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <app-footer-admin></app-footer-admin>
     </div>
+
+
+
+
+
+
+
   </div>
 </div>
 
@@ -138,5 +308,98 @@
         />
       </div>
     </div>
+  </form>
+</ng-template>
+
+
+<ng-template #CreateDialog>
+  <form [formGroup]="CreateCourseCompleteForm">
+      <div class="row w-100" style="padding: 25px;">
+          <h3 class="mb-5">Create Activity Points</h3>
+
+          <mat-form-field class="col-6">
+            <mat-label>Select Activity Points</mat-label>
+            <mat-select formControlName="Pointsactivityname" required>
+              <mat-option value="Complete Course">Complete Course</mat-option>
+              <mat-option value="Login Days">Login Days</mat-option>
+            </mat-select>
+            <mat-error
+            *ngIf="
+              CreateCourseCompleteForm.controls['Pointsactivityname'].hasError('required')
+            "
+            >Points activity name is required</mat-error
+          >
+          </mat-form-field>
+          
+            
+        <mat-form-field class="col-6">
+          <mat-label>Number Of Points </mat-label>
+          <input
+            matInput
+            placeholder="Number Of Points"
+            formControlName="points"
+            required
+          />
+          <mat-error
+            *ngIf="
+              CreateCourseCompleteForm.controls['points'].hasError(
+                'required'
+              )
+            "
+            >Number Of Points is required</mat-error
+          >
+        </mat-form-field>
+     
+     
+        <mat-form-field class="col-6" *ngIf="CreateCourseCompleteForm.controls['Pointsactivityname'].value == 'Complete Course'">
+          <mat-label> Number Of Courses Complete</mat-label>
+          <input
+            matInput
+            placeholder="Number Of courses complete"
+            formControlName="numberofcourses"
+            required
+          />
+          <mat-error
+            *ngIf="
+              CreateCourseCompleteForm.controls['numberofcourses'].hasError('required')
+            "
+            > Number Of courses complete is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="col-6" *ngIf="CreateCourseCompleteForm.controls['Pointsactivityname'].value == 'Login Days'">
+          <mat-label> Number Of Login Days</mat-label>
+          <input
+            matInput
+            placeholder="Number Of Login Days"
+            formControlName="numberofdays"
+            required
+          />
+          <mat-error
+            *ngIf="
+              CreateCourseCompleteForm.controls['numberofdays'].hasError('required')
+            "
+            > Number Of Login Days is required</mat-error
+          >
+        </mat-form-field>
+
+
+      
+  
+     
+      
+<div class="col-12" style="text-align: center;">
+
+
+<button
+mat-dialog-close
+(click)="CreateCourseComplete()"
+[disabled]="CreateCourseCompleteForm.invalid"
+class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
+Create
+</button>
+</div>
+</div>
+  
   </form>
 </ng-template>

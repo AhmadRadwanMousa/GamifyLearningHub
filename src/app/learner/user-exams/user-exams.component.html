@@ -6,7 +6,7 @@
     <div class="col-12">
 
         <select class="form-select form-select-lg mb-3" [(ngModel)]="selectedSection" (change)="loadData(selectedSection)" aria-label="Large select">
-            <option [value]="undefined" selected disabled>Select section</option>
+            <option [value]="0" selected disabled>Select section</option>
             <option *ngFor="let section of _learnerService.allSectionsByLearnerId" [value]="section.sectionid"  >
               {{ section.sectionname }}
             </option>
