@@ -21,23 +21,25 @@ export class ManageCoursesComponent {
   }
 
   CreateCourseForm: FormGroup = new FormGroup({
-    coursename: new FormControl('', [Validators.minLength(2)]),
-    courselevel: new FormControl(),
-    courseimage: new FormControl(),
-    examweight: new FormControl(),
-    assignmentweight: new FormControl(),
-    quizzezweight: new FormControl(),
+    coursename: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    courselevel: new FormControl('', Validators.required),
+    courseimage: new FormControl('', Validators.required),
+    examweight: new FormControl('', Validators.required),
+    assignmentweight: new FormControl('', Validators.required),
+    quizzezweight: new FormControl('', Validators.required),
   });
+  
 
   UpdateCourseForm: FormGroup = new FormGroup({
-    courseid: new FormControl(),
-    coursename: new FormControl(),
-    courselevel: new FormControl(),
-    courseimage: new FormControl(),
-    examweight: new FormControl(),
-    assignmentweight: new FormControl(),
-    quizzezweight: new FormControl(),
+    courseid: new FormControl('', Validators.required),
+    coursename: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    courselevel: new FormControl('', Validators.required),
+    courseimage: new FormControl('', Validators.required),
+    examweight: new FormControl('', Validators.required),
+    assignmentweight: new FormControl('', Validators.required),
+    quizzezweight: new FormControl('', Validators.required),
   });
+  
 
   CreateCourse() {
     console.log(this.CreateCourseForm.value);

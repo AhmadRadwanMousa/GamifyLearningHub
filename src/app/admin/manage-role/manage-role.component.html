@@ -2,19 +2,18 @@
   <div class="col-md-12">
     <div class="card w-100">
       <div class="card-body p-4">
-        <h5 class="card-title fw-semibold mb-4">All ROLES</h5>
+        <h5 class="card-title fw-semibold mb-4">All Roles</h5>
         <hr>
-        <div class="table-responsive ">
-          <button class="btn btn-primary mb-4" (click)="OpenCreateDialog()">
-            <span>Create New Role</span>
-          </button>
+        <button class="btn btn-primary mb-4" (click)="OpenCreateDialog()">
+          <span>Create New Role</span>
+        </button>
+        <div class="table-responsive text-center">
+
           <table class="table text-nowrap mb-0 align-middle">
             <thead class="text-dark fs-4">
               
               <tr>
-                <th class="border-bottom-0">
-                  <h6 class="fw-semibold mb-0">ROLE ID</h6>
-                </th>
+               
                 <th class="border-bottom-0">
                   <h6 class="fw-semibold mb-0">ROLE NAME</h6>
                 </th>
@@ -26,9 +25,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let c of _AdminService.Role">
-                <td class="border-bottom-0">
-                  <h6 class="fw-semibold mb-1">{{ c.roleid }}</h6>
-                </td>
+                
                 <td class="border-bottom-0">
                   <p class="mb-0 fw-normal">{{ c.rolename }}</p>
                 </td>

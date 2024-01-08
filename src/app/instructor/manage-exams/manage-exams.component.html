@@ -161,6 +161,9 @@
                     <input matInput [matDatepicker]="picker" formControlName="examdate">
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="CreateFormGroup.controls['examdate'].hasError('required')">
+                        * Field required
+                      </mat-error>
                 </mat-form-field>
 
             </div>
@@ -168,6 +171,9 @@
                 <mat-form-field class="col-lg-6">
                     <mat-label>Exam Total Mark</mat-label>
                     <input matInput placeholder="Ex. 100" formControlName="exammark">
+                    <mat-error *ngIf="CreateFormGroup.controls['exammark'].hasError('required')">
+                        * Field required
+                      </mat-error>
                 </mat-form-field>
                 <mat-form-field class="col-lg-6">
                     <mat-label>Exam status</mat-label>
@@ -187,6 +193,9 @@
                         </mat-icon>
                     </mat-form-field>
                     <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+                    <mat-error *ngIf="CreateFormGroup.controls['openat'].hasError('required')">
+                        * Field required
+                      </mat-error>
                 </div>
 
                 <div class="col-lg-6">
@@ -198,6 +207,9 @@
                         </mat-icon>
                     </mat-form-field>
                     <ngx-mat-timepicker #pickerB></ngx-mat-timepicker>
+                    <mat-error *ngIf="CreateFormGroup.controls['closeat'].hasError('required')">
+                        * Field required
+                      </mat-error>
                 </div>
 
             </div>

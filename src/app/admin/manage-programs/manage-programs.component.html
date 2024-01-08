@@ -185,17 +185,17 @@
           <mat-form-field class="col-6">
             <mat-label> Program Name</mat-label>
             <input
+            type="text"
               matInput
               placeholder="Program Name"
               formControlName="programname"
               required
             />
-            <mat-error
-              *ngIf="
-                CreateProgramForm.controls['programname'].hasError('required')
-              "
-              >program name is required</mat-error
-            >
+            <mat-error *ngIf="CreateProgramForm.get('programname')?.hasError('required')">
+              * Field Required
+            </mat-error>
+            
+            
           </mat-form-field>
 
        
@@ -207,6 +207,7 @@
           <mat-form-field class="col-6">
             <mat-label> Program Description </mat-label>
             <input
+            type="text"
               matInput
               placeholder=" Program Description"
               formControlName="programdescription"
@@ -218,7 +219,7 @@
                   'required'
                 )
               "
-              >Program Description is required</mat-error
+              >* Field Required</mat-error
             >
           </mat-form-field>
        
@@ -227,17 +228,15 @@
           <mat-form-field class="col-6">
             <mat-label> Program Price</mat-label>
             <input
+            type="number"
               matInput
               placeholder="Program Price"
               formControlName="programprice"
               required
             />
-            <mat-error
-              *ngIf="
-                CreateProgramForm.controls['programprice'].hasError('required')
-              "
-              >Program Price is required</mat-error
-            >
+            <mat-error *ngIf="CreateProgramForm.get('programprice')?.hasError('PriceGreaterThanZero')">
+              Price must be greater than 0
+            </mat-error>
           </mat-form-field>
       
 
@@ -253,7 +252,7 @@
             </mat-select>
             <mat-error
               *ngIf="CreateProgramForm.controls['planid'].hasError('required')"
-              >Plan is required</mat-error
+              >* Field Required</mat-error
             >
           </mat-form-field>
       
@@ -277,7 +276,7 @@
                   'required'
                 )
               "
-              >Educational Period is required</mat-error
+              >* Field Required</mat-error
             >
           </mat-form-field>
 
@@ -294,7 +293,7 @@
               *ngIf="
                 CreateProgramForm.controls['programsale'].hasError('required')
               "
-              >Program Sale is required</mat-error
+              >* Field required</mat-error
             >
           </mat-form-field>
 
@@ -374,6 +373,12 @@ class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
               formControlName="programname"
               [(ngModel)]="p_data.programname"
             />
+            <mat-error
+            *ngIf="
+              UpdateprogramForm.controls['programname'].hasError('required')
+            "
+            >* Field required</mat-error
+          >
           </mat-form-field>
 
 
@@ -385,16 +390,26 @@ class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
               formControlName="programdescription"
               [(ngModel)]="p_data.programdescription"
             />
+            <mat-error
+            *ngIf="
+              UpdateprogramForm.controls['programdescription'].hasError('required')
+            "
+            >* Field required</mat-error
+          >
           </mat-form-field>
 
           <mat-form-field class="col-6">
             <mat-label> Program Price</mat-label>
             <input
+            type="number"
               matInput
               placeholder="Program Price"
               formControlName="programprice"
               [(ngModel)]="p_data.programprice"
             />
+            <mat-error *ngIf="UpdateprogramForm.get('programprice')?.hasError('PriceGreaterThanZero')">
+              Price must be greater than 0
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field class="col-6">
@@ -430,11 +445,18 @@ class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
           <mat-form-field class="col-6"  *ngIf="UpdateprogramForm.controls['programprice'].value > 0">
             <mat-label> Program Sale</mat-label>
             <input
+            type="number"
               matInput
               placeholder="Program Sale"
               formControlName="programsale"
               [(ngModel)]="p_data.programsale"
             />
+            <mat-error
+            *ngIf="
+              UpdateprogramForm.controls['programsale'].hasError('required')
+            "
+            >* Field required</mat-error
+          >
           </mat-form-field>
 
 

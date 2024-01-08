@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
 
@@ -21,11 +21,19 @@ export class BadgeComponent {
   }
 
   UpdateBadgesForm: FormGroup = new FormGroup({
-    badgeactivityid: new FormControl(),
-    badgeimage: new FormControl(),
-    badgepoints: new FormControl(),
-    badgename: new FormControl()
+    badgeactivityid: new FormControl('', Validators.required),
+    badgeimage: new FormControl('', Validators.required),
+    badgepoints: new FormControl('0', [Validators.required, this.pointsGreaterThanZeroValidator]),
+    badgename: new FormControl('', Validators.required),
   });
+
+  pointsGreaterThanZeroValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const value = control.value;
+    if (value !== null && (isNaN(value) || value <= 0)) {
+      return { 'PriceGreaterThanZero': true };
+    }
+    return null;
+  }
 
   openUpdateDialog(_badge: any) {
     this.previous_data = {

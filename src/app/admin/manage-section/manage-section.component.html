@@ -15,7 +15,7 @@
                 <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Section Name</h6></th>
                 <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Instructor Name</h6></th>
                 <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Section Size</h6></th>
-                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">image </h6></th>
+                
                 <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Actions</h6></th>
               </tr>
             </thead>
@@ -27,9 +27,7 @@
                 <td class="border-bottom-0"><h6 class="fw-semibold mb-1">{{ section.sectionname }}</h6></td>
                 <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ section.user.firsname || 'Unknown' }} {{ section.user.lastname || 'Unknown' }} </p></td>
                 <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ section.sectionsize }}</p></td>
-                <td class="border-bottom-0">
-                  <img [src]="section.imagename" width="100" height="100" />
-                </td>                
+                              
 
                 <td class="border-bottom-0">
                     <button class="btn btn-primary m-2" (click)="OpenUpdateDialog(section)" >
@@ -122,19 +120,19 @@
                 <div class="row mb-3">
                   <div class="col-md-4">
                     <div class="mb-3">
-                      <label for="sectionname" class="form-label">Section Name:</label>
-                      <input type="text" id="sectionname" formControlName="sectionname" class="form-control" />
-                      <mat-error *ngIf="CreateSectionForm.controls['sectionname'].hasError('required')">Section Name is required</mat-error>
-                      <mat-error *ngIf="CreateSectionForm.controls['sectionname'].hasError('minlength')">Minimum length is 4 characters</mat-error>
-                      <mat-error *ngIf="CreateSectionForm.controls['sectionname'].hasError('invalidSectionName')">Section Name Should Start With Letter </mat-error>
+                        <label for="sectionname" class="form-label">Section Name:</label>
+                        <input type="text" id="sectionname" formControlName="sectionname" class="form-control" />
+                        <mat-error *ngIf="CreateSectionForm.controls['sectionname'].hasError('required')">* Field required</mat-error><br>
+                        <mat-error *ngIf="CreateSectionForm.controls['sectionname'].hasError('minlength')">Minimum length is 4 characters</mat-error><br>
+                        <mat-error *ngIf="CreateSectionForm.controls['sectionname'].hasError('invalidSectionName')">Section Name Should Start With Letter </mat-error>
                     </div>
-                  </div>
+                </div>
                   <div class="col-md-4">
                     <div class="mb-3">
                       <label for="sectionsize" class="form-label">Section Size:</label>
                       <input type="text" id="sectionsize" formControlName="sectionsize" class="form-control" />
                       <mat-error *ngIf="CreateSectionForm.controls['sectionsize'].hasError('required')">
-                        Section Size is required
+                        * Field required
                       </mat-error>
                       <mat-error *ngIf="CreateSectionForm.controls['sectionsize'].hasError('notANumber')">Please enter just number</mat-error>
                     </div>
@@ -148,7 +146,7 @@
                         </mat-option>
                       </mat-select>
                       <mat-error *ngIf="CreateSectionForm.controls['userid'].hasError('required')">
-                        Instructor is required
+                        * Field required
                       </mat-error>
                     </div>
                   </div>
@@ -215,18 +213,27 @@
                   <div class="mb-3">
                     <label for="sectionid" class="form-label">Section ID:</label>
                     <input type="text" id="sectionid" formControlName="sectionid" class="form-control" />
+                    <mat-error *ngIf="UpdateSectionForm.get('sectionid')?.hasError('required')">
+                      * Field required
+                    </mat-error>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="mb-3">
                     <label for="sectionname" class="form-label">Section Name:</label>
                     <input type="text" id="sectionname" formControlName="sectionname" class="form-control" />
+                    <mat-error *ngIf="UpdateSectionForm.get('sectionname')?.hasError('required')">
+                      * Field required
+                    </mat-error>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="mb-3">
                     <label for="sectionsize" class="form-label">Section Size:</label>
                     <input type="text" id="sectionsize" formControlName="sectionsize" class="form-control" />
+                    <mat-error *ngIf="UpdateSectionForm.get('sectionsize')?.hasError('required')">
+                      * Field required
+                    </mat-error>
                   </div>
                 </div>
 
@@ -239,7 +246,7 @@
                       </mat-option>
                     </mat-select>
                     <mat-error *ngIf="UpdateSectionForm.controls['userid'].hasError('required')">
-                      Instructor is required
+                      * Field required
                     </mat-error>
                   </div>
                 </div>

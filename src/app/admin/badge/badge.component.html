@@ -101,52 +101,67 @@
 
 
 
+  <ng-template #UpdateDialog>
+    <form [formGroup]="UpdateBadgesForm">
+        <div class="row w-100" style="padding: 25px;">
+            <h3 class="mb-5">Create Program</h3>
 
-<ng-template #UpdateDialog>
-  <form class="My-form" [formGroup]="UpdateBadgesForm">
-    <div class="row">
-      <mat-form-field class="col-lg-12">
-        <mat-label>Enter Badge Name</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="previous_data.badgename"
-          formControlName="badgename"
-          required
-        />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field class="col-lg-5">
-        <mat-label>Enter Badge Points</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="previous_data.badgepoints"
-          formControlName="badgepoints"
-          required
-        />
-      </mat-form-field>
-    </div>
-      <input type="file" class="file-input" (change)="UploadFile($event)" #fileUpload  />
-      <div class="file-upload border border-2 rounded-2 p-2">
-        {{ fileName || "No file uploaded yet." }}
+       
+          <mat-form-field class="col-6">
+            <mat-label> Enter Badge Name</mat-label>
+            <input
+            type="text"
+              matInput
+              placeholder="Badge Name"
+              formControlName="badgename"
+              required
+            />
+            <mat-error *ngIf="UpdateBadgesForm.get('badgename')?.hasError('required')">
+          * Field required
+        </mat-error>
+            
+            
+          </mat-form-field>
+
+          <mat-form-field class="col-6">
+            <mat-label>Enter Badge Points</mat-label>
+            <input
+              matInput
+              type="number"
+              [(ngModel)]="previous_data.badgepoints"
+              formControlName="badgepoints"
+              required
+            />
+            <mat-error *ngIf="UpdateBadgesForm.get('badgepoints')?.hasError('pointsGreaterThanZero')">
+              Points must be greater than 0
+            </mat-error>
+            <mat-error *ngIf="UpdateBadgesForm.get('badgepoints')?.hasError('required')">
+              * Field required
+            </mat-error>
+          </mat-form-field>
+       
+
+    <input
+    type="file"
+    class="file-input"
+    (change)="UploadFile($event)"
+    #fileUpload
+  />
+  <div class="file-upload border border-2 rounded-2 col-10" style="margin: auto; text-align: center;">
+    {{ fileName || "No file uploaded  yet" }}
+
+    <button
+      mat-mini-fab
+      color="primary"
+      class="upload-btn btn btn-outline-primary "
+      (click)="fileUpload.click()"
+    >
+      <mat-icon>upload-btn</mat-icon>
+    </button>
+  </div>
+
+    
+  <div>
+    
+  </div>
   
-        <button mat-mini-fab color="primary" class="upload-btn btn btn-outline-primary mx-2" (click)="fileUpload.click()">
-          <mat-icon>upload-btn</mat-icon>
-        </button>
-      </div>
-  
-    <div class="row">
-      <div class="col-lg-4">
-        <input
-          mat-dialog-close
-          (click)="UpdateBadge()"
-          mat-raised-button
-          class="btn btn-primary"
-          value="Update"
-        />
-      </div>
-    </div>
-  </form>
-</ng-template>

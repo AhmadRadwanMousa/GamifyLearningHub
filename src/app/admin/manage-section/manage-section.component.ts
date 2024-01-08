@@ -111,9 +111,9 @@ export class ManageSectionComponent {
 
   
   UpdateSectionForm: FormGroup = new FormGroup({
-    sectionid: new FormControl(''),
-    sectionname: new FormControl(''),
-    sectionsize: new FormControl(''),
+    sectionid: new FormControl('', [Validators.required]),
+    sectionname: new FormControl('', [Validators.required]),
+    sectionsize: new FormControl('', [Validators.required]),
     imagename: new FormControl(''),
     userid: new FormControl('', [Validators.required]),
     coursesequenceid :  new FormControl(),

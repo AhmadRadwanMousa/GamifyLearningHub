@@ -100,7 +100,8 @@
 
 <ng-template #UpdateDialog>
   <form class="My-form" [formGroup]="UpdatePointsForm">
-    <div class="row">
+    <div class="row w-100" style="padding: 25px;">
+
       <mat-form-field class="col-lg-12">
         <mat-label>Enter Points Name</mat-label>
         <input
@@ -110,24 +111,35 @@
           formControlName="pointsactivityname"
           required
         />
+        <mat-error *ngIf="UpdatePointsForm.get('pointsactivityname')?.hasError('required')">
+          * Field equired
+        </mat-error>
       </mat-form-field>
     </div>
-    <div class="row">
+    <div class="row w-100" style="padding: 25px;">
+
       <mat-form-field class="col-lg-5">
         <mat-label>Enter Points</mat-label>
         <input
           matInput
-          type="text"
+          type="number"
           [(ngModel)]="previous_data.points"
           formControlName="points"
           required
         />
+        <mat-error *ngIf="UpdatePointsForm.get('points')?.hasError('required')">
+          * Field required
+        </mat-error>
+        <mat-error *ngIf="UpdatePointsForm.get('points')?.hasError('pointsGreaterThanZero')">
+          Points must be greater than 0
+        </mat-error>
       </mat-form-field>
 
       
     </div>
   
-    <div class="row">
+    <div class="row w-100" style="padding: 25px;">
+
       <div class="col-lg-4">
         <input
           mat-dialog-close
