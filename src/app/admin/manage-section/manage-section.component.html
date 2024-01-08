@@ -3,111 +3,127 @@
     <div class="card-body p-4">
       <h5 class="card-title fw-semibold mb-4">All Sections</h5>
       <hr />
-      <button  mat-dialog-close  class="btn btn-primary mb-4" (click)="OpenCreateDialog()">
+      <button
+        mat-dialog-close
+        class="btn btn-primary mb-4"
+        (click)="OpenCreateDialog()"
+      >
         Create Section
       </button>
       <div class="table-responsive text-center">
         <table class="table text-nowrap mb-0 align-middle">
-            <thead class="text-dark fs-4">
-              <!-- Table headers for section information -->
-              <tr>
-                <!-- <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Section ID</h6></th> -->
-                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Section Name</h6></th>
-                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Instructor Name</h6></th>
-                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Section Size</h6></th>
-                
-                <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Actions</h6></th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Table rows for each section -->
-              <tr *ngFor="let section of _sectionService.sectionsByCoursesSequence">
-                <!-- Section information -->
-                <!-- <td class="border-bottom-0"><h6 class="fw-semibold mb-1">{{ section.sectionid }}</h6></td> -->
-                <td class="border-bottom-0"><h6 class="fw-semibold mb-1">{{ section.sectionname }}</h6></td>
-                <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ section.user.firsname || 'Unknown' }} {{ section.user.lastname || 'Unknown' }} </p></td>
-                <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ section.sectionsize }}</p></td>
-                              
+          <thead class="text-dark fs-4">
+            <!-- Table headers for section information -->
+            <tr>
+              <!-- <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Section ID</h6></th> -->
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Section Name</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Instructor Name</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Section Size</h6>
+              </th>
 
-                <td class="border-bottom-0">
-                    <button class="btn btn-primary m-2" (click)="OpenUpdateDialog(section)" >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-edit"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path
-                          d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
-                        />
-                        <path
-                          d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
-                        />
-                        <path d="M16 5l3 3" />
-                      </svg>
-                    </button>
-                    <button
-                      class="btn btn-danger"
-                      (click)="OpenConfirmDialog(section.sectionid)" 
-                      
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-trash-filled"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path
-                          d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
-                          stroke-width="0"
-                          fill="currentColor"
-                        />
-                        <path
-                          d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
-                          stroke-width="0"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </button>
-                  </td>
-              </tr>
-          
-              
-            </tbody>
-          </table>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Actions</h6>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Table rows for each section -->
+            <tr
+              *ngFor="let section of _sectionService.sectionsByCoursesSequence"
+            >
+              <!-- Section information -->
+              <!-- <td class="border-bottom-0"><h6 class="fw-semibold mb-1">{{ section.sectionid }}</h6></td> -->
+              <td class="border-bottom-0">
+                <h6 class="fw-semibold mb-1">{{ section.sectionname }}</h6>
+              </td>
+              <td class="border-bottom-0">
+                <p class="mb-0 fw-normal">
+                  {{ section.user.firsname || "Unknown" }}
+                  {{ section.user.lastname || "Unknown" }}
+                </p>
+              </td>
+              <td class="border-bottom-0">
+                <p class="mb-0 fw-normal">{{ section.sectionsize }}</p>
+              </td>
+
+              <td class="border-bottom-0">
+                <button
+                  class="btn btn-primary m-2"
+                  (click)="OpenUpdateDialog(section)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-edit"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+                    />
+                    <path
+                      d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
+                    />
+                    <path d="M16 5l3 3" />
+                  </svg>
+                </button>
+                <button
+                  class="btn btn-danger"
+                  (click)="OpenConfirmDialog(section.sectionid)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-trash-filled"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                      stroke-width="0"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                      stroke-width="0"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-
-
-
 
   <!-- delete dialog -->
   <ng-template #ConfirmationDialog>
     <h1 mat-dialog-title>Delete <Section></Section></h1>
     <div mat-dialog-content>Would you like to delete the Section?</div>
     <div mat-dialog-actions>
-      <button mat-button mat-dialog-close="no" cdkFocusInitial>
-        No
-      </button>
+      <button mat-button mat-dialog-close="no" cdkFocusInitial>No</button>
       <button mat-button mat-dialog-close="yes">Yes</button>
     </div>
   </ng-template>
-
 
   <ng-template #CreateDialog>
     <div class="page-wrapper">
@@ -120,68 +136,126 @@
                 <div class="row mb-3">
                   <div class="col-md-4">
                     <div class="mb-3">
-                        <label for="sectionname" class="form-label">Section Name:</label>
-                        <input type="text" id="sectionname" formControlName="sectionname" class="form-control" />
-                        <mat-error *ngIf="CreateSectionForm.controls['sectionname'].hasError('required')">* Field required</mat-error><br>
-                        <mat-error *ngIf="CreateSectionForm.controls['sectionname'].hasError('minlength')">Minimum length is 4 characters</mat-error><br>
-                        <mat-error *ngIf="CreateSectionForm.controls['sectionname'].hasError('invalidSectionName')">Section Name Should Start With Letter </mat-error>
-                    </div>
-                </div>
-                  <div class="col-md-4">
-                    <div class="mb-3">
-                      <label for="sectionsize" class="form-label">Section Size:</label>
-                      <input type="text" id="sectionsize" formControlName="sectionsize" class="form-control" />
-                      <mat-error *ngIf="CreateSectionForm.controls['sectionsize'].hasError('required')">
-                        * Field required
-                      </mat-error>
-                      <mat-error *ngIf="CreateSectionForm.controls['sectionsize'].hasError('notANumber')">Please enter just number</mat-error>
+                      <label for="sectionname" class="form-label"
+                        >Section Name:</label
+                      >
+                      <mat-form-field>
+                        <input
+                          matInput
+                          type="text"
+                          id="sectionname"
+                          formControlName="sectionname"
+                          placeholder="Section name"
+                          class="form-control"
+                        />
+                        <mat-error
+                          *ngIf="
+                            CreateSectionForm.controls['sectionname'].hasError(
+                              'required'
+                            )
+                          "
+                          >* Field required</mat-error
+                        >
+                        <!-- <mat-error
+                          *ngIf="
+                            CreateSectionForm.controls['sectionname'].hasError(
+                              'minlength'
+                            )
+                          "
+                          >Minimum length is 4 characters</mat-error
+                        >
+                        <mat-error
+                          *ngIf="
+                            CreateSectionForm.controls['sectionname'].hasError(
+                              'invalidSectionName'
+                            )
+                          "
+                          >Section Name Should Start With Letter
+                        </mat-error> -->
+                      </mat-form-field>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="mb-3">
-                      <label for="userid" class="form-label">Instructors:</label>
-                      <mat-select id="userid" formControlName="userid" class="form-control">
-                        <mat-option *ngFor="let user of _sectionService.instructorSection" [value]="user.userid">
+                      <label for="sectionsize" class="form-label"
+                        >Section Size:</label
+                      >
+                      <mat-form-field>
+                        <input
+                          matInput
+                          type="text"
+                          id="sectionsize"
+                          formControlName="sectionsize"
+                          class="form-control"
+                          placeholder="Section size"
+                        />
+                        <mat-error
+                          *ngIf="
+                            CreateSectionForm.controls['sectionsize'].hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          * Field required
+                        </mat-error>
+                        <mat-error
+                          *ngIf="
+                            CreateSectionForm.controls['sectionsize'].hasError(
+                              'notANumber'
+                            )
+                          "
+                          >Please enter just number</mat-error
+                        >
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label for="userid" class="form-label"
+                        >Instructors:</label
+                      >
+                      <mat-select
+                        id="userid"
+                        formControlName="userid"
+                        class="form-control"
+                      >
+                        <mat-option
+                          *ngFor="let user of _sectionService.instructorSection"
+                          [value]="user.userid"
+                        >
                           {{ user.firsname }} {{ user.lastname }}
                         </mat-option>
                       </mat-select>
-                      <mat-error *ngIf="CreateSectionForm.controls['userid'].hasError('required')">
+                      <mat-error
+                        *ngIf="
+                          CreateSectionForm.controls['userid'].hasError(
+                            'required'
+                          )
+                        "
+                      >
                         * Field required
                       </mat-error>
                     </div>
                   </div>
 
-
                   <input
-                  type="file"
-                  class="file-input"
-                  (change)="UploadFile($event)"
-                  #fileUpload
-                />
-          
-                <div class="file-upload border border-2 rounded-2 col-10 mt-3" style="margin: auto; text-align: center;">
-                  {{ fileName || "No image uploaded  yet. (Upload Image Section)" }}
-              
-                  <button
-                    mat-mini-fab
-                    color="primary"
-                    class="upload-btn btn btn-outline-primary"
-                    (click)="fileUpload.click()"
-                  >
-                    <mat-icon>upload-btn</mat-icon>
-                  </button>
-
+                    type="file"
+                    class="file-input"
+                    (change)="UploadFile($event)"
+                    #fileUpload
+                  />
                 </div>
 
-                  
-                </div>
-                
-             
-            
                 <div class="row mt-5">
                   <div class="col-md-12 text-center">
-                    <button   mat-dialog-close
-                    (click)="CreateSection()" class="btn btn-primary" [mat-dialog-close]="true" >Create</button>
+                    <button
+                      mat-dialog-close
+                      (click)="CreateSection()"
+                      class="btn btn-primary"
+                      [mat-dialog-close]="true"
+                    >
+                      Create
+                    </button>
                   </div>
                 </div>
               </form>
@@ -191,117 +265,159 @@
       </div>
     </div>
   </ng-template>
-  
-  
-  
-  
-  
 
-  
+  <!-- Update dialog -->
+  <ng-template #UpdateDialog>
+    <div class="page-wrapper">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card w-100">
+            <div class="card-body p-4">
+              <h1 class="card-title fw-semibold mb-4">Update Section</h1>
+              <form [formGroup]="UpdateSectionForm">
+                <div class="row mb-3">
+                  <div class="col-md-4" style="display: none">
+                    <div class="mb-3">
+                      <label for="sectionid" class="form-label"
+                        >Section ID:</label
+                      >
+                      <input
+                        type="text"
+                        id="sectionid"
+                        formControlName="sectionid"
+                        class="form-control"
+                      />
+                      <mat-error
+                        *ngIf="
+                          UpdateSectionForm.get('sectionid')?.hasError(
+                            'required'
+                          )
+                        "
+                      >
+                        * Field required
+                      </mat-error>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label for="sectionname" class="form-label"
+                        >Section Name:</label
+                      >
+                      <input
+                        type="text"
+                        id="sectionname"
+                        formControlName="sectionname"
+                        class="form-control"
+                      />
+                      <mat-error
+                        *ngIf="
+                          UpdateSectionForm.get('sectionname')?.hasError(
+                            'required'
+                          )
+                        "
+                      >
+                        * Field required
+                      </mat-error>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label for="sectionsize" class="form-label"
+                        >Section Size:</label
+                      >
+                      <input
+                        type="text"
+                        id="sectionsize"
+                        formControlName="sectionsize"
+                        class="form-control"
+                      />
+                      <mat-error
+                        *ngIf="
+                          UpdateSectionForm.get('sectionsize')?.hasError(
+                            'required'
+                          )
+                        "
+                      >
+                        * Field required
+                      </mat-error>
+                    </div>
+                  </div>
 
-<!-- Update dialog -->
-<ng-template #UpdateDialog>
-  <div class="page-wrapper">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card w-100">
-          <div class="card-body p-4">
-            <h1 class="card-title fw-semibold mb-4">Update Section</h1>
-            <form [formGroup]="UpdateSectionForm">
-              <div class="row mb-3">
-                <div class="col-md-4" style="display: none;">
-                  <div class="mb-3">
-                    <label for="sectionid" class="form-label">Section ID:</label>
-                    <input type="text" id="sectionid" formControlName="sectionid" class="form-control" />
-                    <mat-error *ngIf="UpdateSectionForm.get('sectionid')?.hasError('required')">
-                      * Field required
-                    </mat-error>
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label for="userid" class="form-label"
+                        >Instructors:</label
+                      >
+                      <mat-select
+                        id="userid"
+                        formControlName="userid"
+                        class="form-control"
+                      >
+                        <mat-option
+                          *ngFor="let user of _sectionService.instructorSection"
+                          [value]="user.userid"
+                        >
+                          {{ user.firsname }} {{ user.lastname }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="
+                          UpdateSectionForm.controls['userid'].hasError(
+                            'required'
+                          )
+                        "
+                      >
+                        * Field required
+                      </mat-error>
+                    </div>
+                  </div>
+
+                  <input
+                    type="file"
+                    class="file-input"
+                    (change)="UploadFile($event)"
+                    #fileUpload
+                  />
+                  <div></div>
+                  <div
+                    class="file-upload border border-2 rounded-2 col-10 mt-3"
+                    style="margin: auto; text-align: center"
+                  >
+                    {{
+                      fileName ||
+                        "No image uploaded  yet. (Upload Image Section)"
+                    }}
+
+                    <button
+                      mat-mini-fab
+                      color="primary"
+                      class="upload-btn btn btn-outline-primary"
+                      (click)="fileUpload.click()"
+                    >
+                      <mat-icon>upload-btn</mat-icon>
+                    </button>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="sectionname" class="form-label">Section Name:</label>
-                    <input type="text" id="sectionname" formControlName="sectionname" class="form-control" />
-                    <mat-error *ngIf="UpdateSectionForm.get('sectionname')?.hasError('required')">
-                      * Field required
-                    </mat-error>
+
+                <!-- Additional form controls if needed -->
+
+                <div class="row mt-5">
+                  <div class="col-md-12 text-center">
+                    <button
+                      mat-dialog-close
+                      (click)="UpdateSection()"
+                      class="btn btn-primary"
+                      [mat-dialog-close]="true"
+                    >
+                      Update
+                    </button>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="sectionsize" class="form-label">Section Size:</label>
-                    <input type="text" id="sectionsize" formControlName="sectionsize" class="form-control" />
-                    <mat-error *ngIf="UpdateSectionForm.get('sectionsize')?.hasError('required')">
-                      * Field required
-                    </mat-error>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="mb-3">
-                    <label for="userid" class="form-label">Instructors:</label>
-                    <mat-select id="userid" formControlName="userid" class="form-control">
-                      <mat-option *ngFor="let user of _sectionService.instructorSection" [value]="user.userid">
-                        {{ user.firsname }} {{ user.lastname }}
-                      </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="UpdateSectionForm.controls['userid'].hasError('required')">
-                      * Field required
-                    </mat-error>
-                  </div>
-                </div>
-
-                <input
-                type="file"
-                class="file-input"
-                (change)="UploadFile($event)"
-                #fileUpload
-              />
-              <div>
-                
-              </div>
-              <div class="file-upload border border-2 rounded-2 col-10 mt-3" style="margin: auto; text-align: center;">
-                {{ fileName || "No image uploaded  yet. (Upload Image Section)" }}
-            
-                <button
-                  mat-mini-fab
-                  color="primary"
-                  class="upload-btn btn btn-outline-primary"
-                  (click)="fileUpload.click()"
-                >
-                  <mat-icon>upload-btn</mat-icon>
-                </button>
-              </div>
-            
-               
-              </div>
-
-              
-
-              <!-- Additional form controls if needed -->
-
-              <div class="row mt-5">
-                <div class="col-md-12 text-center">
-                  <button
-                  mat-dialog-close
-                  (click)="UpdateSection()"
-                   class="btn btn-primary" [mat-dialog-close]="true">Update</button>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</ng-template>
-
-
-
-
-
-
-
-  
+  </ng-template>
 </app-admin-container>
-

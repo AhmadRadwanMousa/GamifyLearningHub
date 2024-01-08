@@ -21,31 +21,33 @@ export class ManageCoursesComponent {
   }
 
   CreateCourseForm: FormGroup = new FormGroup({
-    coursename: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    coursename: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
     courselevel: new FormControl('', Validators.required),
-    courseimage: new FormControl('', Validators.required),
+    courseimage: new FormControl(''),
     examweight: new FormControl('', Validators.required),
     assignmentweight: new FormControl('', Validators.required),
     quizzezweight: new FormControl('', Validators.required),
   });
-  
 
   UpdateCourseForm: FormGroup = new FormGroup({
     courseid: new FormControl('', Validators.required),
-    coursename: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    coursename: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
     courselevel: new FormControl('', Validators.required),
     courseimage: new FormControl('', Validators.required),
     examweight: new FormControl('', Validators.required),
     assignmentweight: new FormControl('', Validators.required),
     quizzezweight: new FormControl('', Validators.required),
   });
-  
 
   CreateCourse() {
     console.log(this.CreateCourseForm.value);
-    this.CreateCourseForm.controls['courseimage'].setValue(
-      this.filePath
-    );
+    this.CreateCourseForm.controls['courseimage'].setValue(this.filePath);
     this.admin.postCourse(this.CreateCourseForm.value);
   }
   OpenCreateDialog() {
@@ -76,9 +78,7 @@ export class ManageCoursesComponent {
   }
 
   UpdateCourse() {
-    this.UpdateCourseForm.controls['courseimage'].setValue(
-      this.filePath
-    );
+    this.UpdateCourseForm.controls['courseimage'].setValue(this.filePath);
     this.admin.updateCourse(this.UpdateCourseForm.value);
   }
 
@@ -106,6 +106,5 @@ export class ManageCoursesComponent {
     this.admin.UploadFile(formData).subscribe((path: string) => {
       this.filePath = path;
     });
-    
   }
 }
