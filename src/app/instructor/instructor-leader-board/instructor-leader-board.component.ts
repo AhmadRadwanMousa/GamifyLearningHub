@@ -36,10 +36,11 @@ export class InstructorLeaderBoardComponent {
     this.instructorService.GetInstructorStudents(this.getUserIdFromToken());
     this.instructorService.GetSectionsByInstructorId(this.getUserIdFromToken());
   }
-  OpenDialog(){
+  OpenDialog(id: number){
+    this.instructorService.GetRankingByPoints(id);
     this.dialog.open(this.leaderBoardDialog, {
-      width: '800px',
-      height: '500px',
+      width: '900px',
+      height: '700px',
     });
   }
 }

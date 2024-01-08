@@ -28,7 +28,7 @@
                     <tr *ngFor="let s of this.instructorService.sectionsByInstructorId">
                         <td>{{s.sectionname}}</td>
                         <td>
-                            <button (click)="OpenDialog()" class="btn btn-primary"> Leaderboard</button>
+                            <button (click)="OpenDialog(s.sectionid)" class="btn btn-primary"> Leaderboard</button>
                         </td>
                     </tr>
                 </tbody>
@@ -40,8 +40,10 @@
 
 <ng-template #leaderBoardDialog>
     <div class="container">
-        <!-- Points table -->
-    <mat-table  *ngIf="this.badgesButtonFlag">
+      <div class="row text-center" *ngIf="this.instructorService.RankingByPoints.data.length == 0">
+        <h1 style="margin-top: 300px; color: #cccccc;">There is Students in this section</h1>
+      </div>
+      <mat-table  [dataSource]="this.instructorService.RankingByPoints" *ngIf="this.instructorService.RankingByPoints.data.length > 0">
         
         <ng-container matColumnDef="rank">
             <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
@@ -80,51 +82,5 @@
           <mat-header-row *matHeaderRowDef="displayedColumnsPoints"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumnsPoints;"></mat-row>
     </mat-table>
-    <!-- Badges table -->
-    <mat-table  *ngIf="this.pointsButtonFlag">
-        <!-- Position Column -->
-        <ng-container matColumnDef="rank">
-          <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
-          <mat-cell *matCellDef="let element"> 
-            <img src="../../../assets/img/Rank1.png" alt="" *ngIf="element.ranking == 1" width="40px">
-                <img src="../../../assets/img/Rank2.png" alt="" *ngIf="element.ranking == 2" width="40px">
-                <img src="../../../assets/img/Rank3.png" alt="" *ngIf="element.ranking == 3" width="40px">
-                <div *ngIf="element.ranking > 3" class="rank">
-                    {{element.ranking}}
-                </div>    
-        </mat-cell>
-        </ng-container>
-      <!-- Name Column -->
-      <ng-container matColumnDef="img">
-        <mat-header-cell *matHeaderCellDef> Student image </mat-header-cell>
-        <mat-cell *matCellDef="let element"> 
-            <img [src]="element.userimage" alt="" style="border-radius: 10px; width: 50px; height: 50px;">
-        </mat-cell>
-      </ng-container>
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef> Student Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.firsname}} {{element.lastname}} </mat-cell>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="badges">
-          <mat-header-cell *matHeaderCellDef> Badges </mat-header-cell>
-          <mat-cell *matCellDef="let element" style="color: #ff1947; font-weight: bold;"> {{element.total_Badges}} </mat-cell>
-        </ng-container>
-      
-        
-      
-        <mat-header-row *matHeaderRowDef="displayedColumnsBadges"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumnsBadges;"></mat-row>
-      </mat-table>
-    <div class="row mt-4">
-        <div class="col-6">
-            <button (click)="toggleTables()" class="btn btn-primary w-100" [disabled]="this.badgesButtonFlag">Order by points</button>
-        </div>
-        <div class="col-6">
-            <button (click)="toggleTables()" class="btn btn-primary w-100" [disabled]="this.pointsButtonFlag">Order by badges</button>
-        </div>
-    </div>
     </div>
 </ng-template>
