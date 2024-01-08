@@ -17,6 +17,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageTestimonialsComponent } from './manage-testimonials/manage-testimonials.component';
 import { ManageUserStatusComponent } from './manage-user-status/manage-user-status.component';
 import { AdminReportComponent } from './admin-report/admin-report.component';
+import { LeaderBoardComponent } from './leader-board/leader-board.component';
 
 const routes: Routes = [
   {
@@ -85,6 +86,10 @@ const routes: Routes = [
   {
     path: 'adminReport',
     component: AdminReportComponent,
+  },
+  {
+    path: 'leaderBoard',
+    component: LeaderBoardComponent,
   },
 ];
 

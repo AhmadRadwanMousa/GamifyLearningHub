@@ -18,6 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ManageAttendenceComponent } from './manage-attendence/manage-attendence.component';
+import { InstructorLeaderBoardComponent } from './instructor-leader-board/instructor-leader-board.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ManageAttendenceComponent } from './manage-attendence/manage-attendence
     ManageExamsComponent,
     QuestionFormComponent,
     ManageAttendenceComponent,
+    InstructorLeaderBoardComponent,
   ],
   imports: [
     CommonModule,

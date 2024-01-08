@@ -77,15 +77,20 @@ export class InstructorService {
     });
   }
 
-  CreateExam(data: any) {
+  CreateExam(data: any, sectionid: number) {
     this.http.post(`${URL}/Exam/`, data).subscribe({
       next: () => {
         this.toastr.success('Exam created successflly');
+        this.getAllExamsBySectionId(sectionid);
+        console.log(data);
+        
       },
       error: () => {
         this.toastr.error('Exam Create Faild');
+        console.log(data);
       },
     });
+    
   }
 
   CreateQuestionWithOptions(
@@ -105,10 +110,11 @@ export class InstructorService {
         })
       );
   }
-  DeleteExam(id: number) {
+  DeleteExam(id: number,sectionid: number) {
     this.http.delete(`${URL}/Exam/DeleteExam/${id}`).subscribe({
       next: () => {
         this.toastr.success('Exam deleted successflly');
+        this.getAllExamsBySectionId(sectionid);
       },
       error: () => {
         this.toastr.error('Exam delete Faild');
@@ -686,5 +692,26 @@ export class InstructorService {
     this.SectionsByInstructorId = [];
     this.QuestionAndOptions = [];
     this.allMaterialsBySectionId = [];
+  }
+  NumberOfInstructorStudents: any;
+  GetInstructorStudents(id: number) {
+    this.http.get(`${URL}/AdminLeaderBoard/InstructorStudents/${id}`).subscribe({
+      next: (res) => {
+        this.NumberOfInstructorStudents = res;
+      },
+    });
+  }
+  RankingByPoints: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+  GetRankingByPoints(id: number) {
+    this.http.get(`${URL}/AdminLeaderBoard/InstructorPointsStudents/${id}`).subscribe({
+      next: (res) => {
+        this.spinner.show();
+        this.RankingByPoints.data = res as any[];
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+      },
+    });
   }
 }

@@ -1,10 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { jwtDecode } from 'jwt-decode';
 import { InstructorService } from 'src/app/Services/instructor.service';
 import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
-import { DOCUMENT } from '@angular/common';
 
 
 
@@ -28,7 +27,7 @@ export class ManageExamsComponent {
   constructor(public instructorService: InstructorService, public dialog: MatDialog) {}
   selectedSection : any;
   token: string | null = localStorage.getItem('token');
-/*
+
   getUserIdFromToken(): number{
     if(this.token != null){
       let decodedToken: any = jwtDecode(this.token);
@@ -38,10 +37,10 @@ export class ManageExamsComponent {
       return 0;
     }
   }
-  */
+  
   ngOnInit(){
     //console.log(this.getUserIdFromToken());
-    this.instructorService.GetSectionsByUserId();
+    this.instructorService.GetSectionsByInstructorId(this.getUserIdFromToken());
   }
 
   loadExams(id: number){
@@ -59,7 +58,7 @@ export class ManageExamsComponent {
   OpenCreateDialog(){
     this.dialog.open(this.CreateExamDialog, {
       width: '800px',
-      height: '500px',
+      height: '340px',
     });
   }
   
@@ -74,7 +73,7 @@ export class ManageExamsComponent {
     nextDay.setDate(nextDay.getDate() + 1);
     this.CreateFormGroup.controls['examdate'].setValue(nextDay);
 
-    this.instructorService.CreateExam(this.CreateFormGroup.value);
+    this.instructorService.CreateExam(this.CreateFormGroup.value, this.selectedSection);
     
   }
   selectedType: any;
@@ -82,18 +81,49 @@ export class ManageExamsComponent {
   
   mergeDateTime(time: any) {
     let selectedDate: any = this.CreateFormGroup.get('examdate')?.value;
-    let selectedTime = time;
+    let selectedTime = this.convertTo24HourFormat(time); // Convert to 24-hour format first
+  
     if (selectedTime && selectedDate) {
-      const date = new Date(
-        selectedDate.toLocaleString('en-US', { timeZone: 'Asia/Amman' })
-      );
-      const time = selectedTime.split(':');
-      date.setHours(parseInt(time[0]) + 3);
-      date.setMinutes(parseInt(time[1]));
-      return date.toISOString();
+      // Parse the date string directly, considering timezone
+      const date = new Date(Date.parse(selectedDate));
+  
+      // Set hours and minutes from 24-hour format
+      const timeParts = selectedTime.split(':');
+      date.setHours(parseInt(timeParts[0]));
+      date.setMinutes(parseInt(timeParts[1]));
+  
+      // Ensure UTC for consistent time handling
+      const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
+  
+      return utcDate.toISOString(); // Return UTC ISO string
     }
-    return Date.now();
-  }
+  
+    return Date.now();
+  }
+  
+  convertTo24HourFormat(time: string): string {
+    const [timePart, ampm] = time.split(' ');
+    const [hours, minutes] = timePart.split(':');
+  
+    let formattedHours = parseInt(hours, 10);
+  
+    if (ampm === 'PM' && formattedHours !== 12) {
+      formattedHours += 12; // Add 12 for PM hours (except 12 PM)
+    } else if (ampm === 'AM' && formattedHours === 12) {
+      formattedHours = 0; // Handle 12 AM as 00:00
+    }
+  
+    return `${formattedHours.toString().padStart(2, '0')}:${minutes}`;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
   examId: any;
   OpenCreateQuestionDialog(id: number){
     this.examId = id;
@@ -127,8 +157,7 @@ export class ManageExamsComponent {
     dialogRef.afterClosed().subscribe((res) => {
       if (res != undefined) {
         if (res === 'yes') {
-          this.instructorService.DeleteExam(id);
-          
+          this.instructorService.DeleteExam(id, this.selectedSection);
         }
       }
     });

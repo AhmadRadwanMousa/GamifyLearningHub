@@ -27,7 +27,7 @@
             class="btn btn-primary mb-4"
             (click)="OpenCreateAssignmentDialog()"
           >
-            Create Assignment <mat-icon>assignment</mat-icon>
+            <span>Create Assignment <i class="fa-solid fa-pen mx-2"></i></span>
           </button>
 
           <div
@@ -194,7 +194,7 @@
                       ?.hasError('required')
                   "
                 >
-                  * Field required
+                  Assignment Title is required
                 </mat-error>
               </mat-form-field>
             </div>
@@ -212,9 +212,11 @@
                     assignmentDetails
                       .get('assignmentmark')
                       ?.hasError('required')
+<<<<<<< HEAD
                   "
                 >
-                * Field required
+                  * Field required ======= "> Assignment weight is required
+                  >>>>>>> origin/MonesTask(LeaderBoard)
                 </mat-error>
               </mat-form-field>
             </div>
@@ -240,7 +242,7 @@
                       ?.hasError('required')
                   "
                 >
-                * Field required
+                  * Field required
                 </mat-error>
               </mat-form-field>
             </div>
@@ -252,6 +254,7 @@
               "
             >
               <mat-form-field class="w-100">
+                <<<<<<< HEAD
                 <input
                   matInput
                   [ngxMatTimepicker]="pickerA"
@@ -266,8 +269,17 @@
                       ?.hasError('required')
                   "
                 >
-                * Field required
+                  * Field required
                 </mat-error>
+                =======
+                <input
+                  matInput
+                  [ngxMatTimepicker]="pickerA"
+                  placeholder="4:00 PM"
+                  formControlName="assignmenttime"
+                  class="w-100"
+                />
+                >>>>>>> origin/MonesTask(LeaderBoard)
                 <mat-icon matSuffix (click)="pickerA.open()">
                   watch_later
                 </mat-icon>

@@ -1,0 +1,86 @@
+<app-insturctor-container>
+    <div class="row">
+        <h2>Leaderboard</h2>
+    </div>
+    <div class="row leader-board">
+        <div class="col-lg-6 text-center item item-1">
+            <h1><i class="fa-solid fa-chalkboard-user"></i></h1>
+            <h4>Sections</h4>
+            <p class="fs-6">{{this.instructorService.sectionsByInstructorId.length}}</p>
+        </div>
+
+        <div class="col-lg-6 text-center item">
+            <h1><i class="fa-solid fa-user-graduate"></i></h1>
+            <h4>Students</h4>
+            <p class="fs-6">{{this.instructorService.NumberOfInstructorStudents}}</p>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <table class="table fs-4">
+                <thead>
+                    <tr>
+                        <th width="70%">Section name</th>
+                        <th>Students list</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let s of this.instructorService.sectionsByInstructorId">
+                        <td>{{s.sectionname}}</td>
+                        <td>
+                            <button (click)="OpenDialog(s.sectionid)" class="btn btn-primary"> Leaderboard</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</app-insturctor-container>
+
+
+<ng-template #leaderBoardDialog>
+    <div class="container">
+      <div class="row text-center" *ngIf="this.instructorService.RankingByPoints.data.length == 0">
+        <h1 style="margin-top: 300px; color: #cccccc;">There is Students in this section</h1>
+      </div>
+      <mat-table  [dataSource]="this.instructorService.RankingByPoints" *ngIf="this.instructorService.RankingByPoints.data.length > 0">
+        
+        <ng-container matColumnDef="rank">
+            <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <img src="../../../assets/img/Rank1.png" alt="" *ngIf="element.ranking == 1" width="40px">
+                <img src="../../../assets/img/Rank2.png" alt="" *ngIf="element.ranking == 2" width="40px">
+                <img src="../../../assets/img/Rank3.png" alt="" *ngIf="element.ranking == 3" width="40px">
+                <div *ngIf="element.ranking > 3" class="rank">
+                    {{element.ranking}}
+                </div>
+            </mat-cell>
+          </ng-container>
+        
+        
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Student Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.firsname}} {{element.lastname}} </mat-cell>
+          </ng-container>
+  
+          
+          <ng-container matColumnDef="img">
+              <mat-header-cell *matHeaderCellDef> Student image </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                  <img [src]="element.userimage" alt="" style="border-radius: 10px; width: 50px; height: 50px;">
+              </mat-cell>
+            </ng-container>
+        
+          
+          <ng-container matColumnDef="points">
+            <mat-header-cell *matHeaderCellDef> Points </mat-header-cell>
+            <mat-cell *matCellDef="let element" style="color: #ff1947; font-weight: bold;"> {{element.totalpoints}} </mat-cell>
+          </ng-container>
+        
+          
+        
+          <mat-header-row *matHeaderRowDef="displayedColumnsPoints"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumnsPoints;"></mat-row>
+    </mat-table>
+    </div>
+</ng-template>

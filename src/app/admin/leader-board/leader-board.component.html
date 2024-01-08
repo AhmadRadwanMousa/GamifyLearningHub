@@ -1,0 +1,117 @@
+<app-admin-container>
+<div class="row leader-board">
+    <div class="col-lg-3 text-center item item-1">
+        <h1><i class="fa-solid fa-folder"></i></h1>
+        <h4>Programs</h4>
+        <p class="fs-6">{{this.adminService.AdminStatistics[0].stat_count}}</p>
+    </div>
+    <div class="col-lg-3 text-center item">
+        <h1><i class="fa-solid fa-book"></i></h1>
+        <h4>Courses</h4>
+        <p class="fs-6">{{this.adminService.AdminStatistics[2].stat_count}}</p>
+    </div>
+    <div class="col-lg-3 text-center item">
+        <h1><i class="fa-solid fa-chalkboard-user"></i></h1>
+        <h4>Sections</h4>
+        <p class="fs-6">{{this.adminService.AdminStatistics[1].stat_count}}</p>
+    </div>
+    <div class="col-lg-3 text-center item">
+        <h1><i class="fa-solid fa-user-graduate"></i></h1>
+        <h4>Students</h4>
+        <p class="fs-6">{{this.adminService.AdminStatistics[3].stat_count}}</p>
+    </div>
+</div>
+<div class="row mt-4">
+    <h3>Students Ranking</h3>
+</div>
+<div class="row mt-3">
+    
+    <!-- Points table -->
+        <mat-table [dataSource]="this.adminService.RankingByPoints" *ngIf="this.badgesButtonFlag">
+        
+        <ng-container matColumnDef="rank">
+            <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <img src="../../../assets/img/Rank1.png" alt="" *ngIf="element.ranking == 1" width="40px">
+                <img src="../../../assets/img/Rank2.png" alt="" *ngIf="element.ranking == 2" width="40px">
+                <img src="../../../assets/img/Rank3.png" alt="" *ngIf="element.ranking == 3" width="40px">
+                <div *ngIf="element.ranking > 3" class="rank">
+                    {{element.ranking}}
+                </div>
+            </mat-cell>
+          </ng-container>
+        
+        
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Student Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.firsname}} {{element.lastname}} </mat-cell>
+          </ng-container>
+  
+          
+          <ng-container matColumnDef="img">
+              <mat-header-cell *matHeaderCellDef> Student image </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                  <img [src]="element.userimage" alt="" style="border-radius: 10px; width: 50px; height: 50px;">
+              </mat-cell>
+            </ng-container>
+        
+          
+          <ng-container matColumnDef="points">
+            <mat-header-cell *matHeaderCellDef> Points </mat-header-cell>
+            <mat-cell *matCellDef="let element" style="color: #ff1947; font-weight: bold;"> {{element.totalpoints}} </mat-cell>
+          </ng-container>
+        
+          
+        
+          <mat-header-row *matHeaderRowDef="displayedColumnsPoints"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumnsPoints;"></mat-row>
+        </mat-table>
+   
+  <!-- Badges table -->
+      <mat-table [dataSource]="this.adminService.RankingByBadges" *ngIf="this.pointsButtonFlag">
+        <!-- Position Column -->
+        <ng-container matColumnDef="rank">
+          <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+            <img src="../../../assets/img/Rank1.png" alt="" *ngIf="element.ranking == 1" width="40px">
+                <img src="../../../assets/img/Rank2.png" alt="" *ngIf="element.ranking == 2" width="40px">
+                <img src="../../../assets/img/Rank3.png" alt="" *ngIf="element.ranking == 3" width="40px">
+                <div *ngIf="element.ranking > 3" class="rank">
+                    {{element.ranking}}
+                </div>    
+        </mat-cell>
+        </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="img">
+        <mat-header-cell *matHeaderCellDef> Student image </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+            <img [src]="element.userimage" alt="" style="border-radius: 10px; width: 50px; height: 50px;">
+        </mat-cell>
+      </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Student Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.firsname}} {{element.lastname}} </mat-cell>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="badges">
+          <mat-header-cell *matHeaderCellDef> Badges </mat-header-cell>
+          <mat-cell *matCellDef="let element" style="color: #ff1947; font-weight: bold;"> {{element.total_Badges}} </mat-cell>
+        </ng-container>
+      
+        
+      
+        <mat-header-row *matHeaderRowDef="displayedColumnsBadges"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumnsBadges;"></mat-row>
+      </mat-table>
+</div>
+<div class="row mt-4">
+    <div class="col-6">
+        <button (click)="toggleTables()" class="btn btn-primary w-100" [disabled]="this.badgesButtonFlag">Order by points</button>
+    </div>
+    <div class="col-6">
+        <button (click)="toggleTables()" class="btn btn-primary w-100" [disabled]="this.pointsButtonFlag">Order by badges</button>
+    </div>
+</div>
+</app-admin-container>

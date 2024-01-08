@@ -1,0 +1,62 @@
+.leader-board{
+    background-color: #fcdee44f;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #fcc4cf61;
+    margin-top: 30px;
+}
+.item-1{
+    border: none !important;
+}
+.item{
+    border-left:1px solid #ff194730;
+    margin-top: 7px;
+}
+.item h1{
+    color: #ff1947;
+}
+.section-card{
+    background-color: #fcdee44f;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #fcc4cf61;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.mat-mdc-table {
+    width: 100%;
+    max-height: 650px;
+    overflow: auto;
+  }
+  
+  .mat-column-name {
+    height: 70px;
+    font-size: 17px;
+  }
+  .mat-column-rank {
+    height: 70px;
+    font-size: 17px;
+  }
+  .mat-column-points {
+    height: 70px;
+    font-size: 17px;
+  }
+  .mat-column-badges {
+    height: 70px;
+    font-size: 17px;
+  }
+  .mat-column-img {
+    height: 70px;
+    font-size: 17px;
+  }
+
+  .rank{
+    font-weight:bolder;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    background-color: #ff7a952f;
+    padding: 5px;
+    border-radius: 50%;
+  }
