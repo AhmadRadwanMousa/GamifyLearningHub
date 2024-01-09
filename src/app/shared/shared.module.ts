@@ -51,6 +51,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
 import { EmptyComponent } from './empty/empty.component';
 import { DialogModule } from 'primeng/dialog';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     NgxMatTimepickerModule,
     DialogModule,
     ClipboardModule,
+    MatTooltipModule,
   ],
   exports: [
     FooterComponent,
@@ -138,6 +140,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     EmptyComponent,
     DialogModule,
     ClipboardModule,
+    MatTooltipModule,
   ],
 })
 export class SharedModule {}

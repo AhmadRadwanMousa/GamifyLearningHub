@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LearnerService } from 'src/app/Services/learner.service';
 import { getToken } from 'src/app/constants/token';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-program-details-page',
@@ -19,7 +20,9 @@ export class ProgramDetailsPageComponent {
     public dialog: MatDialog
   ) {}
   itemId: number = 0;
-  token: any = getToken();
+
+  userId: number = 0;
+  roleId: number = 0;
   selectedSection: any;
   sectionsByCourseSequence: any = [];
 
@@ -30,6 +33,11 @@ export class ProgramDetailsPageComponent {
     this.shard.getProgramById(this.itemId);
     this.shard.getAllStudentsInProgram(this.itemId);
     this.shard.getAllCoursesInProgram(this.itemId);
+    let token: any = getToken();
+    if (token !== null) {
+      this.userId = Number(token.userId);
+      this.roleId = Number(token.roleId);
+    }
   }
   calculateWeeksDuration(): number {
     const millisecondsInWeek = 7 * 24 * 60 * 60 * 1000;
@@ -43,7 +51,7 @@ export class ProgramDetailsPageComponent {
   formatDate(dateString: string): Date {
     return new Date(dateString);
   }
-  OpenSectionsDialog(programId: number) {
+  OpenSectionsDialog(programId: number, isFree?: boolean) {
     this.shard
       .getSectionsByCourseSequence(this.shard.FirstCourseSequenceId)
       .subscribe((res) => {
@@ -61,14 +69,18 @@ export class ProgramDetailsPageComponent {
           this.selectedSection !== undefined &&
           this.selectedSection !== null
         ) {
-          this.AddToCart(programId, this.selectedSection);
+          if (isFree) {
+            this.learnerService.AddUserToSection(this.selectedSection);
+          } else {
+            this.AddToCart(programId, this.selectedSection);
+          }
         }
         this.sectionsByCourseSequence = [];
       }
     });
   }
   AddToCart(programId: any, sectionId: any) {
-    let userId = this.token.userId;
+    let userId: any = this.userId;
     if (userId) {
       let formData = new FormData();
       formData.append('Userid', userId);

@@ -34,9 +34,7 @@ export class AuthService {
           localStorage.setItem('token', res.token);
           const tokenPayload: any = jwtDecode(res.token);
           let roleId: number = Number(tokenPayload.roleId);
-          if (roleId === 3) {
-            this.isLoggedInSubject.next(true);
-          }
+          this.isLoggedInSubject.next(true);
           this.HandleNavigate(roleId);
           setTimeout(() => {
             this.spinner.hide();
@@ -63,6 +61,7 @@ export class AuthService {
     this.instructorService.CleanInstructorData();
     this.adminService.CleanAdminData();
     localStorage.removeItem('token');
+    this.isLoggedInSubject.next(true);
     this.route.navigate(['/Login']);
   }
   getToken(): string | null {

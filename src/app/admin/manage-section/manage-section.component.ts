@@ -1,25 +1,34 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators ,ValidatorFn  , AbstractControl } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  ValidatorFn,
+  AbstractControl,
+} from '@angular/forms';
 import { AdminService } from 'src/app/Services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 //validations
-//for number not string 
-const numberValidator: ValidatorFn = (control: AbstractControl): { [key: string]: any } | null => {
+//for number not string
+const numberValidator: ValidatorFn = (
+  control: AbstractControl
+): { [key: string]: any } | null => {
   const isNumber = !isNaN(Number(control.value));
-  return isNumber ? null : { 'notANumber': { value: control.value } };
+  return isNumber ? null : { notANumber: { value: control.value } };
 };
 
-//check if the input starts with a letter 
-const NameValidator: ValidatorFn = (control: AbstractControl): { [key: string]: any } | null => {
+//check if the input starts with a letter
+const NameValidator: ValidatorFn = (
+  control: AbstractControl
+): { [key: string]: any } | null => {
   const value = control.value;
   const startsWithLetter = /^[a-zA-Z]/.test(value);
 
   return startsWithLetter
     ? null
-    : { 'invalidSectionName': { value: control.value } };
+    : { invalidSectionName: { value: control.value } };
 };
 
 @Component({
@@ -28,34 +37,32 @@ const NameValidator: ValidatorFn = (control: AbstractControl): { [key: string]: 
   styleUrls: ['./manage-section.component.scss'],
 })
 export class ManageSectionComponent {
-  constructor(private route: ActivatedRoute,public _sectionService: AdminService, public dialog: MatDialog,private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    public _sectionService: AdminService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
-  id : any = 0;
+  id: any = 0;
   // CRUD
   ngOnInit() {
     // this._sectionService.getAllSections();
 
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.id = +params?.['id'];
       console.log(this.id);
-     this._sectionService.GetSectionsByCoursesSequence(this.id);
-     
- });
-
-
-    this._sectionService.getAllUsersWithRoleId2().subscribe(() => {
-     
+      this._sectionService.GetSectionsByCoursesSequence(this.id);
     });
 
-    
+    this._sectionService.getAllUsersWithRoleId2().subscribe(() => {});
   }
 
   fileName: any;
   filePath: any;
 
-
   DeleteSection(id: number) {
-    this._sectionService.DeleteSection(id , this.id);
+    this._sectionService.DeleteSection(id, this.id);
   }
 
   CreateSection() {
@@ -64,30 +71,6 @@ export class ManageSectionComponent {
     this.CreateSectionForm.controls['imagename'].setValue(this.filePath);
     this.CreateSectionForm.controls['coursesequenceid'].setValue(this.id);
     this._sectionService.CreateSection(this.CreateSectionForm.value);
-
-    // const fileToUpload = this.CreateSectionForm.get('imageFile')?.value;
-
-    // if (fileToUpload) {
-    //   // Upload the file first
-    //   const formData = new FormData();
-    //   formData.append('file', fileToUpload);
-
-    //   this._sectionService.UploadFile(formData).subscribe((path: string) => {
-    //     // Update the image path in your form
-    //     this.CreateSectionForm.patchValue({ imageName: path });
-
-    //     // Continue with creating the section
-    //     this.CreateSectionForm.controls['imagename'].setValue(this.filePath);
-    //     this.CreateSectionForm.controls['coursesequenceid'].setValue(this.id);
-    //     // Now, create the section
-    //     this._sectionService.CreateSection(this.CreateSectionForm.value);
-    //   });
-    // } else {
-    //   // No file selected, create the section without uploading
-    //   this.CreateSectionForm.controls['imagename'].setValue(this.filePath);
-    //   this.CreateSectionForm.controls['coursesequenceid'].setValue(this.id);
-    //   this._sectionService.CreateSection(this.CreateSectionForm.value);
-    // }
   }
 
   UpdateSection() {
@@ -99,28 +82,27 @@ export class ManageSectionComponent {
 
   // FormGroups
   CreateSectionForm: FormGroup = new FormGroup({
-    sectionname: new FormControl('', [Validators.required, Validators.minLength(4), NameValidator]),
-    sectionsize: new FormControl('', [Validators.required, numberValidator]), 
-    imageFile: new FormControl(''), 
+    sectionname: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      NameValidator,
+    ]),
+    sectionsize: new FormControl('', [Validators.required, numberValidator]),
+    imageFile: new FormControl(''),
     imagename: new FormControl(''),
-    userid: new FormControl('', [Validators.required]), 
-    coursesequenceid :  new FormControl(),
+    userid: new FormControl('', [Validators.required]),
+    coursesequenceid: new FormControl(),
   });
 
-  //create validations
-
-  
   UpdateSectionForm: FormGroup = new FormGroup({
     sectionid: new FormControl('', [Validators.required]),
     sectionname: new FormControl('', [Validators.required]),
     sectionsize: new FormControl('', [Validators.required]),
     imagename: new FormControl(''),
     userid: new FormControl('', [Validators.required]),
-    coursesequenceid :  new FormControl(),
-
+    coursesequenceid: new FormControl(),
   });
 
-  
   // Dialogs
   @ViewChild('ConfirmationDialog') ConfirmDeleteDialog: any;
   @ViewChild('CreateDialog') CreateSectionDialog: any;
@@ -135,10 +117,8 @@ export class ManageSectionComponent {
 
   OpenCreateDialog() {
     this.dialog.open(this.CreateSectionDialog, {
-      width: '750px',
-      height: '448px',
-      enterAnimationDuration: 1000,
-      exitAnimationDuration: 1000,
+      width: '700px',
+      height: '350px',
     });
   }
 
@@ -148,15 +128,14 @@ export class ManageSectionComponent {
       sectionid: section.sectionid,
       sectionname: section.sectionname,
       sectionsize: section.sectionsize,
-      imagename : '',
-      coursesequenceid : this.id,
+      imagename: '',
+      coursesequenceid: this.id,
       userid: section.userid,
-      
     });
-  
+
     this.dialog.open(this.UpdateSectionDialog, {
-      width: '750px',
-      height: '484px',
+      width: '700px',
+      height: '350px',
     });
   }
 
@@ -166,31 +145,25 @@ export class ManageSectionComponent {
   //   this.CreateSectionForm.patchValue({ imageFile: file });
   // }
 
-  
-
   getImagePath() {
-  const imageFileControl = this.CreateSectionForm.get('imageFile');
-  if (imageFileControl && imageFileControl.value) {
-    // Convert the file to a data URL
-    return URL.createObjectURL(imageFileControl.value);
+    const imageFileControl = this.CreateSectionForm.get('imageFile');
+    if (imageFileControl && imageFileControl.value) {
+      // Convert the file to a data URL
+      return URL.createObjectURL(imageFileControl.value);
+    }
+    return null;
   }
-  return null;
-}
 
-
-UploadFile(event: any) {
-  let fileToUpload = event.target.files[0] as File;
-  if (!fileToUpload) {
-    return;
+  UploadFile(event: any) {
+    let fileToUpload = event.target.files[0] as File;
+    if (!fileToUpload) {
+      return;
+    }
+    this.fileName = fileToUpload.name;
+    const formData = new FormData();
+    formData.append('file', fileToUpload);
+    this._sectionService.UploadFile(formData).subscribe((path: string) => {
+      this.filePath = path;
+    });
   }
-  this.fileName = fileToUpload.name;
-  const formData = new FormData();
-  formData.append('file', fileToUpload);
-  this._sectionService.UploadFile(formData).subscribe((path: string) => {
-    this.filePath = path;
-  });
-}
-
-
-  
 }

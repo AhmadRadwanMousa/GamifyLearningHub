@@ -33,7 +33,11 @@ export class ManageAssignmentSolutionComponent implements OnInit {
     });
   }
 
-  OpenUpdateDialog(assignmentsolutionid: number, assignmentId: number) {
+  OpenUpdateDialog(
+    assignmentsolutionid: number,
+    assignmentId: number,
+    studentId: number
+  ) {
     let updateDialog = this.dialog.open(this.UpdateMarkDialog);
     this.assignmentsolutionmark.setValidators(
       Validators.max(this.instructorService.maxMark)
@@ -45,6 +49,11 @@ export class ManageAssignmentSolutionComponent implements OnInit {
           assignmentsolutionid: assignmentsolutionid,
         };
         this.instructorService.UpdateAssignmentSolutionMark(mark, assignmentId);
+        this.instructorService.UpdateUserSectionAssignmentMark(
+          this.assignmentsolutionmark.value,
+          assignmentId,
+          studentId
+        );
       }
     });
   }

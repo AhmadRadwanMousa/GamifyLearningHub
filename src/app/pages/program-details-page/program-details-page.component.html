@@ -69,22 +69,43 @@
             <div *ngIf="this.shard.program.programprice > 0" class="price">
               ${{ this.shard.program.programprice }}
             </div>
-            <a
+            <button
               *ngIf="this.shard.program.programprice === 0"
-              routerLink="/single-courses"
+              (click)="OpenSectionsDialog(this.shard.program.programid, true)"
+              [disabled]="userId === 0 || roleId !== 3"
               class="default-btn"
-              ><i class="bx bx-paper-plane icon-arrow before"></i
+              #tooltipTrigger="matTooltip"
+              [matTooltip]="
+                userId === 0 || roleId !== 3
+                  ? 'Please log in first to be able to buy programs'
+                  : ''
+              "
+              (mouseenter)="tooltipTrigger.show()"
+              (mouseleave)="tooltipTrigger.hide()"
+              class="default-btn"
+            >
+              <i class="bx bx-paper-plane icon-arrow before"></i
               ><span class="label">Get Program</span
-              ><i class="bx bx-paper-plane icon-arrow after"></i
-            ></a>
-            <a
+              ><i class="bx bx-paper-plane icon-arrow after"></i>
+            </button>
+            <button
               *ngIf="this.shard.program.programprice > 0"
               (click)="OpenSectionsDialog(this.shard.program.programid)"
+              [disabled]="userId === 0 || roleId !== 3"
               class="default-btn"
-              ><i class="bx bx-paper-plane icon-arrow before"></i
+              #tooltipTrigger="matTooltip"
+              [matTooltip]="
+                userId === 0 || roleId !== 3
+                  ? 'Please log in first to be able to buy programs'
+                  : ''
+              "
+              (mouseenter)="tooltipTrigger.show()"
+              (mouseleave)="tooltipTrigger.hide()"
+            >
+              <i class="bx bx-paper-plane icon-arrow before"></i
               ><span class="label">Buy Program</span
-              ><i class="bx bx-paper-plane icon-arrow after"></i
-            ></a>
+              ><i class="bx bx-paper-plane icon-arrow after"></i>
+            </button>
           </div>
         </div>
       </div>

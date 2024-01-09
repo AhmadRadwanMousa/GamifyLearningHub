@@ -33,12 +33,14 @@ export class InstructorService {
 
   allStudentsMarkByExamSectionId: any = [];
 
-  GetAllStudentsMarkByExamSectionId(examId : number , sectionId: number) {
+  GetAllStudentsMarkByExamSectionId(examId: number, sectionId: number) {
     this.spinner.show();
     this.http
       .get(
-        'https://localhost:7036/api/Exam/GetUserMarks/' + examId + '/'
-          + sectionId
+        'https://localhost:7036/api/Exam/GetUserMarks/' +
+          examId +
+          '/' +
+          sectionId
       )
       .subscribe({
         next: (result: any) => {
@@ -51,8 +53,6 @@ export class InstructorService {
         },
       });
   }
-
-
 
   MyInstructorSections: any = [];
   GetAllInstructorSectionsById(id: number) {
@@ -83,14 +83,12 @@ export class InstructorService {
         this.toastr.success('Exam created successflly');
         this.getAllExamsBySectionId(sectionid);
         console.log(data);
-        
       },
       error: () => {
         this.toastr.error('Exam Create Faild');
         console.log(data);
       },
     });
-    
   }
 
   CreateQuestionWithOptions(
@@ -110,7 +108,7 @@ export class InstructorService {
         })
       );
   }
-  DeleteExam(id: number,sectionid: number) {
+  DeleteExam(id: number, sectionid: number) {
     this.http.delete(`${URL}/Exam/DeleteExam/${id}`).subscribe({
       next: () => {
         this.toastr.success('Exam deleted successflly');
@@ -337,6 +335,25 @@ export class InstructorService {
           this.toastr.error('Delete Course Section error');
           this.spinner.hide();
         },
+      });
+  }
+
+  UpdateUserSectionAssignmentMark(
+    mark: any,
+    assignmentId: number,
+    studentId: number
+  ) {
+    let details: any = new FormData();
+    details.append('mark', mark);
+    details.append('assignmentId', assignmentId);
+    details.append('studentId', studentId);
+    console.log(mark, assignmentId, studentId);
+    this.http
+      .put(`${URL}/UserSection/SetAssignmentMark`, details)
+      .subscribe((res) => {
+        if (res) {
+          console.log('Done!');
+        }
       });
   }
 
@@ -673,7 +690,6 @@ export class InstructorService {
   }
   reportsBySectionId: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   getAllReportsBySectionId(id: number) {
-    
     this.http.get(`${URL}/Report/GetSectionReport/${id}`).subscribe({
       next: (res) => {
         this.reportsBySectionId.data = res as any[];
@@ -695,23 +711,27 @@ export class InstructorService {
   }
   NumberOfInstructorStudents: any;
   GetInstructorStudents(id: number) {
-    this.http.get(`${URL}/AdminLeaderBoard/InstructorStudents/${id}`).subscribe({
-      next: (res) => {
-        this.NumberOfInstructorStudents = res;
-      },
-    });
+    this.http
+      .get(`${URL}/AdminLeaderBoard/InstructorStudents/${id}`)
+      .subscribe({
+        next: (res) => {
+          this.NumberOfInstructorStudents = res;
+        },
+      });
   }
   RankingByPoints: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   GetRankingByPoints(id: number) {
-    this.http.get(`${URL}/AdminLeaderBoard/InstructorPointsStudents/${id}`).subscribe({
-      next: (res) => {
-        this.spinner.show();
-        this.RankingByPoints.data = res as any[];
-        this.spinner.hide();
-      },
-      error: (err) => {
-        this.toastr.error(err.message);
-      },
-    });
+    this.http
+      .get(`${URL}/AdminLeaderBoard/InstructorPointsStudents/${id}`)
+      .subscribe({
+        next: (res) => {
+          this.spinner.show();
+          this.RankingByPoints.data = res as any[];
+          this.spinner.hide();
+        },
+        error: (err) => {
+          this.toastr.error(err.message);
+        },
+      });
   }
 }

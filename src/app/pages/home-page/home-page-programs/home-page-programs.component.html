@@ -9,7 +9,7 @@
         ><i class="bx bx-show-alt icon-arrow after"></i
       ></a>
     </div>
-    <ul class="nav-tabset">
+    <!-- <ul class="nav-tabset">
       <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab1' }">
         <span class="active" (click)="switchTab($event, 'tab1')">All (06)</span>
       </li>
@@ -31,7 +31,7 @@
       <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab7' }">
         <span (click)="switchTab($event, 'tab7')">Photography (04)</span>
       </li>
-    </ul>
+    </ul> -->
     <div class="tabs-container">
       <div class="pane" id="tab1" *ngIf="currentTab === 'tab1'">
         <div class="row">
@@ -44,7 +44,10 @@
                 <a
                   [routerLink]="['/ProgramDetails', program.programid]"
                   class="d-block"
-                  ><img [src]="program.programimage" alt="image"
+                  ><img
+                    [src]="program.programimage"
+                    alt="image"
+                    style="height: 250px; width: 100%"
                 /></a>
                 <div class="courses-tag">
                   <a
@@ -55,15 +58,6 @@
                 </div>
               </div>
               <div class="courses-content">
-                <div class="course-author d-flex align-items-center">
-                  <img
-                    src="assets/img/user1.jpg"
-                    class="rounded-circle mr-2"
-                    alt="image"
-                  />
-                  <!-- <span>{Steven Smith}</span> -->
-                  <span>Instructor name</span>
-                </div>
                 <h3>
                   <a
                     [routerLink]="['/ProgramDetails', program.programid]"
@@ -85,10 +79,12 @@
               <div class="courses-box-footer">
                 <ul>
                   <li class="students-number">
-                    <i class="bx bx-user"></i> 10 students
+                    <i class="bx bx-user"></i>
+                    students
                   </li>
                   <li class="courses-lesson">
-                    <i class="bx bx-book-open"></i> 6 lessons
+                    <i class="bx bx-book-open"></i>
+                    {{ program.coursesequences.length }} courses
                   </li>
                   <li class="courses-price">${{ program.programprice }}</li>
                 </ul>

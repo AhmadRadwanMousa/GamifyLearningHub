@@ -56,6 +56,7 @@ export class ManageAssignmentsComponent implements OnInit {
           sectionid: this.sectionid,
         };
         this.instructorService.CreateAssignment(newAssignment);
+        console.log(deadline);
         this.assignmentDetails.reset();
       }
     });
@@ -110,14 +111,25 @@ export class ManageAssignmentsComponent implements OnInit {
     let selectedDate: any = this.assignmentDetails.get('assignmentdate')?.value;
     let selectedTime = this.assignmentDetails.get('assignmenttime')?.value;
     if (selectedTime && selectedDate) {
-      const date = new Date(
-        selectedDate.toLocaleString('en-US', { timeZone: 'Asia/Amman' })
-      );
+      const date = new Date(selectedDate);
       const time = selectedTime.split(':');
-      date.setHours(parseInt(time[0]) + 3);
-      date.setMinutes(parseInt(time[1]));
+      let hours = parseInt(time[0], 10);
+      const minutes = parseInt(time[1], 10);
+
+      if (time[1].includes('PM') && hours !== 12) {
+        hours = (hours + 12) % 24;
+      } else if (time[1].includes('AM') && hours === 12) {
+        hours = 0;
+      }
+
+      date.setHours(hours, minutes);
+      const offset = date.getTimezoneOffset() / 60;
+      date.setHours(date.getHours() - offset);
+
+      console.log(date.toISOString());
       return date.toISOString();
     }
+
     return Date.now();
   }
 }

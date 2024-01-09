@@ -88,7 +88,7 @@
                   </td>
                   <td class="border-bottom-0">
                     <p class="mb-0 fw-normal">
-                      {{ assignment.assignmentdeadline }}
+                      {{ assignment.assignmentdeadline | date : "short" }}
                     </p>
                   </td>
                   <td class="border-bottom-0">
@@ -252,7 +252,6 @@
               "
             >
               <mat-form-field class="w-100">
-                <<<<<<< HEAD
                 <input
                   matInput
                   [ngxMatTimepicker]="pickerA"
@@ -270,13 +269,6 @@
                   * Field required
                 </mat-error>
 
-                <input
-                  matInput
-                  [ngxMatTimepicker]="pickerA"
-                  placeholder="4:00 PM"
-                  formControlName="assignmenttime"
-                  class="w-100"
-                />
                 <mat-icon matSuffix (click)="pickerA.open()">
                   watch_later
                 </mat-icon>

@@ -30,12 +30,8 @@ export class UserAssignmnetsComponent implements OnInit, OnDestroy {
   IsAssignmentClosed(endDate: string | undefined): boolean {
     let dateNow: Date = new Date();
     if (endDate) {
-      dateNow.setHours(((dateNow.getHours() + 11) % 12) + 1);
-      const assignmentEndDate: Date = new Date(endDate);
-      assignmentEndDate.setHours(
-        ((assignmentEndDate.getHours() + 11) % 12) + 1
-      );
-      return assignmentEndDate.getTime() < dateNow.getTime();
+      let deadline: Date = new Date(endDate);
+      return dateNow > deadline;
     }
     return false;
   }
@@ -64,18 +60,15 @@ export class UserAssignmnetsComponent implements OnInit, OnDestroy {
       assignmentsolutionvalue: this.assignmentFilePath,
       assignmentid: assignmentId,
       userid: this.learnerService.userId,
-      submittedat: new Date(),
     };
     this.learnerService.CreateAssignmentSolution(assignmentSolutionDetails);
   }
   UpdateAssignmentSolution(assignmentSolution: any) {
-    console.log(new Date());
     let assignmentSolutionDetails: any = {
       assignmentsolutionid: assignmentSolution.assignmentsolutionid,
       assignmentsolutionvalue: this.assignmentFilePath,
       assignmentid: assignmentSolution.assignmentid,
       userid: this.learnerService.userId,
-      submittedat: new Date(),
     };
     this.learnerService.UpdateAssignmentSolution(assignmentSolutionDetails);
   }

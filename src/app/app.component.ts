@@ -8,6 +8,7 @@ import {
   Router,
 } from '@angular/router';
 import { filter } from 'rxjs';
+import { HeaderComponent } from './shared/header/header.component';
 
 @Component({
   selector: 'app-root',

@@ -774,18 +774,25 @@ export class AdminService {
 
   /* Points */
   points: any = [];
-  pointsCoursesComplete : any = [];
-  pointsLoginDays : any = [];
+  pointsCoursesComplete: any = [];
+  pointsLoginDays: any = [];
 
   getAllPoints() {
     this.spinner.show();
     this.http.get('https://localhost:7036/api/PointsActivity/').subscribe({
-      next: (result : any) => {
-        this.points = result.filter((x:any)=>x.pointsactivityname != 'Complete Course' && x.pointsactivityname != 'Login Days');
-        this.pointsCoursesComplete = result.filter((x:any)=>x.pointsactivityname == 'Complete Course');
-        this.pointsLoginDays = result.filter((x:any)=>x.pointsactivityname == 'Login Days');
+      next: (result: any) => {
+        this.points = result.filter(
+          (x: any) =>
+            x.pointsactivityname != 'Complete Course' &&
+            x.pointsactivityname != 'Login Days'
+        );
+        this.pointsCoursesComplete = result.filter(
+          (x: any) => x.pointsactivityname == 'Complete Course'
+        );
+        this.pointsLoginDays = result.filter(
+          (x: any) => x.pointsactivityname == 'Login Days'
+        );
 
-      
         this.spinner.hide();
       },
       error: (err) => {
@@ -796,7 +803,7 @@ export class AdminService {
   }
 
   CreateNewPointsActivity(data: any) {
-    console.log(data)
+    console.log(data);
     this.http
       .post('https://localhost:7036/api/PointsActivity/', data)
       .subscribe({
@@ -810,8 +817,6 @@ export class AdminService {
         },
       });
   }
-
-
 
   updatePoints(data: any) {
     this.http
@@ -1085,5 +1090,23 @@ export class AdminService {
         this.toastr.error(err.message);
       },
     });
+  }
+  AdminReportDetails: any = [];
+  GetAdminReportDashboardDetails() {
+    this.spinner.show();
+    this.http.get(`${URL}/AdminReport/GetAdminReportStatistics`).subscribe(
+      (res) => {
+        this.AdminReportDetails = res;
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 500);
+      },
+      (error) => {
+        console.log(error);
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 500);
+      }
+    );
   }
 }

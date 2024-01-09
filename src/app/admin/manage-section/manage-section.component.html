@@ -129,10 +129,10 @@
     <div class="page-wrapper">
       <div class="row">
         <div class="col-lg-12">
-          <div class="card w-100">
-            <div class="card-body p-4">
+          <div class="card w-100 mb-0">
+            <div class="card-body">
               <h1 class="card-title fw-semibold mb-4">Create Section</h1>
-              <form [formGroup]="CreateSectionForm">
+              <form [formGroup]="CreateSectionForm" class="mt-0">
                 <div class="row mb-3">
                   <div class="col-md-4">
                     <div class="mb-3">
@@ -146,7 +146,6 @@
                           id="sectionname"
                           formControlName="sectionname"
                           placeholder="Section name"
-                          class="form-control"
                         />
                         <mat-error
                           *ngIf="
@@ -186,7 +185,6 @@
                           type="text"
                           id="sectionsize"
                           formControlName="sectionsize"
-                          class="form-control"
                           placeholder="Section size"
                         />
                         <mat-error
@@ -214,27 +212,28 @@
                       <label for="userid" class="form-label"
                         >Instructors:</label
                       >
-                      <mat-select
-                        id="userid"
-                        formControlName="userid"
-                        class="form-control"
-                      >
-                        <mat-option
-                          *ngFor="let user of _sectionService.instructorSection"
-                          [value]="user.userid"
+                      <mat-form-field color="accent">
+                        <mat-label>Section Instructor</mat-label>
+                        <mat-select id="userid" formControlName="userid">
+                          <mat-option
+                            *ngFor="
+                              let user of _sectionService.instructorSection
+                            "
+                            [value]="user.userid"
+                          >
+                            {{ user.firsname }} {{ user.lastname }}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error
+                          *ngIf="
+                            CreateSectionForm.get('userid')?.hasError(
+                              'required'
+                            )
+                          "
                         >
-                          {{ user.firsname }} {{ user.lastname }}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error
-                        *ngIf="
-                          CreateSectionForm.controls['userid'].hasError(
-                            'required'
-                          )
-                        "
-                      >
-                        * Field required
-                      </mat-error>
+                          * Field required
+                        </mat-error>
+                      </mat-form-field>
                     </div>
                   </div>
 
@@ -271,31 +270,33 @@
     <div class="page-wrapper">
       <div class="row">
         <div class="col-lg-12">
-          <div class="card w-100">
-            <div class="card-body p-4">
+          <div class="card w-100 mb-0">
+            <div class="card-body">
               <h1 class="card-title fw-semibold mb-4">Update Section</h1>
-              <form [formGroup]="UpdateSectionForm">
+              <form [formGroup]="UpdateSectionForm" class="mt-0">
                 <div class="row mb-3">
                   <div class="col-md-4" style="display: none">
                     <div class="mb-3">
                       <label for="sectionid" class="form-label"
                         >Section ID:</label
                       >
-                      <input
-                        type="text"
-                        id="sectionid"
-                        formControlName="sectionid"
-                        class="form-control"
-                      />
-                      <mat-error
-                        *ngIf="
-                          UpdateSectionForm.get('sectionid')?.hasError(
-                            'required'
-                          )
-                        "
-                      >
-                        * Field required
-                      </mat-error>
+                      <mat-form-field>
+                        <input
+                          type="text"
+                          id="sectionid"
+                          formControlName="sectionid"
+                          matInput
+                        />
+                        <mat-error
+                          *ngIf="
+                            UpdateSectionForm.get('sectionid')?.hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          * Field required
+                        </mat-error>
+                      </mat-form-field>
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -303,21 +304,23 @@
                       <label for="sectionname" class="form-label"
                         >Section Name:</label
                       >
-                      <input
-                        type="text"
-                        id="sectionname"
-                        formControlName="sectionname"
-                        class="form-control"
-                      />
-                      <mat-error
-                        *ngIf="
-                          UpdateSectionForm.get('sectionname')?.hasError(
-                            'required'
-                          )
-                        "
-                      >
-                        * Field required
-                      </mat-error>
+                      <mat-form-field>
+                        <input
+                          type="text"
+                          id="sectionname"
+                          formControlName="sectionname"
+                          matInput
+                        />
+                        <mat-error
+                          *ngIf="
+                            UpdateSectionForm.get('sectionname')?.hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          * Field required
+                        </mat-error>
+                      </mat-form-field>
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -325,21 +328,23 @@
                       <label for="sectionsize" class="form-label"
                         >Section Size:</label
                       >
-                      <input
-                        type="text"
-                        id="sectionsize"
-                        formControlName="sectionsize"
-                        class="form-control"
-                      />
-                      <mat-error
-                        *ngIf="
-                          UpdateSectionForm.get('sectionsize')?.hasError(
-                            'required'
-                          )
-                        "
-                      >
-                        * Field required
-                      </mat-error>
+                      <mat-form-field>
+                        <input
+                          type="text"
+                          id="sectionsize"
+                          formControlName="sectionsize"
+                          matInput
+                        />
+                        <mat-error
+                          *ngIf="
+                            UpdateSectionForm.get('sectionsize')?.hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          * Field required
+                        </mat-error>
+                      </mat-form-field>
                     </div>
                   </div>
 
@@ -348,58 +353,30 @@
                       <label for="userid" class="form-label"
                         >Instructors:</label
                       >
-                      <mat-select
-                        id="userid"
-                        formControlName="userid"
-                        class="form-control"
-                      >
-                        <mat-option
-                          *ngFor="let user of _sectionService.instructorSection"
-                          [value]="user.userid"
+                      <mat-form-field>
+                        <mat-select id="userid" formControlName="userid">
+                          <mat-option
+                            *ngFor="
+                              let user of _sectionService.instructorSection
+                            "
+                            [value]="user.userid"
+                          >
+                            {{ user.firsname }} {{ user.lastname }}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error
+                          *ngIf="
+                            UpdateSectionForm.controls['userid'].hasError(
+                              'required'
+                            )
+                          "
                         >
-                          {{ user.firsname }} {{ user.lastname }}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error
-                        *ngIf="
-                          UpdateSectionForm.controls['userid'].hasError(
-                            'required'
-                          )
-                        "
-                      >
-                        * Field required
-                      </mat-error>
+                          * Field required
+                        </mat-error>
+                      </mat-form-field>
                     </div>
                   </div>
-
-                  <input
-                    type="file"
-                    class="file-input"
-                    (change)="UploadFile($event)"
-                    #fileUpload
-                  />
-                  <div></div>
-                  <div
-                    class="file-upload border border-2 rounded-2 col-10 mt-3"
-                    style="margin: auto; text-align: center"
-                  >
-                    {{
-                      fileName ||
-                        "No image uploaded  yet. (Upload Image Section)"
-                    }}
-
-                    <button
-                      mat-mini-fab
-                      color="primary"
-                      class="upload-btn btn btn-outline-primary"
-                      (click)="fileUpload.click()"
-                    >
-                      <mat-icon>upload-btn</mat-icon>
-                    </button>
-                  </div>
                 </div>
-
-                <!-- Additional form controls if needed -->
 
                 <div class="row mt-5">
                   <div class="col-md-12 text-center">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/Services/admin.service';
+import { SharedService } from 'src/app/Services/shared.service';
 
 @Component({
   selector: 'app-home-programs',
@@ -7,11 +8,14 @@ import { AdminService } from 'src/app/Services/admin.service';
   styleUrls: ['./home-page-programs.component.scss'],
 })
 export class HomePagePrograms implements OnInit {
-  constructor(public adminService: AdminService) {}
+  constructor(
+    public adminService: AdminService,
+    public sharedService: SharedService
+  ) {}
   programs: any;
   ngOnInit(): void {
     this.adminService.GetAllPrograms();
-    console.log(this.adminService.programs);
+    this.sharedService.GetAllPlansWithPrograms();
   }
 
   currentTab = 'tab1';
