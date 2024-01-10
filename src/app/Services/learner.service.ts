@@ -373,7 +373,8 @@ export class LearnerService {
           this.allExamByUserSection = x;
           setTimeout(() => {
             this.spinner.hide();
-          }, 250);        },
+          }, 250);
+        },
         error: (err) => {
           this.spinner.hide();
         },
@@ -715,5 +716,26 @@ export class LearnerService {
         this.spinner.hide();
       },
     });
+  }
+  UserBadges: any = [];
+  GetUserBadges() {
+    this.spinner.show();
+    this.http.get(`${URL}/BadgeActivity/` + this.userId).subscribe(
+      (res) => {
+        if (res) {
+          this.UserBadges = res;
+        } else {
+          this.UserBadges = [];
+        }
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 500);
+      },
+      (error) => {
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 500);
+      }
+    );
   }
 }

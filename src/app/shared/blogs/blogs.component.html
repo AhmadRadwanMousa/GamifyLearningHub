@@ -1,7 +1,7 @@
 <div class="blog-slides">
   <owl-carousel-o [options]="blogSlides">
     <ng-template carouselSlide *ngFor="let course of this.adminService.courses">
-      <div class="single-blog-post mb-30" style="width: 500px">
+      <div class="single-blog-post mb-30" style="width: 400px">
         <div class="post-image">
           <a routerLink="/single-blog" class="d-block">
             <img [src]="course.courseimage" alt="image" />

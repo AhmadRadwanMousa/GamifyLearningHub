@@ -1,0 +1,39 @@
+<app-user-dashboard-container>
+  <div class="mb-5">
+    <h4>Your Coupons</h4>
+  </div>
+  <ng-container
+    *ngIf="this.learnerService.UserBadges.length > 0; else emptyCoupons"
+  >
+    <table class="table fs-5 text-center">
+      <thead>
+        <tr class="table-title">
+          <th>Badge name</th>
+          <th>Badge points</th>
+          <th>Badge image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let badge of this.learnerService.UserBadges">
+          <td>{{ badge.badgeactivity.badgename }}</td>
+          <td>{{ badge.badgeactivity.badgepoints }}</td>
+          <td>
+            <img
+              [src]="badge.badgeactivity.badgeimage"
+              width="200"
+              height="200"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</app-user-dashboard-container>
+<ng-template #emptyCoupons>
+  <app-empty
+    message="You have no badges yet!"
+    imageSrc="https://cdn-icons-png.flaticon.com/512/2851/2851418.png"
+    height="100"
+    width="120"
+  ></app-empty>
+</ng-template>

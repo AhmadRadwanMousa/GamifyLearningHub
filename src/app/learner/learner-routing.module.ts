@@ -19,6 +19,7 @@ import { LearnerExamComponent } from './learner-exam/learner-exam.component';
 import { OrdersComponent } from './orders/orders.component';
 import { MarkExamComponent } from './mark-exam/mark-exam.component';
 import { UserCouponsComponent } from './user-coupons/user-coupons.component';
+import { UserBadgesComponent } from './user-badges/user-badges.component';
 
 const routes: Routes = [
   { path: 'userDashboard', component: UserDashboardComponent },
@@ -50,6 +51,7 @@ const routes: Routes = [
   },
   { path: 'exam/:examid', component: LearnerExamComponent },
   { path: 'mark-exam/:examid', component: MarkExamComponent },
+  { path: 'user-badges', component: UserBadgesComponent },
 ];
 
 @NgModule({
