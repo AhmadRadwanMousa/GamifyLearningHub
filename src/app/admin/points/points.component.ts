@@ -16,6 +16,7 @@ import { AdminService } from 'src/app/Services/admin.service';
 export class PointsComponent {
   @ViewChild('UpdateDialog') UpdateDialog: any;
   @ViewChild('CreateDialog') CreateCorseCompleteDialog: any;
+  @ViewChild('ConfirmationDialog') ConfirmationDeleteDialog: any;
 
   constructor(public admin: AdminService, public dialog: MatDialog) {}
   previous_data: any;
@@ -32,6 +33,20 @@ export class PointsComponent {
       this.pointsGreaterThanZero,
     ]),
   });
+
+  DeletePointsActivity(id: number) {
+    this.admin.DeletePointsActivity(id);
+  }
+
+  OpenConfirmDialog(id: number) {
+
+    var dialog = this.dialog.open(this.ConfirmationDeleteDialog);
+    dialog.afterClosed().subscribe((result) => {
+      if (result == 'yes') this.DeletePointsActivity(id);
+    });
+  }
+
+
 
   pointsGreaterThanZero(
     control: AbstractControl

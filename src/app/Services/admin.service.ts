@@ -759,6 +759,7 @@ export class AdminService {
   }
 
   updateBadge(data: any) {
+    console.log(data)
     this.http.put('https://localhost:7036/api/BadgeActivity/', data).subscribe({
       next: (res) => {
         this.getAllBadges();
@@ -828,6 +829,24 @@ export class AdminService {
         },
       });
   }
+
+
+  DeletePointsActivity(id: number) {
+    this.spinner.show();
+    this.http.delete('https://localhost:7036/api/PointsActivity/' + id).subscribe({
+      next: () => {
+        this.getAllPoints();
+        this.spinner.hide();
+        this.toastr.success('Points Activity deleted successfully');
+      },
+      error: (err) => {
+        this.spinner.hide();
+        this.toastr.error('Points Activity to delete role');
+      },
+    });
+  }
+
+  
   /*
   updateCourse(data: any) {
     //debugger

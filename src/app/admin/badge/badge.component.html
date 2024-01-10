@@ -107,7 +107,7 @@
             <h3 class="mb-5">Create Program</h3>
 
        
-          <mat-form-field class="col-6">
+          <!-- <mat-form-field class="col-6">
             <mat-label> Enter Badge Name</mat-label>
             <input
             type="text"
@@ -118,26 +118,26 @@
             />
             <mat-error *ngIf="UpdateBadgesForm.get('badgename')?.hasError('required')">
           * Field required
-        </mat-error>
+        </mat-error> -->
             
             
-          </mat-form-field>
+          <!-- </mat-form-field> -->
 
           <mat-form-field class="col-6">
             <mat-label>Enter Badge Points</mat-label>
             <input
               matInput
               type="number"
-              [(ngModel)]="previous_data.badgepoints"
+           
               formControlName="badgepoints"
               required
             />
-            <mat-error *ngIf="UpdateBadgesForm.get('badgepoints')?.hasError('pointsGreaterThanZero')">
+            <!-- <mat-error *ngIf="UpdateBadgesForm.get('badgepoints')?.hasError('pointsGreaterThanZero')">
               Points must be greater than 0
             </mat-error>
             <mat-error *ngIf="UpdateBadgesForm.get('badgepoints')?.hasError('required')">
               * Field required
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
        
 
@@ -160,6 +160,14 @@
     </button>
   </div>
 
+
+  <button
+  [disabled]="UpdateBadgesForm.invalid"
+    mat-dialog-close
+    (click)="UpdateBadge()"
+    class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
+    Update
+  </button>
     
   <div>
     

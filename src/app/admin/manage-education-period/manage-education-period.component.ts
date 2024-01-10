@@ -63,6 +63,19 @@ export class ManageEducationPeriodComponent implements OnInit {
     let createDialog = this.dialog.open(this.CreateDialog);
     createDialog.afterClosed().subscribe((result) => {
       if (result) {
+        const startDateValue = this.eduDetails.controls['startDate'].value;
+        if (startDateValue !== null && startDateValue !== undefined) {
+          const nextDayStart = new Date(startDateValue);
+          nextDayStart.setDate(nextDayStart.getDate() + 1);
+          this.eduDetails.controls['startDate'].setValue(nextDayStart.toISOString());
+        }
+  
+        const endDateValue = this.eduDetails.controls['endDate'].value;
+        if (endDateValue !== null && endDateValue !== undefined) {
+          const nextDayEnd = new Date(endDateValue);
+          nextDayEnd.setDate(nextDayEnd.getDate() + 1);
+          this.eduDetails.controls['endDate'].setValue(nextDayEnd.toISOString());
+        }
         let newPeriod = {
           Startdate: this.eduDetails.get('startDate')?.value,
           Enddate: this.eduDetails.get('endDate')?.value,
@@ -80,6 +93,7 @@ export class ManageEducationPeriodComponent implements OnInit {
       }
     });
   }
+  
   UpdateEducationalPeriod(educationPeriod: any) {
     this.eduDetails.patchValue({
       startDate: educationPeriod.startdate,
@@ -88,6 +102,19 @@ export class ManageEducationPeriodComponent implements OnInit {
     let updateDialog = this.dialog.open(this.UpdateDialog);
     updateDialog.afterClosed().subscribe((result) => {
       if (result) {
+        const startDateValue = this.eduDetails.controls['startDate'].value;
+        if (startDateValue !== null && startDateValue !== undefined) {
+          const nextDayStart = new Date(startDateValue);
+          nextDayStart.setDate(nextDayStart.getDate() + 1);
+          this.eduDetails.controls['startDate'].setValue(nextDayStart.toISOString());
+        }
+  
+        const endDateValue = this.eduDetails.controls['endDate'].value;
+        if (endDateValue !== null && endDateValue !== undefined) {
+          const nextDayEnd = new Date(endDateValue);
+          nextDayEnd.setDate(nextDayEnd.getDate() + 1);
+          this.eduDetails.controls['endDate'].setValue(nextDayEnd.toISOString());
+        }
         let updatedPeriod = {
           Educationalperiodid: educationPeriod.educationalperiodid,
           Startdate: this.eduDetails.get('startDate')?.value,

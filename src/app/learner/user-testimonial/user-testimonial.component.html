@@ -3,7 +3,7 @@
         <div *ngFor="let testimonial of this._learnerService.testimonialByUserId" class="col-lg-6 col-sm-12">
             <div class="testimonial-card">
                 <i class="fas fa-quote-right testimonial-quote"></i>
-                <img class="testimonial-image" src="https://placekitten.com/100/100" alt="Testimonial Image">
+                <img class="testimonial-image" src="https://grecosrestoration.files.wordpress.com/2018/02/testimonial-image-01.png?w=1200" alt="Testimonial Image">
                 <p class="testimonial-text">{{ testimonial.review }}</p>
                 
             </div>
@@ -11,7 +11,7 @@
     </div>
     <div class="row ">
         <div class="col d-flex justify-content-center m-3">
-            <button type="button" class="default-btn" (click)="toggleTestimonialForm()" > 
+            <button type="button" class="default-btn" (click)="toggleTestimonialForm()" style="border-radius: 15px;"> 
                 <i class=""></i>
                 <i class="icon-arrow before fas fa-quote-right"></i> 
                 <span class="label">
@@ -22,7 +22,7 @@
         </div>
     </div>
   
-    <div class="contact-area pb-100" *ngIf="testimonialFormVisible">
+    <div class="contact-area" style="padding-bottom: 35px;" *ngIf="testimonialFormVisible">
         <div class="container">
             <div class="section-title">
                 <span class="sub-title">Review </span>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                        <button type="button" (click)="SendReview()" class="default-btn">
+                        <button type="button" (click)="SendReview()" class="default-btn mt-4" style="border-radius: 15px;">
                             <i class='bx bx-paper-plane icon-arrow before'></i>
                             <span class="label">Send Message</span>
                             <i class="bx bx-paper-plane icon-arrow after"></i>
@@ -52,6 +52,6 @@
                 </form>
             </div>
         </div>
-        <div class="contact-bg-image"><img src="assets/img/map.png" alt="image"></div>
+        <!-- <div class="contact-bg-image"><img src="assets/img/map.png" alt="image"></div> -->
     </div>
 </app-user-dashboard-container>

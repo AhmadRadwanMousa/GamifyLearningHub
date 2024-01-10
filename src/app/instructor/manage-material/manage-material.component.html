@@ -29,12 +29,12 @@
             <button
               mat-dialog-close
               (click)="OpenCreateAnnouncementDialog()"
-              class="btn btn-primary mb-4"
+              class="btn btn-primary"
             >
               Create Announcement
             </button>
 
-            <div>
+            <div *ngIf="_instructorService.announcementsBySectionId.length != 0" class="mt-4">
               <mat-accordion 
                 *ngFor="let x of _instructorService.announcementsBySectionId" 
               
@@ -113,9 +113,13 @@
             </div>
 
             <div *ngIf="_instructorService.announcementsBySectionId.length == 0 ||  _instructorService.announcementsBySectionId == null">
-              <p style="color: white;
+             
+            
+              <img width="70px" height="90px" style="display:block;margin: auto;" src="data:image/png;base64,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" alt="Empty state icon"/>
+              
+                           <p style="color: black;
               align-items: center!important;
-              background: #807f7f;
+              
               text-align: center;
               font-weight: 700;"> data is empty </p>
             </div>
@@ -140,21 +144,23 @@
             <button
               mat-dialog-close
               (click)="OpenCreateDialog()"
-              class="btn btn-primary mb-4"
+              class="btn btn-primary"
             >
               Create Course Section
             </button>
 
             <div *ngIf="_instructorService.allMaterialsBySectionId.length == 0 ||  _instructorService.allMaterialsBySectionId == null">
-              <p style="color: white;
-              align-items: center!important;
-              background: #807f7f;
-              text-align: center;
-              font-weight: 700;"> data is empty </p>
+              <img width="70px" height="90px" style="display:block;margin: auto;" src="data:image/png;base64,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" alt="Empty state icon"/>
+              
+              <p style="color: black;
+ align-items: center!important;
+ 
+ text-align: center;
+ font-weight: 700;"> data is empty </p>
             </div>
 
 
-            <div *ngIf="_instructorService.allMaterialsBySectionId != null && _instructorService.allMaterialsBySectionId.length > 0" class="example-action-buttons"   >
+            <div *ngIf="_instructorService.allMaterialsBySectionId != null && _instructorService.allMaterialsBySectionId.length > 0" class="example-action-buttons mt-4"   >
               <button mat-button (click)="openAllPanels()">Expand All</button>
               <button mat-button (click)="closeAllPanels()">
                 Collapse All
