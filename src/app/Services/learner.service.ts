@@ -618,10 +618,10 @@ export class LearnerService {
       },
       error: () => {
         this.toastr.error('Profile updated Faild');
+        this.spinner.hide();
         console.log(user);
       },
     });
-    this.spinner.hide();
   }
 
   UserDashboardAttendences: any = [];
@@ -737,5 +737,37 @@ export class LearnerService {
         }, 500);
       }
     );
+  }
+  SectionIdFromSequence: any;
+  GetSectionByCourseSequenceId(courseSquenceId: number, userId: number) {
+    this.http
+      .get(
+        `${URL}/CourseSequence/GetSectionByCourseSequenceId/${courseSquenceId}/${userId}`
+      )
+      .subscribe({
+        next: (result) => {
+          this.spinner.show();
+          this.SectionIdFromSequence = result;
+          this.spinner.hide();
+        },
+        error: (err) => {
+          this.toastr.error(err.message);
+          this.spinner.hide();
+        },
+      });
+  }
+  TopThreeStudents: any = [];
+  GetTopThreeStudents(id: number) {
+    this.http.get(`${URL}/Section/Top3BySectionId/${id}`).subscribe({
+      next: (result) => {
+        this.spinner.show();
+        this.TopThreeStudents = result;
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.toastr.error(err.message);
+        this.spinner.hide();
+      },
+    });
   }
 }

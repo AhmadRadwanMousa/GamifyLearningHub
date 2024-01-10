@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FieldsetModule } from 'primeng/fieldset';
 import { InstructorRoutingModule } from './instructor-routing.module';
 import { IndexComponent } from './index/index.component';
 import { SharedModule } from '../shared/shared.module';
@@ -30,6 +30,7 @@ import { InstructorLeaderBoardComponent } from './instructor-leader-board/instru
     QuestionFormComponent,
     ManageAttendenceComponent,
     InstructorLeaderBoardComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -43,6 +44,10 @@ import { InstructorLeaderBoardComponent } from './instructor-leader-board/instru
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
+    FieldsetModule
   ],
+  exports:[
+    FieldsetModule,
+  ]
 })
 export class InstructorModule {}

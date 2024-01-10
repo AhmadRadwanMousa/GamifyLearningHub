@@ -28,7 +28,7 @@ export class UserEditProfileComponent{
     
     setTimeout(() => {
       this.initializeForm();
-    }, 500);
+    }, 100);
   }
   userDetails = new FormGroup({
     userid: new FormControl(0, Validators.required),
@@ -44,11 +44,11 @@ export class UserEditProfileComponent{
   });
   initializeForm() {
     this.userDetails.patchValue({
-      firsname: [this.UserInDashboard.firsname],
-      lastname: [this.UserInDashboard.lastname],
-      username: [this.UserInDashboard.userlogins[0].username],
-      password: [this.UserInDashboard.userlogins[0].password],
-      dateofbirth: [this.UserInDashboard.dateofbirth],
+      firsname: this.UserInDashboard.firsname,
+      lastname: this.UserInDashboard.lastname,
+      username: this.UserInDashboard.userlogins[0].username,
+      password: this.UserInDashboard.userlogins[0].password,
+      dateofbirth: this.UserInDashboard.dateofbirth,
     });
     this.imagePreview = this.UserInDashboard.userimage;
     console.log(this.UserInDashboard);
@@ -57,12 +57,7 @@ export class UserEditProfileComponent{
   onSubmit() {
     this.userDetails.controls['userid'].setValue(this.userId);
     this.userDetails.controls['userimage'].setValue(this.filePath == '' ? this.UserInDashboard.userimage : this.filePath);
-    this.userDetails.controls['firsname'].setValue(this.UserInDashboard.firsname);
-    this.userDetails.controls['lastname'].setValue(this.UserInDashboard.lastname);
-    this.userDetails.controls['username'].setValue(this.UserInDashboard.userlogins[0].username);
-    this.userDetails.controls['password'].setValue(this.UserInDashboard.userlogins[0].password);
     this.userDetails.controls['totalpoints'].setValue(this.UserInDashboard.totalpoints);
-    this.userDetails.controls['dateofbirth'].setValue(this.UserInDashboard.dateofbirth);
     if(this.userDetails.valid)
     {
       this.learnerService.UpdateProfile(this.userDetails.value);
