@@ -21,12 +21,17 @@
           </form>
           
     <div class="row" *ngIf="selectedSection > 0">
+      
       <mat-form-field>
         <mat-label>Filter Students</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Filter Students" #input>
       </mat-form-field>
-      
-      <table mat-table [dataSource]="this.instructorService.reportsBySectionId">
+      <div class="fs-4">
+        <button mat-button color="accent" class="mt-5" (click)="print()">
+            <mat-icon class="mat-24" aria-label="Example icon-button with a heart icon">print</mat-icon>
+         Print
+        </button>
+      <table mat-table [dataSource]="this.instructorService.reportsBySectionId" class="my-report">
       
         <!-- Position Column -->
         <ng-container matColumnDef="firstName">

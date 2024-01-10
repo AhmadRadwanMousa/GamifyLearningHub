@@ -1,5 +1,5 @@
 <app-user-dashboard-container>
-  <app-top-students [isShow]="true"></app-top-students>
+  <app-top-students [isShow]="true" [courseSequenceId]="courseSequence"></app-top-students>
   <app-section-announcements
     [Content]="this.learnerService.SectionAnnocment"
   ></app-section-announcements>

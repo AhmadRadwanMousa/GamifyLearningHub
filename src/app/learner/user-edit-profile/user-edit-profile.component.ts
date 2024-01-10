@@ -28,7 +28,7 @@ export class UserEditProfileComponent{
     
     setTimeout(() => {
       this.initializeForm();
-    }, 500);
+    }, 100);
   }
   userDetails = new FormGroup({
     userid: new FormControl(0, Validators.required),
@@ -44,11 +44,11 @@ export class UserEditProfileComponent{
   });
   initializeForm() {
     this.userDetails.patchValue({
-      firsname: [this.UserInDashboard.firsname],
-      lastname: [this.UserInDashboard.lastname],
-      username: [this.UserInDashboard.userlogins[0].username],
-      password: [this.UserInDashboard.userlogins[0].password],
-      dateofbirth: [this.UserInDashboard.dateofbirth],
+      firsname: this.UserInDashboard.firsname,
+      lastname: this.UserInDashboard.lastname,
+      username: this.UserInDashboard.userlogins[0].username,
+      password: this.UserInDashboard.userlogins[0].password,
+      dateofbirth: this.UserInDashboard.dateofbirth,
     });
     this.imagePreview = this.UserInDashboard.userimage;
     console.log(this.UserInDashboard);

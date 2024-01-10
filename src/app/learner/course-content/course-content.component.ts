@@ -12,12 +12,12 @@ export class CourseContentComponent implements OnInit {
     public learnerService: LearnerService,
     private routeValues: ActivatedRoute
   ) {}
+  courseSequence: number = 0;
   ngOnInit(): void {
     this.routeValues.paramMap.subscribe((p) => {
       let courseSequenceId = p.get('courseId');
-      this.learnerService.GetSectionsByCourseSequenceIdAndUserId(
-        Number(courseSequenceId)
-      );
+      this.courseSequence = Number(courseSequenceId);
+      this.learnerService.GetSectionsByCourseSequenceIdAndUserId(Number(courseSequenceId));
     });
   }
 }

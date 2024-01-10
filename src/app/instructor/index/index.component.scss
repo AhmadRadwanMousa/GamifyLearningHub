@@ -1,0 +1,72 @@
+.my-highlight{
+    font-weight: bolder;
+    background-image: linear-gradient(to right, #d5163f, #ff315e);
+    background-clip: text;
+    color: transparent;
+}
+.instructor-name{
+    font-size: x-large;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.main-color{
+    color:#ff315e;
+    font-size: 45px;
+}
+li{
+    margin-top: 10px;
+}
+.icon{
+    color: #ff315e;
+    padding: 10px;
+    border-radius: 50%;
+    border:4px solid #ff315e;
+    height: 55px;
+    width: 55px;
+}
+.icon:hover{
+    color: #ffffff;
+    background-color: #ff315e;
+    transition: 0.3s;
+}
+.my-link{
+    margin-top: 10px;
+    margin-left: 13px;
+    font-size: 20px;
+}
+.my-list{
+    margin-left: 15px;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    font-weight: bolder;
+  }
+  
+  a:hover {
+    color: #db0e2db9;
+  }
+  
+  a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    top: 1;
+    background-color: #ff004c;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  a:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
