@@ -28,7 +28,9 @@
             <tbody>
               <tr *ngFor="let eduPeriod of educationalPeriods">
                 <td class="border-bottom-0">
-                  <p class="mb-0 fw-normal">{{ eduPeriod.startdate | date }}</p>
+                  <p class="mb-0 fw-normal">
+                    {{ eduPeriod.startdate | date : "mediumDate" }}
+                  </p>
                 </td>
                 <!-- <td class="border-bottom-0">
                                <div class="d-flex align-items-center gap-2">
@@ -38,7 +40,9 @@
                                </div>
                              </td> -->
                 <td class="border-bottom-0">
-                  <p class="mb-0 fw-normal">{{ eduPeriod.enddate | date }}</p>
+                  <p class="mb-0 fw-normal">
+                    {{ eduPeriod.enddate | date : "mediumDate" }}
+                  </p>
                 </td>
                 <td class="border-bottom-0">
                   <button

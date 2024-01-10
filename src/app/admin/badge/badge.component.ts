@@ -21,31 +21,23 @@ export class BadgeComponent {
   }
 
   UpdateBadgesForm: FormGroup = new FormGroup({
-    badgeactivityid: new FormControl('', Validators.required),
-    badgeimage: new FormControl('', Validators.required),
-    badgepoints: new FormControl('0', [Validators.required, this.pointsGreaterThanZeroValidator]),
-    badgename: new FormControl('', Validators.required),
+    badgeactivityid: new FormControl(),
+    badgeimage: new FormControl(),
+    badgepoints: new FormControl(),
+    badgename: new FormControl(),
+    userbadgeactivities : new FormControl(),
   });
 
-  pointsGreaterThanZeroValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    const value = control.value;
-    if (value !== null && (isNaN(value) || value <= 0)) {
-      return { 'PriceGreaterThanZero': true };
-    }
-    return null;
-  }
+  // pointsGreaterThanZeroValidator(control: AbstractControl): { [key: string]: boolean } | null {
+  //   const value = control.value;
+  //   if (value !== null && (isNaN(value) || value <= 0)) {
+  //     return { 'PriceGreaterThanZero': true };
+  //   }
+  //   return null;
+  // }
 
   openUpdateDialog(_badge: any) {
-    this.previous_data = {
-      badgeactivityid: _badge.badgeactivityid,
-      badgeimage: _badge.badgeimage,
-      badgepoints: _badge.badgepoints,
-      badgename: _badge.badgename
-    };
-    console.log(this.previous_data);
-    this.UpdateBadgesForm.controls['badgeactivityid'].setValue(
-      this.previous_data.badgeactivityid
-    );
+    this.UpdateBadgesForm.setValue(_badge);
 
     this.dialog.open(this.UpdateDialog, {
       width: '600px',
@@ -56,7 +48,7 @@ export class BadgeComponent {
     this.UpdateBadgesForm.controls['badgeimage'].setValue(
       this.filePath
     );
-
+   console.log(this.UpdateBadgesForm.value)
     this.admin.updateBadge(this.UpdateBadgesForm.value);
   }
 
