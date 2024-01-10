@@ -1,33 +1,57 @@
 <div class="card p-3 text-center" *ngIf="isShow">
-    <div class="card-icon row text-center d-flex justify-content-center" >
-        <i class="fa-solid fa-ranking-star icon col-3 rounded-circle"></i>
-    </div>
-    <div class="card-title">
-        <h2><span class="my-highlight mx-2"> Top students </span> in this section</h2>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-4">
-                <div class="number-one">
-                    <i class="fa-solid fa-1 rounded-circle ranking-icon"></i>
-                    <h4>{{this.learnerService.TopThreeStudents[0].firsname}} {{this.learnerService.TopThreeStudents[0].lastname}} </h4>
-                    <p class="fw-bold">{{this.learnerService.TopThreeStudents[0].points_count}} Point </p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="number-one">
-                    <i class="fa-solid fa-2 rounded-circle ranking-icon"></i>
-                    <h4>{{this.learnerService.TopThreeStudents[1].firsname}} {{this.learnerService.TopThreeStudents[1].lastname}} </h4>
-                    <p class="fw-bold">{{this.learnerService.TopThreeStudents[1].points_count}} Point </p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="number-one">
-                    <i class="fa-solid fa-3 rounded-circle ranking-icon"></i>
-                    <h4>{{this.learnerService.TopThreeStudents[2].firsname}} {{this.learnerService.TopThreeStudents[2].lastname}} </h4>
-                    <p class="fw-bold">{{this.learnerService.TopThreeStudents[2].points_count}} Point </p>
-                </div>
-            </div>
+  <div class="card-icon row text-center d-flex justify-content-center">
+    <i class="fa-solid fa-ranking-star icon col-3 rounded-circle"></i>
+  </div>
+  <div class="card-title">
+    <h2>
+      <span class="my-highlight mx-2"> Top students </span> in this section
+    </h2>
+  </div>
+  <div class="card-body">
+    <div
+      class="row"
+      *ngIf="
+        this.learnerService.TopThreeStudents.length > 0;
+        else noStudentsYet
+      "
+    >
+      <div class="col-4">
+        <div class="number-one">
+          <i class="fa-solid fa-1 rounded-circle ranking-icon"></i>
+          <h4>
+            {{ this.learnerService.TopThreeStudents[0].firsname }}
+            {{ this.learnerService.TopThreeStudents[0].lastname }}
+          </h4>
+          <p class="fw-bold">
+            {{ this.learnerService.TopThreeStudents[0].points_count }} Point
+          </p>
         </div>
+      </div>
+      <div class="col-4">
+        <div class="number-one">
+          <i class="fa-solid fa-2 rounded-circle ranking-icon"></i>
+          <h4>
+            {{ this.learnerService.TopThreeStudents[1].firsname }}
+            {{ this.learnerService.TopThreeStudents[1].lastname }}
+          </h4>
+          <p class="fw-bold">
+            {{ this.learnerService.TopThreeStudents[1].points_count }} Point
+          </p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="number-one">
+          <i class="fa-solid fa-3 rounded-circle ranking-icon"></i>
+          <h4>
+            {{ this.learnerService.TopThreeStudents[2].firsname }}
+            {{ this.learnerService.TopThreeStudents[2].lastname }}
+          </h4>
+          <p class="fw-bold">
+            {{ this.learnerService.TopThreeStudents[2].points_count }} Point
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+<ng-template #noStudentsYet>No students in this section yet</ng-template>
