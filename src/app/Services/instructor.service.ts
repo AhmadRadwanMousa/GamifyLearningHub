@@ -79,14 +79,19 @@ export class InstructorService {
 
   CreateExam(data: any, sectionid: number) {
     this.http.post(`${URL}/Exam/`, data).subscribe({
-      next: () => {
-        this.toastr.success('Exam created successflly');
+      next: (res:any) => {
+        if(res == 0)
+        {
+          this.toastr.error('You have exceeded the mark limit');
+        }
+        else if(res == 1)
+        {
+          this.toastr.success('Created Successfully');
+        }
         this.getAllExamsBySectionId(sectionid);
-        console.log(data);
       },
-      error: () => {
-        this.toastr.error('Exam Create Faild');
-        console.log(data);
+      error: (err) => {
+        this.toastr.error(err);
       },
     });
   }
