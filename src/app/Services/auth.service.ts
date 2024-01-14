@@ -18,7 +18,7 @@ export class AuthService {
     private http: HttpClient,
     public tostr: ToastrService,
     private route: Router,
-    private spinner: NgxSpinnerService,
+    public spinner: NgxSpinnerService,
     private learnerService: LearnerService,
     private instructorService: InstructorService,
     private adminService: AdminService
@@ -63,6 +63,35 @@ export class AuthService {
     localStorage.removeItem('token');
     this.isLoggedInSubject.next(true);
     this.route.navigate(['/Login']);
+  }
+  IsUserNameExist(username: string) {
+    return this.http.get(`${URL}/Authentication/` + username);
+  }
+  ResetPassword(username: string, newPassword: string) {
+    let loginDetails: any = {
+      Username: username,
+      Password: newPassword,
+    };
+    this.spinner.show();
+    this.http
+      .put(`${URL}/Authentication/ResetPassword`, loginDetails)
+      .subscribe(
+        (res) => {
+          if (res) {
+            setTimeout(() => {
+              this.tostr.success(
+                'Your password has been updated successfully!'
+              );
+              this.spinner.hide();
+            }, 500);
+          } else {
+            this.spinner.hide();
+          }
+        },
+        (error) => {
+          this.spinner.hide();
+        }
+      );
   }
   getToken(): string | null {
     return localStorage.getItem('token');

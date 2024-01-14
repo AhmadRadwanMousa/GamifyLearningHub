@@ -27,7 +27,6 @@
               <h5 class="card-title fw-semibold mb-4">All Badges</h5>
               <hr />
               <div class="table-responsive">
-                
                 <table class="table text-nowrap mb-0 align-middle text-center">
                   <thead class="text-dark fs-4">
                     <tr>
@@ -40,7 +39,6 @@
                       <th class="border-bottom-0">
                         <h6 class="fw-semibold mb-0">Image</h6>
                       </th>
-                      
                     </tr>
                   </thead>
                   <tbody>
@@ -52,9 +50,13 @@
                         <p class="mb-0 fw-normal">{{ b.badgepoints }}</p>
                       </td>
                       <td class="border-bottom-0">
-                        <img [src]="b.badgeimage" width="150px" style="border-radius: 10px;">
+                        <img
+                          [src]="b.badgeimage"
+                          width="150px"
+                          style="border-radius: 10px"
+                        />
                       </td>
-                      
+
                       <td class="border-bottom-0">
                         <button
                           class="btn btn-primary m-2"
@@ -82,8 +84,6 @@
                             <path d="M16 5l3 3" />
                           </svg>
                         </button>
-                       
-                           
                       </td>
                     </tr>
                   </tbody>
@@ -98,16 +98,12 @@
   </div>
 </div>
 
+<ng-template #UpdateDialog>
+  <form [formGroup]="UpdateBadgesForm">
+    <div>
+      <h3 class="mb-5">Update badge</h3>
 
-
-
-  <ng-template #UpdateDialog>
-    <form [formGroup]="UpdateBadgesForm">
-        <div class="row w-100" style="padding: 25px;">
-            <h3 class="mb-5">Create Program</h3>
-
-       
-          <!-- <mat-form-field class="col-6">
+      <!-- <mat-form-field class="col-6">
             <mat-label> Enter Badge Name</mat-label>
             <input
             type="text"
@@ -119,57 +115,57 @@
             <mat-error *ngIf="UpdateBadgesForm.get('badgename')?.hasError('required')">
           * Field required
         </mat-error> -->
-            
-            
-          <!-- </mat-form-field> -->
 
-          <mat-form-field class="col-6">
-            <mat-label>Enter Badge Points</mat-label>
-            <input
-              matInput
-              type="number"
-           
-              formControlName="badgepoints"
-              required
-            />
-            <!-- <mat-error *ngIf="UpdateBadgesForm.get('badgepoints')?.hasError('pointsGreaterThanZero')">
+      <!-- </mat-form-field> -->
+      <div class="d-flex justify-content-center align-items-center">
+        <mat-form-field>
+          <mat-label>Enter Badge Points</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="badgepoints"
+            required
+          />
+          <!-- <mat-error *ngIf="UpdateBadgesForm.get('badgepoints')?.hasError('pointsGreaterThanZero')">
               Points must be greater than 0
             </mat-error>
             <mat-error *ngIf="UpdateBadgesForm.get('badgepoints')?.hasError('required')">
               * Field required
             </mat-error> -->
-          </mat-form-field>
-       
+        </mat-form-field>
+      </div>
+      <input
+        type="file"
+        class="file-input"
+        (change)="UploadFile($event)"
+        #fileUpload
+      />
+      <div
+        class="file-upload border border-2 rounded-2 col-10"
+        style="margin: auto; text-align: center; width: 220px"
+      >
+        {{ fileName || "No file uploaded  yet" }}
 
-    <input
-    type="file"
-    class="file-input"
-    (change)="UploadFile($event)"
-    #fileUpload
-  />
-  <div class="file-upload border border-2 rounded-2 col-10" style="margin: auto; text-align: center;">
-    {{ fileName || "No file uploaded  yet" }}
-
-    <button
-      mat-mini-fab
-      color="primary"
-      class="upload-btn btn btn-outline-primary "
-      (click)="fileUpload.click()"
-    >
-      <mat-icon>upload-btn</mat-icon>
-    </button>
-  </div>
-
-
-  <button
-  [disabled]="UpdateBadgesForm.invalid"
-    mat-dialog-close
-    (click)="UpdateBadge()"
-    class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
-    Update
-  </button>
-    
-  <div>
-    
-  </div>
-  
+        <button
+          mat-mini-fab
+          color="primary"
+          class="upload-btn btn btn-outline-primary"
+          (click)="fileUpload.click()"
+        >
+          <mat-icon>upload-btn</mat-icon>
+        </button>
+      </div>
+      <div class="text-center">
+        <button
+          [disabled]="UpdateBadgesForm.invalid"
+          mat-dialog-close
+          (click)="UpdateBadge()"
+          class="btn btn-primary w-50 col-12 mt-4"
+          style="margin: auto"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </form></ng-template
+>

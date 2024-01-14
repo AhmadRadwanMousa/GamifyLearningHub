@@ -18,13 +18,17 @@ export class LearnerService {
   ) {
     let token: any = getToken();
     let userId = 0;
-
+    let username = null;
+    console.log(token);
     if (token && token.userId != null) {
       userId = token.userId;
+      username = token.userName;
     }
     this.userId = userId;
+    this.username = username;
   }
   userId: any = 0;
+  username: any = null;
   CartItemsByUserId: any = [];
   CartTotal: any;
   CartId: any;
@@ -136,10 +140,14 @@ export class LearnerService {
   }
   AlertShow: boolean = false;
 
-  CreateTestimonial(data: any) {
-    data.userid = this.userId;
+  CreateTestimonial(review: string) {
+    console.log(this.userId, review);
+    let testimonial: any = {
+      userid: this.userId,
+      review: review,
+    };
     this.spinner.show();
-    this.http.post('https://localhost:7036/api/Testimonial', data).subscribe({
+    this.http.post(`${URL}/Testimonial`, testimonial).subscribe({
       next: () => {
         this.spinner.hide();
         this.AlertShow = true;
@@ -737,6 +745,35 @@ export class LearnerService {
         }, 500);
       }
     );
+  }
+  GetUnViewedUserBadges() {
+    return this.http.get(
+      `${URL}/BadgeActivity/UnviewedUserBadges/` + this.userId
+    );
+  }
+  UpdateUserBadgeStatue(
+    userBadgeId: number,
+    badgeImage: string,
+    badgeactivityid: number
+  ) {
+    let userbadgedetails: any = {
+      userbadgeactivityid: userBadgeId,
+      username: this.username,
+      badgeimage: badgeImage,
+      badgeactivityid: badgeactivityid,
+    };
+    this.http
+      .put(`${URL}/BadgeActivity/UpdateUserBadgeStatus/`, userbadgedetails)
+      .subscribe(
+        (res) => {
+          if (res) {
+            console.log('Updated');
+          }
+        },
+        (error) => {
+          console.log(error.message);
+        }
+      );
   }
   SectionIdFromSequence: any;
   GetSectionByCourseSequenceId(courseSquenceId: number, userId: number) {

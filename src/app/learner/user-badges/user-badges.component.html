@@ -10,6 +10,7 @@
         <tr class="table-title">
           <th>Badge name</th>
           <th>Badge points</th>
+          <th>Download badge</th>
           <th>Badge image</th>
         </tr>
       </thead>
@@ -18,10 +19,23 @@
           <td>{{ badge.badgeactivity.badgename }}</td>
           <td>{{ badge.badgeactivity.badgepoints }}</td>
           <td>
+            <a
+              class="default-btn"
+              [href]="badge.badgeactivity.badgeimage"
+              [download]="badge.badgeactivity.badgeimage"
+            >
+              <i class="icon-arrow before fa-solid fa-medal"></i>
+              <span class="label mx-1"> Get Badge </span>
+
+              <i class="icon-arrow after fa-solid fa-medal"></i>
+            </a>
+          </td>
+
+          <td>
             <img
               [src]="badge.badgeactivity.badgeimage"
-              width="200"
-              height="200"
+              width="100"
+              height="100"
             />
           </td>
         </tr>

@@ -78,3 +78,45 @@
     </div>
   </p-dialog>
 </ng-container>
+<ng-container *ngFor="let userBadges of userBadges; let i = index">
+  <p-dialog
+    [visible]="badgesDialogVisibility[i]"
+    [breakpoints]="{ '960px': '75vw' }"
+    [style]="{ width: '35vw', height: '50vh' }"
+    [draggable]="true"
+    [resizable]="true"
+  >
+    <div
+      class="d-flex justify-content-center align-items-center flex-column h-100 gap-3"
+    >
+      <img
+        width="80"
+        height="80"
+        [src]="userBadges.badgeactivity.badgeimage"
+        alt="rating"
+      />
+      <h3 class="congratulations-title">Congratulations!</h3>
+      <p class="congratulations-message">
+        You have earned
+        <span class="text-decoration-underline">
+          {{ userBadges.badgeactivity.badgename }}.</span
+        >
+        by collection {{ userBadges.badgeactivity.badgepoints }} points.
+        <br />
+      </p>
+      <button
+        class="btn btn-info"
+        (click)="
+          CloseBadgesDialog(
+            userBadges.userbadgeactivityid,
+            userBadges.badgeactivity.badgeimage,
+            userBadges.badgeactivity.badgeactivityid,
+            i
+          )
+        "
+      >
+        Thanks <i class="fa-regular fa-star"></i>
+      </button>
+    </div>
+  </p-dialog>
+</ng-container>

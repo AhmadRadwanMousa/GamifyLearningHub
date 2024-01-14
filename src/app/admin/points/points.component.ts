@@ -39,14 +39,11 @@ export class PointsComponent {
   }
 
   OpenConfirmDialog(id: number) {
-
     var dialog = this.dialog.open(this.ConfirmationDeleteDialog);
     dialog.afterClosed().subscribe((result) => {
       if (result == 'yes') this.DeletePointsActivity(id);
     });
   }
-
-
 
   pointsGreaterThanZero(
     control: AbstractControl
@@ -85,14 +82,13 @@ export class PointsComponent {
     );
 
     this.dialog.open(this.UpdateDialog, {
-      width: '600px',
-      height: '350px',
+      width: '500px',
+      height: '250px',
     });
   }
 
   UpdatePoints() {
     console.log(this.UpdatePointsForm.value);
-
     this.admin.updatePoints(this.UpdatePointsForm.value);
   }
 }

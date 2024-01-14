@@ -20,7 +20,9 @@ export class ManageMaterialComponent {
     private router: Router
   ) {}
   ngOnInit() {
-    this._instructorService.GetSectionsByUserId();
+    this._instructorService.GetSectionsByInstructorId(
+      this._instructorService.userId
+    );
   }
 
   selectedSection: any;
@@ -35,11 +37,9 @@ export class ManageMaterialComponent {
   @ViewChild('ConfirmationLectureDialog') ConfirmationDeleteLectureDialog: any;
   @ViewChild('UpdateLectureDialog') UpdateLectureDialog: any;
   @ViewChild('CreateAnnouncementDialog') CreateAnnouncementDialog: any;
-  @ViewChild('ConfirmationAnnouncementDialog') ConfirmationDeleteAnnouncementDialog: any;
+  @ViewChild('ConfirmationAnnouncementDialog')
+  ConfirmationDeleteAnnouncementDialog: any;
   @ViewChild('UpdateAnnouncementDialog') UpdateAnnouncementDialog: any;
-
-  
-  
 
   CreateCourseSectionForm: FormGroup = new FormGroup({
     coursesectionname: new FormControl('', Validators.required),
@@ -73,14 +73,13 @@ export class ManageMaterialComponent {
     userprogresses: new FormControl(),
   });
 
-
   CreateAnnouncementForm: FormGroup = new FormGroup({
     declaration: new FormControl('', Validators.required),
     sectionid: new FormControl(),
   });
 
   UpdateAnnouncementForm: FormGroup = new FormGroup({
-    announcementid :  new FormControl(),
+    announcementid: new FormControl(),
     declaration: new FormControl('', Validators.required),
     sectionid: new FormControl(),
     section: new FormControl(),
@@ -103,19 +102,15 @@ export class ManageMaterialComponent {
   loadMaterial(sectionId: number) {
     this._instructorService.GetAllMaterialsBySectionId(sectionId);
     this._instructorService.GetAnnouncementsBySectionId(sectionId);
-    
   }
 
   OpenCreateDialog() {
     this.dialog.open(this.CreateCourseSectionDialog);
   }
 
-
-  OpenCreateAnnouncementDialog(){
+  OpenCreateAnnouncementDialog() {
     this.dialog.open(this.CreateAnnouncementDialog);
   }
-
-
 
   CreateCourseSection() {
     this.CreateCourseSectionForm.controls['sectionid'].setValue(
@@ -127,7 +122,6 @@ export class ManageMaterialComponent {
     );
   }
 
-
   CreateAnnouncement() {
     this.CreateAnnouncementForm.controls['sectionid'].setValue(
       this.selectedSection
@@ -137,7 +131,6 @@ export class ManageMaterialComponent {
       this.CreateAnnouncementForm.value
     );
   }
-
 
   CreateLecture() {
     this.CreateLectureForm.controls['lecturefile'].setValue(this.filesPath);
@@ -160,14 +153,10 @@ export class ManageMaterialComponent {
     this.dialog.open(this.UpdateCourseSectionDialog);
   }
 
-
   OpenUpdateAnnouncementDialog(data: any) {
     this.UpdateAnnouncementForm.setValue(data);
     this.dialog.open(this.UpdateAnnouncementDialog);
   }
-
-
-
 
   OpenUpdateLectureDialog(data: any) {
     this.UpdateLectureForm.setValue(data);
@@ -206,8 +195,6 @@ export class ManageMaterialComponent {
       if (result == 'yes') this.DeletAnnouncement(id);
     });
   }
-  
-
 
   OpenConfirmLectureDialog(lectureId: number) {
     var dialog = this.dialog.open(this.ConfirmationDeleteLectureDialog);
@@ -227,7 +214,6 @@ export class ManageMaterialComponent {
   DeletAnnouncement(id: number) {
     this._instructorService.DeleteAnnouncements(id, this.selectedSection);
   }
-
 
   UploadFiles(event: any) {
     let fileToUpload = event.target.files[0] as File;

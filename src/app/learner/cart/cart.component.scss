@@ -59,7 +59,8 @@
           &.product-subtotal {
             .remove {
               color: red;
-              float: right;
+              float: left;
+              margin-left: 13px;
               position: relative;
               top: -1px;
               font-size: 18px;

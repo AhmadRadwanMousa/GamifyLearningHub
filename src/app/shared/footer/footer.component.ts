@@ -15,7 +15,8 @@ export class FooterComponent implements OnInit {
       this.routeService.currentRoute.startsWith('/admin') ||
       this.routeService.currentRoute.startsWith('/instructor') ||
       this.routeService.currentRoute.startsWith('/Login') ||
-      this.routeService.currentRoute.startsWith('/Register')
+      this.routeService.currentRoute.startsWith('/Register') ||
+      this.routeService.currentRoute.startsWith('/**')
     );
   }
 }

@@ -19,7 +19,7 @@
                 /></a>
               </div>
               <h3>Welcome back</h3>
-              <p>New to Ednuv? <a routerLink="/Register">Sign up</a></p>
+              <p>New to Gamify? <a routerLink="/Register">Sign up</a></p>
               <form [formGroup]="loginDetails" (ngSubmit)="OnSubmit()">
                 <div class="form-group">
                   <input
@@ -81,7 +81,7 @@
                   Login
                 </button>
                 <div class="forgot-password">
-                  <a routerLink="/">Forgot Password?</a>
+                  <a (click)="OpenForgetPasswordDialog()">Forgot Password?</a>
                 </div>
                 <div class="connect-with-social">
                   <button type="submit" class="facebook">
@@ -98,4 +98,105 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="card flex justify-content-center">
+  <p-dialog
+    [(visible)]="visibility"
+    [style]="{ width: '35vw', height: '15rem' }"
+  >
+    <div
+      class="d-flex justify-content-center align-items-center flex-column w-100"
+    >
+      <p>Please enter your email</p>
+
+      <div class="w-50">
+        <div class="form-group pb-3">
+          <input
+            type="email"
+            placeholder="Your email"
+            class="form-control"
+            id="username"
+            [(ngModel)]="usernameToResetPassword"
+          />
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary" (click)="CheckUsername()">
+            Reset password
+          </button>
+        </div>
+        <div *ngIf="this.InvalidUserName" class="text-center">
+          <span class="text-danger"
+            >Please enter a valid email or username</span
+          >
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+</div>
+<div class="card flex justify-content-center">
+  <p-dialog [(visible)]="OTPView" [style]="{ width: '35vw', height: '15rem' }">
+    <div
+      class="d-flex justify-content-center align-items-center flex-column w-100"
+    >
+      <p>We have sent an otp for your email,please enter the otp to verify</p>
+
+      <div class="w-50">
+        <div class="form-group pb-3">
+          <input
+            type="number"
+            placeholder="OTP code"
+            class="form-control"
+            [(ngModel)]="userOTP"
+          />
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary" (click)="CheckMatchingOTP()">
+            Validate otp
+          </button>
+        </div>
+        <div *ngIf="this.inValidOTP" class="text-center">
+          <span class="text-danger">Not valid OTP,please try again! </span>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+</div>
+<div class="card flex justify-content-center">
+  <p-dialog
+    [(visible)]="ResetPasswordView"
+    [style]="{ width: '35vw', height: '18rem' }"
+  >
+    <div
+      class="d-flex justify-content-center align-items-center flex-column w-100"
+    >
+      <p>Please enter your new password</p>
+
+      <div class="w-50">
+        <div class="form-group pb-3">
+          <input
+            type="password"
+            placeholder="Your new password"
+            class="form-control"
+            [formControl]="newPassword"
+          />
+        </div>
+        <div class="text-center">
+          <button
+            class="btn btn-primary"
+            (click)="UpdateUserPassword()"
+            [disabled]="this.newPassword.invalid"
+          >
+            Reset password
+          </button>
+        </div>
+        <div *ngIf="this.newPassword.invalid" class="w-100">
+          <span class="text-danger"
+            >Password should be 10 and contain at least one uppercase letter,
+            one number!
+          </span>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
 </div>

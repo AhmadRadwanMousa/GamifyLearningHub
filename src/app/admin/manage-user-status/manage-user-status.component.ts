@@ -13,8 +13,8 @@ export class ManageUserStatusComponent implements OnInit {
   }
   HandleStatusChange(state: any, userId: any) {
     let formData = new FormData();
-    formData.append('userid', userId);
-    formData.append('isaccepted', state);
+    formData.append('userId', userId);
+    formData.append('isAccepted', state);
     this.adminService.UpdatedUserStatus(formData);
   }
 }

@@ -60,7 +60,14 @@
                   <p class="mb-0 fw-normal" *ngSwitchCase="3">Learner</p>
                 </td>
                 <td class="border-bottom-0">
-                  <p class="mb-0 fw-normal">{{ user.totalpoints || 0 }}</p>
+                  <p class="mb-0 fw-normal">
+                    {{
+                      user.userlogins[0].roleid === 1 ||
+                      user.userlogins[0].roleid === 2
+                        ? "-"
+                        : user.totalpoints
+                    }}
+                  </p>
                 </td>
                 <!-- <td class="border-bottom-0">
                   <img [src]="plan.planimage" width="100" height="100" />
@@ -157,12 +164,14 @@
               <mat-form-field class="widthInput w-100">
                 <mat-label> First Name</mat-label>
                 <input
-                type="text"
+                  type="text"
                   matInput
                   placeholder="ex:Ahmad"
                   formControlName="firsname"
                 />
-                <mat-error *ngIf="userDetails.get('firsname')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('firsname')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
               </mat-form-field>
@@ -172,12 +181,14 @@
               <mat-form-field class="widthInput w-100">
                 <mat-label> Last Name</mat-label>
                 <input
-                type="text"
+                  type="text"
                   matInput
                   placeholder="Last Name"
                   formControlName="lastname"
                 />
-                <mat-error *ngIf="userDetails.get('lastname')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('lastname')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
               </mat-form-field>
@@ -187,12 +198,14 @@
               <mat-form-field class="widthInput w-100">
                 <mat-label> Username </mat-label>
                 <input
-                type="text"
+                  type="text"
                   matInput
                   placeholder=" UserName"
                   formControlName="username"
                 />
-                <mat-error *ngIf="userDetails.get('username')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('username')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
               </mat-form-field>
@@ -206,7 +219,9 @@
                   formControlName="password"
                   [type]="hide ? 'password' : 'text'"
                 />
-                <mat-error *ngIf="userDetails.get('password')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('password')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
                 <button
@@ -236,7 +251,9 @@
                   [for]="dateofbirth"
                 ></mat-datepicker-toggle>
                 <mat-datepicker #dateofbirth></mat-datepicker>
-                <mat-error *ngIf="userDetails.get('dateofbirth')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('dateofbirth')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
               </mat-form-field>
@@ -257,9 +274,10 @@
                         : "school"
                     }}</mat-icon></mat-option
                   >
-                  
                 </mat-select>
-                <mat-error *ngIf="userDetails.get('roleid')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('roleid')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
               </mat-form-field>
@@ -325,12 +343,14 @@
               <mat-form-field class="widthInput w-100">
                 <mat-label> First Name</mat-label>
                 <input
-                type="text"
+                  type="text"
                   matInput
                   placeholder="ex:Ahmad"
                   formControlName="firsname"
                 />
-                <mat-error *ngIf="userDetails.get('firsname')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('firsname')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
               </mat-form-field>
@@ -340,12 +360,14 @@
               <mat-form-field class="widthInput w-100">
                 <mat-label> Last Name</mat-label>
                 <input
-                type="text"
+                  type="text"
                   matInput
                   placeholder="Last Name"
                   formControlName="lastname"
                 />
-                <mat-error *ngIf="userDetails.get('lastname')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('lastname')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
               </mat-form-field>
@@ -359,7 +381,9 @@
                   placeholder=" UserName"
                   formControlName="username"
                 />
-                <mat-error *ngIf="userDetails.get('username')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('username')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
               </mat-form-field>
@@ -373,7 +397,9 @@
                   formControlName="password"
                   [type]="hide ? 'password' : 'text'"
                 />
-                <mat-error *ngIf="userDetails.get('password')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('password')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
                 <button
@@ -403,7 +429,9 @@
                   [for]="dateofbirth"
                 ></mat-datepicker-toggle>
                 <mat-datepicker #dateofbirth></mat-datepicker>
-                <mat-error *ngIf="userDetails.get('dateofbirth')?.hasError('required')">
+                <mat-error
+                  *ngIf="userDetails.get('dateofbirth')?.hasError('required')"
+                >
                   * Field required
                 </mat-error>
               </mat-form-field>
@@ -424,7 +452,9 @@
                         : "school"
                     }}</mat-icon>
                   </mat-option>
-                  <mat-error *ngIf="userDetails.get('roleid')?.hasError('required')">
+                  <mat-error
+                    *ngIf="userDetails.get('roleid')?.hasError('required')"
+                  >
                     * Field required
                   </mat-error>
                 </mat-select>

@@ -1,19 +1,23 @@
 import { Component, ViewChild } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
-
 
 @Component({
   selector: 'app-badge',
   templateUrl: './badge.component.html',
-  styleUrls: ['./badge.component.scss']
+  styleUrls: ['./badge.component.scss'],
 })
 export class BadgeComponent {
   @ViewChild('UpdateDialog') UpdateDialog: any;
   fileName: any;
   filePath: any;
-  constructor(public admin: AdminService,public dialog:MatDialog){}
+  constructor(public admin: AdminService, public dialog: MatDialog) {}
 
   previous_data: any;
   ngOnInit() {
@@ -25,7 +29,7 @@ export class BadgeComponent {
     badgeimage: new FormControl(),
     badgepoints: new FormControl(),
     badgename: new FormControl(),
-    userbadgeactivities : new FormControl(),
+    userbadgeactivities: new FormControl(),
   });
 
   // pointsGreaterThanZeroValidator(control: AbstractControl): { [key: string]: boolean } | null {
@@ -40,15 +44,13 @@ export class BadgeComponent {
     this.UpdateBadgesForm.setValue(_badge);
 
     this.dialog.open(this.UpdateDialog, {
-      width: '600px',
-      height: '350px',
+      width: '400px',
+      height: '300px',
     });
   }
   UpdateBadge() {
-    this.UpdateBadgesForm.controls['badgeimage'].setValue(
-      this.filePath
-    );
-   console.log(this.UpdateBadgesForm.value)
+    this.UpdateBadgesForm.controls['badgeimage'].setValue(this.filePath);
+    console.log(this.UpdateBadgesForm.value);
     this.admin.updateBadge(this.UpdateBadgesForm.value);
   }
 

@@ -27,14 +27,13 @@
               <h5 class="card-title fw-semibold mb-4">All Points</h5>
               <hr />
               <button
-              mat-dialog-close
-              (click)="OpenCreateDialog()"
-              class="btn btn-primary mb-4"
-            >
-           Create Activity Points
-            </button>
+                mat-dialog-close
+                (click)="OpenCreateDialog()"
+                class="btn btn-primary mb-4"
+              >
+                Create Activity Points
+              </button>
               <div class="table-responsive">
-                
                 <table class="table text-nowrap mb-0 align-middle text-center">
                   <thead class="text-dark fs-4">
                     <tr>
@@ -44,20 +43,19 @@
                       <th class="border-bottom-0">
                         <h6 class="fw-semibold mb-0">Points</h6>
                       </th>
-                      
-                      
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let p of admin.points">
                       <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">{{ p.pointsactivityname }}</h6>
+                        <h6 class="fw-semibold mb-1">
+                          {{ p.pointsactivityname }}
+                        </h6>
                       </td>
                       <td class="border-bottom-0">
                         <p class="mb-0 fw-normal">{{ p.points }}</p>
                       </td>
-                      
-                      
+
                       <td class="border-bottom-0">
                         <button
                           class="btn btn-primary m-2"
@@ -85,8 +83,6 @@
                             <path d="M16 5l3 3" />
                           </svg>
                         </button>
-                    
-                           
                       </td>
                     </tr>
                   </tbody>
@@ -99,21 +95,17 @@
       <!-- <app-footer-admin></app-footer-admin> -->
     </div>
 
-
-
-
-
-
-  <div class="container-fluid">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12 d-flex align-items-stretch">
           <div class="card w-100">
             <div class="card-body p-4">
-              <h5 class="card-title fw-semibold mb-4">Points Courses Complete</h5>
+              <h5 class="card-title fw-semibold mb-4">
+                Points Courses Complete
+              </h5>
               <hr />
-           
+
               <div class="table-responsive">
-                
                 <table class="table text-nowrap mb-0 align-middle text-center">
                   <thead class="text-dark fs-4">
                     <tr>
@@ -121,10 +113,10 @@
                         <h6 class="fw-semibold mb-0">Points</h6>
                       </th>
                       <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Number Of Courses Complete</h6>
+                        <h6 class="fw-semibold mb-0">
+                          Number Of Courses Complete
+                        </h6>
                       </th>
-                      
-                      
                     </tr>
                   </thead>
                   <tbody>
@@ -133,10 +125,11 @@
                         <h6 class="fw-semibold mb-1">{{ p.points }}</h6>
                       </td>
                       <td class="border-bottom-0">
-                        <p class="mb-0 fw-normal">{{ p.numberofcourses }} Courses</p>
+                        <p class="mb-0 fw-normal">
+                          {{ p.numberofcourses }} Courses
+                        </p>
                       </td>
-                      
-                      
+
                       <td class="border-bottom-0">
                         <button
                           class="btn btn-primary m-2"
@@ -165,36 +158,34 @@
                           </svg>
                         </button>
                         <button
-                        (click)="OpenConfirmDialog(p.pointsactivityid)"
-                        class="btn btn-danger"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="icon icon-tabler icon-tabler-trash-filled"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          stroke-width="2"
-                          stroke="currentColor"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          (click)="OpenConfirmDialog(p.pointsactivityid)"
+                          class="btn btn-danger"
                         >
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                          <path
-                            d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
-                            stroke-width="0"
-                            fill="currentColor"
-                          />
-                          <path
-                            d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
-                            stroke-width="0"
-                            fill="currentColor"
-                          />
-                        </svg>
-                      </button>
-                 
-                           
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-trash-filled"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                              d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                              stroke-width="0"
+                              fill="currentColor"
+                            />
+                            <path
+                              d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                              stroke-width="0"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -207,9 +198,6 @@
       <!-- <app-footer-admin></app-footer-admin> -->
     </div>
 
-
-
-
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12 d-flex align-items-stretch">
@@ -217,9 +205,8 @@
             <div class="card-body p-4">
               <h5 class="card-title fw-semibold mb-4">Points Days Login</h5>
               <hr />
-           
+
               <div class="table-responsive">
-                
                 <table class="table text-nowrap mb-0 align-middle text-center">
                   <thead class="text-dark fs-4">
                     <tr>
@@ -229,8 +216,6 @@
                       <th class="border-bottom-0">
                         <h6 class="fw-semibold mb-0">Number Of Days Login</h6>
                       </th>
-                      
-                      
                     </tr>
                   </thead>
                   <tbody>
@@ -241,8 +226,7 @@
                       <td class="border-bottom-0">
                         <p class="mb-0 fw-normal">{{ p.numberofdays }} Days</p>
                       </td>
-                      
-                      
+
                       <td class="border-bottom-0">
                         <button
                           class="btn btn-primary m-2"
@@ -271,38 +255,35 @@
                           </svg>
                         </button>
                         <button
-                        (click)="OpenConfirmDialog(p.pointsactivityid)"
-                        class="btn btn-danger"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="icon icon-tabler icon-tabler-trash-filled"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          stroke-width="2"
-                          stroke="currentColor"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          (click)="OpenConfirmDialog(p.pointsactivityid)"
+                          class="btn btn-danger"
                         >
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                          <path
-                            d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
-                            stroke-width="0"
-                            fill="currentColor"
-                          />
-                          <path
-                            d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
-                            stroke-width="0"
-                            fill="currentColor"
-                          />
-                        </svg>
-                      </button>
-                 
-                           
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-trash-filled"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                              d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z"
+                              stroke-width="0"
+                              fill="currentColor"
+                            />
+                            <path
+                              d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+                              stroke-width="0"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </button>
                       </td>
-
                     </tr>
                   </tbody>
                 </table>
@@ -313,169 +294,170 @@
       </div>
       <app-footer-admin></app-footer-admin>
     </div>
-
-
-
-
-
-
-
   </div>
 </div>
 
-
-
-
-
 <ng-template #UpdateDialog>
-  <form class="My-form" [formGroup]="UpdatePointsForm">
-    <div class="row w-100" style="padding: 25px;">
-
-      <mat-form-field class="col-lg-12">
-        <mat-label>Enter Points Name</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="previous_data.pointsactivityname"
-          formControlName="pointsactivityname"
-          required
-        />
-        <mat-error *ngIf="UpdatePointsForm.get('pointsactivityname')?.hasError('required')">
-          * Field equired
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="row w-100" style="padding: 25px;">
-
-      <mat-form-field class="col-lg-5">
-        <mat-label>Enter Points</mat-label>
-        <input
-          matInput
-          type="number"
-          [(ngModel)]="previous_data.points"
-          formControlName="points"
-          required
-        />
-        <mat-error *ngIf="UpdatePointsForm.get('points')?.hasError('required')">
-          * Field required
-        </mat-error>
-        <mat-error *ngIf="UpdatePointsForm.get('points')?.hasError('pointsGreaterThanZero')">
-          Points must be greater than 0
-        </mat-error>
-      </mat-form-field>
-
-      
-    </div>
-  
-    <div class="row w-100" style="padding: 25px;">
-
-      <div class="col-lg-4">
-        <input
-          mat-dialog-close
-          (click)="UpdatePoints()"
-          mat-raised-button
-          class="btn btn-primary"
-          value="Update"
-        />
-      </div>
-    </div>
-  </form>
-</ng-template>
-
-
-<ng-template #CreateDialog>
-  <form [formGroup]="CreateCourseCompleteForm">
-      <div class="row w-100" style="padding: 25px;">
-          <h3 class="mb-5">Create Activity Points</h3>
-
-          <mat-form-field class="col-6">
-            <mat-label>Select Activity Points</mat-label>
-            <mat-select formControlName="Pointsactivityname" required>
-              <mat-option value="Complete Course">Complete Course</mat-option>
-              <mat-option value="Login Days">Login Days</mat-option>
-            </mat-select>
-            <mat-error
-            *ngIf="
-              CreateCourseCompleteForm.controls['Pointsactivityname'].hasError('required')
-            "
-            >Points activity name is required</mat-error
-          >
-          </mat-form-field>
-          
-            
-        <mat-form-field class="col-6">
-          <mat-label>Number Of Points </mat-label>
+  <form [formGroup]="UpdatePointsForm" style="width: 480px">
+    <div class="row" style="padding: 25px">
+      <div class="col-md-6">
+        <mat-form-field class="w-100">
+          <mat-label>Enter Points Name</mat-label>
           <input
             matInput
-            placeholder="Number Of Points"
+            type="text"
+            [(ngModel)]="previous_data.pointsactivityname"
+            formControlName="pointsactivityname"
+            required
+          />
+          <mat-error
+            *ngIf="
+              UpdatePointsForm.get('pointsactivityname')?.hasError('required')
+            "
+          >
+            * Field equired
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field>
+          <mat-label>Enter Points</mat-label>
+          <input
+            matInput
+            type="number"
+            [(ngModel)]="previous_data.points"
             formControlName="points"
             required
           />
           <mat-error
-            *ngIf="
-              CreateCourseCompleteForm.controls['points'].hasError(
-                'required'
-              )
-            "
-            >Number Of Points is required</mat-error
+            *ngIf="UpdatePointsForm.get('points')?.hasError('required')"
           >
-        </mat-form-field>
-     
-     
-        <mat-form-field class="col-6" *ngIf="CreateCourseCompleteForm.controls['Pointsactivityname'].value == 'Complete Course'">
-          <mat-label> Number Of Courses Complete</mat-label>
-          <input
-            matInput
-            placeholder="Number Of courses complete"
-            formControlName="numberofcourses"
-            required
-          />
+            * Field required
+          </mat-error>
           <mat-error
             *ngIf="
-              CreateCourseCompleteForm.controls['numberofcourses'].hasError('required')
+              UpdatePointsForm.get('points')?.hasError('pointsGreaterThanZero')
             "
-            > Number Of courses complete is required</mat-error
           >
+            Points must be greater than 0
+          </mat-error>
         </mat-form-field>
-
-        <mat-form-field class="col-6" *ngIf="CreateCourseCompleteForm.controls['Pointsactivityname'].value == 'Login Days'">
-          <mat-label> Number Of Login Days</mat-label>
-          <input
-            matInput
-            placeholder="Number Of Login Days"
-            formControlName="numberofdays"
-            required
-          />
-          <mat-error
-            *ngIf="
-              CreateCourseCompleteForm.controls['numberofdays'].hasError('required')
-            "
-            > Number Of Login Days is required</mat-error
-          >
-        </mat-form-field>
-
-
-      
-  
-     
-      
-<div class="col-12" style="text-align: center;">
-
-
-<button
-mat-dialog-close
-(click)="CreateCourseComplete()"
-[disabled]="CreateCourseCompleteForm.invalid"
-class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
-Create
-</button>
-</div>
-</div>
-  
+      </div>
+    </div>
+    <div class="text-center">
+      <input
+        mat-dialog-close
+        (click)="UpdatePoints()"
+        mat-raised-button
+        class="btn btn-primary"
+        value="Update"
+      />
+    </div>
   </form>
 </ng-template>
 
+<ng-template #CreateDialog>
+  <form [formGroup]="CreateCourseCompleteForm">
+    <div class="row w-100" style="padding: 25px">
+      <h3 class="mb-5">Create Activity Points</h3>
 
+      <mat-form-field class="col-6">
+        <mat-label>Select Activity Points</mat-label>
+        <mat-select formControlName="Pointsactivityname" required>
+          <mat-option value="Complete Course">Complete Course</mat-option>
+          <mat-option value="Login Days">Login Days</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            CreateCourseCompleteForm.controls['Pointsactivityname'].hasError(
+              'required'
+            )
+          "
+          >Points activity name is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="col-6">
+        <mat-label>Number Of Points </mat-label>
+        <input
+          matInput
+          placeholder="Number Of Points"
+          formControlName="points"
+          required
+        />
+        <mat-error
+          *ngIf="
+            CreateCourseCompleteForm.controls['points'].hasError('required')
+          "
+          >Number Of Points is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field
+        class="col-6"
+        *ngIf="
+          CreateCourseCompleteForm.controls['Pointsactivityname'].value ==
+          'Complete Course'
+        "
+      >
+        <mat-label> Number Of Courses Complete</mat-label>
+        <input
+          matInput
+          placeholder="Number Of courses complete"
+          formControlName="numberofcourses"
+          required
+        />
+        <mat-error
+          *ngIf="
+            CreateCourseCompleteForm.controls['numberofcourses'].hasError(
+              'required'
+            )
+          "
+        >
+          Number Of courses complete is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field
+        class="col-6"
+        *ngIf="
+          CreateCourseCompleteForm.controls['Pointsactivityname'].value ==
+          'Login Days'
+        "
+      >
+        <mat-label> Number Of Login Days</mat-label>
+        <input
+          matInput
+          placeholder="Number Of Login Days"
+          formControlName="numberofdays"
+          required
+        />
+        <mat-error
+          *ngIf="
+            CreateCourseCompleteForm.controls['numberofdays'].hasError(
+              'required'
+            )
+          "
+        >
+          Number Of Login Days is required</mat-error
+        >
+      </mat-form-field>
+
+      <div class="col-12" style="text-align: center">
+        <button
+          mat-dialog-close
+          (click)="CreateCourseComplete()"
+          [disabled]="CreateCourseCompleteForm.invalid"
+          class="btn btn-primary w-50 col-12 mt-4"
+          style="margin: auto"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
 
 <ng-template #ConfirmationDialog>
   <h1 mat-dialog-title>Delete Point Activity</h1>
@@ -488,9 +470,6 @@ Create
     >
       No
     </button>
-    <button mat-dialog-close="yes" class="btn btn-danger w-25 m-2">
-      Yes
-    </button>
+    <button mat-dialog-close="yes" class="btn btn-danger w-25 m-2">Yes</button>
   </div>
 </ng-template>
-

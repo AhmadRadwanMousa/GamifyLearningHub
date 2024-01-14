@@ -50,13 +50,13 @@
                 <td class="border-bottom-0">
                   <button
                     class="btn btn-success m-2"
-                    (click)="HandleStatusChange(true, userRequest.userid)"
+                    (click)="HandleStatusChange(1, userRequest.userid)"
                   >
                     <i class="ti ti-circle-check fs-6"></i>
                   </button>
                   <button
                     class="btn btn-danger"
-                    (click)="HandleStatusChange(false, userRequest.userid)"
+                    (click)="HandleStatusChange(0, userRequest.userid)"
                   >
                     <i class="ti ti-circle-x fs-6"></i>
                   </button>

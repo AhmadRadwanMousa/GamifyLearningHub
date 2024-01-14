@@ -21,8 +21,8 @@
             <tr>
               <th scope="col">Product</th>
               <th scope="col">Name</th>
-              <th scope="col">Unit Price</th>
-              <th scope="col">Total</th>
+              <th scope="col">Price</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -49,22 +49,22 @@
                   }}
                 </span>
               </td>
-
-              <td class="product-subtotal">
-                <span class="subtotal-amount">$455.00</span>
-                <a
-                  (click)="
-                    this.learnerService.DeleteCartItem(
-                      cartItem.cartitemsid,
-                      cartItem.program.programprice -
-                        (cartItem.program.programprice *
-                          cartItem.program.programsale) /
-                          100
-                    )
-                  "
-                  class="remove cursor-pointer"
-                  ><i class="bx bx-trash"></i
-                ></a>
+              <td class="product-subtotal text-center">
+                <div>
+                  <a
+                    (click)="
+                      this.learnerService.DeleteCartItem(
+                        cartItem.cartitemsid,
+                        cartItem.program.programprice -
+                          (cartItem.program.programprice *
+                            cartItem.program.programsale) /
+                            100
+                      )
+                    "
+                    class="remove cursor-pointer"
+                    ><i class="bx bx-trash"></i
+                  ></a>
+                </div>
               </td>
             </tr>
           </tbody>

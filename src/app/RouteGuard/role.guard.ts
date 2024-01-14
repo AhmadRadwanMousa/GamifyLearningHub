@@ -19,8 +19,10 @@ export class RoleGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const token: any = getToken();
     const userRoleId: number | undefined = Number(token.roleId);
+    const isAccepted: number | undefined = Number(token.isAccepted);
+    console.log(isAccepted);
     const allowedRoleId: number = route.data['expectedRoleId'];
-    if (userRoleId === allowedRoleId) {
+    if (userRoleId === allowedRoleId && isAccepted != 0) {
       return true;
     } else {
       this.route.navigate(['**']);
