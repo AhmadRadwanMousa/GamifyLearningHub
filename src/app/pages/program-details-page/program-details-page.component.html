@@ -117,50 +117,17 @@
         </div>
         <div class="courses-details-desc">
           <div class="courses-review-comments">
-            <h3>3 Reviews</h3>
-            <div class="user-review">
-              <img src="assets/img/user1.jpg" alt="image" />
-
-              <span class="d-block sub-comment">Excellent</span>
-              <p>
-                Very well built theme, couldn't be happier with it. Can't wait
-                for future updates to see what else they add in.
-              </p>
-            </div>
-            <div class="user-review">
-              <img src="assets/img/user2.jpg" alt="image" />
+            <h3>{{this.shard.UserReviewsProgram.length}} Reviews</h3>
+            <div class="user-review" *ngFor="let r of this.shard.UserReviewsProgram">
+              <img [src]="r.user.userimage" alt="image" />
               <div class="review-rating">
                 <div class="review-stars">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star" *ngFor="let i of [1, 2, 3, 4, 5].slice(0, r.reviewrate)"></i>
                 </div>
-                <span class="d-inline-block">Sarah Taylor</span>
+                <h5 class="mt-1">{{r.user.firsname}} {{r.user.lastname}}</h5>
               </div>
-              <span class="d-block sub-comment">Video Quality!</span>
               <p>
-                Was really easy to implement and they quickly answer my
-                additional questions!
-              </p>
-            </div>
-            <div class="user-review">
-              <img src="assets/img/user3.jpg" alt="image" />
-              <div class="review-rating">
-                <div class="review-stars">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                </div>
-                <span class="d-inline-block">David Warner</span>
-              </div>
-              <span class="d-block sub-comment">Perfect Coding!</span>
-              <p>
-                Stunning design, very dedicated crew who welcome new ideas
-                suggested by customers, nice support.
+                {{r.reviewcontent}}
               </p>
             </div>
           </div>

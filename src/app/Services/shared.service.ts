@@ -217,4 +217,16 @@ export class SharedService {
         },
       });
   }
+
+  UserReviewsProgram: any = [];
+  GetAllProgramReview(id: number){
+    this.http.get(`${URL}/UserReview/byProgram/${id}`).subscribe({
+      next:(res)=>{
+        this.UserReviewsProgram = res;
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    });
+  }
 }

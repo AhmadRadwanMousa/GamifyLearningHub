@@ -9,6 +9,8 @@ import { LearnerService } from 'src/app/Services/learner.service';
 })
 export class UserDashboardComponent {
   constructor(public learnerService: LearnerService){}
+  visible: boolean = false;
+  numberOfPrograms: number = 0;
   token: string | null = localStorage.getItem('token');
   getUserIdFromToken(): number{
     if(this.token != null){
@@ -20,6 +22,15 @@ export class UserDashboardComponent {
     }
   }
   ngOnInit(){
+    this.learnerService.clearCache();
     this.learnerService.UserDashboardInfoByUserId(this.getUserIdFromToken());
+    this.learnerService.GetFinishedPrograms(this.getUserIdFromToken());
+    setTimeout(() => {
+      this.setCount();
+    }, 100);
+  }
+  setCount() {
+    this.numberOfPrograms = this.learnerService.finishedPrograms.length;
+    this.visible = this.numberOfPrograms > 0 ? true : false;
   }
 }
