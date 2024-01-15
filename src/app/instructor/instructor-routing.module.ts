@@ -45,6 +45,7 @@ const routes: Routes = [
     path: 'instructorLeaderboard',
     component: InstructorLeaderBoardComponent,
   },
+  
 ];
 
 @NgModule({

@@ -52,7 +52,7 @@ import { EmptyComponent } from './empty/empty.component';
 import { DialogModule } from 'primeng/dialog';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -101,6 +101,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DialogModule,
     ClipboardModule,
     MatTooltipModule,
+    DragDropModule
   ],
   exports: [
     FooterComponent,

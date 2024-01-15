@@ -24,10 +24,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './RouteGuard/auth-interceptor';
 import { RoleGuard } from './RouteGuard/role.guard';
 import { ReportComponent } from './instructor/report/report.component';
+import { AdminTasksComponent } from './admin/admin-tasks/admin-tasks.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
-  declarations: [AppComponent, ReportComponent],
+  declarations: [AppComponent, ReportComponent, AdminTasksComponent],
   imports: [
     AppRoutingModule,
     SharedModule,
@@ -37,6 +39,7 @@ import { ReportComponent } from './instructor/report/report.component';
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
     FormsModule,
+    DragDropModule,
    
     ToastNoAnimationModule.forRoot({
       positionClass: 'toast-bottom-right',
