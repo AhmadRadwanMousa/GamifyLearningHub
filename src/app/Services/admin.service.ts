@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { URL } from '../constants/url';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, finalize, map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 import { UrlHandlingStrategy } from '@angular/router';
@@ -18,6 +18,62 @@ export class AdminService {
     private spinner: NgxSpinnerService,
     private toastr: ToastrService
   ) {}
+
+  instructorDetailsById: any = {};
+
+  GetInstructorDetailsById(instructorId: any): Observable<any> {
+    this.spinner.show();
+    return this.http.get('https://localhost:7036/api/User/GetInstructorDetailsById/' + instructorId ).pipe(
+      map((result) => {
+        this.instructorDetailsById = result;
+        return result; 
+      }),
+      catchError((error) => {
+        console.log(error);
+        this.spinner.hide();
+        throw error;
+      }),
+      finalize(() => {
+        this.spinner.hide();
+      })
+    );
+  }
+
+
+  
+
+  CreateDetailsInstructor(data: any) {
+    this.spinner.show();
+    this.http.post('https://localhost:7036/api/User/CreateInstructorDetails/', data).subscribe({
+      next: () => {
+        this.GetAllUsers();
+        this.spinner.hide();
+        this.toastr.success('Details Instructor created successfully');
+      },
+      error: (err) => {
+        console.log(err);
+        this.spinner.hide();
+        this.toastr.error('Failed to create Details Instructor');
+      },
+    });
+  }
+  
+  UpdateDetailsInstructor(data: any) {
+    this.spinner.show();
+    this.http.put('https://localhost:7036/api/User/UpdateInstructorDetails', data).subscribe({
+      next: () => {
+        this.GetAllUsers();
+        this.spinner.hide();
+        this.toastr.success('Details instructor updated successfully');
+      },
+      error: (err) => {
+        this.spinner.hide();
+        this.toastr.error('Failed to update details instructor');
+      },
+    });
+  }
+
+
   Role: any = [];
 
   //Get Role
@@ -349,6 +405,31 @@ export class AdminService {
         },
       });
   }
+
+
+
+  progromById: any = [];
+
+  GetprogromById(id: number) {
+    this.spinner.show();
+    this.http
+      .get('https://localhost:7036/api/Program/GetProgramById/' + id)
+      .subscribe({
+        next: (data: any) => {
+          this.progromById = data;
+          this.spinner.hide();
+          console.log(this.progromById);
+        },
+        error: (err) => {
+          console.log(err);
+          this.spinner.hide();
+        },
+      });
+  }
+
+
+
+
 
   courseSequence: any = [];
 

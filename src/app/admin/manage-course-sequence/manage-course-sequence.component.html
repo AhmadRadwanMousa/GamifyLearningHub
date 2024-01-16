@@ -207,21 +207,35 @@
             matInput
             [matDatepicker]="startDatePicker"
             formControlName="startdate"
+
           />
           <mat-datepicker-toggle
             matSuffix
             [for]="startDatePicker"
+            
           ></mat-datepicker-toggle>
           <mat-datepicker #startDatePicker></mat-datepicker>
-          <mat-error
+          <!-- <mat-error
             *ngIf="
               CreateCourseSequenceForm.controls['startdate'].hasError(
                 'required'
               )
             "
-            >* Field required</mat-error
-          >
+            >* Field required</mat-error> -->
+            <!-- <p *ngIf="isStartDateValid()">
+              * Start date cannot be less than the minimum start date
+            </p> -->
+            <mat-error *ngIf="!isStartDateValid()">
+              * Start date cannot be less than the minimum start date educational period
+            </mat-error>
+           
+            <!-- <p *ngIf="!isStartDateValid()" class="custom-error-message">
+              * Start date cannot be less than the minimum start date educational period
+            </p> -->
         </mat-form-field>
+        <!-- <p *ngIf="!isStartDateValid()" class="custom-error-message col-6">
+          * Start date cannot be less than the minimum start date educational period
+        </p> -->
 
         <mat-form-field class="col-6">
           <mat-label>End Date</mat-label>
@@ -235,18 +249,32 @@
             [for]="endDatePicker"
           ></mat-datepicker-toggle>
           <mat-datepicker #endDatePicker></mat-datepicker>
-          <mat-error
+          <!-- <mat-error
             *ngIf="
               CreateCourseSequenceForm.controls['enddate'].hasError('required')
             "
             >* Field required</mat-error
-          >
+          > -->
+
+          <mat-error *ngIf="!isEndDateValid()">
+            * End date cannot be more than the end date educational period
+          </mat-error>
+          
         </mat-form-field>
+
+        <p *ngIf="showError()" class="custom-error-message">
+       
+          {{textErrorStart}}
+          
+          {{textErrorEnd}}
+      </p>
+      
+
 
         <button
           mat-dialog-close
           (click)="CreateCourseSequence()"
-          [disabled]="CreateCourseSequenceForm.invalid"
+          [disabled]="CreateCourseSequenceForm.invalid || !startDateValid || !endtDateValid"
           class="btn btn-primary w-50"
           style="margin: auto"
         >

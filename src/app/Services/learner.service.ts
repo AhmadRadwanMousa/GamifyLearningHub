@@ -345,6 +345,7 @@ export class LearnerService {
 
   allSectionsByLearnerId: any = [];
   GetAllSectionsByLearnerId() {
+    console.log(this.userId);
     this.spinner.show();
     this.http
       .get(
@@ -712,7 +713,7 @@ export class LearnerService {
 
   testimonialByUserId: any = [];
   GetTestimonialByUserId(id: number) {
-    console.log(id);
+    console.log(this.userId);
     this.http.get(`${URL}/Testimonial/GetByUserId/` + id).subscribe({
       next: (result) => {
         this.spinner.show();

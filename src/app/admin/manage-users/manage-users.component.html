@@ -146,6 +146,19 @@
                       />
                     </svg>
                   </button>
+                  <button [disabled]="user.userlogins[0].roleid != 2" (click)="OpenDetailsInstructorDialog(user)" class="btn btn-info mx-2">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-file-description" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                        <path
+                            d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                        <path d="M9 17h6" />
+                        <path d="M9 13h6" />
+                    </svg>
+                </button>
                 </td>
               </tr>
             </tbody>
@@ -554,3 +567,290 @@
     </mat-dialog-content>
   </ng-template>
 </app-admin-container>
+
+
+
+<ng-template #CreateDetailsInstructorDialog>
+  <form [formGroup]="CreateDetailsInstructorForm" class="my_form">  
+      <div class="row w-100" style="padding: 25px;">
+          <h3 class="mb-5">Create Details Instructor</h3>
+
+     
+        <mat-form-field class="col-6">
+          <mat-label>Title</mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder="Title"
+            formControlName="title"
+            required
+          />
+          <mat-error *ngIf="CreateDetailsInstructorForm.get('title')?.hasError('required')">
+            * Field Required
+          </mat-error>
+          
+          
+        </mat-form-field>
+
+     
+
+      
+    
+        <mat-form-field class="col-6">
+          <mat-label> Instructor Description </mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder=" Instructor Description"
+            formControlName="description"
+            required
+          />
+          <mat-error
+            *ngIf="
+              CreateDetailsInstructorForm.controls['description'].hasError(
+                'required'
+              )
+            "
+            >* Field Required</mat-error
+          >
+        </mat-form-field>
+     
+
+    
+        <mat-form-field class="col-6">
+          <mat-label> facebook Link </mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder="facebook Link"
+            formControlName="facebooklink"
+            
+          />
+         
+        </mat-form-field>
+     
+
+        <mat-form-field class="col-6">
+          <mat-label> instagram Link </mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder="instagram Link"
+            formControlName="instagramlink"
+            
+          />
+         
+        </mat-form-field>
+     
+
+        <mat-form-field class="col-6">
+          <mat-label> linkedin Link </mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder="linkedin Link"
+            formControlName="linkedinlink"
+            
+          />
+         
+        </mat-form-field>
+     
+
+        <mat-form-field class="col-6">
+          <mat-label> twitter Link </mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder="twitter Link"
+            formControlName="twitterlink"
+            
+          />
+         
+        </mat-form-field>
+
+
+
+
+  <input
+  type="file"
+  class="file-input"
+  (change)="UploadFile($event)"
+  #fileUpload
+/>
+<div>
+  
+</div>
+<div class="file-upload border border-2 rounded-2 col-10 mt-3" style="margin: auto; text-align: center;">
+  {{ fileName || "(Upload Cv Instructor)" }}
+
+  <button
+    mat-mini-fab
+    color="primary"
+    class="upload-btn btn btn-outline-primary"
+    (click)="fileUpload.click()"
+  >
+    <mat-icon>upload-btn</mat-icon>
+  </button>
+</div>
+
+
+
+
+       
+
+<button
+mat-dialog-close
+(click)="CreateDetailsInstructor()"
+[disabled]="CreateDetailsInstructorForm.invalid"
+class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
+Create
+</button>
+</div>
+  
+  </form>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+<ng-template #UpdateDetailsInstructorDialog>
+  <form [formGroup]="UpdateDetailsInstructorForm" class="my_form">
+      <div class="row w-100" style="padding: 25px;">
+          <h3 class="mb-5">Update Details Instructor</h3>
+
+    
+        <mat-form-field class="col-6">
+          <mat-label> Title</mat-label>
+          <input
+            matInput
+            placeholder="Title"
+            formControlName="title"
+            required
+          />
+          <mat-error
+          *ngIf="
+            UpdateDetailsInstructorForm.controls['title'].hasError(
+              'required'
+            )
+          "
+          >* Field Required</mat-error>
+        </mat-form-field>
+
+
+
+        <mat-form-field class="col-6">
+          <mat-label> Instructor Description </mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder=" Instructor Description"
+            formControlName="description"
+            required
+          />
+          <mat-error
+          *ngIf="
+            UpdateDetailsInstructorForm.controls['description'].hasError(
+              'required'
+            )
+          "
+          >* Field Required</mat-error>
+        </mat-form-field>
+     
+
+    
+        <mat-form-field class="col-6">
+          <mat-label> facebook Link </mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder="facebook Link"
+            formControlName="facebooklink"
+            
+          />
+         
+        </mat-form-field>
+     
+
+        <mat-form-field class="col-6">
+          <mat-label> instagram Link </mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder="instagram Link"
+            formControlName="instagramlink"
+            
+          />
+         
+        </mat-form-field>
+     
+
+        <mat-form-field class="col-6">
+          <mat-label> linkedin Link </mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder="linkedin Link"
+            formControlName="linkedinlink"
+            
+          />
+         
+        </mat-form-field>
+     
+
+        <mat-form-field class="col-6">
+          <mat-label> twitter Link </mat-label>
+          <input
+          type="text"
+            matInput
+            placeholder="twitter Link"
+            formControlName="twitterlink"
+            
+          />
+         
+        </mat-form-field>
+
+
+        <input
+        type="file"
+        class="file-input"
+        (change)="UploadFile($event)"
+        #fileUpload
+      />
+      <div>
+        
+      </div>
+      <div class="file-upload border border-2 rounded-2 col-10 mt-3" style="margin: auto; text-align: center;">
+        {{ fileName || "(Upload Cv Instructor)" }}
+      
+        <button
+          mat-mini-fab
+          color="primary"
+          class="upload-btn btn btn-outline-primary"
+          (click)="fileUpload.click()"
+        >
+          <mat-icon>upload-btn</mat-icon>
+        </button>
+      </div>
+      
+
+
+        <button
+        [disabled]="UpdateDetailsInstructorForm.invalid"
+          mat-dialog-close
+          (click)="UpdateDetailsInstructor()"
+          class="btn btn-primary w-50 col-12 mt-4" style="margin: auto;">
+          Update
+        </button>
+      </div>
+
+   
+  </form>
+</ng-template>
+
+

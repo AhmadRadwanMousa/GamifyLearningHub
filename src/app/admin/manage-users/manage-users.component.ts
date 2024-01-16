@@ -14,6 +14,10 @@ export class ManageUsersComponent implements OnInit {
   @ViewChild('UpdateDialog') UpdateDialog: any;
   @ViewChild('DeleteDialog') DeleteDialog: any;
   @ViewChild('DetailsDialog') DetailsDialog: any;
+  @ViewChild('CreateDetailsInstructorDialog') CreateDetailsInstructorDialog: any;
+  @ViewChild('UpdateDetailsInstructorDialog') UpdateDetailsInstructorDialog: any;
+
+
   hide = true;
   fileName: string = '';
   filePath: string = '';
@@ -32,6 +36,62 @@ export class ManageUsersComponent implements OnInit {
     this.adminService.GetAllUsers();
     this.adminService.GetAllRoles();
   }
+
+  CreateDetailsInstructorForm: FormGroup = new FormGroup({
+    userid: new FormControl(),
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    facebooklink: new FormControl(),
+    instagramlink : new FormControl(),
+    linkedinlink: new FormControl(),
+    twitterlink: new FormControl(),
+    experience: new FormControl(),
+  });
+
+  UpdateDetailsInstructorForm: FormGroup = new FormGroup({
+    instructorid : new FormControl(),
+    userid: new FormControl(),
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    facebooklink: new FormControl(),
+    instagramlink : new FormControl(),
+    linkedinlink: new FormControl(),
+    twitterlink: new FormControl(),
+    experience: new FormControl(),
+    user : new FormControl(),
+  });
+
+  async OpenDetailsInstructorDialog(user: any) {
+    console.log(user)
+    try {
+      await this.adminService.GetInstructorDetailsById(user.userid).toPromise();
+  
+      if (this.adminService.instructorDetailsById == null) {
+        this.CreateDetailsInstructorForm.controls['userid'].setValue(user.userid);
+        this.dialog.open(this.CreateDetailsInstructorDialog);
+      } else {
+       var data = this.adminService.instructorDetailsById;
+        this.UpdateDetailsInstructorForm.setValue(data);
+        this.dialog.open(this.UpdateDetailsInstructorDialog);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+
+
+     CreateDetailsInstructor() {
+      this.CreateDetailsInstructorForm.controls['experience'].setValue(this.filePath);  
+      this.adminService.CreateDetailsInstructor(this.CreateDetailsInstructorForm.value);
+    }
+
+    UpdateDetailsInstructor(){
+      this.UpdateDetailsInstructorForm.controls['experience'].setValue(this.filePath);  
+      this.adminService.UpdateDetailsInstructor(this.UpdateDetailsInstructorForm.value);
+
+    }
+
 
   OpenCreateUserDialog() {
     let createDialog = this.dialog.open(this.CreateDialog, {

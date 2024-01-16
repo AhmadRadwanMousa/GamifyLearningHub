@@ -17,7 +17,7 @@ export class InstructorPajeComponent implements OnInit {
 
 
   ngOnInit() {
-    this.toastr.success('welcome');
+    // this.toastr.success('welcome');
      this.shard.getAllInstrutors();
     }
 
