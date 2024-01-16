@@ -2212,21 +2212,46 @@ textarea.form-control {
 .page-title-area {
   position: relative;
   z-index: 1;
-
+  background: {
+    // color: var(--mainColor);
+    position: center center;
+    size: cover;
+    repeat: no-repeat;
+  }
   padding: {
-    top: 70px;
-    bottom: 60px;
+    top: 100px;
+    bottom: 100px;
   }
   &.page-title-style-two {
     padding: {
-      top: 280px;
-      bottom: 120px;
+      top: 100px;
+      bottom: 100px;
     }
   }
   &.page-title-style-three {
     padding: {
-      top: 180px;
-      bottom: 140px;
+      top: 100px;
+      bottom: 100px;
+    }
+  }
+  &.item-bg1 {
+    background: {
+      image: url(assets/img/page-title/page-title1.jpeg);
+    }
+  }
+  &.item-bg2 {
+    background: {
+      image: url(assets/img/page-title/page-title1.jpeg);
+    }
+  }
+  &.item-bg3 {
+    background: {
+      image: url(assets/img/page-title/page-title1.jpeg);
+    }
+  }
+  &.item-bg4 {
+    background: {
+      image: url(assets/img/page-title/page-title1.jpeg);
     }
   }
 }
@@ -2240,11 +2265,11 @@ textarea.form-control {
       display: inline-block;
       margin-right: 30px;
       position: relative;
-      //color: var(--whiteColor);
+      color: var(--whiteColor);
 
       a {
         display: inline-block;
-        //color: var(--whiteColor);
+        color: var(--whiteColor);
         opacity: 0.85;
 
         &:hover,
@@ -2255,7 +2280,7 @@ textarea.form-control {
       }
       &::before {
         content: "\ea50";
-        //color: var(--whiteColor);
+        color: var(--whiteColor);
         position: absolute;
         right: -25px;
         top: -4px;
@@ -2278,7 +2303,7 @@ textarea.form-control {
     }
   }
   h2 {
-    //color: var(--whiteColor);
+    color: var(--whiteColor);
     margin-bottom: 0;
     font: {
       size: 42px;
@@ -3845,10 +3870,41 @@ blockquote,
     }
   }
 
+  // .page-title-area {
+  //   position: relative;
+  //   z-index: 1;
+  //   background: {
+  //     color: var(--mainColor);
+  //     position: center center;
+  //     size: cover;
+  //     repeat: no-repeat;
+  //   }
+  //   padding: {
+  //     top: 265px;
+  //     bottom: 90px;
+  //   }
+  //   &.page-title-style-two {
+  //     padding: {
+  //       top: 270px;
+  //       bottom: 100px;
+  //     }
+  //   }
+  //   &.page-title-style-three {
+  //     padding: {
+  //       top: 100px;
+  //       bottom: 70px;
+  //     }
+  //   }
+  //   &.item-bg1 {
+  //     background: {
+  //       image: url(assets/img/page-title/page-title1.jpeg);
+  //     }
+  //   }
+  // }
   .page-title-area {
     padding: {
       top: 265px;
-      //bottom: 90px;
+      bottom: 90px;
     }
     &.page-title-style-two {
       padding: {
@@ -3859,7 +3915,7 @@ blockquote,
     &.page-title-style-three {
       padding: {
         top: 100px;
-        //bottom: 70px;
+        bottom: 100px;
       }
     }
   }
