@@ -235,6 +235,10 @@ export class InstructorService {
 
   GetSectionsByUserId() {
     this.spinner.show();
+    let token: any = getToken();
+    if (token && token.userId != null) {
+      this.userId = token.userId;
+    }
     this.http
       .get(
         'https://localhost:7036/api/Section/GetAllSectionsByUserId/' +

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/Services/admin.service';
@@ -11,12 +11,18 @@ import { AdminService } from 'src/app/Services/admin.service';
 })
 export class ManageCourseSequenceComponent {
 
-  constructor(private route: ActivatedRoute,public _adminService: AdminService, public dialog: MatDialog,private router: Router) { }
+  constructor(private route: ActivatedRoute,public _adminService: AdminService, 
+    public dialog: MatDialog,private router: Router ,
+    ) { }
+
+
+  
   id : any = 0;
   ngOnInit() {
     this.route.params.subscribe(params => {
          this.id = +params?.['programid'];
         this._adminService.GetCoursesSequenceByProgramId(this.id);
+        this._adminService.GetprogromById(this.id);
         
     });
 
@@ -38,11 +44,52 @@ export class ManageCourseSequenceComponent {
 }
 
   OpenCreateDialog() {
-    this.dialog.open(this.CreateCorseSequenceDialog, {
-    
-    });
+     this.dialog.open(this.CreateCorseSequenceDialog);
+  
   }
 
+  startDateValid = false;
+  isStartDateValid() : boolean {
+    var minStartDate = new Date(this._adminService.progromById.educationalperiod.startdate);
+    var minEndDate = new Date(this._adminService.progromById.educationalperiod.enddate);
+    const selectedStartDate = this.CreateCourseSequenceForm.controls['startdate'].value;
+    const selectedEndDate = this.CreateCourseSequenceForm.controls['enddate'].value;
+    this.startDateValid = selectedStartDate >= minStartDate && selectedStartDate <= minEndDate  && selectedStartDate <= selectedEndDate;
+    return  this.startDateValid;
+  }
+  
+  endtDateValid = false;
+  isEndDateValid() : boolean {
+    var minStartDate = new Date(this._adminService.progromById.educationalperiod.startdate);
+    var minEndDate = new Date(this._adminService.progromById.educationalperiod.enddate);
+    const selectedEndDate = this.CreateCourseSequenceForm.controls['enddate'].value;
+    this.endtDateValid = selectedEndDate >= minStartDate && selectedEndDate <= minEndDate ;
+    return  this.endtDateValid;
+  }
+  textErrorStart = "";
+  textErrorEnd = "";
+   
+  showError(){
+
+if (this.startDateValid == false ){
+  this.textErrorStart = "Start date cannot be less than the start date educational period or more than end date course sequence"
+}
+else {
+  this.textErrorStart = "";
+}
+if (this.endtDateValid == false){
+  this.textErrorEnd = "End date cannot be more than the end date educational period"
+}
+else {
+  this.textErrorEnd = "";
+}
+
+if (this.textErrorStart != ""  || this.textErrorEnd != ""){
+  return true;
+}
+return false;
+
+  }
   CreateCourseSequenceForm: FormGroup = new FormGroup({
     courseid: new FormControl('', Validators.required),
     programid: new FormControl(this.id, Validators.required),
@@ -77,6 +124,7 @@ export class ManageCourseSequenceComponent {
   }
 
   CreateCourseSequence() {
+    console.log(this.CreateCourseSequenceForm.controls['startdate'].value);
     const nextDay = new Date( this.CreateCourseSequenceForm.controls['startdate'].value);
     nextDay.setDate(nextDay.getDate() + 1);
     this.CreateCourseSequenceForm.controls['startdate'].setValue(nextDay);
@@ -90,6 +138,13 @@ export class ManageCourseSequenceComponent {
     this.CreateCourseSequenceForm.controls['perviouscourseid'].setValue(null);
     this.CreateCourseSequenceForm.controls['programid'].setValue(this.id);
     this._adminService.CreateCoursesSequence(this.CreateCourseSequenceForm.value);
+
+    this.textErrorStart = "";
+    this.textErrorEnd = "";
+    this.startDateValid = false;
+    this.endtDateValid = false;
+
+
   }
  
   DeletCourseSequence(id: number) {

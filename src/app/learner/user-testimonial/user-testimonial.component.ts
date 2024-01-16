@@ -30,6 +30,7 @@ export class UserTestimonialComponent {
   dynamicTestimonials: any[] = [];
   
   ngOnInit (){
+    this._learnerService.updateUserId();
     this._learnerService.GetTestimonialByUserId(this.getUserIdFromToken());
   }
   

@@ -23,6 +23,7 @@ export class LearnerService {
       userId = token.userId;
     }
     this.userId = userId;
+
   }
   userId: any = 0;
   CartItemsByUserId: any = [];
@@ -137,6 +138,10 @@ export class LearnerService {
   AlertShow: boolean = false;
 
   CreateTestimonial(data: any) {
+    // let token: any = getToken();
+    // if (token && token.userId != null) {
+    //   data.userid = token.userId;
+    // }
     data.userid = this.userId;
     this.spinner.show();
     this.http.post('https://localhost:7036/api/Testimonial', data).subscribe({
@@ -337,6 +342,7 @@ export class LearnerService {
 
   allSectionsByLearnerId: any = [];
   GetAllSectionsByLearnerId() {
+    console.log(this.userId)
     this.spinner.show();
     this.http
       .get(
@@ -704,7 +710,7 @@ export class LearnerService {
 
   testimonialByUserId: any = [];
   GetTestimonialByUserId(id: number) {
-    console.log(id);
+    console.log(this.userId);
     this.http.get(`${URL}/Testimonial/GetByUserId/` + id).subscribe({
       next: (result) => {
         this.spinner.show();

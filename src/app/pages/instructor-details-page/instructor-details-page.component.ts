@@ -17,8 +17,12 @@ ngOnInit() {
   this.route.paramMap.subscribe((param) => {
     this.itemId = Number(param.get('id'));
     console.log(this.itemId); 
+    this.shard.instructorDetailsById = {};
+    this.shard.sectionsByInstructorId = [];
     this.shard.getInstructorDetails(this.itemId);
-    this.shard.getAllSectionDetails(this.itemId);
+    this.shard.GetInstructorDetailsById(this.itemId);
+    this.shard.GetSectionsByInstructorId(this.itemId);
+
   });
 }
 
