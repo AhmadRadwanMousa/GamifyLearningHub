@@ -721,11 +721,13 @@ export class InstructorService {
   }
   NumberOfInstructorLectures: any;
   GetInstructorLectures(id: number) {
-    this.http.get(`${URL}/AdminLeaderBoard/InstructorLectures/${id}`).subscribe({
-      next: (res) => {
-        this.NumberOfInstructorLectures = res;
-      },
-    });
+    this.http
+      .get(`${URL}/AdminLeaderBoard/InstructorLectures/${id}`)
+      .subscribe({
+        next: (res) => {
+          this.NumberOfInstructorLectures = res;
+        },
+      });
   }
   RankingByPoints: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   GetRankingByPoints(id: number) {
@@ -753,21 +755,23 @@ export class InstructorService {
       error: (err) => {
         this.toastr.error(err.message);
         console.log(err);
-        
       },
     });
   }
   TopStudentsByInstructor: any;
   GetRankingByPoints2() {
-    this.http.get(`${URL}/AdminLeaderBoard/InstructorPointsStudents2`).subscribe({
-      next: (res) => {
-        this.spinner.show();
-        this.TopStudentsByInstructor = res;
-        this.spinner.hide();
-      },
-      error: (err) => {
-        this.toastr.error(err.message);
-      },
-    });
+    this.http
+      .get(`${URL}/AdminLeaderBoard/InstructorPointsStudents2`)
+      .subscribe({
+        next: (res) => {
+          this.spinner.show();
+          this.TopStudentsByInstructor = res;
+          console.log(res);
+          this.spinner.hide();
+        },
+        error: (err) => {
+          this.toastr.error(err.message);
+        },
+      });
   }
 }
