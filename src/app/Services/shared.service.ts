@@ -176,7 +176,7 @@ export class SharedService {
     this.http.get(`${URL}/Section/GetAllUsersWithRoleId2`).subscribe({
       next: (res) => {
         this.Instructors = res;
-        console.log(this.Instructors)
+        console.log(this.Instructors);
       },
       error: (err) => {
         this.toastr.error(err.message);
@@ -184,23 +184,24 @@ export class SharedService {
     });
   }
 
-
   instructorDetailsById: any = {};
-  
+
   GetInstructorDetailsById(id: number) {
     this.spinner.show();
 
-    this.http.get('https://localhost:7036/api/User/GetInstructorDetailsById/' + id).subscribe({
-      next: (res) => {
-        this.instructorDetailsById = res;
-      console.log( this.instructorDetailsById)
-        this.spinner.hide();
-      },
-      error: (err) => {
-        this.toastr.error(err.message);
-        this.spinner.hide();
-      },
-    });
+    this.http
+      .get('https://localhost:7036/api/User/GetInstructorDetailsById/' + id)
+      .subscribe({
+        next: (res) => {
+          this.instructorDetailsById = res;
+          console.log(this.instructorDetailsById);
+          this.spinner.hide();
+        },
+        error: (err) => {
+          this.toastr.error(err.message);
+          this.spinner.hide();
+        },
+      });
   }
 
   //Get InstrutorDetails
@@ -212,8 +213,8 @@ export class SharedService {
     this.http.get('https://localhost:7036/api/user/' + id).subscribe({
       next: (res) => {
         this.InstructorDetails = res;
-        console.log("---------------")
-        console.log(this.InstructorDetails)
+        console.log('---------------');
+        console.log(this.InstructorDetails);
         this.spinner.hide();
       },
       error: (err) => {
@@ -237,6 +238,18 @@ export class SharedService {
           this.toastr.error(err.message);
         },
       });
+  }
+
+  UserReviewsProgram: any = [];
+  GetAllProgramReview(id: number) {
+    this.http.get(`${URL}/UserReview/byProgram/${id}`).subscribe({
+      next: (res) => {
+        this.UserReviewsProgram = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   sectionsByInstructorId: any = [];

@@ -808,4 +808,32 @@ export class LearnerService {
       },
     });
   }
+
+  finishedPrograms: any = [];
+  GetFinishedPrograms(id: number) {
+    this.http.get(`${URL}/UserReview/finished-programs/${id}`).subscribe({
+      next: (result) => {
+        this.finishedPrograms = result;
+        console.log(result);
+        
+      },
+      error: (err) => {
+        console.log(err.message);
+      },
+    });
+  }
+  PostUserReview(data: any){
+    this.http.post(`${URL}/UserReview`, data).subscribe({
+      next:()=>{
+        console.log(data);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    });
+  }
+
+  clearCache() {
+    this.finishedPrograms = [];
+  }
 }

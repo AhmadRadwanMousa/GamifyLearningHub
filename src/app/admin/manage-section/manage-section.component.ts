@@ -117,8 +117,8 @@ export class ManageSectionComponent {
 
   OpenCreateDialog() {
     this.dialog.open(this.CreateSectionDialog, {
-      width: '700px',
-      height: '350px',
+      width: '600px',
+      height: '500px',
     });
   }
 
@@ -134,7 +134,7 @@ export class ManageSectionComponent {
     });
 
     this.dialog.open(this.UpdateSectionDialog, {
-      width: '700px',
+      width: '600px',
       height: '350px',
     });
   }

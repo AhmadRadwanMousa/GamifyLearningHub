@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/Services/auth.service';
   styleUrls: ['./program-details-page.component.scss'],
 })
 export class ProgramDetailsPageComponent {
+[x: string]: any;
   @ViewChild('SectionDialog') SectionDialog: any;
   constructor(
     public shard: SharedService,
@@ -38,6 +39,7 @@ export class ProgramDetailsPageComponent {
       this.userId = Number(token.userId);
       this.roleId = Number(token.roleId);
     }
+    this.shard.GetAllProgramReview(this.itemId);
   }
   calculateWeeksDuration(): number {
     const millisecondsInWeek = 7 * 24 * 60 * 60 * 1000;

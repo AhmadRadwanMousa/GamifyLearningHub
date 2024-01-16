@@ -126,19 +126,18 @@
   </ng-template>
 
   <ng-template #CreateDialog>
-    <div class="page-wrapper">
-      <div class="row">
+    <div>
+      <div>
         <div class="col-lg-12">
-          <div class="card w-100 mb-0">
+          <div class="card">
             <div class="card-body">
               <h1 class="card-title fw-semibold mb-4">Create Section</h1>
-              <form [formGroup]="CreateSectionForm" class="mt-0">
-                <div class="row mb-3">
-                  <div class="col-md-4">
-                    <div class="mb-3">
-                      <label for="sectionname" class="form-label"
-                        >Section Name:</label
-                      >
+              <form [formGroup]="CreateSectionForm">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div>
+                      <!-- name -->
+                      
                       <mat-form-field>
                         <input
                           matInput
@@ -174,11 +173,10 @@
                       </mat-form-field>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="mb-3">
-                      <label for="sectionsize" class="form-label"
-                        >Section Size:</label
-                      >
+                  <div class="col-lg-12">
+                    <div>
+                      <!-- size -->
+                      
                       <mat-form-field>
                         <input
                           matInput
@@ -207,11 +205,10 @@
                       </mat-form-field>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="mb-3">
-                      <label for="userid" class="form-label"
-                        >Instructors:</label
-                      >
+                  <div class="col-lg-12">
+                    <div >
+                      <!-- instructor -->
+                      
                       <mat-form-field color="accent">
                         <mat-label>Section Instructor</mat-label>
                         <mat-select id="userid" formControlName="userid">
@@ -245,7 +242,7 @@
                   />
                 </div>
 
-                <div class="row mt-5">
+                <div class="row">
                   <div class="col-md-12 text-center">
                     <button
                       mat-dialog-close

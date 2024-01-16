@@ -61,3 +61,33 @@
         </div>
     
 </app-user-dashboard-container>
+
+    <p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-12">
+                    <h1>Congratulations!</h1>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-12">
+                    <i class="fa-solid fa-graduation-cap my-icon"></i>
+                </div>
+            </div>
+            <div class="row text-center mt-1">
+                <div class="col-12">
+                    <h4>You have finished {{this.numberOfPrograms}} programs</h4>
+                </div>
+            </div>
+            <div class="row text-center mt-2">
+                <div class="col-12">
+                    <p>We are happy for you to tell us your experience during these programs</p>
+                </div>
+            </div>
+            <div class="row mt-2 text-center" *ngFor="let p of this.learnerService.finishedPrograms">
+               <div class="col-12">
+                <app-program-feedback [userid]="this.getUserIdFromToken()" [programid]="p.programId" [programName]="p.programName"></app-program-feedback>
+               </div>
+            </div>
+        </div>
+    </p-dialog>

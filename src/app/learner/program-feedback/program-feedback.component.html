@@ -1,0 +1,41 @@
+
+<button type="button" class="default-btn custom-button mb-3" (click)="Toggle()">
+    <i class='bx bx-paper-plane icon-arrow before'></i>
+    <span class="label">Tell us about {{programName}}</span>
+    <i class="bx bx-paper-plane icon-arrow after"></i>
+  </button>
+
+
+<div class="container">
+    <div class="alert alert-success" role="alert" *ngIf="isSent">
+        Your feedback sent successfully
+      </div>
+    <form *ngIf="this.IsShow && !isSent" [formGroup]="CreateReviewForm">
+        <div class="row d-flex justify-content-center">
+            <div class="input-group my-3">
+                <select class="form-select" id="inputGroupSelect01" formControlName="reviewrate">
+                  <option selected>Your rate</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            
+            <div class="input-group">
+                <input type="textarea" placeholder="Your feedback" formControlName="reviewcontent" class="form-control" style="height: 100px;">
+            </div>
+            
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 mt-3">
+                <button type="button" (click)="SendReview()" class="btn btn-primary mb-3">
+                    <span class="label">Submit</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
