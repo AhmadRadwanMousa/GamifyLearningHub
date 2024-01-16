@@ -32,7 +32,6 @@ import { LeaderBoardComponent } from './leader-board/leader-board.component';
     ManageCourseSequenceComponent,
     ManageRoleComponent,
     ManageSectionComponent,
-
     ManageUsersComponent,
     ManageUserSectionComponent,
     ManageTestimonialsComponent,

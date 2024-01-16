@@ -1,0 +1,49 @@
+<app-admin-container>
+
+
+<div class="root">
+    
+  
+    <div class="board">
+    <input type="text" placeholder="Add new task" class="form-control" [(ngModel)]="todoItem">
+   
+    <!--Adding a new task directly into TODO card-->
+    <button class="btn btn-primary mb-4" (click)="AddTaskBtn()">Add New Task</button>
+        <div class="row">
+            <div class="col-lg-12 d-flex align-items-stretch">
+              <div class="card w-100">
+                <div class="card-body p-4" *ngFor="let item of todoItemArr ">
+                    {{item}}   
+        </div>
+    </div>
+  </div>
+</div>
+      <div class="board-wrapper">
+  
+        <div class="board-columns" cdkDropListGroup>
+          <div class="board-column" *ngFor="let column of board.columns">
+  
+            <div class="column-title">
+              {{ column.name }}
+            </div>
+  
+            <div class="tasks-container"
+            cdkDropList
+            [cdkDropListData]="column.tasks"
+            (cdkDropListDropped)="drop($event)">
+            <div class="task" *ngFor="let item of column.tasks" cdkDrag>
+                <span class="task-text">{{ item }}</span>
+    <!--Delete the task from lists-->
+                <button class="btn-close" (click)="deleteTask(column, item)"></button>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+</app-admin-container>

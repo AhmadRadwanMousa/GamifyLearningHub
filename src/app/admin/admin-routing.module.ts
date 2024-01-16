@@ -18,6 +18,7 @@ import { ManageTestimonialsComponent } from './manage-testimonials/manage-testim
 import { ManageUserStatusComponent } from './manage-user-status/manage-user-status.component';
 import { AdminReportComponent } from './admin-report/admin-report.component';
 import { LeaderBoardComponent } from './leader-board/leader-board.component';
+import { AdminTasksComponent } from './admin-tasks/admin-tasks.component';
 
 const routes: Routes = [
   {
@@ -90,6 +91,11 @@ const routes: Routes = [
   {
     path: 'leaderBoard',
     component: LeaderBoardComponent,
+  },
+  
+  {
+    path: 'trello',
+    component: AdminTasksComponent,
   },
 ];
 
